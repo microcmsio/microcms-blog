@@ -1,0 +1,15 @@
+{
+  "projectName": "microcms-blog",
+  "version": "2.0",
+  "frontend": "javascript",
+  "javascript": {
+    "framework": "vue",
+    "config": {
+      "SourceDir": "src",
+      "DistributionDir": "dist",
+      "BuildCommand": "npm run-script build",
+      "StartCommand": "npm run-script serve"
+    }
+  },
+  "providers": ["awscloudformation"]
+}
