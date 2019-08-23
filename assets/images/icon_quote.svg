@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="10px" viewBox="0 0 14 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>ic/format_quote</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M1,10 L4,10 L6,6 L6,0 L0,0 L0,6 L3,6 L1,10 Z M9,10 L12,10 L14,6 L14,0 L8,0 L8,6 L11,6 L9,10 Z" id="path-1"></path>
+    </defs>
+    <g id="blog" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-59.000000, -45.000000)">
+            <g id="ic/format_quote" transform="translate(66.000000, 50.000000) scale(-1, -1) translate(-66.000000, -50.000000) translate(59.000000, 45.000000)">
+                <g id="ic_format_quote_24px">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Shape" fill="#919299" fill-rule="nonzero" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

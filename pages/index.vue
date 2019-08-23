@@ -2,31 +2,31 @@
   <div class="container">
     <div>
       <logo />
-      <h1 class="title">
-        microCMS blog
-      </h1>
-      <ul v-for='content in contents' :key='content.id'>
-        <li><a v-bind:href='content.id'>{{content.title}}</a></li>
+      <h1 class="title">microCMS blog</h1>
+      <ul v-for="content in contents" :key="content.id">
+        <li>
+          <a v-bind:href="content.id">{{content.title}}</a>
+        </li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-import Logo from '~/components/Logo.vue'
+import axios from 'axios';
+import Logo from '~/components/Logo.vue';
 
 export default {
-  async asyncData () {
+  async asyncData() {
     let { data } = await axios.get(`https://microcms.microcms.io/api/v1/blog`, {
       headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
-    })
+    });
     return data;
   },
   components: {
     Logo
   }
-}
+};
 </script>
 
 <style>

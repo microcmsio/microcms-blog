@@ -1,0 +1,111 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+v2.0 | 20110126
+License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers 
+*/
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+display: block;
+}
+
+body, input {
+  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+  color: #2b2c30;
+}
+
+ol, ul {
+list-style: none;
+}
+
+blockquote, q {
+quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+content: '';
+content: none;
+}
+
+a {
+color: var(--color-text-link);
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+
+input, select, button {
+  &:focus {
+    outline: none;
+  }
+}
+
+:placeholder-shown {
+color: var(--color-text-placeholder);
+}
+
+::-webkit-input-placeholder {
+color: var(--color-text-placeholder);
+}
+
+/* Firefox 18- */
+
+:-moz-placeholder {
+color: var(--color-text-placeholder);
+opacity: 1;
+}
+
+/* Firefox 19+ */
+
+::-moz-placeholder {
+color: var(--color-text-placeholder);
+opacity: 1;
+}
+
+/* IE 10+ */
+
+:-ms-input-placeholder {
+color: var(--color-text-placeholder);
+}
+
+/* for Responsible */
+
+@media (max-width: 1030px) {
+  .forPC {
+    display: none;
+  }
+}
+
+@media (min-width: 1030px) {
+  .forSP {
+    display: none;
+  }
+}

@@ -1,60 +1,296 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        {{ title }}
-      </h1>
-      <div v-html="body"></div>
+  <div class="wrapper">
+    <Header />
+    <div class="divider">
+      <article class="article">
+        <img :src="ogimage" class="ogimage" />
+        <div class="main">
+          <div class="share">
+            <ul class="shareLists">
+              <li class="shareList">
+                <a v-bind:href="getTwitterLink()" target="_blank">
+                  <img src="@/assets/images/icon_twitter.svg" alt="Twitter" />
+                </a>
+              </li>
+              <li class="shareList">
+                <a v-bind:href="getFacebookLink()" target="_blank">
+                  <img src="@/assets/images/icon_facebook.svg" alt="Facebook" />
+                </a>
+              </li>
+              <li class="shareList">
+                <a v-bind:href="getHatenaLink()" target="_blank">
+                  <img src="@/assets/images/icon_hatena.svg" alt="はてなブックマーク" />
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="container">
+            <h1 class="title">{{ title }}</h1>
+            <div class="meta">
+              <span class="timestamp">
+                <img src="@/assets/images/icon_clock.svg" alt />
+                {{ $moment(createdAt).format('YYYY/MM/DD') }}
+              </span>
+              <span class="author">
+                <img src="@/assets/images/icon_author.svg" alt />
+                {{ author }}
+              </span>
+            </div>
+            <div class="post" v-html="body"></div>
+          </div>
+        </div>
+      </article>
+      <aside class="aside">
+        <a href="https://microcms.io" class="banner">
+          <img class="logo" src="@/assets/images/banner_logo.svg" alt="microCMS" />
+          <p>APIベースの日本製ヘッドレスCMS</p>
+          <span class="detail">詳しく見る</span>
+        </a>
+      </aside>
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-import Logo from '~/components/Logo.vue'
+import axios from 'axios';
+import Header from '~/components/Header.vue';
+import Footer from '~/components/Footer.vue';
 
 export default {
-  async asyncData ({ params }) {
-    let { data } = await axios.get(`https://microcms.microcms.io/api/v1/blog/${params.slug}`, {
-      headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
-    })
+  async asyncData({ params }) {
+    let { data } = await axios.get(
+      `https://microcms.microcms.io/api/v1/blog/${params.slug}`,
+      {
+        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+      }
+    );
     return data;
   },
+  methods: {
+    getTwitterLink() {
+      return `https://twitter.com/intent/tweet?text=${this.title}&url=${window.location.href}&hashtags=microcms`;
+    },
+    getFacebookLink() {
+      return `https://www.facebook.com/sharer.php?u=${window.location.href}`;
+    },
+    getHatenaLink() {
+      return `https://b.hatena.ne.jp/entry/${window.location.href}`;
+    }
+  },
   components: {
-    Logo
+    Header,
+    Footer
   }
-}
+};
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
+.wrapper {
+  position: relative;
+}
+
+.divider {
+  display: flex;
+  justify-content: space-between;
+  width: 1160px;
+  margin: 20px auto 0;
+}
+
+.article {
+  width: 820px;
+}
+
+.aside {
+  width: 300px;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  align-items: strech;
+}
+
+.share {
+  width: 24px;
+  padding-top: 16px;
+
+  img {
+    max-width: 24px;
+    max-height: 24px;
+  }
+}
+
+.shareLists {
+  display: block;
+  position: sticky;
+  top: 20px;
+}
+
+.shareList {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.banner {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  width: 300px;
+  height: 250px;
+  background-color: #2b2c30;
+  color: #fff;
+
+  img {
+    width: 160px;
+    margin-top: 10px;
+  }
+
+  p {
+    margin-top: 30px;
+    color: #999;
+    padding-top: 10px;
+    font-size: 14px;
+    width: 260px;
+    text-align: center;
+    border-top: 1px solid #666;
+  }
+
+  span {
+    display: block;
+    border: 1px solid #fff;
+    width: 120px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 10px;
+    padding: 4px 0;
+    font-size: 14px;
+  }
+}
+
+.ogimage {
+  width: 100%;
+}
+
+.container {
+  position: relative;
+  flex: 1;
+  background-color: #fff;
+  margin-left: 80px;
+  -webkit-font-smoothing: antialiased;
 }
 
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+  font-weight: bold;
+  font-size: 40px;
+  color: #2b2c30;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.meta {
+  padding: 10px 0 40px;
 }
 
-.links {
-  padding-top: 15px;
+.timestamp {
+  display: inline-flex;
+  align-items: center;
+  color: #919299;
+  margin-right: 20px;
+
+  img {
+    margin-right: 6px;
+  }
+}
+
+.author {
+  display: inline-flex;
+  align-items: center;
+  color: #919299;
+
+  img {
+    margin-right: 6px;
+  }
+}
+
+.post {
+  h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 36px 0 16px;
+  }
+
+  h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 30px 0 12px;
+  }
+
+  h4 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 24px 0 10px;
+  }
+
+  h5 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 20px 0 6px;
+  }
+
+  p {
+    line-height: 1.8;
+    letter-spacing: 0.2px;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+  }
+
+  ul > li {
+    &::before {
+      content: '-';
+      margin-right: 10px;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    margin: 20px 0;
+  }
+
+  a {
+    color: #331cbf;
+  }
+
+  blockquote {
+    background: url('~assets/images/icon_quote.svg') no-repeat 20px 10px, #eee;
+    background-size: 36px 36px;
+    padding: 50px 20px 20px;
+    margin: 20px 0;
+    border-radius: 3px;
+  }
+
+  pre {
+    background-color: #e7e7f3;
+    padding: 20px;
+    border-radius: 3px;
+    margin: 20px 0;
+  }
 }
 </style>
