@@ -69,13 +69,13 @@ export default {
   },
   methods: {
     getTwitterLink() {
-      return `https://twitter.com/intent/tweet?text=${this.title}&url=${window.location.href}&hashtags=microcms`;
+      return `https://twitter.com/intent/tweet?text=${this.title}&url=https://microcms.io/blog/${this.id}&hashtags=microcms`;
     },
     getFacebookLink() {
-      return `https://www.facebook.com/sharer.php?u=${window.location.href}`;
+      return `https://www.facebook.com/sharer.php?u=https://microcms.io/blog/${this.id}`;
     },
     getHatenaLink() {
-      return `https://b.hatena.ne.jp/entry/${window.location.href}`;
+      return `https://b.hatena.ne.jp/entryhttps://microcms.io/blog/${this.id}`;
     }
   },
   components: {
