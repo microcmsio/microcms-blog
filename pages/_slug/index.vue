@@ -85,7 +85,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .wrapper {
   position: relative;
 }
@@ -217,68 +217,68 @@ export default {
 }
 
 .post {
-  h1 {
+  & >>> h1 {
     font-size: 36px;
     font-weight: bold;
     margin: 40px 0 20px;
     border-bottom: 1px solid #ddd;
   }
 
-  h2 {
+  & >>> h2 {
     font-size: 30px;
     font-weight: bold;
     margin: 36px 0 16px;
   }
 
-  h3 {
+  & >>> h3 {
     font-size: 24px;
     font-weight: bold;
     margin: 30px 0 12px;
   }
 
-  h4 {
+  & >>> h4 {
     font-size: 20px;
     font-weight: bold;
     margin: 24px 0 10px;
   }
 
-  h5 {
+  & >>> h5 {
     font-size: 16px;
     font-weight: bold;
     margin: 20px 0 6px;
   }
 
-  p {
+  & >>> p {
     line-height: 1.8;
     letter-spacing: 0.2px;
   }
 
-  em {
+  & >>> em {
     font-style: italic;
   }
 
-  ol {
+  & >>> ol {
     list-style-type: decimal;
     list-style-position: inside;
   }
 
-  ul > li {
+  & >>> ul > li {
     &::before {
       content: '-';
       margin-right: 10px;
     }
   }
 
-  img {
+  & >>> img {
     max-width: 100%;
     margin: 20px 0;
   }
 
-  a {
+  & >>> a {
     color: #331cbf;
   }
 
-  blockquote {
+  & >>> blockquote {
     background: url('~assets/images/icon_quote.svg') no-repeat 20px 10px, #eee;
     background-size: 36px 36px;
     padding: 50px 20px 20px;
@@ -286,7 +286,7 @@ export default {
     border-radius: 3px;
   }
 
-  pre {
+  & >>> pre {
     background-color: #e7e7f3;
     padding: 20px;
     border-radius: 3px;
