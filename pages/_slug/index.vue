@@ -58,7 +58,11 @@ import Header from '~/components/Header.vue';
 import Footer from '~/components/Footer.vue';
 
 export default {
-  async asyncData({ params }) {
+  async asyncData({ params, error, payload }) {
+    console.log(payload);
+    if (payload !== undefined) {
+      return payload;
+    }
     let { data } = await axios.get(
       `https://microcms.microcms.io/api/v1/blog/${params.slug}`,
       {

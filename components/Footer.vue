@@ -3,16 +3,16 @@
     <p class="cr">Copyright © 2019 microcms.io All rights reserved.</p>
     <ul class="lists">
       <li class="list">
-        <a href="company.html">運営会社</a>
+        <a href="https://microcms.io/company.html">運営会社</a>
       </li>
       <li class="list">
-        <a href="law.html">特定商取引法に基づく表記</a>
+        <a href="https://microcms.io/law.html">特定商取引法に基づく表記</a>
       </li>
       <li class="list">
-        <a href="terms.html">利用規約</a>
+        <a href="https://microcms.io/terms.html">利用規約</a>
       </li>
       <li class="list">
-        <a href="policy.html">プライバシーポリシー</a>
+        <a href="https://microcms.io/policy.html">プライバシーポリシー</a>
       </li>
       <li class="list">
         <a href="mailto:info@microcms.io">お問い合わせ</a>
@@ -43,12 +43,12 @@
     font-size: 14px;
 
     &::after {
-      content: "|";
+      content: '|';
       margin: 0 20px;
     }
 
     &:last-child::after {
-      content: "";
+      content: '';
       margin: 0;
     }
 
