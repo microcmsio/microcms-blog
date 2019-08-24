@@ -766,8 +766,8 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100%;
-    height: 250px;
+    margin: 0 -16px -120px;
+    height: 270px;
     background-color: #2b2c30;
     color: #fff;
 
