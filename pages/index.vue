@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div>
-      <logo />
       <h1 class="title">microCMS blog</h1>
       <ul v-for="content in contents" :key="content.id">
         <li>
@@ -14,7 +13,6 @@
 
 <script>
 import axios from 'axios';
-import Logo from '~/components/Logo.vue';
 
 export default {
   async asyncData() {
@@ -22,9 +20,6 @@ export default {
       headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
     });
     return data;
-  },
-  components: {
-    Logo
   }
 };
 </script>
