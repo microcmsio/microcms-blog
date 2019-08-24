@@ -55,7 +55,7 @@ export default {
   generate: {
     routes() {
       return axios
-        .get(`https://microcms.microcms.io/api/v1/blog`, {
+        .get(`https://microcms.microcms.io/api/v1/blog?limit=100`, {
           headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
         })
         .then(res =>

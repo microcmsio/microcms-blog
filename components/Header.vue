@@ -1,14 +1,26 @@
 <template>
   <header class="header">
-    <h1><a href="#"><img class="logoImg" src="@/assets/images/logo.svg" alt="microCMS"></a></h1>
+    <h1 class="logo">
+      <a href="https://microcms.io">
+        <img class="logoImg" src="@/assets/images/logo.svg" alt="microCMS" />
+      </a>
+    </h1>
     <div class="menu">
       <ul class="lists">
-        <li class="list"><a href="#feature">特徴</a></li>
-        <li class="list"><a href="#api">API 利用例</a></li>
-        <li class="list"><a href="#price">料金</a></li>
+        <li class="list">
+          <a href="#feature">特徴</a>
+        </li>
+        <li class="list">
+          <a href="#api">API 利用例</a>
+        </li>
+        <li class="list">
+          <a href="#price">料金</a>
+        </li>
       </ul>
       <ul class="lists">
-        <li class="list"><a href="#document">資料請求</a></li>
+        <li class="list">
+          <a href="#document">資料請求</a>
+        </li>
       </ul>
     </div>
   </header>
@@ -56,6 +68,28 @@
     a {
       color: #2b2c30;
     }
+  }
+}
+@media (max-width: 600px) {
+  .header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    z-index: 10;
+  }
+
+  .logo {
+    display: inline-block;
+    height: 32px;
+  }
+
+  .logoImg {
+    height: 32px;
+  }
+
+  .menu {
+    display: none;
   }
 }
 </style>

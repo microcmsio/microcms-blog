@@ -59,7 +59,6 @@ import Footer from '~/components/Footer.vue';
 
 export default {
   async asyncData({ params, error, payload }) {
-    console.log(payload);
     if (payload !== undefined) {
       return payload;
     }
@@ -90,211 +89,845 @@ export default {
 </script>
 
 <style scoped>
-.wrapper {
-  position: relative;
-}
-
-.divider {
-  display: flex;
-  justify-content: space-between;
-  width: 1160px;
-  margin: 20px auto 0;
-}
-
-.article {
-  width: 820px;
-}
-
-.aside {
-  width: 300px;
-}
-
-.main {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 40px;
-  align-items: strech;
-}
-
-.share {
-  width: 24px;
-  padding-top: 16px;
-
-  img {
-    max-width: 24px;
-    max-height: 24px;
-  }
-}
-
-.shareLists {
-  display: block;
-  position: sticky;
-  top: 20px;
-}
-
-.shareList {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.banner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 300px;
-  height: 250px;
-  background-color: #2b2c30;
-  color: #fff;
-
-  img {
-    width: 160px;
-    margin-top: 10px;
+@media (min-width: 1160px) {
+  .wrapper {
+    position: relative;
   }
 
-  p {
-    margin-top: 30px;
-    color: #999;
-    padding-top: 10px;
-    font-size: 14px;
-    width: 260px;
-    text-align: center;
-    border-top: 1px solid #666;
+  .divider {
+    display: flex;
+    justify-content: space-between;
+    width: 1160px;
+    margin: 20px auto 0;
   }
 
-  span {
-    display: block;
-    border: 1px solid #fff;
-    width: 120px;
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 10px;
-    padding: 4px 0;
-    font-size: 14px;
-  }
-}
-
-.ogimage {
-  width: 100%;
-}
-
-.container {
-  position: relative;
-  flex: 1;
-  background-color: #fff;
-  margin-left: 80px;
-  -webkit-font-smoothing: antialiased;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: bold;
-  font-size: 40px;
-  color: #2b2c30;
-}
-
-.meta {
-  padding: 10px 0 40px;
-}
-
-.timestamp {
-  display: inline-flex;
-  align-items: center;
-  color: #919299;
-  margin-right: 20px;
-
-  img {
-    margin-right: 6px;
-  }
-}
-
-.author {
-  display: inline-flex;
-  align-items: center;
-  color: #919299;
-
-  img {
-    margin-right: 6px;
-  }
-}
-
-.post {
-  & >>> h1 {
-    font-size: 36px;
-    font-weight: bold;
-    margin: 40px 0 20px;
-    border-bottom: 1px solid #ddd;
+  .article {
+    width: 820px;
   }
 
-  & >>> h2 {
-    font-size: 30px;
-    font-weight: bold;
-    margin: 36px 0 16px;
+  .aside {
+    width: 300px;
   }
 
-  & >>> h3 {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 30px 0 12px;
+  .main {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    align-items: strech;
   }
 
-  & >>> h4 {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 24px 0 10px;
-  }
+  .share {
+    width: 24px;
+    padding-top: 16px;
 
-  & >>> h5 {
-    font-size: 16px;
-    font-weight: bold;
-    margin: 20px 0 6px;
-  }
-
-  & >>> p {
-    line-height: 1.8;
-    letter-spacing: 0.2px;
-  }
-
-  & >>> em {
-    font-style: italic;
-  }
-
-  & >>> ol {
-    list-style-type: decimal;
-    list-style-position: inside;
-  }
-
-  & >>> ul > li {
-    &::before {
-      content: '-';
-      margin-right: 10px;
+    img {
+      max-width: 24px;
+      max-height: 24px;
     }
   }
 
-  & >>> img {
-    max-width: 100%;
-    margin: 20px 0;
+  .shareLists {
+    display: block;
+    position: sticky;
+    top: 20px;
   }
 
-  & >>> a {
-    color: #331cbf;
+  .shareList {
+    text-align: center;
+    margin-bottom: 20px;
   }
 
-  & >>> blockquote {
-    background: url('~assets/images/icon_quote.svg') no-repeat 20px 10px, #eee;
-    background-size: 36px 36px;
-    padding: 50px 20px 20px;
-    margin: 20px 0;
-    border-radius: 3px;
+  .banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 300px;
+    height: 250px;
+    background-color: #2b2c30;
+    color: #fff;
+
+    img {
+      width: 160px;
+      margin-top: 10px;
+    }
+
+    p {
+      margin-top: 30px;
+      color: #999;
+      padding-top: 10px;
+      font-size: 14px;
+      width: 260px;
+      text-align: center;
+      border-top: 1px solid #666;
+    }
+
+    span {
+      display: block;
+      border: 1px solid #fff;
+      width: 120px;
+      margin: 0 auto;
+      text-align: center;
+      margin-top: 10px;
+      padding: 4px 0;
+      font-size: 14px;
+    }
   }
 
-  & >>> pre {
-    background-color: #e7e7f3;
-    padding: 20px;
-    border-radius: 3px;
-    margin: 20px 0;
+  .ogimage {
+    width: 100%;
+  }
+
+  .container {
+    position: relative;
+    flex: 1;
+    background-color: #fff;
+    margin-left: 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .title {
+    font-family: 'Quicksand', 'Source Sans Pro', -apple-system,
+      BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+      sans-serif;
+    display: block;
+    font-weight: bold;
+    font-size: 40px;
+    color: #2b2c30;
+  }
+
+  .meta {
+    padding: 10px 0 40px;
+  }
+
+  .timestamp {
+    display: inline-flex;
+    align-items: center;
+    color: #919299;
+    margin-right: 20px;
+
+    img {
+      margin-right: 6px;
+    }
+  }
+
+  .author {
+    display: inline-flex;
+    align-items: center;
+    color: #919299;
+
+    img {
+      margin-right: 6px;
+    }
+  }
+
+  .post {
+    & >>> h1 {
+      font-size: 36px;
+      font-weight: bold;
+      margin: 40px 0 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    & >>> h2 {
+      font-size: 30px;
+      font-weight: bold;
+      margin: 36px 0 16px;
+    }
+
+    & >>> h3 {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 30px 0 12px;
+    }
+
+    & >>> h4 {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 24px 0 10px;
+    }
+
+    & >>> h5 {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 20px 0 6px;
+    }
+
+    & >>> p {
+      line-height: 1.8;
+      letter-spacing: 0.2px;
+    }
+
+    & >>> em {
+      font-style: italic;
+    }
+
+    & >>> ol {
+      list-style-type: decimal;
+      list-style-position: inside;
+    }
+
+    & >>> ul > li {
+      &::before {
+        content: '-';
+        margin-right: 10px;
+      }
+    }
+
+    & >>> img {
+      max-width: 100%;
+      margin: 20px 0;
+    }
+
+    & >>> a {
+      color: #331cbf;
+    }
+
+    & >>> blockquote {
+      background: url('~assets/images/icon_quote.svg') no-repeat 20px 10px, #eee;
+      background-size: 36px 36px;
+      padding: 50px 20px 20px;
+      margin: 20px 0;
+      border-radius: 3px;
+    }
+
+    & >>> pre {
+      background-color: #e7e7f3;
+      padding: 20px;
+      border-radius: 3px;
+      margin: 20px 0;
+    }
+  }
+}
+@media (min-width: 820px) and (max-width: 1160px) {
+  .wrapper {
+    position: relative;
+  }
+
+  .divider {
+    margin: 20px auto 0;
+    width: 740px;
+  }
+
+  .article {
+    width: 740px;
+  }
+
+  .aside {
+    margin-top: 100px;
+    margin-left: 104px;
+    width: 300px;
+  }
+
+  .main {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    align-items: strech;
+  }
+
+  .share {
+    width: 24px;
+    padding-top: 16px;
+
+    img {
+      max-width: 24px;
+      max-height: 24px;
+    }
+  }
+
+  .shareLists {
+    display: block;
+    position: sticky;
+    top: 20px;
+  }
+
+  .shareList {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 300px;
+    height: 250px;
+    background-color: #2b2c30;
+    color: #fff;
+
+    img {
+      width: 160px;
+      margin-top: 10px;
+    }
+
+    p {
+      margin-top: 30px;
+      color: #999;
+      padding-top: 10px;
+      font-size: 14px;
+      width: 260px;
+      text-align: center;
+      border-top: 1px solid #666;
+    }
+
+    span {
+      display: block;
+      border: 1px solid #fff;
+      width: 120px;
+      margin: 0 auto;
+      text-align: center;
+      margin-top: 10px;
+      padding: 4px 0;
+      font-size: 14px;
+    }
+  }
+
+  .ogimage {
+    width: 100%;
+  }
+
+  .container {
+    position: relative;
+    flex: 1;
+    background-color: #fff;
+    margin-left: 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .title {
+    font-family: 'Quicksand', 'Source Sans Pro', -apple-system,
+      BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+      sans-serif;
+    display: block;
+    font-weight: bold;
+    font-size: 40px;
+    color: #2b2c30;
+  }
+
+  .meta {
+    padding: 10px 0 40px;
+  }
+
+  .timestamp {
+    display: inline-flex;
+    align-items: center;
+    color: #919299;
+    margin-right: 20px;
+
+    img {
+      margin-right: 6px;
+    }
+  }
+
+  .author {
+    display: inline-flex;
+    align-items: center;
+    color: #919299;
+
+    img {
+      margin-right: 6px;
+    }
+  }
+
+  .post {
+    & >>> h1 {
+      font-size: 36px;
+      font-weight: bold;
+      margin: 40px 0 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    & >>> h2 {
+      font-size: 30px;
+      font-weight: bold;
+      margin: 36px 0 16px;
+    }
+
+    & >>> h3 {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 30px 0 12px;
+    }
+
+    & >>> h4 {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 24px 0 10px;
+    }
+
+    & >>> h5 {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 20px 0 6px;
+    }
+
+    & >>> p {
+      line-height: 1.8;
+      letter-spacing: 0.2px;
+    }
+
+    & >>> em {
+      font-style: italic;
+    }
+
+    & >>> ol {
+      list-style-type: decimal;
+      list-style-position: inside;
+    }
+
+    & >>> ul > li {
+      &::before {
+        content: '-';
+        margin-right: 10px;
+      }
+    }
+
+    & >>> img {
+      max-width: 100%;
+      margin: 20px 0;
+    }
+
+    & >>> a {
+      color: #331cbf;
+    }
+
+    & >>> blockquote {
+      background: url('~assets/images/icon_quote.svg') no-repeat 20px 10px, #eee;
+      background-size: 36px 36px;
+      padding: 50px 20px 20px;
+      margin: 20px 0;
+      border-radius: 3px;
+    }
+
+    & >>> pre {
+      background-color: #e7e7f3;
+      padding: 20px;
+      border-radius: 3px;
+      margin: 20px 0;
+    }
+  }
+}
+@media (min-width: 600px) and (max-width: 820px) {
+  .wrapper {
+    position: relative;
+  }
+
+  .divider {
+    margin: 20px 0 0;
+    padding: 0 20px;
+  }
+
+  .article {
+    width: 100%;
+  }
+
+  .aside {
+    margin-top: 60px;
+    margin-left: 104px;
+    width: 100%;
+  }
+
+  .main {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    align-items: strech;
+  }
+
+  .share {
+    width: 24px;
+    padding-top: 16px;
+
+    img {
+      max-width: 24px;
+      max-height: 24px;
+    }
+  }
+
+  .shareLists {
+    display: block;
+    position: sticky;
+    top: 20px;
+  }
+
+  .shareList {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 300px;
+    height: 250px;
+    background-color: #2b2c30;
+    color: #fff;
+
+    img {
+      width: 160px;
+      margin-top: 10px;
+    }
+
+    p {
+      margin-top: 30px;
+      color: #999;
+      padding-top: 10px;
+      font-size: 14px;
+      width: 260px;
+      text-align: center;
+      border-top: 1px solid #666;
+    }
+
+    span {
+      display: block;
+      border: 1px solid #fff;
+      width: 120px;
+      margin: 0 auto;
+      text-align: center;
+      margin-top: 10px;
+      padding: 4px 0;
+      font-size: 14px;
+    }
+  }
+
+  .ogimage {
+    width: 100%;
+  }
+
+  .container {
+    position: relative;
+    flex: 1;
+    background-color: #fff;
+    margin-left: 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .title {
+    font-family: 'Quicksand', 'Source Sans Pro', -apple-system,
+      BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+      sans-serif;
+    display: block;
+    font-weight: bold;
+    font-size: 40px;
+    color: #2b2c30;
+  }
+
+  .meta {
+    padding: 10px 0 40px;
+  }
+
+  .timestamp {
+    display: inline-flex;
+    align-items: center;
+    color: #919299;
+    margin-right: 20px;
+
+    img {
+      margin-right: 6px;
+    }
+  }
+
+  .author {
+    display: inline-flex;
+    align-items: center;
+    color: #919299;
+
+    img {
+      margin-right: 6px;
+    }
+  }
+
+  .post {
+    & >>> h1 {
+      font-size: 36px;
+      font-weight: bold;
+      margin: 40px 0 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    & >>> h2 {
+      font-size: 30px;
+      font-weight: bold;
+      margin: 36px 0 16px;
+    }
+
+    & >>> h3 {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 30px 0 12px;
+    }
+
+    & >>> h4 {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 24px 0 10px;
+    }
+
+    & >>> h5 {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 20px 0 6px;
+    }
+
+    & >>> p {
+      line-height: 1.8;
+      letter-spacing: 0.2px;
+    }
+
+    & >>> em {
+      font-style: italic;
+    }
+
+    & >>> ol {
+      list-style-type: decimal;
+      list-style-position: inside;
+    }
+
+    & >>> ul > li {
+      &::before {
+        content: '-';
+        margin-right: 10px;
+      }
+    }
+
+    & >>> img {
+      max-width: 100%;
+      margin: 20px 0;
+    }
+
+    & >>> a {
+      color: #331cbf;
+    }
+
+    & >>> blockquote {
+      background: url('~assets/images/icon_quote.svg') no-repeat 20px 10px, #eee;
+      background-size: 36px 36px;
+      padding: 50px 20px 20px;
+      margin: 20px 0;
+      border-radius: 3px;
+    }
+
+    & >>> pre {
+      background-color: #e7e7f3;
+      padding: 20px;
+      border-radius: 3px;
+      margin: 20px 0;
+    }
+  }
+}
+@media (max-width: 600px) {
+  .wrapper {
+    position: relative;
+  }
+
+  .divider {
+    padding: 0 16px;
+  }
+
+  .article {
+    width: 100%;
+  }
+
+  .aside {
+    margin-top: 60px;
+    width: 100%;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: 30px;
+  }
+
+  .share {
+    margin: 40px 0;
+
+    img {
+      max-height: 20px;
+    }
+  }
+
+  .shareLists {
+    display: flex;
+    justify-content: center;
+  }
+
+  .shareList {
+    text-align: center;
+    margin: 0 20px;
+  }
+
+  .banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 250px;
+    background-color: #2b2c30;
+    color: #fff;
+
+    img {
+      width: 160px;
+      margin-top: 10px;
+    }
+
+    p {
+      margin-top: 30px;
+      color: #999;
+      padding-top: 10px;
+      font-size: 14px;
+      width: 260px;
+      text-align: center;
+      border-top: 1px solid #666;
+    }
+
+    span {
+      display: block;
+      border: 1px solid #fff;
+      width: 120px;
+      margin: 0 auto;
+      text-align: center;
+      margin-top: 10px;
+      padding: 4px 0;
+      font-size: 14px;
+    }
+  }
+
+  .ogimage {
+    width: calc(100% + 32px);
+    margin: 0 -16px;
+  }
+
+  .container {
+    position: relative;
+    flex: 1;
+    background-color: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .title {
+    font-family: 'Quicksand', 'Source Sans Pro', -apple-system,
+      BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+      sans-serif;
+    display: block;
+    font-weight: bold;
+    font-size: 24px;
+    color: #2b2c30;
+  }
+
+  .meta {
+    padding: 10px 0 30px;
+    font-size: 14px;
+
+    img {
+      height: 16px;
+    }
+  }
+
+  .timestamp {
+    display: inline-flex;
+    align-items: center;
+    color: #919299;
+    margin-right: 20px;
+
+    img {
+      margin-right: 6px;
+    }
+  }
+
+  .author {
+    display: inline-flex;
+    align-items: center;
+    color: #919299;
+
+    img {
+      margin-right: 6px;
+    }
+  }
+
+  .post {
+    font-size: 14px;
+
+    & >>> h1 {
+      font-size: 30px;
+      font-weight: bold;
+      margin: 40px 0 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    & >>> h2 {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 36px 0 16px;
+    }
+
+    & >>> h3 {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 30px 0 12px;
+    }
+
+    & >>> h4 {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 24px 0 10px;
+    }
+
+    & >>> h5 {
+      font-size: 14px;
+      font-weight: bold;
+      margin: 20px 0 6px;
+    }
+
+    & >>> p {
+      line-height: 1.8;
+      letter-spacing: 0.2px;
+    }
+
+    & >>> em {
+      font-style: italic;
+    }
+
+    & >>> ol {
+      list-style-type: decimal;
+      list-style-position: inside;
+    }
+
+    & >>> ul > li {
+      &::before {
+        content: '-';
+        margin-right: 10px;
+      }
+    }
+
+    & >>> img {
+      max-width: 100%;
+      margin: 20px 0;
+    }
+
+    & >>> a {
+      color: #331cbf;
+    }
+
+    & >>> blockquote {
+      background: url('~assets/images/icon_quote.svg') no-repeat 20px 10px, #eee;
+      background-size: 36px 36px;
+      padding: 50px 20px 20px;
+      margin: 20px 0;
+      border-radius: 3px;
+    }
+
+    & >>> pre {
+      background-color: #e7e7f3;
+      padding: 20px;
+      border-radius: 3px;
+      margin: 20px 0;
+    }
   }
 }
 </style>
