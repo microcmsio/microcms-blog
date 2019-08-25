@@ -744,7 +744,7 @@ export default {
   }
 
   .share {
-    margin: 40px 0;
+    margin: 40px 0 0;
 
     img {
       max-height: 20px;

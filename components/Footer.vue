@@ -17,7 +17,7 @@
         <a href="mailto:info@microcms.io">お問い合わせ</a>
       </li>
     </ul>
-    <p class="cr">Copyright © 2019 microcms.io All rights reserved.</p>
+    <p class="cr">© Wanta Corp.</p>
   </footer>
 </template>
 
@@ -25,13 +25,10 @@
 @media (min-width: 600px) {
   .footer {
     position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 30px 40px 40px;
+    padding: 30px 40px 20px;
     z-index: 10;
-    background-color: #2b2c30;
-    color: #fff;
+    color: #2b2c30;
+    background-color: #fff;
     margin-top: 120px;
   }
 
@@ -39,6 +36,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     margin-top: 10px;
   }
 
@@ -57,12 +55,15 @@
     }
 
     a {
-      color: #fff;
+      color: #2b2c30;
     }
   }
 
   .cr {
-    margin-top: 10px;
+    margin-top: 20px;
+    text-align: center;
+    color: #919299;
+    font-size: 14px;
   }
 }
 @media (max-width: 600px) {
@@ -70,8 +71,8 @@
     position: relative;
     padding: 30px 20px;
     z-index: 10;
-    background-color: #2b2c30;
-    color: #fff;
+    color: #2b2c30;
+    background-color: #fff;
     margin-top: 120px;
     border-top: 1px solid #666;
   }
@@ -79,6 +80,7 @@
   .cr {
     font-size: 12px;
     margin-top: 10px;
+    color: #919299;
   }
 
   .lists {
@@ -102,7 +104,7 @@
     }
 
     a {
-      color: #fff;
+      color: #2b2c30;
     }
   }
 }

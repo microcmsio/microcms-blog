@@ -8,18 +8,18 @@
     <div class="menu">
       <ul class="lists">
         <li class="list">
-          <a href="#feature">特徴</a>
+          <a href="https://microcms.io#feature">特徴</a>
         </li>
         <li class="list">
-          <a href="#api">API 利用例</a>
+          <a href="https://microcms.io#api">API 利用例</a>
         </li>
         <li class="list">
-          <a href="#price">料金</a>
+          <a href="https://microcms.io#price">料金</a>
         </li>
       </ul>
       <ul class="lists">
         <li class="list">
-          <a href="#document">資料請求</a>
+          <a href="https://microcms.io#document">資料請求</a>
         </li>
       </ul>
     </div>
