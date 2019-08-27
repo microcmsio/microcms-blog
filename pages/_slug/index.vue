@@ -62,6 +62,27 @@ export default {
     );
     return data;
   },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: 'description', name: 'description', content: this.description },
+        { hid: 'keywords', name: 'keywords', content: this.keywords },
+        { hid: 'og:title', property: 'og:title', content: this.title },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.description
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: `https://microcms.io/blog/${this.id}`
+        },
+        { hid: 'og:image', property: 'og:image', content: this.ogimage }
+      ]
+    };
+  },
   methods: {
     getTwitterLink() {
       return `https://twitter.com/intent/tweet?text=${this.title}&url=https://microcms.io/blog/${this.id}&hashtags=microcms`;

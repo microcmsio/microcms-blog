@@ -43,6 +43,12 @@ export default {
     });
     return data;
   },
+  head() {
+    return {
+      titleTemplete: null,
+      title: 'microCMSブログ'
+    };
+  },
   components: {
     Header,
     Footer,
