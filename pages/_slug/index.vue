@@ -26,16 +26,7 @@
           </div>
           <div class="container">
             <h1 class="title">{{ title }}</h1>
-            <div class="meta">
-              <span class="timestamp">
-                <img src="@/assets/images/icon_clock.svg" alt />
-                {{ $moment(createdAt).format('YYYY/MM/DD') }}
-              </span>
-              <span class="author">
-                <img src="@/assets/images/icon_author.svg" alt />
-                {{ author }}
-              </span>
-            </div>
+            <Meta :createdAt="createdAt" :author="author" />
             <div class="post" v-html="body"></div>
           </div>
         </div>
@@ -56,6 +47,7 @@
 import axios from 'axios';
 import Header from '~/components/Header.vue';
 import Footer from '~/components/Footer.vue';
+import Meta from '~/components/Meta.vue';
 
 export default {
   async asyncData({ params, error, payload }) {
@@ -83,7 +75,8 @@ export default {
   },
   components: {
     Header,
-    Footer
+    Footer,
+    Meta
   }
 };
 </script>
@@ -196,43 +189,21 @@ export default {
     color: #2b2c30;
   }
 
-  .meta {
-    padding: 10px 0 40px;
-  }
-
-  .timestamp {
-    display: inline-flex;
-    align-items: center;
-    color: #919299;
-    margin-right: 20px;
-
-    img {
-      margin-right: 6px;
-    }
-  }
-
-  .author {
-    display: inline-flex;
-    align-items: center;
-    color: #919299;
-
-    img {
-      margin-right: 6px;
-    }
-  }
-
   .post {
     & >>> h1 {
-      font-size: 36px;
+      font-size: 30px;
       font-weight: bold;
       margin: 40px 0 20px;
-      border-bottom: 1px solid #ddd;
+      background-color: #eee;
+      padding: 10px 20px;
+      border-radius: 5px;
     }
 
     & >>> h2 {
       font-size: 30px;
       font-weight: bold;
-      margin: 36px 0 16px;
+      margin: 40px 0 16px;
+      border-bottom: 1px solid #ddd;
     }
 
     & >>> h3 {
@@ -433,16 +404,19 @@ export default {
 
   .post {
     & >>> h1 {
-      font-size: 36px;
+      font-size: 30px;
       font-weight: bold;
       margin: 40px 0 20px;
-      border-bottom: 1px solid #ddd;
+      background-color: #eee;
+      padding: 10px 20px;
+      border-radius: 5px;
     }
 
     & >>> h2 {
       font-size: 30px;
       font-weight: bold;
-      margin: 36px 0 16px;
+      margin: 40px 0 16px;
+      border-bottom: 1px solid #ddd;
     }
 
     & >>> h3 {
@@ -616,43 +590,21 @@ export default {
     color: #2b2c30;
   }
 
-  .meta {
-    padding: 10px 0 40px;
-  }
-
-  .timestamp {
-    display: inline-flex;
-    align-items: center;
-    color: #919299;
-    margin-right: 20px;
-
-    img {
-      margin-right: 6px;
-    }
-  }
-
-  .author {
-    display: inline-flex;
-    align-items: center;
-    color: #919299;
-
-    img {
-      margin-right: 6px;
-    }
-  }
-
   .post {
     & >>> h1 {
-      font-size: 36px;
+      font-size: 30px;
       font-weight: bold;
       margin: 40px 0 20px;
-      border-bottom: 1px solid #ddd;
+      background-color: #eee;
+      padding: 10px 20px;
+      border-radius: 5px;
     }
 
     & >>> h2 {
       font-size: 30px;
       font-weight: bold;
-      margin: 36px 0 16px;
+      margin: 40px 0 16px;
+      border-bottom: 1px solid #ddd;
     }
 
     & >>> h3 {
@@ -820,50 +772,23 @@ export default {
     color: #2b2c30;
   }
 
-  .meta {
-    padding: 10px 0 30px;
-    font-size: 14px;
-
-    img {
-      height: 16px;
-    }
-  }
-
-  .timestamp {
-    display: inline-flex;
-    align-items: center;
-    color: #919299;
-    margin-right: 20px;
-
-    img {
-      margin-right: 6px;
-    }
-  }
-
-  .author {
-    display: inline-flex;
-    align-items: center;
-    color: #919299;
-
-    img {
-      margin-right: 6px;
-    }
-  }
-
   .post {
     font-size: 14px;
 
     & >>> h1 {
-      font-size: 30px;
+      font-size: 24px;
       font-weight: bold;
       margin: 40px 0 20px;
-      border-bottom: 1px solid #ddd;
+      background-color: #eee;
+      padding: 10px 20px;
+      border-radius: 5px;
     }
 
     & >>> h2 {
       font-size: 24px;
       font-weight: bold;
       margin: 36px 0 16px;
+      border-bottom: 1px solid #ddd;
     }
 
     & >>> h3 {
