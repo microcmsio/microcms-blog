@@ -73,8 +73,7 @@
     z-index: 10;
     color: #2b2c30;
     background-color: #fff;
-    margin-top: 120px;
-    border-top: 1px solid #666;
+    margin-top: 20px;
   }
 
   .cr {

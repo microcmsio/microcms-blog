@@ -37,6 +37,7 @@
           <p>APIベースの日本製ヘッドレスCMS</p>
           <span class="detail">詳しく見る</span>
         </a>
+        <Latest />
       </aside>
     </div>
     <Footer />
@@ -47,6 +48,7 @@
 import axios from 'axios';
 import Header from '~/components/Header.vue';
 import Footer from '~/components/Footer.vue';
+import Latest from '~/components/Latest.vue';
 import Meta from '~/components/Meta.vue';
 
 export default {
@@ -97,6 +99,7 @@ export default {
   components: {
     Header,
     Footer,
+    Latest,
     Meta
   }
 };
@@ -308,7 +311,6 @@ export default {
   .aside {
     margin-top: 100px;
     margin-left: 104px;
-    width: 300px;
   }
 
   .main {
@@ -521,7 +523,6 @@ export default {
   .aside {
     margin-top: 60px;
     margin-left: 104px;
-    width: 100%;
   }
 
   .main {
@@ -739,7 +740,6 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 0 -16px -120px;
     height: 270px;
     background-color: #2b2c30;
     color: #fff;
