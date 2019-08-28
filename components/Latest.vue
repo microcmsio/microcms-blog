@@ -3,14 +3,14 @@
     <h1 class="pageTitle">最新の記事</h1>
     <ul v-for="content in contents" :key="content.id">
       <li class="list">
-        <a v-bind:href="content.id" class="link">
+        <nuxt-link v-bind:to="{name: 'blog-slug', params: {slug: content.id}}" class="link">
           <dl class="content">
             <dt class="title">{{content.title}}</dt>
             <dd>
               <Meta :createdAt="content.createdAt" :author="content.author" />
             </dd>
           </dl>
-        </a>
+        </nuxt-link>
       </li>
     </ul>
   </div>
