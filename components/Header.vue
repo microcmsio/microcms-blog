@@ -2,7 +2,7 @@
   <header class="header">
     <h1 class="logo">
       <a href="https://microcms.io">
-        <img class="logoImg" src="@/assets/images/logo.svg" alt="microCMS" />
+        <img class="logoImg" src="/images/logo.svg" alt="microCMS" />
       </a>
     </h1>
     <div class="menu">

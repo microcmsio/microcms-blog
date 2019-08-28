@@ -86,7 +86,8 @@ export default {
       plugins: {
         'postcss-nested': {}
       }
-    }
+    },
+    publicPath: '/blog'
   },
   generate: {
     routes() {

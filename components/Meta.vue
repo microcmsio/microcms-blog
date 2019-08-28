@@ -1,11 +1,11 @@
 <template>
   <div class="meta">
     <span class="timestamp">
-      <img src="@/assets/images/icon_clock.svg" alt />
+      <img src="/images/icon_clock.svg" alt />
       {{ $moment(createdAt).format('YYYY/MM/DD') }}
     </span>
     <span class="author">
-      <img src="@/assets/images/icon_author.svg" alt />
+      <img src="/images/icon_author.svg" alt />
       {{ author }}
     </span>
   </div>
