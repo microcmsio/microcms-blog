@@ -20,7 +20,7 @@
       </div>
       <aside class="aside">
         <a href="https://microcms.io" class="banner">
-          <img class="logo" src="/images/banner_logo.svg" alt="microCMS" />
+          <img class="logo" src="/blog/images/banner_logo.svg" alt="microCMS" />
           <p>APIベースの日本製ヘッドレスCMS</p>
           <span class="detail">詳しく見る</span>
         </a>

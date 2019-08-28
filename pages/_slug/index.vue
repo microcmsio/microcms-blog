@@ -9,17 +9,17 @@
             <ul class="shareLists">
               <li class="shareList">
                 <a v-bind:href="getTwitterLink()" target="_blank">
-                  <img src="/images/icon_twitter.svg" alt="Twitter" />
+                  <img src="/blog/images/icon_twitter.svg" alt="Twitter" />
                 </a>
               </li>
               <li class="shareList">
                 <a v-bind:href="getFacebookLink()" target="_blank">
-                  <img src="/images/icon_facebook.svg" alt="Facebook" />
+                  <img src="/blog/images/icon_facebook.svg" alt="Facebook" />
                 </a>
               </li>
               <li class="shareList">
                 <a v-bind:href="getHatenaLink()" target="_blank">
-                  <img src="/images/icon_hatena.svg" alt="はてなブックマーク" />
+                  <img src="/blog/images/icon_hatena.svg" alt="はてなブックマーク" />
                 </a>
               </li>
             </ul>
@@ -33,7 +33,7 @@
       </article>
       <aside class="aside">
         <a href="https://microcms.io" class="banner">
-          <img class="logo" src="/images/banner_logo.svg" alt="microCMS" />
+          <img class="logo" src="/blog/images/banner_logo.svg" alt="microCMS" />
           <p>APIベースの日本製ヘッドレスCMS</p>
           <span class="detail">詳しく見る</span>
         </a>
