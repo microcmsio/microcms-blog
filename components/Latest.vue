@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
     <h1 class="pageTitle">最新の記事</h1>
-    <ul v-for="content in contents" :key="content.id">
-      <li class="list">
+    <ul>
+      <li v-for="content in contents" :key="content.id" class="list">
         <nuxt-link v-bind:to="{name: 'blog-slug', params: {slug: content.id}}" class="link">
           <dl class="content">
             <dt class="title">{{content.title}}</dt>
@@ -36,6 +36,8 @@ export default {
 <style scoped>
 @media (min-width: 1160px) {
   .wrapper {
+    position: sticky !important;
+    top: -20px;
     padding: 40px 0;
   }
 
@@ -49,6 +51,10 @@ export default {
 
   .list {
     border-bottom: 1px solid #eee;
+
+    &:last-child {
+      border-bottom: none;
+    }
   }
 
   .link {
@@ -75,6 +81,10 @@ export default {
 
   .list {
     border-bottom: 1px solid #eee;
+
+    &:last-child {
+      border-bottom: none;
+    }
   }
 
   .link {

@@ -132,7 +132,6 @@ export default {
     display: flex;
     justify-content: space-between;
     margin-top: 40px;
-    align-items: strech;
   }
 
   .share {
