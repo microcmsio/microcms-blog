@@ -74,6 +74,11 @@ export default {
 
     & >>> a {
       color: #331cbf;
+      text-decoration: underline;
+    }
+
+    & >>> strong {
+      font-weight: bold;
     }
 
     & >>> blockquote {
@@ -162,6 +167,11 @@ export default {
 
     & >>> a {
       color: #331cbf;
+      text-decoration: underline;
+    }
+
+    & >>> strong {
+      font-weight: bold;
     }
 
     & >>> blockquote {
