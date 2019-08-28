@@ -6,7 +6,7 @@
         <h1 class="pageTitle">記事一覧</h1>
         <ul v-for="content in contents" :key="content.id">
           <li class="list">
-            <a v-bind:href="`blog/${content.id}`" class="link">
+            <a v-bind:href="content.id" class="link">
               <img :src="content.ogimage" class="ogimage" />
               <dl class="content">
                 <dt class="title">{{content.title}}</dt>
