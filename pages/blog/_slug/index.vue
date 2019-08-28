@@ -291,6 +291,7 @@ export default {
       padding: 20px;
       border-radius: 3px;
       margin: 20px 0;
+      white-space: pre-wrap;
     }
   }
 }
@@ -503,6 +504,7 @@ export default {
       padding: 20px;
       border-radius: 3px;
       margin: 20px 0;
+      white-space: pre-wrap;
     }
   }
 }
@@ -690,6 +692,7 @@ export default {
       padding: 20px;
       border-radius: 3px;
       margin: 20px 0;
+      white-space: pre-wrap;
     }
   }
 }
@@ -873,6 +876,7 @@ export default {
       padding: 20px;
       border-radius: 3px;
       margin: 20px 0;
+      white-space: pre-wrap;
     }
   }
 }
