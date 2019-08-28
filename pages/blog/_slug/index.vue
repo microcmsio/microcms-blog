@@ -27,7 +27,7 @@
           <div class="container">
             <h1 class="title">{{ title }}</h1>
             <Meta :createdAt="createdAt" :author="author" />
-            <div class="post" v-html="body"></div>
+            <Post :body="body" />
           </div>
         </div>
       </article>
@@ -50,6 +50,7 @@ import Header from '~/components/Header.vue';
 import Footer from '~/components/Footer.vue';
 import Latest from '~/components/Latest.vue';
 import Meta from '~/components/Meta.vue';
+import Post from '~/components/Post.vue';
 
 export default {
   async asyncData({ params, error, payload }) {
@@ -100,7 +101,8 @@ export default {
     Header,
     Footer,
     Latest,
-    Meta
+    Meta,
+    Post
   }
 };
 </script>
@@ -211,88 +213,6 @@ export default {
     font-weight: bold;
     font-size: 40px;
     color: #2b2c30;
-  }
-
-  .post {
-    & >>> h1 {
-      font-size: 30px;
-      font-weight: bold;
-      margin: 40px 0 20px;
-      background-color: #eee;
-      padding: 10px 20px;
-      border-radius: 5px;
-    }
-
-    & >>> h2 {
-      font-size: 30px;
-      font-weight: bold;
-      margin: 40px 0 16px;
-      border-bottom: 1px solid #ddd;
-    }
-
-    & >>> h3 {
-      font-size: 24px;
-      font-weight: bold;
-      margin: 30px 0 12px;
-    }
-
-    & >>> h4 {
-      font-size: 20px;
-      font-weight: bold;
-      margin: 24px 0 10px;
-    }
-
-    & >>> h5 {
-      font-size: 16px;
-      font-weight: bold;
-      margin: 20px 0 6px;
-    }
-
-    & >>> p {
-      line-height: 1.8;
-      letter-spacing: 0.2px;
-    }
-
-    & >>> em {
-      font-style: italic;
-    }
-
-    & >>> ol {
-      list-style-type: decimal;
-      list-style-position: inside;
-    }
-
-    & >>> ul > li {
-      &::before {
-        content: '-';
-        margin-right: 10px;
-      }
-    }
-
-    & >>> img {
-      max-width: 100%;
-      margin: 20px 0;
-    }
-
-    & >>> a {
-      color: #331cbf;
-    }
-
-    & >>> blockquote {
-      background: url('~assets/images/icon_quote.svg') no-repeat 20px 10px, #eee;
-      background-size: 36px 36px;
-      padding: 50px 20px 20px;
-      margin: 20px 0;
-      border-radius: 3px;
-    }
-
-    & >>> pre {
-      background-color: #e7e7f3;
-      padding: 20px;
-      border-radius: 3px;
-      margin: 20px 0;
-      white-space: pre-wrap;
-    }
   }
 }
 @media (min-width: 820px) and (max-width: 1160px) {
@@ -425,88 +345,6 @@ export default {
       margin-right: 6px;
     }
   }
-
-  .post {
-    & >>> h1 {
-      font-size: 30px;
-      font-weight: bold;
-      margin: 40px 0 20px;
-      background-color: #eee;
-      padding: 10px 20px;
-      border-radius: 5px;
-    }
-
-    & >>> h2 {
-      font-size: 30px;
-      font-weight: bold;
-      margin: 40px 0 16px;
-      border-bottom: 1px solid #ddd;
-    }
-
-    & >>> h3 {
-      font-size: 24px;
-      font-weight: bold;
-      margin: 30px 0 12px;
-    }
-
-    & >>> h4 {
-      font-size: 20px;
-      font-weight: bold;
-      margin: 24px 0 10px;
-    }
-
-    & >>> h5 {
-      font-size: 16px;
-      font-weight: bold;
-      margin: 20px 0 6px;
-    }
-
-    & >>> p {
-      line-height: 1.8;
-      letter-spacing: 0.2px;
-    }
-
-    & >>> em {
-      font-style: italic;
-    }
-
-    & >>> ol {
-      list-style-type: decimal;
-      list-style-position: inside;
-    }
-
-    & >>> ul > li {
-      &::before {
-        content: '-';
-        margin-right: 10px;
-      }
-    }
-
-    & >>> img {
-      max-width: 100%;
-      margin: 20px 0;
-    }
-
-    & >>> a {
-      color: #331cbf;
-    }
-
-    & >>> blockquote {
-      background: url('~assets/images/icon_quote.svg') no-repeat 20px 10px, #eee;
-      background-size: 36px 36px;
-      padding: 50px 20px 20px;
-      margin: 20px 0;
-      border-radius: 3px;
-    }
-
-    & >>> pre {
-      background-color: #e7e7f3;
-      padding: 20px;
-      border-radius: 3px;
-      margin: 20px 0;
-      white-space: pre-wrap;
-    }
-  }
 }
 @media (min-width: 600px) and (max-width: 820px) {
   .wrapper {
@@ -613,88 +451,6 @@ export default {
     font-size: 40px;
     color: #2b2c30;
   }
-
-  .post {
-    & >>> h1 {
-      font-size: 30px;
-      font-weight: bold;
-      margin: 40px 0 20px;
-      background-color: #eee;
-      padding: 10px 20px;
-      border-radius: 5px;
-    }
-
-    & >>> h2 {
-      font-size: 30px;
-      font-weight: bold;
-      margin: 40px 0 16px;
-      border-bottom: 1px solid #ddd;
-    }
-
-    & >>> h3 {
-      font-size: 24px;
-      font-weight: bold;
-      margin: 30px 0 12px;
-    }
-
-    & >>> h4 {
-      font-size: 20px;
-      font-weight: bold;
-      margin: 24px 0 10px;
-    }
-
-    & >>> h5 {
-      font-size: 16px;
-      font-weight: bold;
-      margin: 20px 0 6px;
-    }
-
-    & >>> p {
-      line-height: 1.8;
-      letter-spacing: 0.2px;
-    }
-
-    & >>> em {
-      font-style: italic;
-    }
-
-    & >>> ol {
-      list-style-type: decimal;
-      list-style-position: inside;
-    }
-
-    & >>> ul > li {
-      &::before {
-        content: '-';
-        margin-right: 10px;
-      }
-    }
-
-    & >>> img {
-      max-width: 100%;
-      margin: 20px 0;
-    }
-
-    & >>> a {
-      color: #331cbf;
-    }
-
-    & >>> blockquote {
-      background: url('~assets/images/icon_quote.svg') no-repeat 20px 10px, #eee;
-      background-size: 36px 36px;
-      padding: 50px 20px 20px;
-      margin: 20px 0;
-      border-radius: 3px;
-    }
-
-    & >>> pre {
-      background-color: #e7e7f3;
-      padding: 20px;
-      border-radius: 3px;
-      margin: 20px 0;
-      white-space: pre-wrap;
-    }
-  }
 }
 @media (max-width: 600px) {
   .wrapper {
@@ -794,90 +550,6 @@ export default {
     font-weight: bold;
     font-size: 24px;
     color: #2b2c30;
-  }
-
-  .post {
-    font-size: 14px;
-
-    & >>> h1 {
-      font-size: 24px;
-      font-weight: bold;
-      margin: 40px 0 20px;
-      background-color: #eee;
-      padding: 10px 20px;
-      border-radius: 5px;
-    }
-
-    & >>> h2 {
-      font-size: 24px;
-      font-weight: bold;
-      margin: 36px 0 16px;
-      border-bottom: 1px solid #ddd;
-    }
-
-    & >>> h3 {
-      font-size: 20px;
-      font-weight: bold;
-      margin: 30px 0 12px;
-    }
-
-    & >>> h4 {
-      font-size: 16px;
-      font-weight: bold;
-      margin: 24px 0 10px;
-    }
-
-    & >>> h5 {
-      font-size: 14px;
-      font-weight: bold;
-      margin: 20px 0 6px;
-    }
-
-    & >>> p {
-      line-height: 1.8;
-      letter-spacing: 0.2px;
-    }
-
-    & >>> em {
-      font-style: italic;
-    }
-
-    & >>> ol {
-      list-style-type: decimal;
-      list-style-position: inside;
-    }
-
-    & >>> ul > li {
-      &::before {
-        content: '-';
-        margin-right: 10px;
-      }
-    }
-
-    & >>> img {
-      max-width: 100%;
-      margin: 20px 0;
-    }
-
-    & >>> a {
-      color: #331cbf;
-    }
-
-    & >>> blockquote {
-      background: url('~assets/images/icon_quote.svg') no-repeat 20px 10px, #eee;
-      background-size: 36px 36px;
-      padding: 50px 20px 20px;
-      margin: 20px 0;
-      border-radius: 3px;
-    }
-
-    & >>> pre {
-      background-color: #e7e7f3;
-      padding: 20px;
-      border-radius: 3px;
-      margin: 20px 0;
-      white-space: pre-wrap;
-    }
   }
 }
 </style>

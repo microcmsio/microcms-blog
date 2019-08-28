@@ -1,0 +1,186 @@
+<template>
+  <div class="post" v-html="body"></div>
+</template>
+
+<script>
+export default {
+  props: ['body']
+};
+</script>
+
+<style scoped>
+@media (min-width: 600px) {
+  .post {
+    & >>> h1 {
+      font-size: 30px;
+      font-weight: bold;
+      margin: 40px 0 20px;
+      background-color: #eee;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    & >>> h2 {
+      font-size: 30px;
+      font-weight: bold;
+      margin: 40px 0 16px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    & >>> h3 {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 30px 0 12px;
+    }
+
+    & >>> h4 {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 24px 0 10px;
+    }
+
+    & >>> h5 {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 20px 0 6px;
+    }
+
+    & >>> p {
+      line-height: 1.8;
+      letter-spacing: 0.2px;
+    }
+
+    & >>> em {
+      font-style: italic;
+    }
+
+    & >>> ol {
+      list-style-type: decimal;
+      list-style-position: inside;
+    }
+
+    & >>> ul > li {
+      &::before {
+        content: '-';
+        margin-right: 10px;
+      }
+    }
+
+    & >>> img {
+      max-width: 100%;
+      margin: 40px 0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    & >>> a {
+      color: #331cbf;
+    }
+
+    & >>> blockquote {
+      background: url('~assets/images/icon_quote.svg') no-repeat 20px 10px, #eee;
+      background-size: 36px 36px;
+      padding: 50px 20px 20px;
+      margin: 20px 0;
+      border-radius: 3px;
+    }
+
+    & >>> pre {
+      background-color: #e7e7f3;
+      padding: 20px;
+      border-radius: 3px;
+      margin: 20px 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      word-break: break-all;
+    }
+  }
+}
+@media (max-width: 600px) {
+  .post {
+    font-size: 14px;
+
+    & >>> h1 {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 40px 0 20px;
+      background-color: #eee;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    & >>> h2 {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 36px 0 16px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    & >>> h3 {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 30px 0 12px;
+    }
+
+    & >>> h4 {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 24px 0 10px;
+    }
+
+    & >>> h5 {
+      font-size: 14px;
+      font-weight: bold;
+      margin: 20px 0 6px;
+    }
+
+    & >>> p {
+      line-height: 1.8;
+      letter-spacing: 0.2px;
+    }
+
+    & >>> em {
+      font-style: italic;
+    }
+
+    & >>> ol {
+      list-style-type: decimal;
+      list-style-position: inside;
+    }
+
+    & >>> ul > li {
+      &::before {
+        content: '-';
+        margin-right: 10px;
+      }
+    }
+
+    & >>> img {
+      max-width: 100%;
+      margin: 40px 0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    & >>> a {
+      color: #331cbf;
+    }
+
+    & >>> blockquote {
+      background: url('~assets/images/icon_quote.svg') no-repeat 20px 10px, #eee;
+      background-size: 36px 36px;
+      padding: 50px 20px 20px;
+      margin: 20px 0;
+      border-radius: 3px;
+    }
+
+    & >>> pre {
+      background-color: #e7e7f3;
+      padding: 20px;
+      border-radius: 3px;
+      margin: 20px 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      word-break: break-all;
+    }
+  }
+}
+</style>
