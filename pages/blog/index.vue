@@ -250,7 +250,6 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 300px;
     height: 250px;
     background-color: #2b2c30;
     color: #fff;
@@ -288,7 +287,8 @@ export default {
   }
 
   .list {
-    padding: 16px 0;
+    padding: 32px 0 0;
+    border-bottom: 1px solid #eee;
   }
 
   .link {
