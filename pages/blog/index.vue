@@ -7,7 +7,7 @@
         <ul v-for="content in contents" :key="content.id">
           <li class="list">
             <a v-bind:href="content.id" class="link">
-              <img :src="content.ogimage" class="ogimage" />
+              <img :src="content.ogimage.url" class="ogimage" />
               <dl class="content">
                 <dt class="title">{{content.title}}</dt>
                 <dd>
