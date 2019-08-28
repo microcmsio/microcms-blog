@@ -96,10 +96,11 @@ export default {
         })
         .then(res =>
           res.data.contents.map(content => ({
-            route: `blog/${content.id}`,
+            route: content.id,
             payload: content
           }))
         );
-    }
+    },
+    dir: 'dist/blog'
   }
 };
