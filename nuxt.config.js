@@ -43,7 +43,7 @@ export default {
         content: 'https://microcms.io/assets/images/ogp.png'
       },
 
-      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@micro_cms' }
     ],
     link: [
