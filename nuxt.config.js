@@ -40,7 +40,7 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://microcms.io/assets/images/ogp.png'
+        content: 'https://microcms.io/blog/images/ogp.png'
       },
 
       { name: 'twitter:card', content: 'summary_large_image' },
