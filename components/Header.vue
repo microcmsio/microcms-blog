@@ -16,6 +16,9 @@
         <li class="list">
           <a href="https://microcms.io#price">料金</a>
         </li>
+        <li class="list">
+          <a href="https://microcms.io/blog/">ブログ</a>
+        </li>
       </ul>
       <ul class="lists">
         <li class="list">
