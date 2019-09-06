@@ -73,7 +73,15 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [['@nuxtjs/moment', ['ja']]],
+  modules: [
+    ['@nuxtjs/moment', ['ja']],
+    [
+      '@nuxtjs/google-analytics',
+      {
+        id: 'UA-109902480-8'
+      }
+    ]
+  ],
   /*
    ** Build configuration
    */
