@@ -3,7 +3,11 @@
     <Header />
     <div class="divider">
       <article class="article">
-        <img :src="ogimage.url" class="ogimage" />
+        <img
+          :src="ogimage.url + '?w=820'"
+          :srcset="ogimage.url + '?w=375 375w,' + ogimage.url + '?w=750 750w,' + ogimage.url + '?w=820 820w'"
+          class="ogimage"
+        />
         <div class="main">
           <div class="share">
             <ul class="shareLists">

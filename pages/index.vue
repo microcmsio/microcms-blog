@@ -7,7 +7,11 @@
         <ul v-for="content in contents" :key="content.id">
           <li class="list">
             <a v-bind:href="content.id" class="link">
-              <img :src="content.ogimage.url" class="ogimage" />
+              <img
+                :src="content.ogimage.url + '?w=335'"
+                :srcset="content.ogimage.url + '?w=335 375w,' + content.ogimage.url + '?w=670 750w,' + content.ogimage.url + '?w=828 828w'"
+                class="ogimage"
+              />
               <dl class="content">
                 <dt class="title">{{content.title}}</dt>
                 <dd>
@@ -129,8 +133,7 @@ export default {
   }
 
   .ogimage {
-    width: 300px;
-    height: 157.5px;
+    width: 335px;
   }
 
   .content {
@@ -213,8 +216,7 @@ export default {
   }
 
   .ogimage {
-    width: 300px;
-    height: 157.5px;
+    width: 335px;
   }
 
   .content {
