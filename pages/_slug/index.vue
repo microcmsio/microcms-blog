@@ -87,7 +87,13 @@ export default {
           content: `https://microcms.io/blog/${this.id}`
         },
         { hid: 'og:image', property: 'og:image', content: this.ogimage.url }
-      ]
+      ],
+      link: [
+        { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css' }
+      ],
+      script: [
+        { src: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js' }
+      ],
     };
   },
   methods: {
@@ -107,6 +113,9 @@ export default {
     Latest,
     Meta,
     Post
+  },
+  mounted: function () {
+    hljs.initHighlighting()
   }
 };
 </script>

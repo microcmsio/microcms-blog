@@ -90,13 +90,16 @@ export default {
     }
 
     & >>> pre {
-      background-color: #e7e7f3;
-      padding: 20px;
       border-radius: 3px;
       margin: 20px 0;
       white-space: pre-wrap;
       word-wrap: break-word;
       word-break: break-all;
+
+      & > code {
+        padding: 10px 20px;
+        border-radius: 5px;
+      }
     }
   }
 }
@@ -183,13 +186,16 @@ export default {
     }
 
     & >>> pre {
-      background-color: #e7e7f3;
-      padding: 20px;
       border-radius: 3px;
       margin: 20px 0;
       white-space: pre-wrap;
       word-wrap: break-word;
       word-break: break-all;
+
+      & > code {
+        padding: 8px 16px;
+        border-radius: 3px;
+      }
     }
   }
 }
