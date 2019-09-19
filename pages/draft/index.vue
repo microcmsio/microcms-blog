@@ -59,6 +59,9 @@ import Post from '~/components/Post.vue';
 export default {
   async created() {
     const query = this.$route.query;
+    if (query.id === undefined || query.draftKey === undefined) {
+      return;
+    }
     let { data } = await axios.get(
       `https://microcms.microcms.io/api/v1/blog/${query.id}?draftKey=${query.draftKey}`,
       {
