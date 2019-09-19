@@ -101,7 +101,6 @@ export default {
     base: '/blog'
   },
   generate: {
-    exclude: [/^(?=.*\bdraft\b).*$/],
     routes() {
       return axios
         .get(`https://microcms.microcms.io/api/v1/blog?limit=100`, {
@@ -120,7 +119,7 @@ export default {
     path: '/sitemap.xml',
     hostname: 'https://microcms.io/blog',
     generate: true,
-    exclude: [],
+    exclude: ['/draft'],
     routes(callback) {
       axios
         .get(`https://microcms.microcms.io/api/v1/blog?limit=100`, {

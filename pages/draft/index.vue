@@ -1,53 +1,51 @@
 <template>
-  <no-ssr>
-    <div class="wrapper">
-      <Header />
-      <div class="divider">
-        <article class="article">
-          <img
-            :src="ogimage.url + '?w=820'"
-            :srcset="ogimage.url + '?w=375 375w,' + ogimage.url + '?w=750 750w,' + ogimage.url + '?w=820 820w'"
-            class="ogimage"
-          />
-          <div class="main">
-            <div class="share">
-              <ul class="shareLists">
-                <li class="shareList">
-                  <a v-bind:href="getTwitterLink()" target="_blank">
-                    <img src="/blog/images/icon_twitter.svg" alt="Twitter" />
-                  </a>
-                </li>
-                <li class="shareList">
-                  <a v-bind:href="getFacebookLink()" target="_blank">
-                    <img src="/blog/images/icon_facebook.svg" alt="Facebook" />
-                  </a>
-                </li>
-                <li class="shareList">
-                  <a v-bind:href="getHatenaLink()" target="_blank">
-                    <img src="/blog/images/icon_hatena.svg" alt="はてなブックマーク" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="container">
-              <h1 class="title">{{ title }}</h1>
-              <Meta :createdAt="createdAt" :author="author" />
-              <Post :body="body" />
-            </div>
+  <div class="wrapper">
+    <Header />
+    <div class="divider">
+      <article class="article">
+        <img
+          :src="ogimage.url + '?w=820'"
+          :srcset="ogimage.url + '?w=375 375w,' + ogimage.url + '?w=750 750w,' + ogimage.url + '?w=820 820w'"
+          class="ogimage"
+        />
+        <div class="main">
+          <div class="share">
+            <ul class="shareLists">
+              <li class="shareList">
+                <a v-bind:href="getTwitterLink()" target="_blank">
+                  <img src="/blog/images/icon_twitter.svg" alt="Twitter" />
+                </a>
+              </li>
+              <li class="shareList">
+                <a v-bind:href="getFacebookLink()" target="_blank">
+                  <img src="/blog/images/icon_facebook.svg" alt="Facebook" />
+                </a>
+              </li>
+              <li class="shareList">
+                <a v-bind:href="getHatenaLink()" target="_blank">
+                  <img src="/blog/images/icon_hatena.svg" alt="はてなブックマーク" />
+                </a>
+              </li>
+            </ul>
           </div>
-        </article>
-        <aside class="aside">
-          <a href="https://microcms.io" class="banner">
-            <img class="logo" src="/blog/images/banner_logo.svg" alt="microCMS" />
-            <p>APIベースの日本製ヘッドレスCMS</p>
-            <span class="detail">詳しく見る</span>
-          </a>
-          <Latest />
-        </aside>
-      </div>
-      <Footer />
+          <div class="container">
+            <h1 class="title">{{ title }}</h1>
+            <Meta :createdAt="createdAt" :author="author" />
+            <Post :body="body" />
+          </div>
+        </div>
+      </article>
+      <aside class="aside">
+        <a href="https://microcms.io" class="banner">
+          <img class="logo" src="/blog/images/banner_logo.svg" alt="microCMS" />
+          <p>APIベースの日本製ヘッドレスCMS</p>
+          <span class="detail">詳しく見る</span>
+        </a>
+        <Latest />
+      </aside>
     </div>
-  </no-ssr>
+    <Footer />
+  </div>
 </template>
 
 <script>
@@ -59,9 +57,17 @@ import Meta from '~/components/Meta.vue';
 import Post from '~/components/Post.vue';
 
 export default {
-  async asyncData({ query, error, payload }) {
-    if (payload !== undefined) {
-      return payload;
+  async asyncData({ query, error }) {
+    if (query.id === undefined || query.draftKey === undefined) {
+      return {
+        ogimage: {
+          url: ''
+        },
+        body: '',
+        title: '',
+        createdAt: '',
+        author: ''
+      };
     }
     let { data } = await axios.get(
       `https://microcms.microcms.io/api/v1/blog/${query.id}?draftKey=${query.draftKey}`,
