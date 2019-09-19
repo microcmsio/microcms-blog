@@ -101,6 +101,7 @@ export default {
     base: '/blog'
   },
   generate: {
+    exclude: [/^(?=.*\bdraft\b).*$/],
     routes() {
       return axios
         .get(`https://microcms.microcms.io/api/v1/blog?limit=100`, {
