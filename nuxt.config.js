@@ -118,7 +118,6 @@ export default {
   sitemap: {
     path: '/sitemap.xml',
     hostname: 'https://microcms.io/blog',
-    generate: true,
     exclude: ['/draft'],
     routes(callback) {
       axios
