@@ -71,6 +71,7 @@ export default {
         createdAt: '',
         author: ''
       });
+      return;
     }
     let { data } = await axios.get(
       `https://microcms.microcms.io/api/v1/blog/${query.id}?draftKey=${query.draftKey}`,
