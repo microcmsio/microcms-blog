@@ -4,8 +4,8 @@
     <div class="divider">
       <article class="article">
         <img
-          :src="$store.state.draft.data.ogimage.url + '?w=820'"
-          :srcset="$store.state.draft.data.ogimage.url + '?w=375 375w,' + $store.state.draft.data.ogimage.url + '?w=750 750w,' + $store.state.draft.data.ogimage.url + '?w=820 820w'"
+          :src="data.ogimage.url + '?w=820'"
+          :srcset="data.ogimage.url + '?w=375 375w,' + data.ogimage.url + '?w=750 750w,' + data.ogimage.url + '?w=820 820w'"
           class="ogimage"
         />
         <div class="main">
@@ -29,12 +29,9 @@
             </ul>
           </div>
           <div class="container">
-            <h1 class="title">{{ $store.state.draft.data.title }}</h1>
-            <Meta
-              :createdAt="$store.state.draft.data.createdAt"
-              :author="$store.state.draft.data.author"
-            />
-            <Post :body="$store.state.draft.data.body" />
+            <h1 class="title">{{ data.title }}</h1>
+            <Meta :createdAt="data.createdAt" :author="data.author" />
+            <Post :body="data.body" />
           </div>
         </div>
       </article>
@@ -60,9 +57,19 @@ import Meta from '~/components/Meta.vue';
 import Post from '~/components/Post.vue';
 
 export default {
-  async fetch({ store, query, error }) {
-    if (query.id === undefined || query.draftKey === undefined) {
-      store.commit('draft/setDraft', {
+  async created() {
+    const query = this.$route.query;
+    let { data } = await axios.get(
+      `https://microcms.microcms.io/api/v1/blog/${query.id}?draftKey=${query.draftKey}`,
+      {
+        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+      }
+    );
+    this.data = data;
+  },
+  data() {
+    return {
+      data: this.data || {
         ogimage: {
           url: ''
         },
@@ -70,52 +77,35 @@ export default {
         title: '',
         createdAt: '',
         author: ''
-      });
-      return;
-    }
-    let { data } = await axios.get(
-      `https://microcms.microcms.io/api/v1/blog/${query.id}?draftKey=${query.draftKey}`,
-      {
-        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
       }
-    );
-    store.commit('draft/setDraft', data);
+    };
   },
   head() {
     return {
-      title: this.$store.state.draft.data.title,
+      title: this.title,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.$store.state.draft.data.description
+          content: this.data.description
         },
-        {
-          hid: 'keywords',
-          name: 'keywords',
-          content: this.$store.state.draft.data.keywords
-        },
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: this.$store.state.draft.data.title
-        },
+        { hid: 'keywords', name: 'keywords', content: this.data.keywords },
+        { hid: 'og:title', property: 'og:title', content: this.data.title },
         {
           hid: 'og:description',
           property: 'og:description',
-          content: this.$store.state.draft.data.description
+          content: this.data.description
         },
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://microcms.io/blog/${this.$store.state.draft.data.id}`
+          content: `https://microcms.io/blog/${this.data.id}`
         },
         {
           hid: 'og:image',
           property: 'og:image',
-          content: this.$store.state.draft.data.ogimage.url
-        },
-        { hid: 'name', property: 'name', content: 'noindex, nofollow' }
+          content: this.data.ogimage.url
+        }
       ],
       link: [
         {
@@ -134,13 +124,13 @@ export default {
   },
   methods: {
     getTwitterLink() {
-      return `https://twitter.com/intent/tweet?text=${this.$store.state.draft.data.title}&url=https://microcms.io/blog/${this.$store.state.draft.data.id}&hashtags=microcms`;
+      return `https://twitter.com/intent/tweet?text=${this.data.title}&url=https://microcms.io/blog/${this.data.id}&hashtags=microcms`;
     },
     getFacebookLink() {
-      return `https://www.facebook.com/sharer.php?u=https://microcms.io/blog/${this.$store.state.draft.data.id}`;
+      return `https://www.facebook.com/sharer.php?u=https://microcms.io/blog/${this.data.id}`;
     },
     getHatenaLink() {
-      return `https://b.hatena.ne.jp/entryhttps://microcms.io/blog/${this.$store.state.draft.data.id}`;
+      return `https://b.hatena.ne.jp/entryhttps://microcms.io/blog/${this.data.id}`;
     }
   },
   components: {
