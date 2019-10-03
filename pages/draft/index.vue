@@ -94,7 +94,6 @@ export default {
           name: 'description',
           content: this.data.description
         },
-        { hid: 'keywords', name: 'keywords', content: this.data.keywords },
         { hid: 'og:title', property: 'og:title', content: this.data.title },
         {
           hid: 'og:description',

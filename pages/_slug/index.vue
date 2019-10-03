@@ -77,7 +77,6 @@ export default {
       title: this.title,
       meta: [
         { hid: 'description', name: 'description', content: this.description },
-        { hid: 'keywords', name: 'keywords', content: this.keywords },
         { hid: 'og:title', property: 'og:title', content: this.title },
         {
           hid: 'og:description',
