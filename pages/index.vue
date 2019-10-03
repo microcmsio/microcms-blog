@@ -90,6 +90,7 @@ export default {
     height: 250px;
     background-color: #2b2c30;
     color: #fff;
+    border-radius: 5px;
 
     img {
       width: 160px;
@@ -134,6 +135,7 @@ export default {
 
   .ogimage {
     width: 335px;
+    border-radius: 5px;
   }
 
   .content {
@@ -173,6 +175,7 @@ export default {
     height: 250px;
     background-color: #2b2c30;
     color: #fff;
+    border-radius: 5px;
 
     img {
       width: 160px;
@@ -217,6 +220,7 @@ export default {
 
   .ogimage {
     width: 335px;
+    border-radius: 5px;
   }
 
   .content {
@@ -255,6 +259,7 @@ export default {
     height: 250px;
     background-color: #2b2c30;
     color: #fff;
+    border-radius: 5px;
 
     img {
       width: 160px;
@@ -298,6 +303,7 @@ export default {
 
   .ogimage {
     width: 100%;
+    border-radius: 5px;
   }
 
   .content {

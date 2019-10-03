@@ -3,11 +3,14 @@
     <Header />
     <div class="divider">
       <article class="article">
-        <img
-          :src="ogimage.url + '?w=820'"
-          :srcset="ogimage.url + '?w=375 375w,' + ogimage.url + '?w=750 750w,' + ogimage.url + '?w=820 820w'"
-          class="ogimage"
-        />
+        <div class="ogimageWrap">
+          <img
+            :src="ogimage.url + '?w=820'"
+            :srcset="ogimage.url + '?w=375 375w,' + ogimage.url + '?w=750 750w,' + ogimage.url + '?w=820 820w'"
+            class="ogimage"
+            ref="ogimage"
+          />
+        </div>
         <div class="main">
           <div class="share">
             <ul class="shareLists">
@@ -89,11 +92,18 @@ export default {
         { hid: 'og:image', property: 'og:image', content: this.ogimage.url }
       ],
       link: [
-        { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css' }
+        {
+          rel: 'stylesheet',
+          href:
+            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css'
+        }
       ],
       script: [
-        { src: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js' }
-      ],
+        {
+          src:
+            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'
+        }
+      ]
     };
   },
   methods: {
@@ -114,8 +124,9 @@ export default {
     Meta,
     Post
   },
-  mounted: function () {
-    hljs.initHighlighting()
+  mounted: function() {
+    hljs.initHighlighting();
+    this.$refs.ogimage.classList.add('loaded');
   }
 };
 </script>
@@ -177,6 +188,7 @@ export default {
     height: 250px;
     background-color: #2b2c30;
     color: #fff;
+    border-radius: 5px;
 
     img {
       width: 160px;
@@ -205,8 +217,23 @@ export default {
     }
   }
 
+  .ogimageWrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+
   .ogimage {
+    display: block;
     width: 100%;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+
+    &.loaded {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   .container {
@@ -283,6 +310,7 @@ export default {
     height: 250px;
     background-color: #2b2c30;
     color: #fff;
+    border-radius: 5px;
 
     img {
       width: 160px;
@@ -311,8 +339,23 @@ export default {
     }
   }
 
+  .ogimageWrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+
   .ogimage {
+    display: block;
     width: 100%;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+
+    &.loaded {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   .container {
@@ -414,6 +457,7 @@ export default {
     height: 250px;
     background-color: #2b2c30;
     color: #fff;
+    border-radius: 5px;
 
     img {
       width: 160px;
@@ -442,8 +486,23 @@ export default {
     }
   }
 
+  .ogimageWrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+
   .ogimage {
+    display: block;
     width: 100%;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+
+    &.loaded {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   .container {
@@ -514,6 +573,7 @@ export default {
     height: 270px;
     background-color: #2b2c30;
     color: #fff;
+    border-radius: 5px;
 
     img {
       width: 160px;
@@ -542,9 +602,24 @@ export default {
     }
   }
 
-  .ogimage {
+  .ogimageWrap {
+    position: relative;
+    overflow: hidden;
     width: calc(100% + 32px);
     margin: 0 -16px;
+  }
+
+  .ogimage {
+    display: block;
+    width: 100%;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+
+    &.loaded {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   .container {

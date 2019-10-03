@@ -47,6 +47,7 @@ export default {
     background-color: #eee;
     padding: 6px 10px;
     margin-bottom: 10px;
+    border-radius: 5px;
   }
 
   .list {
@@ -77,6 +78,7 @@ export default {
     background-color: #eee;
     padding: 6px 10px;
     margin-bottom: 10px;
+    border-radius: 5px;
   }
 
   .list {
@@ -107,6 +109,7 @@ export default {
     background-color: #eee;
     padding: 6px 10px;
     margin-bottom: 10px;
+    border-radius: 5px;
   }
 
   .list {

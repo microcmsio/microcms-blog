@@ -206,6 +206,7 @@ export default {
     height: 250px;
     background-color: #2b2c30;
     color: #fff;
+    border-radius: 5px;
 
     img {
       width: 160px;
@@ -234,8 +235,23 @@ export default {
     }
   }
 
+  .ogimageWrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+
   .ogimage {
+    display: block;
     width: 100%;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+
+    &.loaded {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   .container {
@@ -312,6 +328,7 @@ export default {
     height: 250px;
     background-color: #2b2c30;
     color: #fff;
+    border-radius: 5px;
 
     img {
       width: 160px;
@@ -340,8 +357,23 @@ export default {
     }
   }
 
+  .ogimageWrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+
   .ogimage {
+    display: block;
     width: 100%;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+
+    &.loaded {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   .container {
@@ -443,6 +475,7 @@ export default {
     height: 250px;
     background-color: #2b2c30;
     color: #fff;
+    border-radius: 5px;
 
     img {
       width: 160px;
@@ -471,8 +504,23 @@ export default {
     }
   }
 
+  .ogimageWrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+
   .ogimage {
+    display: block;
     width: 100%;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+
+    &.loaded {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   .container {
@@ -543,6 +591,7 @@ export default {
     height: 270px;
     background-color: #2b2c30;
     color: #fff;
+    border-radius: 5px;
 
     img {
       width: 160px;
@@ -571,9 +620,24 @@ export default {
     }
   }
 
-  .ogimage {
+  .ogimageWrap {
+    position: relative;
+    overflow: hidden;
     width: calc(100% + 32px);
     margin: 0 -16px;
+  }
+
+  .ogimage {
+    display: block;
+    width: 100%;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+
+    &.loaded {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   .container {

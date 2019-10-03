@@ -75,6 +75,8 @@ export default {
     & >>> a {
       color: #331cbf;
       text-decoration: underline;
+      word-wrap: break-word;
+      word-break: break-all;
     }
 
     & >>> strong {
@@ -171,6 +173,8 @@ export default {
     & >>> a {
       color: #331cbf;
       text-decoration: underline;
+      word-wrap: break-word;
+      word-break: break-all;
     }
 
     & >>> strong {
