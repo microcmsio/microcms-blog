@@ -7,6 +7,7 @@
           :src="data.ogimage.url + '?w=820'"
           :srcset="data.ogimage.url + '?w=375 375w,' + data.ogimage.url + '?w=750 750w,' + data.ogimage.url + '?w=820 820w'"
           class="ogimage"
+          ref="ogimage"
         />
         <div class="main">
           <div class="share">
@@ -69,6 +70,7 @@ export default {
       }
     );
     this.data = data;
+    setTimeout(() => hljs.initHighlighting(), 1);
   },
   data() {
     return {
@@ -144,7 +146,7 @@ export default {
     Post
   },
   mounted: function() {
-    hljs.initHighlighting();
+    this.$refs.ogimage.classList.add('loaded');
   }
 };
 </script>
