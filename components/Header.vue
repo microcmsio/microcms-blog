@@ -8,13 +8,10 @@
     <div class="menu">
       <ul class="lists">
         <li class="list">
-          <a href="https://microcms.io#feature">特徴</a>
-        </li>
-        <li class="list">
-          <a href="https://microcms.io#api">API 利用例</a>
-        </li>
-        <li class="list">
           <a href="https://microcms.io#price">料金</a>
+        </li>
+        <li class="list">
+          <a href="https://microcms.io#document">資料請求</a>
         </li>
         <li class="list">
           <a href="https://microcms.io/blog/">ブログ</a>
@@ -22,7 +19,10 @@
       </ul>
       <ul class="lists">
         <li class="list">
-          <a href="https://microcms.io#document">資料請求</a>
+          <a href="https://app.microcms.io/signin">ログイン</a>
+        </li>
+        <li class="list">
+          <a class="button" href="https://app.microcms.io">新規登録</a>
         </li>
       </ul>
     </div>
@@ -65,12 +65,18 @@
   }
 
   .list {
-    margin-left: 40px;
-    font-size: 16px;
+    margin-left: 30px;
+    font-size: 14px;
 
     a {
       color: #2b2c30;
     }
+  }
+
+  .button {
+    border: 1px solid #2b2c30;
+    padding: 10px 20px;
+    border-radius: 5px;
   }
 }
 @media (max-width: 600px) {
