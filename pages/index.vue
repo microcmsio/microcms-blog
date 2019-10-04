@@ -4,8 +4,10 @@
     <div class="divider">
       <div class="container">
         <h1 class="pageTitle">記事一覧</h1>
-        <ul v-for="content in contents" :key="content.id">
-          <li class="list">
+        <div v-show="loading" class="loader">Now loading...</div>
+        <div v-show="!loading && contents.length === 0" class="loader">記事がありません</div>
+        <ul v-show="!loading">
+          <li class="list" v-for="content in contents" :key="content.id">
             <a v-bind:href="content.id" class="link">
               <img
                 :src="content.ogimage.url + '?w=335'"
@@ -19,6 +21,16 @@
                 </dd>
               </dl>
             </a>
+          </li>
+        </ul>
+        <ul class="pager">
+          <li
+            class="page"
+            v-bind:class="{ active: page === `${p + 1}` }"
+            v-for="p in pager"
+            :key="p"
+          >
+            <a v-bind:href="'?p=' + (p + 1)">{{p + 1}}</a>
           </li>
         </ul>
       </div>
@@ -41,11 +53,31 @@ import Footer from '~/components/Footer.vue';
 import Meta from '~/components/Meta.vue';
 
 export default {
-  async asyncData() {
-    let { data } = await axios.get(`https://microcms.microcms.io/api/v1/blog`, {
-      headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
-    });
-    return data;
+  data() {
+    return {
+      contents: this.contents || [],
+      totalCount: this.totalCount || 0,
+      pager: this.pager || [],
+      loading: true
+    };
+  },
+  async created() {
+    const query = this.$route.query;
+    const page = query.p || '1';
+    const limit = 10;
+    let { data } = await axios.get(
+      `https://microcms.microcms.io/api/v1/blog?limit=${limit}&offset=${(page -
+        1) *
+        limit}`,
+      {
+        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+      }
+    );
+    this.contents = data.contents;
+    this.totalCount = data.totalCount;
+    this.page = page;
+    this.pager = [...Array(Math.ceil(data.totalCount / limit)).keys()];
+    this.loading = false;
   },
   head() {
     return {
@@ -63,7 +95,39 @@ export default {
 
 <style scoped>
 @media (min-width: 1160px) {
-  .wrapper {
+  .loader {
+    color: #ccc;
+    font-size: 20px;
+    text-align: center;
+    padding: 150px;
+  }
+
+  .pager {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0 0;
+  }
+
+  .page {
+    width: 40px;
+    height: 40px;
+    background-color: #e5eff9;
+    color: #3067af;
+    border-radius: 5px;
+    margin: 0 10px;
+
+    &.active {
+      color: #fff;
+      background-color: #3067af;
+    }
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
   }
 
   .divider {
@@ -149,7 +213,38 @@ export default {
   }
 }
 @media (min-width: 820px) and (max-width: 1160px) {
-  .wrapper {
+  .loader {
+    color: #ccc;
+    font-size: 16px;
+    padding-top: 20px;
+  }
+
+  .pager {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0 0;
+  }
+
+  .page {
+    width: 40px;
+    height: 40px;
+    background-color: #e5eff9;
+    color: #3067af;
+    border-radius: 5px;
+    margin: 0 10px;
+
+    &.active {
+      color: #fff;
+      background-color: #3067af;
+    }
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
   }
 
   .divider {
@@ -234,7 +329,38 @@ export default {
   }
 }
 @media (max-width: 820px) {
-  .wrapper {
+  .loader {
+    color: #ccc;
+    font-size: 16px;
+    padding-top: 20px;
+  }
+
+  .pager {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0 0;
+  }
+
+  .page {
+    width: 32px;
+    height: 32px;
+    background-color: #e5eff9;
+    color: #3067af;
+    border-radius: 5px;
+    margin: 0 6px;
+
+    &.active {
+      color: #fff;
+      background-color: #3067af;
+    }
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
   }
 
   .divider {
