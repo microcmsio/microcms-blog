@@ -113,7 +113,7 @@ export default {
       return `https://www.facebook.com/sharer.php?u=https://microcms.io/blog/${this.id}`;
     },
     getHatenaLink() {
-      return `https://b.hatena.ne.jp/entryhttps://microcms.io/blog/${this.id}`;
+      return `https://b.hatena.ne.jp/entry/https://microcms.io/blog/${this.id}`;
     }
   },
   components: {
