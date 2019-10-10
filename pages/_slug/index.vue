@@ -61,15 +61,18 @@ import Post from '~/components/Post.vue';
 
 export default {
   async asyncData({ params, error, payload }) {
+    let data;
     if (payload !== undefined) {
-      return payload;
+      data = payload;
+    } else {
+      const result = await axios.get(
+        `https://microcms.microcms.io/api/v1/blog/${params.slug}`,
+        {
+          headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+        }
+      );
+      data = result.data;
     }
-    let { data } = await axios.get(
-      `https://microcms.microcms.io/api/v1/blog/${params.slug}`,
-      {
-        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
-      }
-    );
     let {
       data: { contents }
     } = await axios.get('https://microcms.microcms.io/api/v1/blog', {
