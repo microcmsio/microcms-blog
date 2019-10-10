@@ -44,7 +44,7 @@
           <p>APIベースの日本製ヘッドレスCMS</p>
           <span class="detail">詳しく見る</span>
         </a>
-        <Latest />
+        <Latest :contents="contents" />
       </aside>
     </div>
     <Footer />
@@ -70,7 +70,15 @@ export default {
         headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
       }
     );
-    return data;
+    let {
+      data: { contents }
+    } = await axios.get('https://microcms.microcms.io/api/v1/blog', {
+      headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+    });
+    return {
+      ...data,
+      contents
+    };
   },
   head() {
     return {
