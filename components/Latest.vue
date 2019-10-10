@@ -19,17 +19,7 @@
 <script>
 import axios from 'axios';
 export default {
-  async created() {
-    let { data } = await axios.get(`https://microcms.microcms.io/api/v1/blog`, {
-      headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
-    });
-    this.contents = data.contents;
-  },
-  data() {
-    return {
-      contents: this.contents || []
-    };
-  }
+  props: ['contents']
 };
 </script>
 
