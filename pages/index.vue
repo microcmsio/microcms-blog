@@ -4,9 +4,8 @@
     <div class="divider">
       <div class="container">
         <h1 class="pageTitle">記事一覧</h1>
-        <div v-show="loading" class="loader">Now loading...</div>
-        <div v-show="!loading && contents.length === 0" class="loader">記事がありません</div>
-        <ul v-show="!loading">
+        <div v-show="contents.length === 0" class="loader">記事がありません</div>
+        <ul>
           <li class="list" v-for="content in contents" :key="content.id">
             <a v-bind:href="content.id" class="link">
               <img
@@ -30,7 +29,7 @@
             v-for="p in pager"
             :key="p"
           >
-            <a v-bind:href="'?p=' + (p + 1)">{{p + 1}}</a>
+            <a v-bind:href="'/blog/page/' + (p + 1)">{{p + 1}}</a>
           </li>
         </ul>
       </div>
@@ -61,9 +60,8 @@ export default {
       loading: true
     };
   },
-  async created() {
-    const query = this.$route.query;
-    const page = query.p || '1';
+  async asyncData({ params, error, payload }) {
+    const page = params.id || '1';
     const limit = 10;
     let { data } = await axios.get(
       `https://microcms.microcms.io/api/v1/blog?limit=${limit}&offset=${(page -
@@ -73,11 +71,11 @@ export default {
         headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
       }
     );
-    this.contents = data.contents;
-    this.totalCount = data.totalCount;
-    this.page = page;
-    this.pager = [...Array(Math.ceil(data.totalCount / limit)).keys()];
-    this.loading = false;
+    return {
+      ...data,
+      page,
+      pager: [...Array(Math.ceil(data.totalCount / limit)).keys()]
+    };
   },
   head() {
     return {

@@ -11,10 +11,10 @@
           <a href="https://microcms.io#price">料金</a>
         </li>
         <li class="list">
-          <a href="https://microcms.io#document">資料請求</a>
+          <a href="https://microcms.io/blog/">ブログ</a>
         </li>
         <li class="list">
-          <a href="https://microcms.io/blog/">ブログ</a>
+          <a href="https://microcms.io#document">お問い合わせ</a>
         </li>
       </ul>
       <ul class="lists">

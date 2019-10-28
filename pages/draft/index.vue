@@ -171,6 +171,30 @@ export default {
     width: 300px;
   }
 
+  .breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 20px;
+  }
+
+  .breadcrumbList {
+    color: #616269;
+
+    a {
+      color: #331cbf;
+    }
+
+    &::after {
+      content: '>';
+      margin: 0 10px;
+    }
+
+    &:last-child&::after {
+      content: '';
+      margin: 0;
+    }
+  }
+
   .main {
     display: flex;
     justify-content: space-between;
@@ -290,6 +314,31 @@ export default {
   .aside {
     margin-top: 100px;
     margin-left: 104px;
+  }
+
+  .breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 20px;
+  }
+
+  .breadcrumbList {
+    color: #616269;
+    font-size: 14px;
+
+    a {
+      color: #331cbf;
+    }
+
+    &::after {
+      content: '>';
+      margin: 0 10px;
+    }
+
+    &:last-child&::after {
+      content: '';
+      margin: 0;
+    }
   }
 
   .main {
@@ -439,6 +488,31 @@ export default {
     margin-left: 104px;
   }
 
+  .breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 20px;
+  }
+
+  .breadcrumbList {
+    color: #616269;
+    font-size: 14px;
+
+    a {
+      color: #331cbf;
+    }
+
+    &::after {
+      content: '>';
+      margin: 0 10px;
+    }
+
+    &:last-child&::after {
+      content: '';
+      margin: 0;
+    }
+  }
+
   .main {
     display: flex;
     justify-content: space-between;
@@ -558,6 +632,32 @@ export default {
   .aside {
     margin-top: 60px;
     width: 100%;
+  }
+
+  .breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    margin-bottom: -20px;
+  }
+
+  .breadcrumbList {
+    color: #616269;
+    font-size: 14px;
+
+    a {
+      color: #331cbf;
+    }
+
+    &::after {
+      content: '>';
+      margin: 0 10px;
+    }
+
+    &:last-child&::after {
+      content: '';
+      margin: 0;
+    }
   }
 
   .main {
