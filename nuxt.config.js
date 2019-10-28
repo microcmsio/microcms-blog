@@ -98,20 +98,35 @@ export default {
     }
   },
   router: {
-    base: '/blog'
+    base: '/blog',
+    extendRoutes(routes, resolve) {
+      routes.push({
+        path: '/page/:id',
+        component: resolve(__dirname, 'pages/index.vue'),
+        name: 'paging'
+      });
+    }
   },
   generate: {
     routes() {
+      const range = (start, end) =>
+        [...Array(end - start + 1)].map((_, i) => start + i);
       return axios
         .get(`https://microcms.microcms.io/api/v1/blog?limit=100`, {
           headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
         })
-        .then(res =>
-          res.data.contents.map(content => ({
+        .then(res => {
+          const articles = res.data.contents.map(content => ({
             route: content.id,
             payload: content
-          }))
-        );
+          }));
+          return [
+            ...articles,
+            ...range(1, Math.ceil(res.data.contents.length / 10)).map(p => ({
+              route: `/page/${p}`
+            }))
+          ];
+        });
     },
     dir: 'dist/blog'
   },
