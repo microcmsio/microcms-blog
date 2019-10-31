@@ -4,8 +4,8 @@
     <div class="divider">
       <article class="article">
         <img
-          :src="data.ogimage.url + '?w=820'"
-          :srcset="data.ogimage.url + '?w=375 375w,' + data.ogimage.url + '?w=750 750w,' + data.ogimage.url + '?w=820 820w'"
+          :src="data.ogimage.url + '?w=820&q=100'"
+          :srcset="data.ogimage.url + '?w=375&q=100 375w,' + data.ogimage.url + '?w=750&q=100 750w,' + data.ogimage.url + '?w=820&q=100 820w'"
           class="ogimage"
           ref="ogimage"
         />
