@@ -90,6 +90,7 @@ export default {
     align-items: center;
     color: #919299;
     margin-right: 20px;
+    white-space: nowrap;
 
     img {
       margin-right: 6px;
@@ -101,6 +102,7 @@ export default {
     display: inline-flex;
     align-items: center;
     color: #919299;
+    white-space: nowrap;
 
     img {
       margin-right: 6px;
