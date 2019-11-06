@@ -16,7 +16,11 @@
               <dl class="content">
                 <dt class="title">{{content.title}}</dt>
                 <dd>
-                  <Meta :createdAt="content.createdAt" :author="content.writer.name" />
+                  <Meta
+                    :createdAt="content.createdAt"
+                    :author="content.writer.name"
+                    :category="content.category"
+                  />
                 </dd>
               </dl>
             </a>

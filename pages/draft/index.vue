@@ -9,6 +9,14 @@
           class="ogimage"
           ref="ogimage"
         />
+        <ul class="breadcrumb">
+          <li class="breadcrumbList">
+            <a href="https://microcms.io">microCMS</a>
+          </li>
+          <li class="breadcrumbList">
+            <a href="/blog">記事一覧</a>
+          </li>
+        </ul>
         <div class="main">
           <div class="share">
             <ul class="shareLists">
@@ -31,7 +39,7 @@
           </div>
           <div class="container">
             <h1 class="title">{{ data.title }}</h1>
-            <Meta :createdAt="data.createdAt" :author="data.writer.name" />
+            <Meta :createdAt="data.createdAt" :author="data.writer.name" :category="data.category" />
             <Post :body="data.body" />
             <Writer :writer="data.writer" />
           </div>
@@ -99,6 +107,10 @@ export default {
             url: ''
           },
           text: ''
+        },
+        category: {
+          name: '',
+          color: ''
         }
       },
       contents: []
