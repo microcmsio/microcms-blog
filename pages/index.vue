@@ -17,7 +17,7 @@
                 <dt class="title">{{content.title}}</dt>
                 <dd>
                   <Meta
-                    :createdAt="content.createdAt"
+                    :createdAt="content.publishedAt || content.createdAt"
                     :author="content.writer.name"
                     :category="content.category"
                   />
