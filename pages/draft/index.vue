@@ -146,7 +146,7 @@ export default {
         {
           rel: 'stylesheet',
           href:
-            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css'
+            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css'
         }
       ],
       script: [
