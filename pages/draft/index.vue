@@ -33,7 +33,7 @@
             <h1 class="title">{{ data.title }}</h1>
             <Meta :createdAt="data.createdAt" :author="data.writer.name" />
             <Post :body="data.body" />
-            <Writer :writer="writer" />
+            <Writer :writer="data.writer" />
           </div>
         </div>
       </article>
@@ -43,7 +43,7 @@
           <p>APIベースの日本製ヘッドレスCMS</p>
           <span class="detail">詳しく見る</span>
         </a>
-        <Latest />
+        <Latest :contents="contents" />
       </aside>
     </div>
     <Footer />
@@ -72,19 +72,36 @@ export default {
       }
     );
     this.data = data;
-    setTimeout(() => hljs.initHighlighting(), 1);
+    let {
+      data: { contents }
+    } = await axios.get(
+      `https://microcms.microcms.io/api/v1/blog?draftKey=${query.draftKey}`,
+      {
+        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+      }
+    );
+    this.contents = contents;
+    setTimeout(() => typeof hljs !== 'undefined' && hljs.initHighlighting(), 1);
   },
   data() {
     return {
-      data: this.data || {
+      data: {
         ogimage: {
           url: ''
         },
         body: '',
         title: '',
         createdAt: '',
-        author: ''
-      }
+        writer: {
+          id: '',
+          name: '',
+          image: {
+            url: ''
+          },
+          text: ''
+        }
+      },
+      contents: []
     };
   },
   head() {
