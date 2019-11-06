@@ -31,8 +31,9 @@
           </div>
           <div class="container">
             <h1 class="title">{{ data.title }}</h1>
-            <Meta :createdAt="data.createdAt" :author="data.author" />
+            <Meta :createdAt="data.createdAt" :author="data.writer.name" />
             <Post :body="data.body" />
+            <Writer :writer="writer" />
           </div>
         </div>
       </article>
@@ -55,6 +56,7 @@ import Header from '~/components/Header.vue';
 import Footer from '~/components/Footer.vue';
 import Latest from '~/components/Latest.vue';
 import Meta from '~/components/Meta.vue';
+import Writer from '~/components/Writer.vue';
 import Post from '~/components/Post.vue';
 
 export default {
@@ -142,6 +144,7 @@ export default {
     Footer,
     Latest,
     Meta,
+    Writer,
     Post
   },
   mounted: function() {
