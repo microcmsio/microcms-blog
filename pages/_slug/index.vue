@@ -41,7 +41,7 @@
           </div>
           <div class="container">
             <h1 class="title">{{ title }}</h1>
-            <Meta :createdAt="createdAt" :author="writer.name" :category="category" />
+            <Meta :createdAt="publishedAt || createdAt" :author="writer.name" :category="category" />
             <Post :body="body" />
             <Writer :writer="writer" />
           </div>

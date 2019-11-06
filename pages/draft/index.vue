@@ -39,7 +39,11 @@
           </div>
           <div class="container">
             <h1 class="title">{{ data.title }}</h1>
-            <Meta :createdAt="data.createdAt" :author="data.writer.name" :category="data.category" />
+            <Meta
+              :createdAt="data.publishedAt || data.createdAt"
+              :author="data.writer.name"
+              :category="data.category"
+            />
             <Post :body="data.body" />
             <Writer :writer="data.writer" />
           </div>
@@ -100,6 +104,7 @@ export default {
         body: '',
         title: '',
         createdAt: '',
+        publishedAt: '',
         writer: {
           id: '',
           name: '',
