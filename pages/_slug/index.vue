@@ -41,7 +41,7 @@
           </div>
           <div class="container">
             <h1 class="title">{{ title }}</h1>
-            <Meta :createdAt="createdAt" :author="writer.name" />
+            <Meta :createdAt="createdAt" :author="writer.name" :category="category" />
             <Post :body="body" />
             <Writer :writer="writer" />
           </div>
@@ -115,7 +115,7 @@ export default {
         {
           rel: 'stylesheet',
           href:
-            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css'
+            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css'
         }
       ],
       script: [
@@ -153,6 +153,16 @@ export default {
 </script>
 
 <style scoped>
+.category {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 3px;
+  color: #fff;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
 @media (min-width: 1160px) {
   .wrapper {
     position: relative;
