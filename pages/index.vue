@@ -201,6 +201,7 @@ export default {
 
   .ogimage {
     width: 335px;
+    height: 176px;
     border-radius: 5px;
   }
 
@@ -317,6 +318,7 @@ export default {
 
   .ogimage {
     width: 335px;
+    height: 176px;
     border-radius: 5px;
   }
 
