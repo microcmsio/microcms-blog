@@ -46,7 +46,7 @@
             />
             <Post :body="data.body" />
             <Writer :writer="data.writer" />
-            <RelatedBlogs v-if="related_blogs.length > 0" :blogs="related_blogs" />
+            <RelatedBlogs v-if="data.related_blogs.length > 0" :blogs="data.related_blogs" />
           </div>
         </div>
       </article>
@@ -118,7 +118,8 @@ export default {
         category: {
           name: '',
           color: ''
-        }
+        },
+        related_blogs: []
       },
       contents: []
     };

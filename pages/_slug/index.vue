@@ -72,6 +72,11 @@ import Writer from '~/components/Writer.vue';
 import Post from '~/components/Post.vue';
 
 export default {
+  data() {
+    return {
+      publishedAt: ''
+    };
+  },
   async asyncData({ params, error, payload }) {
     let data;
     if (payload !== undefined) {
