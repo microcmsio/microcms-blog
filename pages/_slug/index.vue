@@ -44,6 +44,7 @@
             <Meta :createdAt="publishedAt || createdAt" :author="writer.name" :category="category" />
             <Post :body="body" />
             <Writer :writer="writer" />
+            <RelatedBlogs v-if="related_blogs.length > 0" :blogs="related_blogs" />
           </div>
         </div>
       </article>
@@ -65,18 +66,24 @@ import axios from 'axios';
 import Header from '~/components/Header.vue';
 import Footer from '~/components/Footer.vue';
 import Latest from '~/components/Latest.vue';
+import RelatedBlogs from '~/components/RelatedBlogs.vue';
 import Meta from '~/components/Meta.vue';
 import Writer from '~/components/Writer.vue';
 import Post from '~/components/Post.vue';
 
 export default {
+  data() {
+    return {
+      publishedAt: ''
+    };
+  },
   async asyncData({ params, error, payload }) {
     let data;
     if (payload !== undefined) {
       data = payload;
     } else {
       const result = await axios.get(
-        `https://microcms.microcms.io/api/v1/blog/${params.slug}`,
+        `https://microcms.microcms.io/api/v1/blog/${params.slug}?depth=3`,
         {
           headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
         }
@@ -141,6 +148,7 @@ export default {
     Header,
     Footer,
     Latest,
+    RelatedBlogs,
     Meta,
     Writer,
     Post
@@ -309,6 +317,7 @@ export default {
     color: #2b2c30;
   }
 }
+
 @media (min-width: 820px) and (max-width: 1160px) {
   .wrapper {
     position: relative;
@@ -324,7 +333,7 @@ export default {
   }
 
   .aside {
-    margin-top: 100px;
+    margin-top: 60px;
     margin-left: 104px;
   }
 

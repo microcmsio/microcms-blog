@@ -80,6 +80,7 @@ export default {
     }
 
     & >>> strong {
+      background: linear-gradient(transparent 75%, #ffe0c1 75%);
       font-weight: bold;
     }
 
@@ -178,6 +179,7 @@ export default {
     }
 
     & >>> strong {
+      background: linear-gradient(transparent 75%, #ffe0c1 75%);
       font-weight: bold;
     }
 
