@@ -44,6 +44,30 @@
             <Meta :createdAt="publishedAt || createdAt" :author="writer.name" :category="category" />
             <Post :body="body" />
             <Writer :writer="writer" />
+            <div v-if="related_blogs.length > 0">
+              <h2 class="subTitle">関連記事</h2>
+              <ul class="relatedLists">
+                <li v-for="blog in related_blogs" :key="blog.id" class="relatedList">
+                  <a v-bind:href="blog.id" class="link">
+                    <img
+                      :src="blog.ogimage.url + '?w=300&q=100'"
+                      :srcset="blog.ogimage.url + '?w=375&q=100 375w,' + blog.ogimage.url + '?w=750&q=100 750w,' + blog.ogimage.url + '?w=820&q=100 820w'"
+                      class="relatedImg"
+                    />
+                    <dl class="relatedContent">
+                      <dt class="relatedTitle">{{blog.title}}</dt>
+                      <dd>
+                        <Meta
+                          :createdAt="blog.createdAt"
+                          :author="blog.writer.name"
+                          :category="blog.category"
+                        />
+                      </dd>
+                    </dl>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </article>
@@ -76,7 +100,7 @@ export default {
       data = payload;
     } else {
       const result = await axios.get(
-        `https://microcms.microcms.io/api/v1/blog/${params.slug}`,
+        `https://microcms.microcms.io/api/v1/blog/${params.slug}?depth=3`,
         {
           headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
         }
@@ -308,7 +332,48 @@ export default {
     font-size: 40px;
     color: #2b2c30;
   }
+
+  .subTitle {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #eee;
+    padding: 6px 10px;
+    margin: 60px 0 40px;
+    border-radius: 5px;
+  }
+
+  .relatedLists {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .relatedList {
+    width: 340px;
+    border-radius: 5px;
+    transition: box-shadow 0.1s linear;
+
+    &:hover {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .relatedImg {
+    width: 340px;
+    height: 178px;
+    border-radius: 5px 5px 0 0;
+  }
+
+  .relatedContent {
+    padding: 10px;
+  }
+
+  .relatedTitle {
+    font-size: 20px;
+    font-weight: bold;
+  }
 }
+
 @media (min-width: 820px) and (max-width: 1160px) {
   .wrapper {
     position: relative;
