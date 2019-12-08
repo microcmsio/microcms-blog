@@ -8,11 +8,10 @@
         <ul>
           <li class="list" v-for="content in contents" :key="content.id">
             <a v-bind:href="content.id" class="link">
-              <img
-                :src="content.ogimage.url + '?w=335'"
-                :srcset="content.ogimage.url + '?w=335 375w,' + content.ogimage.url + '?w=670 750w,' + content.ogimage.url + '?w=828 828w'"
-                class="ogimage"
-              />
+              <picture>
+                <source type="image/webp" :srcset="content.ogimage.url + '?w=670&fm=webp'" />
+                <img :src="content.ogimage.url + '?w=670'" class="ogimage" alt />
+              </picture>
               <dl class="content">
                 <dt class="title">{{content.title}}</dt>
                 <dd>
