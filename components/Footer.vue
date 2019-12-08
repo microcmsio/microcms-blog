@@ -62,7 +62,7 @@
   .cr {
     margin-top: 20px;
     text-align: center;
-    color: #919299;
+    color: #616269;
     font-size: 14px;
   }
 }
@@ -79,7 +79,7 @@
   .cr {
     font-size: 12px;
     margin-top: 10px;
-    color: #919299;
+    color: #616269;
   }
 
   .lists {

@@ -2,7 +2,7 @@
   <div class="wrapper">
     <h2 class="title">ABOUT ME</h2>
     <div class="container">
-      <img :src="writer.image.url + '?fit=crop&w=100&h=100&q=100'" class="image" />
+      <img :src="writer.image.url + '?fit=crop&w=100&h=100&q=100'" class="image" alt />
       <dl class="content">
         <dt class="name">
           {{ writer.name }}
