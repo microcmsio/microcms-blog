@@ -46,7 +46,8 @@ export default {
   .timestamp {
     display: inline-flex;
     align-items: center;
-    color: #919299;
+    color: #616269;
+
     margin-right: 20px;
     white-space: nowrap;
 
@@ -59,7 +60,7 @@ export default {
   .author {
     display: inline-flex;
     align-items: center;
-    color: #919299;
+    color: #616269;
     white-space: nowrap;
 
     img {
@@ -88,7 +89,7 @@ export default {
   .timestamp {
     display: inline-flex;
     align-items: center;
-    color: #919299;
+    color: #616269;
     margin-right: 20px;
     white-space: nowrap;
 
@@ -101,7 +102,7 @@ export default {
   .author {
     display: inline-flex;
     align-items: center;
-    color: #919299;
+    color: #616269;
     white-space: nowrap;
 
     img {
