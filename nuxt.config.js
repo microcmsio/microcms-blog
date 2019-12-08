@@ -8,7 +8,7 @@ export default {
   head: {
     htmlAttrs: {
       prefix: 'og: http://ogp.me/ns#',
-      lang: 'jp'
+      lang: 'ja'
     },
     titleTemplete: '%s | microCMSブログ',
     meta: [
