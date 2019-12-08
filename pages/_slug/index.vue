@@ -4,12 +4,10 @@
     <div class="divider">
       <article class="article">
         <div class="ogimageWrap">
-          <img
-            :src="ogimage.url + '?w=820&q=100'"
-            :srcset="ogimage.url + '?w=375&q=100 375w,' + ogimage.url + '?w=750&q=100 750w,' + ogimage.url + '?w=820&q=100 820w'"
-            class="ogimage"
-            ref="ogimage"
-          />
+          <picture>
+            <source type="image/webp" :srcset="ogimage.url + '?w=820&fm=webp'" />
+            <img :src="ogimage.url + '?w=820&q=100'" class="ogimage" alt ref="ogimage" />
+          </picture>
         </div>
         <ul class="breadcrumb">
           <li class="breadcrumbList">
@@ -128,7 +126,8 @@ export default {
       script: [
         {
           src:
-            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'
+            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js',
+          async: true
         }
       ]
     };

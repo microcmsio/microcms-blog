@@ -4,11 +4,10 @@
     <ul class="lists">
       <li v-for="blog in blogs" :key="blog.id" class="list">
         <a v-bind:href="blog.id" class="link">
-          <img
-            :src="blog.ogimage.url + '?w=300&q=100'"
-            :srcset="blog.ogimage.url + '?w=375&q=100 375w,' + blog.ogimage.url + '?w=750&q=100 750w,' + blog.ogimage.url + '?w=820&q=100 820w'"
-            class="img"
-          />
+          <picture>
+            <source type="image/webp" :srcset="blog.ogimage.url + '?w=820&fm=webp'" />
+            <img :src="blog.ogimage.url + '?w=820'" class="img" alt />
+          </picture>
           <dl class="content">
             <dt class="title">{{blog.title}}</dt>
             <dd>

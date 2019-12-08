@@ -1,10 +1,6 @@
 <template>
   <div>
-    <span
-      class="category"
-      v-if="category"
-      v-bind:style="`background-color: ${category.color}`"
-    >{{ category.name }}</span>
+    <span class="category" v-if="category">{{ category.name }}</span>
     <div class="meta">
       <span class="timestamp">
         <img src="/blog/images/icon_clock.svg" alt />
@@ -34,19 +30,20 @@ export default {
 
   .category {
     display: inline-block;
-    padding: 2px 10px;
-    color: #fff;
+    padding: 2px 8px;
+    border: 1px solid #331cbf;
+    color: #331cbf;
     white-space: nowrap;
     border-radius: 3px;
     font-size: 14px;
-    font-weight: bold;
     margin: 10px 0 2px;
   }
 
   .timestamp {
     display: inline-flex;
     align-items: center;
-    color: #919299;
+    color: #616269;
+
     margin-right: 20px;
     white-space: nowrap;
 
@@ -59,7 +56,7 @@ export default {
   .author {
     display: inline-flex;
     align-items: center;
-    color: #919299;
+    color: #616269;
     white-space: nowrap;
 
     img {
@@ -76,19 +73,19 @@ export default {
 
   .category {
     display: inline-block;
-    padding: 2px 10px;
-    color: #fff;
+    padding: 2px 8px;
+    border: 1px solid #331cbf;
+    color: #331cbf;
     white-space: nowrap;
     border-radius: 3px;
     font-size: 14px;
-    font-weight: bold;
     margin: 10px 0 4px;
   }
 
   .timestamp {
     display: inline-flex;
     align-items: center;
-    color: #919299;
+    color: #616269;
     margin-right: 20px;
     white-space: nowrap;
 
@@ -101,7 +98,7 @@ export default {
   .author {
     display: inline-flex;
     align-items: center;
-    color: #919299;
+    color: #616269;
     white-space: nowrap;
 
     img {
