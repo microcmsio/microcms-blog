@@ -65,11 +65,12 @@ export default {
   },
   async asyncData({ params, error, payload }) {
     const page = params.id || '1';
+    const category = params.category;
     const limit = 10;
     let { data } = await axios.get(
-      `https://microcms.microcms.io/api/v1/blog?limit=${limit}&offset=${(page -
-        1) *
-        limit}`,
+      `https://microcms.microcms.io/api/v1/blog?limit=${limit}${
+        category === undefined ? '' : `&filters=category[equals]${category}`
+      }&offset=${(page - 1) * limit}`,
       {
         headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
       }
