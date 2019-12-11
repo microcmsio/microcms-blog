@@ -1,16 +1,9 @@
 <template>
   <div class="wrapper">
-    <h1 class="pageTitle">最新の記事</h1>
+    <h1 class="pageTitle">カテゴリー</h1>
     <ul>
-      <li v-for="content in contents" :key="content.id" class="list">
-        <a v-bind:href="content.id" class="link">
-          <dl class="content">
-            <dt class="title">{{content.title}}</dt>
-            <dd>
-              <Meta :createdAt="content.createdAt" :author="content.author" />
-            </dd>
-          </dl>
-        </a>
+      <li v-for="category in categories" :key="category.id" class="list">
+        <a v-bind:href="`/blog/category/${category.id}/page/1`" class="link">{{ category.name }}</a>
       </li>
     </ul>
   </div>
@@ -19,15 +12,14 @@
 <script>
 import axios from 'axios';
 export default {
-  props: ['contents']
+  props: ['categories']
 };
 </script>
 
 <style scoped>
 @media (min-width: 1160px) {
   .wrapper {
-    position: sticky !important;
-    top: 10px;
+    padding: 40px 0;
   }
 
   .pageTitle {
@@ -42,23 +34,19 @@ export default {
   .list {
     border-bottom: 1px solid #eee;
 
+    a {
+      display: block;
+      padding: 10px;
+    }
+
     &:last-child {
       border-bottom: none;
     }
-  }
-
-  .link {
-    display: block;
-    padding: 10px;
-  }
-
-  .title {
-    font-size: 16px;
   }
 }
 @media (min-width: 820px) and (max-width: 1160px) {
   .wrapper {
-    padding: 40px 0;
+    padding: 40px 0 0;
   }
 
   .pageTitle {
@@ -73,23 +61,19 @@ export default {
   .list {
     border-bottom: 1px solid #eee;
 
+    a {
+      display: block;
+      padding: 10px;
+    }
+
     &:last-child {
       border-bottom: none;
     }
-  }
-
-  .link {
-    display: block;
-    padding: 10px;
-  }
-
-  .title {
-    font-size: 16px;
   }
 }
 @media (max-width: 820px) {
   .wrapper {
-    padding: 40px 0;
+    padding: 40px 0 0;
   }
 
   .pageTitle {
@@ -104,18 +88,14 @@ export default {
   .list {
     border-bottom: 1px solid #eee;
 
+    a {
+      display: block;
+      padding: 10px;
+    }
+
     &:last-child {
       border-bottom: none;
     }
-  }
-
-  .link {
-    display: block;
-    padding: 10px;
-  }
-
-  .title {
-    font-size: 16px;
   }
 }
 </style>

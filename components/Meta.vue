@@ -1,6 +1,10 @@
 <template>
   <div>
-    <span class="category" v-if="category">{{ category.name }}</span>
+    <a
+      v-bind:href="`/blog/category/${category.id}/page/1`"
+      class="category"
+      v-if="category"
+    >{{ category.name }}</a>
     <div class="meta">
       <span class="timestamp">
         <img src="/blog/images/icon_clock.svg" alt />

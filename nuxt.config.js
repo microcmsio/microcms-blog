@@ -107,7 +107,7 @@ export default {
         name: 'pages'
       });
       routes.push({
-        path: '/category/:category/page/:id',
+        path: '/category/:categoryId/page/:id',
         component: resolve(__dirname, 'pages/index.vue'),
         name: 'categories'
       });

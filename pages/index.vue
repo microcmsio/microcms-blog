@@ -3,7 +3,7 @@
     <Header />
     <div class="divider">
       <div class="container">
-        <h1 class="pageTitle">記事一覧</h1>
+        <Breadcrumb :category="selectedCategory" />
         <div v-show="contents.length === 0" class="loader">記事がありません</div>
         <ul>
           <li class="list" v-for="content in contents" :key="content.id">
@@ -25,7 +25,7 @@
             </a>
           </li>
         </ul>
-        <ul class="pager">
+        <ul class="pager" v-show="contents.length > 0">
           <li
             class="page"
             v-bind:class="{ active: page === `${p + 1}` }"
@@ -42,6 +42,7 @@
           <p>APIベースの日本製ヘッドレスCMS</p>
           <span class="detail">詳しく見る</span>
         </a>
+        <Categories :categories="categories" />
       </aside>
     </div>
     <Footer />
@@ -53,6 +54,8 @@ import axios from 'axios';
 import Header from '~/components/Header.vue';
 import Footer from '~/components/Footer.vue';
 import Meta from '~/components/Meta.vue';
+import Breadcrumb from '~/components/Breadcrumb.vue';
+import Categories from '~/components/Categories.vue';
 
 export default {
   data() {
@@ -65,18 +68,30 @@ export default {
   },
   async asyncData({ params, error, payload }) {
     const page = params.id || '1';
-    const category = params.category;
+    const categoryId = params.categoryId;
     const limit = 10;
-    let { data } = await axios.get(
+    const { data } = await axios.get(
       `https://microcms.microcms.io/api/v1/blog?limit=${limit}${
-        category === undefined ? '' : `&filters=category[equals]${category}`
+        categoryId === undefined ? '' : `&filters=category[equals]${categoryId}`
       }&offset=${(page - 1) * limit}`,
       {
         headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
       }
     );
+    const categories = await axios.get(
+      `https://microcms.microcms.io/api/v1/categories?limit=100`,
+      {
+        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+      }
+    );
+    const selectedCategory =
+      categoryId !== undefined
+        ? categories.data.contents.find(content => content.id === categoryId)
+        : undefined;
     return {
       ...data,
+      categories: categories.data.contents,
+      selectedCategory,
       page,
       pager: [...Array(Math.ceil(data.totalCount / limit)).keys()]
     };
@@ -90,7 +105,9 @@ export default {
   components: {
     Header,
     Footer,
-    Meta
+    Meta,
+    Breadcrumb,
+    Categories
   }
 };
 </script>
