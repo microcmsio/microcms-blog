@@ -104,15 +104,20 @@ export default {
       routes.push({
         path: '/page/:id',
         component: resolve(__dirname, 'pages/index.vue'),
-        name: 'paging'
+        name: 'pages'
+      });
+      routes.push({
+        path: '/category/:categoryId/page/:id',
+        component: resolve(__dirname, 'pages/index.vue'),
+        name: 'categories'
       });
     }
   },
   generate: {
-    routes() {
+    async routes() {
       const range = (start, end) =>
         [...Array(end - start + 1)].map((_, i) => start + i);
-      return axios
+      const pages = await axios
         .get(`https://microcms.microcms.io/api/v1/blog?limit=100&depth=3`, {
           headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
         })
@@ -128,6 +133,36 @@ export default {
             }))
           ];
         });
+      const categories = await axios
+        .get(
+          `https://microcms.microcms.io/api/v1/categories?limit=100&fields=id`,
+          {
+            headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+          }
+        )
+        .then(({ data }) => {
+          return data.contents.map(content => content.id);
+        });
+      const categoryPages = await Promise.all(
+        categories.map(category =>
+          axios
+            .get(
+              `https://microcms.microcms.io/api/v1/blog?limit=100&filters=category[equals]${category}&depth=3`,
+              {
+                headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+              }
+            )
+            .then(res => {
+              return range(1, Math.ceil(res.data.contents.length / 10)).map(
+                p => ({
+                  route: `category/${category}/page/${p}`
+                })
+              );
+            })
+        )
+      );
+      const flattenCategoryPages = [].concat.apply([], categoryPages);
+      return [...pages, ...flattenCategoryPages];
     },
     dir: 'dist/blog'
   },

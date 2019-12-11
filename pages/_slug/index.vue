@@ -9,14 +9,7 @@
             <img :src="ogimage.url + '?w=820&q=100'" class="ogimage" alt ref="ogimage" />
           </picture>
         </div>
-        <ul class="breadcrumb">
-          <li class="breadcrumbList">
-            <a href="https://microcms.io">microCMS</a>
-          </li>
-          <li class="breadcrumbList">
-            <a href="/blog">記事一覧</a>
-          </li>
-        </ul>
+        <Breadcrumb :category="category" />
         <div class="main">
           <div class="share">
             <ul class="shareLists">
@@ -52,6 +45,7 @@
           <p>APIベースの日本製ヘッドレスCMS</p>
           <span class="detail">詳しく見る</span>
         </a>
+        <Categories :categories="categories" />
         <Latest :contents="contents" />
       </aside>
     </div>
@@ -66,8 +60,10 @@ import Footer from '~/components/Footer.vue';
 import Latest from '~/components/Latest.vue';
 import RelatedBlogs from '~/components/RelatedBlogs.vue';
 import Meta from '~/components/Meta.vue';
+import Breadcrumb from '~/components/Breadcrumb.vue';
 import Writer from '~/components/Writer.vue';
 import Post from '~/components/Post.vue';
+import Categories from '~/components/Categories.vue';
 
 export default {
   data() {
@@ -93,8 +89,15 @@ export default {
     } = await axios.get('https://microcms.microcms.io/api/v1/blog', {
       headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
     });
+    const categories = await axios.get(
+      `https://microcms.microcms.io/api/v1/categories?limit=100`,
+      {
+        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+      }
+    );
     return {
       ...data,
+      categories: categories.data.contents,
       contents
     };
   },
@@ -149,8 +152,10 @@ export default {
     Latest,
     RelatedBlogs,
     Meta,
+    Breadcrumb,
     Writer,
-    Post
+    Post,
+    Categories
   },
   mounted: function() {
     hljs.initHighlighting();
@@ -188,30 +193,6 @@ export default {
 
   .aside {
     width: 300px;
-  }
-
-  .breadcrumb {
-    display: flex;
-    flex-wrap: wrap;
-    padding-top: 20px;
-  }
-
-  .breadcrumbList {
-    color: #616269;
-
-    a {
-      color: #331cbf;
-    }
-
-    &::after {
-      content: '>';
-      margin: 0 10px;
-    }
-
-    &:last-child&::after {
-      content: '';
-      margin: 0;
-    }
   }
 
   .main {
@@ -334,31 +315,6 @@ export default {
   .aside {
     margin-top: 60px;
     margin-left: 104px;
-  }
-
-  .breadcrumb {
-    display: flex;
-    flex-wrap: wrap;
-    padding-top: 20px;
-  }
-
-  .breadcrumbList {
-    color: #616269;
-    font-size: 14px;
-
-    a {
-      color: #331cbf;
-    }
-
-    &::after {
-      content: '>';
-      margin: 0 10px;
-    }
-
-    &:last-child&::after {
-      content: '';
-      margin: 0;
-    }
   }
 
   .main {
@@ -506,31 +462,6 @@ export default {
   .aside {
     margin-top: 60px;
     margin-left: 104px;
-  }
-
-  .breadcrumb {
-    display: flex;
-    flex-wrap: wrap;
-    padding-top: 20px;
-  }
-
-  .breadcrumbList {
-    color: #616269;
-    font-size: 14px;
-
-    a {
-      color: #331cbf;
-    }
-
-    &::after {
-      content: '>';
-      margin: 0 10px;
-    }
-
-    &:last-child&::after {
-      content: '';
-      margin: 0;
-    }
   }
 
   .main {
