@@ -9,14 +9,7 @@
           class="ogimage"
           ref="ogimage"
         />
-        <ul class="breadcrumb">
-          <li class="breadcrumbList">
-            <a href="https://microcms.io">microCMS</a>
-          </li>
-          <li class="breadcrumbList">
-            <a href="/blog">記事一覧</a>
-          </li>
-        </ul>
+        <Breadcrumb :category="data.category" />
         <div class="main">
           <div class="share">
             <ul class="shareLists">
@@ -56,6 +49,7 @@
           <p>APIベースの日本製ヘッドレスCMS</p>
           <span class="detail">詳しく見る</span>
         </a>
+        <Categories :categories="categories" />
         <Latest :contents="contents" />
       </aside>
     </div>
@@ -70,8 +64,10 @@ import Footer from '~/components/Footer.vue';
 import Latest from '~/components/Latest.vue';
 import RelatedBlogs from '~/components/RelatedBlogs.vue';
 import Meta from '~/components/Meta.vue';
+import Breadcrumb from '~/components/Breadcrumb.vue';
 import Writer from '~/components/Writer.vue';
 import Post from '~/components/Post.vue';
+import Categories from '~/components/Categories.vue';
 
 export default {
   async created() {
@@ -95,6 +91,13 @@ export default {
       }
     );
     this.contents = contents;
+    const categories = await axios.get(
+      `https://microcms.microcms.io/api/v1/categories?limit=100`,
+      {
+        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+      }
+    );
+    this.categories = categories.data.contents;
     setTimeout(() => typeof hljs !== 'undefined' && hljs.initHighlighting(), 1);
   },
   data() {
@@ -121,7 +124,8 @@ export default {
         },
         related_blogs: []
       },
-      contents: []
+      contents: [],
+      categories: []
     };
   },
   head() {
@@ -183,8 +187,10 @@ export default {
     Latest,
     RelatedBlogs,
     Meta,
+    Breadcrumb,
     Writer,
-    Post
+    Post,
+    Categories
   },
   mounted: function() {
     this.$refs.ogimage.classList.add('loaded');
