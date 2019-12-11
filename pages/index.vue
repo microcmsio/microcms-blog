@@ -32,7 +32,9 @@
             v-for="p in pager"
             :key="p"
           >
-            <a v-bind:href="'/blog/page/' + (p + 1)">{{p + 1}}</a>
+            <a
+              v-bind:href="`/blog/${selectedCategory !== undefined ? `category/${selectedCategory.id}/` : ''}page/${p + 1}`"
+            >{{p + 1}}</a>
           </li>
         </ul>
       </div>
@@ -443,6 +445,10 @@ export default {
   .list {
     padding: 32px 0 0;
     border-bottom: 1px solid #eee;
+
+    &:first-child {
+      padding-top: 16px;
+    }
   }
 
   .link {
