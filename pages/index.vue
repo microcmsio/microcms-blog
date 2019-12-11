@@ -32,7 +32,7 @@
             v-for="p in pager"
             :key="p"
           >
-            <a v-bind:href="'/blog/page/' + (p + 1)">{{p + 1}}</a>
+            <a v-bind:href="`/blog/${selectedCategory !== undefined ? `category/${selectedCategory.id}/` : ''}page/${p + 1}`">{{p + 1}}</a>
           </li>
         </ul>
       </div>
