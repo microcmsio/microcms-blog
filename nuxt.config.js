@@ -82,7 +82,8 @@ export default {
         id: 'UA-109902480-8'
       }
     ],
-    ['@nuxtjs/sitemap']
+    ['@nuxtjs/sitemap'],
+    '@nuxtjs/feed'
   ],
   /*
    ** Build configuration
@@ -182,5 +183,38 @@ export default {
           )
         );
     }
-  }
+  },
+  feed: [
+    {
+      path: '/feed.xml',
+      async create(feed) {
+        feed.options = {
+          title: 'microCMSブログ',
+          link: 'https://microcms.io/blog/feed.xml',
+          description:
+            'microCMSはAPIベースの日本製ヘッドレスCMSです。本ブログはmicroCMSの開発メンバーがmicroCMSの使い方や技術的な内容を発信するブログです。'
+        };
+
+        const posts = await axios
+          .get(`https://microcms.microcms.io/api/v1/blog?limit=100`, {
+            headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+          })
+          .then(res => res.data.contents);
+
+        posts.forEach(post => {
+          feed.addItem({
+            title: post.title,
+            id: post.id,
+            link: `https://microcms.io/blog/${post.id}`,
+            description: post.description,
+            content: post.description,
+            date: new Date(post.publishedAt || post.createdAt),
+            image: post.ogimage.url
+          });
+        });
+      },
+      cacheTime: 1000 * 60 * 15,
+      type: 'atom1'
+    }
+  ]
 };
