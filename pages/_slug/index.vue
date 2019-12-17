@@ -5,8 +5,16 @@
       <article class="article">
         <div class="ogimageWrap">
           <picture>
-            <source type="image/webp" :srcset="ogimage.url + '?w=820&fm=webp'" />
-            <img :src="ogimage.url + '?w=820&q=100'" class="ogimage" alt ref="ogimage" />
+            <source
+              type="image/webp"
+              :srcset="ogimage.url + '?w=820&fm=webp'"
+            />
+            <img
+              :src="ogimage.url + '?w=820&q=100'"
+              class="ogimage"
+              alt
+              ref="ogimage"
+            />
           </picture>
         </div>
         <Breadcrumb :category="category" />
@@ -25,17 +33,32 @@
               </li>
               <li class="shareList">
                 <a v-bind:href="getHatenaLink()" target="_blank">
-                  <img src="/blog/images/icon_hatena.svg" alt="はてなブックマーク" />
+                  <img
+                    src="/blog/images/icon_hatena.svg"
+                    alt="はてなブックマーク"
+                  />
+                </a>
+              </li>
+              <li class="shareList">
+                <a href="https://microcms.io/blog/feed.xml" target="_blank">
+                  <img src="/blog/images/icon_feed.svg" alt="フィード" />
                 </a>
               </li>
             </ul>
           </div>
           <div class="container">
             <h1 class="title">{{ title }}</h1>
-            <Meta :createdAt="publishedAt || createdAt" :author="writer.name" :category="category" />
+            <Meta
+              :createdAt="publishedAt || createdAt"
+              :author="writer.name"
+              :category="category"
+            />
             <Post :body="body" />
             <Writer :writer="writer" />
-            <RelatedBlogs v-if="related_blogs.length > 0" :blogs="related_blogs" />
+            <RelatedBlogs
+              v-if="related_blogs.length > 0"
+              :blogs="related_blogs"
+            />
           </div>
         </div>
       </article>

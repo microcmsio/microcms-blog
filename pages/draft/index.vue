@@ -5,7 +5,14 @@
       <article class="article">
         <img
           :src="data.ogimage.url + '?w=820&q=100'"
-          :srcset="data.ogimage.url + '?w=375&q=100 375w,' + data.ogimage.url + '?w=750&q=100 750w,' + data.ogimage.url + '?w=820&q=100 820w'"
+          :srcset="
+            data.ogimage.url +
+              '?w=375&q=100 375w,' +
+              data.ogimage.url +
+              '?w=750&q=100 750w,' +
+              data.ogimage.url +
+              '?w=820&q=100 820w'
+          "
           class="ogimage"
           ref="ogimage"
         />
@@ -25,7 +32,15 @@
               </li>
               <li class="shareList">
                 <a v-bind:href="getHatenaLink()" target="_blank">
-                  <img src="/blog/images/icon_hatena.svg" alt="はてなブックマーク" />
+                  <img
+                    src="/blog/images/icon_hatena.svg"
+                    alt="はてなブックマーク"
+                  />
+                </a>
+              </li>
+              <li class="shareList">
+                <a href="https://microcms.io/blog/feed.xml" target="_blank">
+                  <img src="/blog/images/icon_feed.svg" alt="フィード" />
                 </a>
               </li>
             </ul>
@@ -39,7 +54,10 @@
             />
             <Post :body="data.body" />
             <Writer :writer="data.writer" />
-            <RelatedBlogs v-if="data.related_blogs.length > 0" :blogs="data.related_blogs" />
+            <RelatedBlogs
+              v-if="data.related_blogs.length > 0"
+              :blogs="data.related_blogs"
+            />
           </div>
         </div>
       </article>
