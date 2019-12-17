@@ -52,6 +52,12 @@ export default {
         rel: 'icon',
         type: 'image/x-icon',
         href: 'https://microcms.io/assets/images/favicon.png'
+      },
+      {
+        rel: 'alternate',
+        type: 'application/atom+xml',
+        href: 'https://microcms.io/blog/feed.xml',
+        title: 'Atom'
       }
     ]
   },
