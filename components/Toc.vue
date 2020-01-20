@@ -3,9 +3,9 @@
     <h4 class="title">目次</h4>
     <ul class="lists">
       <li :class="`list ${item.name}`" v-for="item in toc" :key="item.id">
-        <a v-bind:href="`${id}#${item.id}`">
+        <n-link v-scroll-to="`#${item.id}`" to>
           {{ item.text }}
-        </a>
+        </n-link>
       </li>
     </ul>
   </div>
