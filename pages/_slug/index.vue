@@ -53,6 +53,7 @@
               :author="writer.name"
               :category="category"
             />
+            <Toc :toc="toc" :id="id" :visible="toc_visible" />
             <Post :body="body" />
             <Writer :writer="writer" />
             <RelatedBlogs
@@ -78,6 +79,7 @@
 
 <script>
 import axios from 'axios';
+import cheerio from 'cheerio';
 import Header from '~/components/Header.vue';
 import Footer from '~/components/Footer.vue';
 import Latest from '~/components/Latest.vue';
@@ -85,6 +87,7 @@ import RelatedBlogs from '~/components/RelatedBlogs.vue';
 import Meta from '~/components/Meta.vue';
 import Breadcrumb from '~/components/Breadcrumb.vue';
 import Writer from '~/components/Writer.vue';
+import Toc from '~/components/Toc.vue';
 import Post from '~/components/Post.vue';
 import Categories from '~/components/Categories.vue';
 
@@ -118,8 +121,19 @@ export default {
         headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
       }
     );
+    const $ = cheerio.load(data.body);
+    const headings = $('h1, h2, h3').toArray();
+    const toc = headings.map(d => {
+      return {
+        text: d.children[0].data,
+        id: d.attribs.id,
+        name: d.name
+      };
+    });
+
     return {
       ...data,
+      toc,
       categories: categories.data.contents,
       contents
     };
@@ -177,6 +191,7 @@ export default {
     Meta,
     Breadcrumb,
     Writer,
+    Toc,
     Post,
     Categories
   },

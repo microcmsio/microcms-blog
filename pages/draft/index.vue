@@ -52,6 +52,7 @@
               :author="data.writer.name"
               :category="data.category"
             />
+            <Toc :toc="toc" :id="data.id" :visible="data.toc_visible" />
             <Post :body="data.body" />
             <Writer :writer="data.writer" />
             <RelatedBlogs
@@ -77,6 +78,7 @@
 
 <script>
 import axios from 'axios';
+import cheerio from 'cheerio';
 import Header from '~/components/Header.vue';
 import Footer from '~/components/Footer.vue';
 import Latest from '~/components/Latest.vue';
@@ -84,6 +86,7 @@ import RelatedBlogs from '~/components/RelatedBlogs.vue';
 import Meta from '~/components/Meta.vue';
 import Breadcrumb from '~/components/Breadcrumb.vue';
 import Writer from '~/components/Writer.vue';
+import Toc from '~/components/Toc.vue';
 import Post from '~/components/Post.vue';
 import Categories from '~/components/Categories.vue';
 
@@ -100,6 +103,19 @@ export default {
       }
     );
     this.data = data;
+
+    // 目次作成
+    const $ = cheerio.load(data.body);
+    const headings = $('h1, h2, h3').toArray();
+    const toc = headings.map(d => {
+      return {
+        text: d.children[0].data,
+        id: d.attribs.id,
+        name: d.name
+      };
+    });
+    this.toc = toc;
+
     let {
       data: { contents }
     } = await axios.get(
@@ -121,6 +137,7 @@ export default {
   data() {
     return {
       data: {
+        id: '',
         ogimage: {
           url: ''
         },
@@ -128,6 +145,7 @@ export default {
         title: '',
         createdAt: '',
         publishedAt: '',
+        toc_visible: false,
         writer: {
           id: '',
           name: '',
@@ -142,6 +160,7 @@ export default {
         },
         related_blogs: []
       },
+      toc: [],
       contents: [],
       categories: []
     };
@@ -153,23 +172,27 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.data.description
+          content: this.data && this.data.description
         },
-        { hid: 'og:title', property: 'og:title', content: this.data.title },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: this.data && this.data.title
+        },
         {
           hid: 'og:description',
           property: 'og:description',
-          content: this.data.description
+          content: this.data && this.data.description
         },
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://microcms.io/blog/${this.data.id}`
+          content: `https://microcms.io/blog/${this.data && this.data.id}`
         },
         {
           hid: 'og:image',
           property: 'og:image',
-          content: this.data.ogimage.url
+          content: this.data && this.data.ogimage.url
         }
       ],
       link: [
@@ -207,11 +230,12 @@ export default {
     Meta,
     Breadcrumb,
     Writer,
+    Toc,
     Post,
     Categories
   },
   mounted: function() {
-    this.$refs.ogimage.classList.add('loaded');
+    this.$refs.ogimage && this.$refs.ogimage.classList.add('loaded');
   }
 };
 </script>
