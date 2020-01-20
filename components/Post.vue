@@ -85,7 +85,7 @@ export default {
     }
 
     & >>> blockquote {
-      background: url('/images/icon_quote.svg') no-repeat 20px 10px, #eee;
+      background: url('/blog/images/icon_quote.svg') no-repeat 20px 10px, #eee;
       background-size: 36px 36px;
       padding: 50px 20px 20px;
       margin: 20px 0;
@@ -184,7 +184,7 @@ export default {
     }
 
     & >>> blockquote {
-      background: url('/images/icon_quote.svg') no-repeat 20px 10px, #eee;
+      background: url('/blog/images/icon_quote.svg') no-repeat 20px 10px, #eee;
       background-size: 36px 36px;
       padding: 50px 20px 20px;
       margin: 20px 0;
