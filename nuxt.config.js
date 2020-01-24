@@ -51,7 +51,7 @@ export default {
       {
         rel: 'icon',
         type: 'image/x-icon',
-        href: 'https://microcms.io/assets/images/favicon.png'
+        href: 'https://microcms.io/images/favicon.png'
       },
       {
         rel: 'alternate',
