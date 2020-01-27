@@ -2,22 +2,22 @@
   <footer class="footer">
     <ul class="lists">
       <li class="list">
-        <a href="https://microcms.io/company.html">運営会社</a>
+        <a href="https://microcms.io/company">運営会社</a>
       </li>
       <li class="list">
-        <a href="https://microcms.io/law.html">特定商取引法に基づく表記</a>
+        <a href="https://microcms.io/law">特定商取引法に基づく表記</a>
       </li>
       <li class="list">
-        <a href="https://microcms.io/terms.html">利用規約</a>
+        <a href="https://microcms.io/terms">利用規約</a>
       </li>
       <li class="list">
-        <a href="https://microcms.io/policy.html">プライバシーポリシー</a>
+        <a href="https://microcms.io/policy">プライバシーポリシー</a>
       </li>
       <li class="list">
-        <a href="mailto:info@microcms.io">お問い合わせ</a>
+        <a href="https://microcms.io/contact">お問い合わせ</a>
       </li>
     </ul>
-    <p class="cr">© Wanta Corp.</p>
+    <p class="cr">© Wanta Inc.</p>
   </footer>
 </template>
 

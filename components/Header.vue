@@ -8,13 +8,13 @@
     <div class="menu">
       <ul class="lists">
         <li class="list">
-          <a href="https://microcms.io#price">料金</a>
+          <a href="https://microcms.io/pricing">料金</a>
         </li>
         <li class="list">
           <a href="https://microcms.io/blog/">ブログ</a>
         </li>
         <li class="list">
-          <a href="https://microcms.io#document">お問い合わせ</a>
+          <a href="https://microcms.io/contact">お問い合わせ</a>
         </li>
       </ul>
       <ul class="lists">
@@ -40,7 +40,7 @@
   }
 
   .logoImg {
-    height: 40px;
+    height: 28px;
   }
 
   .menu {
@@ -90,11 +90,11 @@
 
   .logo {
     display: inline-block;
-    height: 32px;
+    height: 28px;
   }
 
   .logoImg {
-    height: 32px;
+    height: 28px;
   }
 
   .menu {
