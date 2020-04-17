@@ -125,7 +125,7 @@ export default {
       const range = (start, end) =>
         [...Array(end - start + 1)].map((_, i) => start + i);
       const pages = await axios
-        .get(`https://microcms.microcms.io/api/v1/blog?limit=100&depth=3`, {
+        .get(`https://microcms.microcms.io/api/v1/blog?limit=100&depth=2`, {
           headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
         })
         .then(res => {
@@ -154,7 +154,7 @@ export default {
         categories.map(category =>
           axios
             .get(
-              `https://microcms.microcms.io/api/v1/blog?limit=100&filters=category[equals]${category}&depth=3`,
+              `https://microcms.microcms.io/api/v1/blog?limit=100&filters=category[equals]${category}`,
               {
                 headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
               }
@@ -183,10 +183,7 @@ export default {
           headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
         })
         .then(res =>
-          callback(
-            null,
-            res.data.contents.map(content => content.id)
-          )
+          callback(null, res.data.contents.map(content => content.id))
         );
     }
   },
