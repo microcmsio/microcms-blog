@@ -3,7 +3,7 @@
     <h2 class="pageTitle">関連記事</h2>
     <ul class="lists">
       <li v-for="blog in blogs" :key="blog.id" class="list">
-        <nuxt-link v-bind:to="blog.id" class="link">
+        <nuxt-link v-bind:to="`/${blog.id}`" class="link">
           <picture>
             <source
               type="image/webp"

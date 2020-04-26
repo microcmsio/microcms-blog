@@ -4,16 +4,25 @@
     <div class="divider">
       <div class="container">
         <Breadcrumb :category="selectedCategory" />
-        <div v-show="contents.length === 0" class="loader">記事がありません</div>
+        <div v-show="contents.length === 0" class="loader">
+          記事がありません
+        </div>
         <ul>
           <li class="list" v-for="content in contents" :key="content.id">
-            <a v-bind:href="content.id" class="link">
+            <nuxt-link v-bind:to="`/${content.id}`" class="link">
               <picture>
-                <source type="image/webp" :srcset="content.ogimage.url + '?w=670&fm=webp'" />
-                <img :src="content.ogimage.url + '?w=670'" class="ogimage" alt />
+                <source
+                  type="image/webp"
+                  :srcset="content.ogimage.url + '?w=670&fm=webp'"
+                />
+                <img
+                  :src="content.ogimage.url + '?w=670'"
+                  class="ogimage"
+                  alt
+                />
               </picture>
               <dl class="content">
-                <dt class="title">{{content.title}}</dt>
+                <dt class="title">{{ content.title }}</dt>
                 <dd>
                   <Meta
                     :createdAt="content.publishedAt || content.createdAt"
@@ -22,7 +31,7 @@
                   />
                 </dd>
               </dl>
-            </a>
+            </nuxt-link>
           </li>
         </ul>
         <ul class="pager" v-show="contents.length > 0">
@@ -33,8 +42,15 @@
             :key="p"
           >
             <a
-              v-bind:href="`/blog/${selectedCategory !== undefined ? `category/${selectedCategory.id}/` : ''}page/${p + 1}`"
-            >{{p + 1}}</a>
+              v-bind:href="
+                `/blog/${
+                  selectedCategory !== undefined
+                    ? `category/${selectedCategory.id}/`
+                    : ''
+                }page/${p + 1}`
+              "
+              >{{ p + 1 }}</a
+            >
           </li>
         </ul>
       </div>
