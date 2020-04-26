@@ -80,6 +80,7 @@
 <script>
 import axios from 'axios';
 import cheerio from 'cheerio';
+import hljs from 'highlight.js';
 import Header from '~/components/Header.vue';
 import Footer from '~/components/Footer.vue';
 import Latest from '~/components/Latest.vue';
@@ -130,9 +131,15 @@ export default {
         name: d.name
       };
     });
+    $('pre code').each((_, elm) => {
+      const res = hljs.highlightAuto($(elm).text());
+      $(elm).html(res.value);
+      $(elm).addClass('hljs');
+    });
 
     return {
       ...data,
+      body: $.html(),
       toc,
       categories: categories.data.contents,
       contents
@@ -155,29 +162,19 @@ export default {
           content: `https://microcms.io/blog/${this.id}`
         },
         { hid: 'og:image', property: 'og:image', content: this.ogimage.url }
-      ],
-      link: [
-        {
-          rel: 'stylesheet',
-          href:
-            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css'
-        }
-      ],
-      script: [
-        {
-          src:
-            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js',
-          async: true
-        }
       ]
     };
   },
   methods: {
     getTwitterLink() {
-      return `https://twitter.com/intent/tweet?text=${this.title}&url=https://microcms.io/blog/${this.id}&hashtags=microcms`;
+      return `https://twitter.com/intent/tweet?text=${
+        this.title
+      }&url=https://microcms.io/blog/${this.id}&hashtags=microcms`;
     },
     getFacebookLink() {
-      return `https://www.facebook.com/sharer.php?u=https://microcms.io/blog/${this.id}`;
+      return `https://www.facebook.com/sharer.php?u=https://microcms.io/blog/${
+        this.id
+      }`;
     },
     getHatenaLink() {
       return `https://b.hatena.ne.jp/entry/https://microcms.io/blog/${this.id}`;
@@ -196,7 +193,6 @@ export default {
     Categories
   },
   mounted: function() {
-    hljs.initHighlighting();
     this.$refs.ogimage.classList.add('loaded');
   }
 };

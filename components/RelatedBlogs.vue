@@ -3,13 +3,16 @@
     <h2 class="pageTitle">関連記事</h2>
     <ul class="lists">
       <li v-for="blog in blogs" :key="blog.id" class="list">
-        <a v-bind:href="blog.id" class="link">
+        <nuxt-link v-bind:to="`/${blog.id}`" class="link">
           <picture>
-            <source type="image/webp" :srcset="blog.ogimage.url + '?w=820&fm=webp'" />
+            <source
+              type="image/webp"
+              :srcset="blog.ogimage.url + '?w=820&fm=webp'"
+            />
             <img :src="blog.ogimage.url + '?w=820'" class="img" alt />
           </picture>
           <dl class="content">
-            <dt class="title">{{blog.title}}</dt>
+            <dt class="title">{{ blog.title }}</dt>
             <dd>
               <Meta
                 :createdAt="blog.createdAt"
@@ -18,7 +21,7 @@
               />
             </dd>
           </dl>
-        </a>
+        </nuxt-link>
       </li>
     </ul>
   </div>
