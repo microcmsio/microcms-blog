@@ -1,10 +1,12 @@
 <template>
   <ul class="breadcrumb">
     <li class="breadcrumbList">
-      <a href="/blog">記事一覧</a>
+      <nuxt-link to="/">記事一覧</nuxt-link>
     </li>
     <li v-if="category !== undefined" class="breadcrumbList">
-      <a v-bind:href="`/blog/category/${category.id}/page/1`">{{category.name}}</a>
+      <nuxt-link v-bind:to="`/category/${category.id}/page/1`">{{
+        category.name
+      }}</nuxt-link>
     </li>
   </ul>
 </template>

@@ -3,7 +3,9 @@
     <h1 class="pageTitle">カテゴリー</h1>
     <ul>
       <li v-for="category in categories" :key="category.id" class="list">
-        <a v-bind:href="`/blog/category/${category.id}/page/1`" class="link">{{ category.name }}</a>
+        <nuxt-link v-bind:to="`/category/${category.id}/page/1`" class="link">{{
+          category.name
+        }}</nuxt-link>
       </li>
     </ul>
   </div>
