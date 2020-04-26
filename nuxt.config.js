@@ -68,7 +68,13 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['@/assets/styles/reset.css'],
+  css: [
+    '@/assets/styles/reset.css',
+    {
+      src: '~/node_modules/highlight.js/styles/hybrid.css',
+      lang: 'css'
+    }
+  ],
   /*
    ** Plugins to load before mounting the App
    */
