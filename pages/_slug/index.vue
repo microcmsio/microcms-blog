@@ -5,16 +5,8 @@
       <article class="article">
         <div class="ogimageWrap">
           <picture>
-            <source
-              type="image/webp"
-              :srcset="ogimage.url + '?w=820&fm=webp'"
-            />
-            <img
-              :src="ogimage.url + '?w=820&q=100'"
-              class="ogimage"
-              alt
-              ref="ogimage"
-            />
+            <source type="image/webp" :srcset="ogimage.url + '?w=820&fm=webp'" />
+            <img :src="ogimage.url + '?w=820&q=100'" class="ogimage" alt ref="ogimage" />
           </picture>
         </div>
         <Breadcrumb :category="category" />
@@ -33,10 +25,7 @@
               </li>
               <li class="shareList">
                 <a v-bind:href="getHatenaLink()" target="_blank">
-                  <img
-                    src="/blog/images/icon_hatena.svg"
-                    alt="はてなブックマーク"
-                  />
+                  <img src="/blog/images/icon_hatena.svg" alt="はてなブックマーク" />
                 </a>
               </li>
               <li class="shareList">
@@ -48,18 +37,11 @@
           </div>
           <div class="container">
             <h1 class="title">{{ title }}</h1>
-            <Meta
-              :createdAt="publishedAt || createdAt"
-              :author="writer.name"
-              :category="category"
-            />
+            <Meta :createdAt="publishedAt || createdAt" :author="writer.name" :category="category" />
             <Toc :toc="toc" :id="id" :visible="toc_visible" />
             <Post :body="body" />
             <Writer :writer="writer" />
-            <RelatedBlogs
-              v-if="related_blogs.length > 0"
-              :blogs="related_blogs"
-            />
+            <RelatedBlogs v-if="related_blogs.length > 0" :blogs="related_blogs" />
           </div>
         </div>
       </article>
@@ -167,14 +149,10 @@ export default {
   },
   methods: {
     getTwitterLink() {
-      return `https://twitter.com/intent/tweet?text=${
-        this.title
-      }&url=https://microcms.io/blog/${this.id}&hashtags=microcms`;
+      return `https://twitter.com/intent/tweet?text=${this.title}&url=https://microcms.io/blog/${this.id}&hashtags=microcms`;
     },
     getFacebookLink() {
-      return `https://www.facebook.com/sharer.php?u=https://microcms.io/blog/${
-        this.id
-      }`;
+      return `https://www.facebook.com/sharer.php?u=https://microcms.io/blog/${this.id}`;
     },
     getHatenaLink() {
       return `https://b.hatena.ne.jp/entry/https://microcms.io/blog/${this.id}`;
@@ -248,7 +226,7 @@ export default {
   .shareLists {
     display: block;
     position: sticky;
-    top: 20px;
+    top: 120px;
   }
 
   .shareList {
@@ -371,7 +349,7 @@ export default {
   .shareLists {
     display: block;
     position: sticky;
-    top: 20px;
+    top: 120px;
   }
 
   .shareList {
@@ -518,7 +496,7 @@ export default {
   .shareLists {
     display: block;
     position: sticky;
-    top: 20px;
+    top: 100px;
   }
 
   .shareList {

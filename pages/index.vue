@@ -4,22 +4,13 @@
     <div class="divider">
       <div class="container">
         <Breadcrumb :category="selectedCategory" />
-        <div v-show="contents.length === 0" class="loader">
-          記事がありません
-        </div>
+        <div v-show="contents.length === 0" class="loader">記事がありません</div>
         <ul>
           <li class="list" v-for="content in contents" :key="content.id">
             <nuxt-link v-bind:to="`/${content.id}`" class="link">
               <picture>
-                <source
-                  type="image/webp"
-                  :srcset="content.ogimage.url + '?w=670&fm=webp'"
-                />
-                <img
-                  :src="content.ogimage.url + '?w=670'"
-                  class="ogimage"
-                  alt
-                />
+                <source type="image/webp" :srcset="content.ogimage.url + '?w=670&fm=webp'" />
+                <img :src="content.ogimage.url + '?w=670'" class="ogimage" alt />
               </picture>
               <dl class="content">
                 <dt class="title">{{ content.title }}</dt>
@@ -49,8 +40,7 @@
                     : ''
                 }page/${p + 1}`
               "
-              >{{ p + 1 }}</a
-            >
+            >{{ p + 1 }}</a>
           </li>
         </ul>
       </div>
@@ -141,6 +131,7 @@ export default {
 
   .pager {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     padding: 40px 0 0;
@@ -150,13 +141,15 @@ export default {
     width: 40px;
     height: 40px;
     background-color: #e5eff9;
-    color: #3067af;
     border-radius: 5px;
-    margin: 0 10px;
+    margin: 10px;
 
     &.active {
-      color: #fff;
       background-color: #3067af;
+
+      a {
+        color: #fff;
+      }
     }
 
     a {
@@ -164,6 +157,7 @@ export default {
       justify-content: center;
       align-items: center;
       height: 100%;
+      color: #3067af;
     }
   }
 
@@ -259,6 +253,7 @@ export default {
 
   .pager {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     padding: 40px 0 0;
@@ -268,13 +263,15 @@ export default {
     width: 40px;
     height: 40px;
     background-color: #e5eff9;
-    color: #3067af;
     border-radius: 5px;
-    margin: 0 10px;
+    margin: 10px;
 
     &.active {
-      color: #fff;
       background-color: #3067af;
+
+      a {
+        color: #fff;
+      }
     }
 
     a {
@@ -282,6 +279,7 @@ export default {
       justify-content: center;
       align-items: center;
       height: 100%;
+      color: #3067af;
     }
   }
 
@@ -376,6 +374,7 @@ export default {
 
   .pager {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     padding: 40px 0 0;
@@ -385,13 +384,15 @@ export default {
     width: 32px;
     height: 32px;
     background-color: #e5eff9;
-    color: #3067af;
     border-radius: 5px;
-    margin: 0 6px;
+    margin: 6px;
 
     &.active {
-      color: #fff;
       background-color: #3067af;
+
+      a {
+        color: #fff;
+      }
     }
 
     a {
@@ -399,6 +400,7 @@ export default {
       justify-content: center;
       align-items: center;
       height: 100%;
+      color: #3067af;
     }
   }
 
