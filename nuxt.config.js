@@ -70,6 +70,7 @@ export default {
    */
   css: [
     '@/assets/styles/reset.css',
+    '@/assets/styles/colors.css',
     {
       src: '~/node_modules/highlight.js/styles/hybrid.css',
       lang: 'css'
@@ -107,6 +108,10 @@ export default {
     extend(config, ctx) {},
     postcss: {
       plugins: {
+        'postcss-custom-properties': {
+          preserve: false,
+          importFrom: ['assets/styles/colors.css']
+        },
         'postcss-nested': {}
       }
     }

@@ -27,7 +27,7 @@ export default {
 @media (min-width: 1160px) {
   .wrapper {
     position: sticky !important;
-    top: 10px;
+    top: 115px;
   }
 
   .pageTitle {

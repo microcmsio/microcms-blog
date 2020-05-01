@@ -32,10 +32,7 @@
               </li>
               <li class="shareList">
                 <a v-bind:href="getHatenaLink()" target="_blank">
-                  <img
-                    src="/blog/images/icon_hatena.svg"
-                    alt="はてなブックマーク"
-                  />
+                  <img src="/blog/images/icon_hatena.svg" alt="はてなブックマーク" />
                 </a>
               </li>
               <li class="shareList">
@@ -55,10 +52,7 @@
             <Toc :toc="toc" :id="data.id" :visible="data.toc_visible" />
             <Post :body="data.body" />
             <Writer :writer="data.writer" />
-            <RelatedBlogs
-              v-if="data.related_blogs.length > 0"
-              :blogs="data.related_blogs"
-            />
+            <RelatedBlogs v-if="data.related_blogs.length > 0" :blogs="data.related_blogs" />
           </div>
         </div>
       </article>
@@ -241,6 +235,16 @@ export default {
 </script>
 
 <style scoped>
+.category {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 3px;
+  color: #fff;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
 @media (min-width: 1160px) {
   .wrapper {
     position: relative;
@@ -259,30 +263,6 @@ export default {
 
   .aside {
     width: 300px;
-  }
-
-  .breadcrumb {
-    display: flex;
-    flex-wrap: wrap;
-    padding-top: 20px;
-  }
-
-  .breadcrumbList {
-    color: #616269;
-
-    a {
-      color: #331cbf;
-    }
-
-    &::after {
-      content: '>';
-      margin: 0 10px;
-    }
-
-    &:last-child&::after {
-      content: '';
-      margin: 0;
-    }
   }
 
   .main {
@@ -304,7 +284,7 @@ export default {
   .shareLists {
     display: block;
     position: sticky;
-    top: 20px;
+    top: 120px;
   }
 
   .shareList {
@@ -387,6 +367,7 @@ export default {
     color: #2b2c30;
   }
 }
+
 @media (min-width: 820px) and (max-width: 1160px) {
   .wrapper {
     position: relative;
@@ -404,31 +385,6 @@ export default {
   .aside {
     margin-top: 60px;
     margin-left: 104px;
-  }
-
-  .breadcrumb {
-    display: flex;
-    flex-wrap: wrap;
-    padding-top: 20px;
-  }
-
-  .breadcrumbList {
-    color: #616269;
-    font-size: 14px;
-
-    a {
-      color: #331cbf;
-    }
-
-    &::after {
-      content: '>';
-      margin: 0 10px;
-    }
-
-    &:last-child&::after {
-      content: '';
-      margin: 0;
-    }
   }
 
   .main {
@@ -451,7 +407,7 @@ export default {
   .shareLists {
     display: block;
     position: sticky;
-    top: 20px;
+    top: 120px;
   }
 
   .shareList {
@@ -578,31 +534,6 @@ export default {
     margin-left: 104px;
   }
 
-  .breadcrumb {
-    display: flex;
-    flex-wrap: wrap;
-    padding-top: 20px;
-  }
-
-  .breadcrumbList {
-    color: #616269;
-    font-size: 14px;
-
-    a {
-      color: #331cbf;
-    }
-
-    &::after {
-      content: '>';
-      margin: 0 10px;
-    }
-
-    &:last-child&::after {
-      content: '';
-      margin: 0;
-    }
-  }
-
   .main {
     display: flex;
     justify-content: space-between;
@@ -623,7 +554,7 @@ export default {
   .shareLists {
     display: block;
     position: sticky;
-    top: 20px;
+    top: 100px;
   }
 
   .shareList {
