@@ -143,7 +143,11 @@ export default {
           property: 'og:url',
           content: `https://microcms.io/blog/${this.id}`
         },
-        { hid: 'og:image', property: 'og:image', content: this.ogimage.url }
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: this.ogimage && this.ogimage.url
+        }
       ]
     };
   },

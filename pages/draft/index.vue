@@ -186,7 +186,7 @@ export default {
         {
           hid: 'og:image',
           property: 'og:image',
-          content: this.data && this.data.ogimage.url
+          content: this.data && this.data.ogimage && this.data.ogimage.url
         }
       ],
       link: [
