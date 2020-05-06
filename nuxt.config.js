@@ -129,6 +129,11 @@ export default {
         component: resolve(__dirname, 'pages/index.vue'),
         name: 'categories'
       });
+      routes.push({
+        path: '*',
+        component: resolve(__dirname, 'pages/404.vue'),
+        name: 'custom'
+      });
     }
   },
   generate: {
