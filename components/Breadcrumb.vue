@@ -4,7 +4,7 @@
       <nuxt-link to="/">記事一覧</nuxt-link>
     </li>
     <li v-if="category !== undefined" class="breadcrumbList">
-      <nuxt-link v-bind:to="`/category/${category.id}/page/1`">{{
+      <nuxt-link :to="`/category/${category.id}/page/1`">{{
         category.name
       }}</nuxt-link>
     </li>
@@ -13,7 +13,13 @@
 
 <script>
 export default {
-  props: ['category']
+  props: {
+    category: {
+      type: Object,
+      required: false,
+      default: () => ({}),
+    },
+  },
 };
 </script>
 

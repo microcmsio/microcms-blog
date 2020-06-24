@@ -2,7 +2,7 @@
   <div v-if="visible" class="wrapper">
     <h4 class="title">目次</h4>
     <ul class="lists">
-      <li :class="`list ${item.name}`" v-for="item in toc" :key="item.id">
+      <li v-for="item in toc" :key="item.id" :class="`list ${item.name}`">
         <n-link v-scroll-to="`#${item.id}`" to>
           {{ item.text }}
         </n-link>
@@ -13,7 +13,18 @@
 
 <script>
 export default {
-  props: ['toc', 'id', 'visible']
+  props: {
+    toc: {
+      type: Array,
+      required: true,
+      default: () => [],
+    },
+    visible: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+  },
 };
 </script>
 

@@ -3,7 +3,7 @@
     <h2 class="pageTitle">関連記事</h2>
     <ul class="lists">
       <li v-for="blog in blogs" :key="blog.id" class="list">
-        <nuxt-link v-bind:to="`/${blog.id}`" class="link">
+        <nuxt-link :to="`/${blog.id}`" class="link">
           <picture>
             <source
               type="image/webp"
@@ -15,7 +15,7 @@
             <dt class="title">{{ blog.title }}</dt>
             <dd>
               <Meta
-                :createdAt="blog.createdAt"
+                :created-at="blog.createdAt"
                 :author="blog.writer.name"
                 :category="blog.category"
               />
@@ -28,13 +28,18 @@
 </template>
 
 <script>
-import axios from 'axios';
 import Meta from '~/components/Meta.vue';
 export default {
-  props: ['blogs'],
   components: {
-    Meta
-  }
+    Meta,
+  },
+  props: {
+    blogs: {
+      type: Array,
+      required: false,
+      default: () => [],
+    },
+  },
 };
 </script>
 

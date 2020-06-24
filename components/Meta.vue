@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="category" v-if="category">{{ category.name }}</span>
+    <span v-if="category" class="category">{{ category.name }}</span>
     <div class="meta">
       <span class="timestamp">
         <img src="/blog/images/icon_clock.svg" alt />
@@ -16,7 +16,22 @@
 
 <script>
 export default {
-  props: ['createdAt', 'author', 'category']
+  props: {
+    createdAt: {
+      type: String,
+      required: true,
+    },
+    author: {
+      type: String,
+      required: false,
+      default: undefined,
+    },
+    category: {
+      type: Object,
+      required: false,
+      default: undefined,
+    },
+  },
 };
 </script>
 

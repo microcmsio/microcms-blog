@@ -4,7 +4,13 @@
 
 <script>
 export default {
-  props: ['body']
+  props: {
+    body: {
+      type: String,
+      required: true,
+      default: '',
+    },
+  },
 };
 </script>
 

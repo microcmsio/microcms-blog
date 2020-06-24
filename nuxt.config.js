@@ -2,13 +2,14 @@ import axios from 'axios';
 
 export default {
   mode: 'universal',
+  target: 'static',
   /*
    ** Headers of the page
    */
   head: {
     htmlAttrs: {
       prefix: 'og: http://ogp.me/ns#',
-      lang: 'ja'
+      lang: 'ja',
     },
     titleTemplete: '%s | microCMSブログ',
     meta: [
@@ -18,48 +19,48 @@ export default {
         hid: 'description',
         name: 'description',
         content:
-          'microCMSはAPIベースの日本製ヘッドレスCMSです。本ブログはmicroCMSの開発メンバーがmicroCMSの使い方や技術的な内容を発信するブログです。'
+          'microCMSはAPIベースの日本製ヘッドレスCMSです。本ブログはmicroCMSの開発メンバーがmicroCMSの使い方や技術的な内容を発信するブログです。',
       },
       {
         hid: 'og:site_name',
         property: 'og:site_name',
-        content: 'microCMSブログ'
+        content: 'microCMSブログ',
       },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://microcms.io/blog/'
+        content: 'https://microcms.io/blog/',
       },
       { hid: 'og:title', property: 'og:title', content: 'microCMSブログ' },
       {
         hid: 'og:description',
         property: 'og:description',
         content:
-          'microCMSはAPIベースの日本製ヘッドレスCMSです。本ブログはmicroCMSの開発メンバーがmicroCMSの使い方や技術的な内容を発信するブログです。'
+          'microCMSはAPIベースの日本製ヘッドレスCMSです。本ブログはmicroCMSの開発メンバーがmicroCMSの使い方や技術的な内容を発信するブログです。',
       },
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://microcms.io/blog/images/ogp.png'
+        content: 'https://microcms.io/blog/images/ogp.png',
       },
 
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:site', content: '@micro_cms' }
+      { name: 'twitter:site', content: '@micro_cms' },
     ],
     link: [
       {
         rel: 'icon',
         type: 'image/x-icon',
-        href: 'https://microcms.io/images/favicon.png'
+        href: 'https://microcms.io/images/favicon.png',
       },
       {
         rel: 'alternate',
         type: 'application/atom+xml',
         href: 'https://microcms.io/blog/feed.xml',
-        title: 'Atom'
-      }
-    ]
+        title: 'Atom',
+      },
+    ],
   },
   /*
    ** Customize the progress-bar color
@@ -73,17 +74,15 @@ export default {
     '@/assets/styles/colors.css',
     {
       src: '~/node_modules/highlight.js/styles/hybrid.css',
-      lang: 'css'
-    }
+      lang: 'css',
+    },
   ],
   /*
    ** Plugins to load before mounting the App
    */
   plugins: ['~/plugins/vue-scrollto'],
-  /*
-   ** Nuxt.js dev-modules
-   */
-  devModules: [],
+  components: true,
+  buildModules: ['@nuxtjs/eslint-module'],
   /*
    ** Nuxt.js modules
    */
@@ -92,29 +91,36 @@ export default {
     [
       '@nuxtjs/google-analytics',
       {
-        id: 'UA-109902480-8'
-      }
+        id: 'UA-109902480-8',
+      },
     ],
     ['@nuxtjs/sitemap'],
-    '@nuxtjs/feed'
+    '@nuxtjs/feed',
   ],
   /*
    ** Build configuration
    */
   build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {},
     postcss: {
       plugins: {
         'postcss-custom-properties': {
           preserve: false,
-          importFrom: ['assets/styles/colors.css']
+          importFrom: ['assets/styles/colors.css'],
         },
-        'postcss-nested': {}
+        'postcss-nested': {},
+      },
+    },
+    extend(config, ctx) {
+      // Run ESLint on save
+      if (ctx.isDev && ctx.isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/,
+        });
       }
-    }
+    },
   },
   router: {
     base: '/blog',
@@ -122,19 +128,19 @@ export default {
       routes.push({
         path: '/page/:id',
         component: resolve(__dirname, 'pages/index.vue'),
-        name: 'pages'
+        name: 'pages',
       });
       routes.push({
         path: '/category/:categoryId/page/:id',
         component: resolve(__dirname, 'pages/index.vue'),
-        name: 'categories'
+        name: 'categories',
       });
       routes.push({
         path: '*',
         component: resolve(__dirname, 'pages/404.vue'),
-        name: 'custom'
+        name: 'custom',
       });
-    }
+    },
   },
   generate: {
     async routes() {
@@ -142,43 +148,45 @@ export default {
         [...Array(end - start + 1)].map((_, i) => start + i);
       const pages = await axios
         .get(`https://microcms.microcms.io/api/v1/blog?limit=100&depth=2`, {
-          headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+          headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
         })
-        .then(res => {
-          const articles = res.data.contents.map(content => ({
-            route: content.id,
-            payload: content
+        .then((res) => {
+          const articles = res.data.contents.map((content) => ({
+            route: `/${content.id}`,
+            payload: content,
           }));
           return [
             ...articles,
-            ...range(1, Math.ceil(res.data.contents.length / 10)).map(p => ({
-              route: `/page/${p}`
-            }))
+            ...range(1, Math.ceil(res.data.contents.length / 10)).map((p) => ({
+              route: `/page/${p}`,
+            })),
           ];
         });
       const categories = await axios
         .get(
           `https://microcms.microcms.io/api/v1/categories?limit=100&fields=id`,
           {
-            headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+            headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
           }
         )
         .then(({ data }) => {
-          return data.contents.map(content => content.id);
+          return data.contents.map((content) => content.id);
         });
       const categoryPages = await Promise.all(
-        categories.map(category =>
+        categories.map((category) =>
           axios
             .get(
               `https://microcms.microcms.io/api/v1/blog?limit=100&filters=category[equals]${category}`,
               {
-                headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+                headers: {
+                  'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8',
+                },
               }
             )
-            .then(res => {
+            .then((res) => {
               return range(1, Math.ceil(res.data.contents.length / 10)).map(
-                p => ({
-                  route: `category/${category}/page/${p}`
+                (p) => ({
+                  route: `/category/${category}/page/${p}`,
                 })
               );
             })
@@ -187,7 +195,7 @@ export default {
       const flattenCategoryPages = [].concat.apply([], categoryPages);
       return [...pages, ...flattenCategoryPages];
     },
-    dir: 'dist/blog'
+    dir: 'dist/blog',
   },
   sitemap: {
     path: '/sitemap.xml',
@@ -196,12 +204,15 @@ export default {
     routes(callback) {
       axios
         .get(`https://microcms.microcms.io/api/v1/blog?limit=100`, {
-          headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+          headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
         })
-        .then(res =>
-          callback(null, res.data.contents.map(content => `${content.id}/`))
+        .then((res) =>
+          callback(
+            null,
+            res.data.contents.map((content) => `${content.id}/`)
+          )
         );
-    }
+    },
   },
   feed: [
     {
@@ -211,16 +222,16 @@ export default {
           title: 'microCMSブログ',
           link: 'https://microcms.io/blog/feed.xml',
           description:
-            'microCMSはAPIベースの日本製ヘッドレスCMSです。本ブログはmicroCMSの開発メンバーがmicroCMSの使い方や技術的な内容を発信するブログです。'
+            'microCMSはAPIベースの日本製ヘッドレスCMSです。本ブログはmicroCMSの開発メンバーがmicroCMSの使い方や技術的な内容を発信するブログです。',
         };
 
         const posts = await axios
           .get(`https://microcms.microcms.io/api/v1/blog?limit=100`, {
-            headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+            headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
           })
-          .then(res => res.data.contents);
+          .then((res) => res.data.contents);
 
-        posts.forEach(post => {
+        posts.forEach((post) => {
           feed.addItem({
             title: post.title,
             id: post.id,
@@ -228,12 +239,12 @@ export default {
             description: post.description,
             content: post.description,
             date: new Date(post.publishedAt || post.createdAt),
-            image: post.ogimage.url
+            image: post.ogimage.url,
           });
         });
       },
       cacheTime: 1000 * 60 * 15,
-      type: 'atom1'
-    }
-  ]
+      type: 'atom1',
+    },
+  ],
 };

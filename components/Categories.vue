@@ -3,7 +3,7 @@
     <h1 class="pageTitle">カテゴリー</h1>
     <ul>
       <li v-for="category in categories" :key="category.id" class="list">
-        <nuxt-link v-bind:to="`/category/${category.id}/page/1`" class="link">{{
+        <nuxt-link :to="`/category/${category.id}/page/1`" class="link">{{
           category.name
         }}</nuxt-link>
       </li>
@@ -12,9 +12,14 @@
 </template>
 
 <script>
-import axios from 'axios';
 export default {
-  props: ['categories']
+  props: {
+    categories: {
+      type: Array,
+      required: false,
+      default: () => [],
+    },
+  },
 };
 </script>
 

@@ -4,19 +4,28 @@
     <div class="divider">
       <div class="container">
         <Breadcrumb :category="selectedCategory" />
-        <div v-show="contents.length === 0" class="loader">記事がありません</div>
+        <div v-show="contents.length === 0" class="loader">
+          記事がありません
+        </div>
         <ul>
-          <li class="list" v-for="content in contents" :key="content.id">
-            <nuxt-link v-bind:to="`/${content.id}`" class="link">
+          <li v-for="content in contents" :key="content.id" class="list">
+            <nuxt-link :to="`/${content.id}`" class="link">
               <picture>
-                <source type="image/webp" :srcset="content.ogimage.url + '?w=670&fm=webp'" />
-                <img :src="content.ogimage.url + '?w=670'" class="ogimage" alt />
+                <source
+                  type="image/webp"
+                  :srcset="content.ogimage.url + '?w=670&fm=webp'"
+                />
+                <img
+                  :src="content.ogimage.url + '?w=670'"
+                  class="ogimage"
+                  alt
+                />
               </picture>
               <dl class="content">
                 <dt class="title">{{ content.title }}</dt>
                 <dd>
                   <Meta
-                    :createdAt="content.publishedAt || content.createdAt"
+                    :created-at="content.publishedAt || content.createdAt"
                     :author="content.writer.name"
                     :category="content.category"
                   />
@@ -25,22 +34,21 @@
             </nuxt-link>
           </li>
         </ul>
-        <ul class="pager" v-show="contents.length > 0">
+        <ul v-show="contents.length > 0" class="pager">
           <li
-            class="page"
-            v-bind:class="{ active: page === `${p + 1}` }"
             v-for="p in pager"
             :key="p"
+            class="page"
+            :class="{ active: page === `${p + 1}` }"
           >
             <a
-              v-bind:href="
-                `/blog/${
-                  selectedCategory !== undefined
-                    ? `category/${selectedCategory.id}/`
-                    : ''
-                }page/${p + 1}`
-              "
-            >{{ p + 1 }}</a>
+              :href="`/blog/${
+                selectedCategory !== undefined
+                  ? `category/${selectedCategory.id}/`
+                  : ''
+              }page/${p + 1}`"
+              >{{ p + 1 }}</a
+            >
           </li>
         </ul>
       </div>
@@ -66,13 +74,12 @@ import Breadcrumb from '~/components/Breadcrumb.vue';
 import Categories from '~/components/Categories.vue';
 
 export default {
-  data() {
-    return {
-      contents: this.contents || [],
-      totalCount: this.totalCount || 0,
-      pager: this.pager || [],
-      loading: true
-    };
+  components: {
+    Header,
+    Footer,
+    Meta,
+    Breadcrumb,
+    Categories,
   },
   async asyncData({ params, error, payload }) {
     const page = params.id || '1';
@@ -83,40 +90,41 @@ export default {
         categoryId === undefined ? '' : `&filters=category[equals]${categoryId}`
       }&offset=${(page - 1) * limit}`,
       {
-        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
       }
     );
     const categories = await axios.get(
       `https://microcms.microcms.io/api/v1/categories?limit=100`,
       {
-        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
       }
     );
     const selectedCategory =
       categoryId !== undefined
-        ? categories.data.contents.find(content => content.id === categoryId)
+        ? categories.data.contents.find((content) => content.id === categoryId)
         : undefined;
     return {
       ...data,
       categories: categories.data.contents,
       selectedCategory,
       page,
-      pager: [...Array(Math.ceil(data.totalCount / limit)).keys()]
+      pager: [...Array(Math.ceil(data.totalCount / limit)).keys()],
+    };
+  },
+  data() {
+    return {
+      contents: this.contents || [],
+      totalCount: this.totalCount || 0,
+      pager: this.pager || [],
+      loading: true,
     };
   },
   head() {
     return {
       titleTemplete: null,
-      title: 'microCMSブログ'
+      title: 'microCMSブログ',
     };
   },
-  components: {
-    Header,
-    Footer,
-    Meta,
-    Breadcrumb,
-    Categories
-  }
 };
 </script>
 
@@ -469,15 +477,9 @@ export default {
     }
   }
 
-  .link {
-  }
-
   .ogimage {
     width: 100%;
     border-radius: 5px;
-  }
-
-  .content {
   }
 
   .title {

@@ -5,8 +5,16 @@
       <article class="article">
         <div class="ogimageWrap">
           <picture>
-            <source type="image/webp" :srcset="ogimage.url + '?w=820&fm=webp'" />
-            <img :src="ogimage.url + '?w=820&q=100'" class="ogimage" alt ref="ogimage" />
+            <source
+              type="image/webp"
+              :srcset="ogimage.url + '?w=820&fm=webp'"
+            />
+            <img
+              ref="ogimage"
+              :src="ogimage.url + '?w=820&q=100'"
+              class="ogimage"
+              alt
+            />
           </picture>
         </div>
         <Breadcrumb :category="category" />
@@ -14,18 +22,21 @@
           <div class="share">
             <ul class="shareLists">
               <li class="shareList">
-                <a v-bind:href="getTwitterLink()" target="_blank">
+                <a :href="getTwitterLink()" target="_blank">
                   <img src="/blog/images/icon_twitter.svg" alt="Twitter" />
                 </a>
               </li>
               <li class="shareList">
-                <a v-bind:href="getFacebookLink()" target="_blank">
+                <a :href="getFacebookLink()" target="_blank">
                   <img src="/blog/images/icon_facebook.svg" alt="Facebook" />
                 </a>
               </li>
               <li class="shareList">
-                <a v-bind:href="getHatenaLink()" target="_blank">
-                  <img src="/blog/images/icon_hatena.svg" alt="はてなブックマーク" />
+                <a :href="getHatenaLink()" target="_blank">
+                  <img
+                    src="/blog/images/icon_hatena.svg"
+                    alt="はてなブックマーク"
+                  />
                 </a>
               </li>
               <li class="shareList">
@@ -37,11 +48,18 @@
           </div>
           <div class="container">
             <h1 class="title">{{ title }}</h1>
-            <Meta :createdAt="publishedAt || createdAt" :author="writer.name" :category="category" />
-            <Toc :toc="toc" :id="id" :visible="toc_visible" />
+            <Meta
+              :created-at="publishedAt || createdAt"
+              :author="writer.name"
+              :category="category"
+            />
+            <Toc :id="id" :toc="toc" :visible="toc_visible" />
             <Post :body="body" />
             <Writer :writer="writer" />
-            <RelatedBlogs v-if="related_blogs.length > 0" :blogs="related_blogs" />
+            <RelatedBlogs
+              v-if="related_blogs.length > 0"
+              :blogs="related_blogs"
+            />
           </div>
         </div>
       </article>
@@ -75,42 +93,49 @@ import Post from '~/components/Post.vue';
 import Categories from '~/components/Categories.vue';
 
 export default {
-  data() {
-    return {
-      publishedAt: ''
-    };
+  components: {
+    Header,
+    Footer,
+    Latest,
+    RelatedBlogs,
+    Meta,
+    Breadcrumb,
+    Writer,
+    Toc,
+    Post,
+    Categories,
   },
-  async asyncData({ params, error, payload }) {
+  async asyncData({ params, payload }) {
     let data;
     if (payload !== undefined) {
       data = payload;
     } else {
       const result = await axios.get(
-        `https://microcms.microcms.io/api/v1/blog/${params.slug}?depth=3`,
+        `https://microcms.microcms.io/api/v1/blog/${params.slug}?depth=2`,
         {
-          headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+          headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
         }
       );
       data = result.data;
     }
-    let {
-      data: { contents }
+    const {
+      data: { contents },
     } = await axios.get('https://microcms.microcms.io/api/v1/blog', {
-      headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+      headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
     });
     const categories = await axios.get(
       `https://microcms.microcms.io/api/v1/categories?limit=100`,
       {
-        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
+        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
       }
     );
     const $ = cheerio.load(data.body);
     const headings = $('h1, h2, h3').toArray();
-    const toc = headings.map(d => {
+    const toc = headings.map((d) => {
       return {
         text: d.children[0].data,
         id: d.attribs.id,
-        name: d.name
+        name: d.name,
       };
     });
     $('pre code').each((_, elm) => {
@@ -124,32 +149,16 @@ export default {
       body: $.html(),
       toc,
       categories: categories.data.contents,
-      contents
+      contents,
     };
   },
-  head() {
+  data() {
     return {
-      title: this.title,
-      meta: [
-        { hid: 'description', name: 'description', content: this.description },
-        { hid: 'og:title', property: 'og:title', content: this.title },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: this.description
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content: `https://microcms.io/blog/${this.id}`
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: this.ogimage && this.ogimage.url
-        }
-      ]
+      publishedAt: '',
     };
+  },
+  mounted() {
+    this.$refs.ogimage.classList.add('loaded');
   },
   methods: {
     getTwitterLink() {
@@ -160,23 +169,32 @@ export default {
     },
     getHatenaLink() {
       return `https://b.hatena.ne.jp/entry/https://microcms.io/blog/${this.id}`;
-    }
+    },
   },
-  components: {
-    Header,
-    Footer,
-    Latest,
-    RelatedBlogs,
-    Meta,
-    Breadcrumb,
-    Writer,
-    Toc,
-    Post,
-    Categories
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: 'description', name: 'description', content: this.description },
+        { hid: 'og:title', property: 'og:title', content: this.title },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.description,
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: `https://microcms.io/blog/${this.id}`,
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: this.ogimage && this.ogimage.url,
+        },
+      ],
+    };
   },
-  mounted: function() {
-    this.$refs.ogimage.classList.add('loaded');
-  }
 };
 </script>
 
