@@ -4,35 +4,38 @@
     <div class="divider">
       <article class="article">
         <img
+          ref="ogimage"
           :src="data.ogimage.url + '?w=820&q=100'"
           :srcset="
             data.ogimage.url +
-              '?w=375&q=100 375w,' +
-              data.ogimage.url +
-              '?w=750&q=100 750w,' +
-              data.ogimage.url +
-              '?w=820&q=100 820w'
+            '?w=375&q=100 375w,' +
+            data.ogimage.url +
+            '?w=750&q=100 750w,' +
+            data.ogimage.url +
+            '?w=820&q=100 820w'
           "
           class="ogimage"
-          ref="ogimage"
         />
         <Breadcrumb :category="data.category" />
         <div class="main">
           <div class="share">
             <ul class="shareLists">
               <li class="shareList">
-                <a v-bind:href="getTwitterLink()" target="_blank">
+                <a :href="getTwitterLink()" target="_blank">
                   <img src="/blog/images/icon_twitter.svg" alt="Twitter" />
                 </a>
               </li>
               <li class="shareList">
-                <a v-bind:href="getFacebookLink()" target="_blank">
+                <a :href="getFacebookLink()" target="_blank">
                   <img src="/blog/images/icon_facebook.svg" alt="Facebook" />
                 </a>
               </li>
               <li class="shareList">
-                <a v-bind:href="getHatenaLink()" target="_blank">
-                  <img src="/blog/images/icon_hatena.svg" alt="はてなブックマーク" />
+                <a :href="getHatenaLink()" target="_blank">
+                  <img
+                    src="/blog/images/icon_hatena.svg"
+                    alt="はてなブックマーク"
+                  />
                 </a>
               </li>
               <li class="shareList">
@@ -45,14 +48,17 @@
           <div class="container">
             <h1 class="title">{{ data.title }}</h1>
             <Meta
-              :createdAt="data.publishedAt || data.createdAt"
+              :created-at="data.publishedAt || data.createdAt"
               :author="data.writer.name"
               :category="data.category"
             />
-            <Toc :toc="toc" :id="data.id" :visible="data.toc_visible" />
+            <Toc :id="data.id" :toc="toc" :visible="data.toc_visible" />
             <Post :body="data.body" />
             <Writer :writer="data.writer" />
-            <RelatedBlogs v-if="data.related_blogs.length > 0" :blogs="data.related_blogs" />
+            <RelatedBlogs
+              v-if="data.related_blogs.length > 0"
+              :blogs="data.related_blogs"
+            />
           </div>
         </div>
       </article>
@@ -85,137 +91,6 @@ import Post from '~/components/Post.vue';
 import Categories from '~/components/Categories.vue';
 
 export default {
-  async created() {
-    const query = this.$route.query;
-    if (query.id === undefined || query.draftKey === undefined) {
-      return;
-    }
-    let { data } = await axios.get(
-      `https://microcms.microcms.io/api/v1/blog/${query.id}?draftKey=${query.draftKey}&depth=3`,
-      {
-        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
-      }
-    );
-    this.data = data;
-
-    // 目次作成
-    const $ = cheerio.load(data.body);
-    const headings = $('h1, h2, h3').toArray();
-    const toc = headings.map(d => {
-      return {
-        text: d.children[0].data,
-        id: d.attribs.id,
-        name: d.name
-      };
-    });
-    this.toc = toc;
-
-    let {
-      data: { contents }
-    } = await axios.get(
-      `https://microcms.microcms.io/api/v1/blog?draftKey=${query.draftKey}`,
-      {
-        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
-      }
-    );
-    this.contents = contents;
-    const categories = await axios.get(
-      `https://microcms.microcms.io/api/v1/categories?limit=100`,
-      {
-        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' }
-      }
-    );
-    this.categories = categories.data.contents;
-    setTimeout(() => typeof hljs !== 'undefined' && hljs.initHighlighting(), 1);
-  },
-  data() {
-    return {
-      data: {
-        id: '',
-        ogimage: {
-          url: ''
-        },
-        body: '',
-        title: '',
-        createdAt: '',
-        publishedAt: '',
-        toc_visible: false,
-        writer: {
-          id: '',
-          name: '',
-          image: {
-            url: ''
-          },
-          text: ''
-        },
-        category: {
-          name: '',
-          color: ''
-        },
-        related_blogs: []
-      },
-      toc: [],
-      contents: [],
-      categories: []
-    };
-  },
-  head() {
-    return {
-      title: this.title,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.data && this.data.description
-        },
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: this.data && this.data.title
-        },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: this.data && this.data.description
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content: `https://microcms.io/blog/${this.data && this.data.id}`
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: this.data && this.data.ogimage && this.data.ogimage.url
-        }
-      ],
-      link: [
-        {
-          rel: 'stylesheet',
-          href:
-            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css'
-        }
-      ],
-      script: [
-        {
-          src:
-            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js',
-          async: true
-        }
-      ]
-    };
-  },
-  methods: {
-    getTwitterLink() {
-      return `https://twitter.com/intent/tweet?text=${this.data.title}&url=https://microcms.io/blog/${this.data.id}&hashtags=microcms`;
-    },
-    getFacebookLink() {
-      return `https://www.facebook.com/sharer.php?u=https://microcms.io/blog/${this.data.id}`;
-    },
-    getHatenaLink() {
-      return `https://b.hatena.ne.jp/entry/https://microcms.io/blog/${this.data.id}`;
-    }
-  },
   components: {
     Header,
     Footer,
@@ -226,11 +101,142 @@ export default {
     Writer,
     Toc,
     Post,
-    Categories
+    Categories,
   },
-  mounted: function() {
+  data() {
+    return {
+      data: {
+        id: '',
+        ogimage: {
+          url: '',
+        },
+        body: '',
+        title: '',
+        createdAt: '',
+        publishedAt: '',
+        toc_visible: false,
+        writer: {
+          id: '',
+          name: '',
+          image: {
+            url: '',
+          },
+          text: '',
+        },
+        category: {
+          name: '',
+          color: '',
+        },
+        related_blogs: [],
+      },
+      toc: [],
+      contents: [],
+      categories: [],
+    };
+  },
+  async created() {
+    const query = this.$route.query;
+    if (query.id === undefined || query.draftKey === undefined) {
+      return;
+    }
+    const { data } = await axios.get(
+      `https://microcms.microcms.io/api/v1/blog/${query.id}?draftKey=${query.draftKey}&depth=3`,
+      {
+        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+      }
+    );
+    this.data = data;
+
+    // 目次作成
+    const $ = cheerio.load(data.body);
+    const headings = $('h1, h2, h3').toArray();
+    const toc = headings.map((d) => {
+      return {
+        text: d.children[0].data,
+        id: d.attribs.id,
+        name: d.name,
+      };
+    });
+    this.toc = toc;
+
+    const {
+      data: { contents },
+    } = await axios.get(
+      `https://microcms.microcms.io/api/v1/blog?draftKey=${query.draftKey}`,
+      {
+        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+      }
+    );
+    this.contents = contents;
+    const categories = await axios.get(
+      `https://microcms.microcms.io/api/v1/categories?limit=100`,
+      {
+        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+      }
+    );
+    this.categories = categories.data.contents;
+    // setTimeout(() => typeof hljs !== 'undefined' && hljs.initHighlighting(), 1);
+  },
+  mounted() {
     this.$refs.ogimage && this.$refs.ogimage.classList.add('loaded');
-  }
+  },
+  methods: {
+    getTwitterLink() {
+      return `https://twitter.com/intent/tweet?text=${this.data.title}&url=https://microcms.io/blog/${this.data.id}&hashtags=microcms`;
+    },
+    getFacebookLink() {
+      return `https://www.facebook.com/sharer.php?u=https://microcms.io/blog/${this.data.id}`;
+    },
+    getHatenaLink() {
+      return `https://b.hatena.ne.jp/entry/https://microcms.io/blog/${this.data.id}`;
+    },
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.data && this.data.description,
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: this.data && this.data.title,
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.data && this.data.description,
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: `https://microcms.io/blog/${this.data && this.data.id}`,
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: this.data && this.data.ogimage && this.data.ogimage.url,
+        },
+      ],
+      link: [
+        {
+          rel: 'stylesheet',
+          href:
+            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css',
+        },
+      ],
+      script: [
+        {
+          src:
+            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js',
+          async: true,
+        },
+      ],
+    };
+  },
 };
 </script>
 

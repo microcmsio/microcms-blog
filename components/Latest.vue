@@ -3,12 +3,9 @@
     <h1 class="pageTitle">最新の記事</h1>
     <ul>
       <li v-for="content in contents" :key="content.id" class="list">
-        <nuxt-link v-bind:to="`/${content.id}`" class="link">
+        <nuxt-link :to="`/${content.id}`" class="link">
           <dl class="content">
             <dt class="title">{{ content.title }}</dt>
-            <dd>
-              <Meta :createdAt="content.createdAt" :author="content.author" />
-            </dd>
           </dl>
         </nuxt-link>
       </li>
@@ -17,9 +14,14 @@
 </template>
 
 <script>
-import axios from 'axios';
 export default {
-  props: ['contents']
+  props: {
+    contents: {
+      type: Array,
+      required: false,
+      default: () => [],
+    },
+  },
 };
 </script>
 

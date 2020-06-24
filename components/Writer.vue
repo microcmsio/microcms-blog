@@ -2,12 +2,20 @@
   <div class="wrapper">
     <h2 class="title">ABOUT ME</h2>
     <div class="container">
-      <img :src="writer.image.url + '?fit=crop&w=100&h=100&q=100'" class="image" alt />
+      <img
+        :src="writer.image.url + '?fit=crop&w=100&h=100&q=100'"
+        class="image"
+        alt
+      />
       <dl class="content">
         <dt class="name">
           {{ writer.name }}
-          <a class="twitterLink" v-bind:href="`https://twitter.com/${writer.id}`">
-            <img class="twitter" src="/blog/images/icon_twitter.svg" alt="Twitter" />
+          <a class="twitterLink" :href="`https://twitter.com/${writer.id}`">
+            <img
+              class="twitter"
+              src="/blog/images/icon_twitter.svg"
+              alt="Twitter"
+            />
           </a>
         </dt>
         <dd class="text">{{ writer.text }}</dd>
@@ -18,7 +26,13 @@
 
 <script>
 export default {
-  props: ['writer']
+  props: {
+    writer: {
+      type: Object,
+      required: true,
+      default: () => ({}),
+    },
+  },
 };
 </script>
 

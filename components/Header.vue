@@ -11,7 +11,7 @@
       </button>
       <div v-if="open" class="mask" @click="setOpen(false)"></div>
 
-      <div class="menu" :class="{'isOpen': open}">
+      <div class="menu" :class="{ isOpen: open }">
         <ul class="lists">
           <li class="list">
             <a href="https://microcms.io/pricing">料金</a>
@@ -31,7 +31,9 @@
             <a class="signin" href="https://app.microcms.io/signin">ログイン</a>
           </li>
           <li class="list">
-            <a class="signup" v-bind:href="`https://app.microcms.io${params}`">新規登録</a>
+            <a class="signup" :href="`https://app.microcms.io${params}`"
+              >新規登録</a
+            >
           </li>
         </ul>
       </div>
@@ -42,11 +44,10 @@
 
 <script>
 export default {
-  props: ['isWhite'],
   data() {
     return {
       params: this.params || '',
-      open: false
+      open: false,
     };
   },
   mounted() {
@@ -58,8 +59,8 @@ export default {
     },
     toggleOpen() {
       this.open = !this.open;
-    }
-  }
+    },
+  },
 };
 </script>
 
