@@ -81,30 +81,8 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
 import hljs from 'highlight.js';
-import Header from '~/components/Header.vue';
-import Footer from '~/components/Footer.vue';
-import Latest from '~/components/Latest.vue';
-import RelatedBlogs from '~/components/RelatedBlogs.vue';
-import Meta from '~/components/Meta.vue';
-import Breadcrumb from '~/components/Breadcrumb.vue';
-import Writer from '~/components/Writer.vue';
-import Toc from '~/components/Toc.vue';
-import Post from '~/components/Post.vue';
-import Categories from '~/components/Categories.vue';
 
 export default {
-  components: {
-    Header,
-    Footer,
-    Latest,
-    RelatedBlogs,
-    Meta,
-    Breadcrumb,
-    Writer,
-    Toc,
-    Post,
-    Categories,
-  },
   async asyncData({ params, payload }) {
     let data;
     if (payload !== undefined) {

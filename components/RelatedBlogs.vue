@@ -28,11 +28,7 @@
 </template>
 
 <script>
-import Meta from '~/components/Meta.vue';
 export default {
-  components: {
-    Meta,
-  },
   props: {
     blogs: {
       type: Array,

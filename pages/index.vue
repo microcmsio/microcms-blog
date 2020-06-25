@@ -67,20 +67,8 @@
 
 <script>
 import axios from 'axios';
-import Header from '~/components/Header.vue';
-import Footer from '~/components/Footer.vue';
-import Meta from '~/components/Meta.vue';
-import Breadcrumb from '~/components/Breadcrumb.vue';
-import Categories from '~/components/Categories.vue';
 
 export default {
-  components: {
-    Header,
-    Footer,
-    Meta,
-    Breadcrumb,
-    Categories,
-  },
   async asyncData({ params, error, payload }) {
     const page = params.id || '1';
     const categoryId = params.categoryId;
