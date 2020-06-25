@@ -79,6 +79,7 @@
 <script>
 import axios from 'axios';
 import cheerio from 'cheerio';
+import hljs from 'highlight.js';
 
 export default {
   data() {
@@ -136,6 +137,12 @@ export default {
       };
     });
     this.toc = toc;
+    $('pre code').each((_, elm) => {
+      const res = hljs.highlightAuto($(elm).text());
+      $(elm).html(res.value);
+      $(elm).addClass('hljs');
+    });
+    this.data.body = $.html();
 
     const {
       data: { contents },
@@ -153,7 +160,6 @@ export default {
       }
     );
     this.categories = categories.data.contents;
-    // setTimeout(() => typeof hljs !== 'undefined' && hljs.initHighlighting(), 1);
   },
   mounted() {
     this.$refs.ogimage && this.$refs.ogimage.classList.add('loaded');
