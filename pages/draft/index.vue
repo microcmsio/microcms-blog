@@ -68,6 +68,7 @@
           <p>APIベースの日本製ヘッドレスCMS</p>
           <span class="detail">詳しく見る</span>
         </a>
+        <Search />
         <Categories :categories="categories" />
         <Latest :contents="contents" />
       </aside>
@@ -79,8 +80,26 @@
 <script>
 import axios from 'axios';
 import cheerio from 'cheerio';
+import hljs from 'highlight.js';
 
 export default {
+  async asyncData() {
+    const categories = await axios.get(
+      `https://microcms.microcms.io/api/v1/categories?limit=100`,
+      {
+        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+      }
+    );
+    const {
+      data: { contents },
+    } = await axios.get('https://microcms.microcms.io/api/v1/blog', {
+      headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+    });
+    return {
+      categories: categories.data.contents,
+      contents,
+    };
+  },
   data() {
     return {
       data: {
@@ -136,24 +155,12 @@ export default {
       };
     });
     this.toc = toc;
-
-    const {
-      data: { contents },
-    } = await axios.get(
-      `https://microcms.microcms.io/api/v1/blog?draftKey=${query.draftKey}`,
-      {
-        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
-      }
-    );
-    this.contents = contents;
-    const categories = await axios.get(
-      `https://microcms.microcms.io/api/v1/categories?limit=100`,
-      {
-        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
-      }
-    );
-    this.categories = categories.data.contents;
-    // setTimeout(() => typeof hljs !== 'undefined' && hljs.initHighlighting(), 1);
+    $('pre code').each((_, elm) => {
+      const res = hljs.highlightAuto($(elm).text());
+      $(elm).html(res.value);
+      $(elm).addClass('hljs');
+    });
+    this.data.body = $.html();
   },
   mounted() {
     this.$refs.ogimage && this.$refs.ogimage.classList.add('loaded');

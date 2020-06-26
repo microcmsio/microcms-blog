@@ -3,7 +3,12 @@
     <Header />
     <div class="divider">
       <div class="container">
-        <Breadcrumb :category="selectedCategory" />
+        <input
+          v-model="q"
+          class="search"
+          type="text"
+          @keyup.enter="(e) => search(e.target.value)"
+        />
         <div v-show="contents.length === 0" class="loader">
           記事がありません
         </div>
@@ -58,7 +63,6 @@
           <p>APIベースの日本製ヘッドレスCMS</p>
           <span class="detail">詳しく見る</span>
         </a>
-        <Search />
         <Categories :categories="categories" />
       </aside>
     </div>
@@ -70,43 +74,61 @@
 import axios from 'axios';
 
 export default {
-  async asyncData({ params, error, payload }) {
-    const page = params.id || '1';
-    const categoryId = params.categoryId;
-    const limit = 10;
-    const { data } = await axios.get(
-      `https://microcms.microcms.io/api/v1/blog?limit=${limit}${
-        categoryId === undefined ? '' : `&filters=category[equals]${categoryId}`
-      }&offset=${(page - 1) * limit}`,
-      {
-        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
-      }
-    );
+  async asyncData() {
     const categories = await axios.get(
       `https://microcms.microcms.io/api/v1/categories?limit=100`,
       {
         headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
       }
     );
-    const selectedCategory =
-      categoryId !== undefined
-        ? categories.data.contents.find((content) => content.id === categoryId)
-        : undefined;
     return {
-      ...data,
       categories: categories.data.contents,
-      selectedCategory,
-      page,
-      pager: [...Array(Math.ceil(data.totalCount / limit)).keys()],
     };
   },
   data() {
     return {
       contents: this.contents || [],
       totalCount: this.totalCount || 0,
+      categories: this.categories || [],
       pager: this.pager || [],
       loading: true,
+      q: this.$route.query.q,
     };
+  },
+  async created() {
+    const query = this.$route.query;
+    const { data } = query.q
+      ? await axios.get(
+          `https://microcms.microcms.io/api/v1/blog/?q=${query.q}`,
+          {
+            headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+          }
+        )
+      : {
+          data: {
+            contents: [],
+            totalCount: 0,
+          },
+        };
+    this.contents = data.contents;
+    this.totalCount = data.totalCount;
+  },
+  methods: {
+    async search(q) {
+      if (!q) {
+        return;
+      }
+      this.$nuxt.$loading.start();
+      const { data } = await axios.get(
+        `https://microcms.microcms.io/api/v1/blog/?q=${q}`,
+        {
+          headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+        }
+      );
+      this.$nuxt.$loading.finish();
+      this.contents = data.contents;
+      this.totalCount = data.totalCount;
+    },
   },
   head() {
     return {
@@ -118,6 +140,31 @@ export default {
 </script>
 
 <style scoped>
+.search {
+  border: 1px solid var(--color-border);
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 5px;
+  height: 40px;
+  font-size: 16px;
+  background: url('/blog/images/icon_search.svg') no-repeat 10px center,
+    var(--color-bg-purple-light);
+  padding-left: 40px;
+  margin-bottom: 20px;
+  box-shadow: none;
+  -webkit-appearance: none;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) inset;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) inset;
+  }
+}
+
 @media (min-width: 1160px) {
   .loader {
     color: #ccc;
