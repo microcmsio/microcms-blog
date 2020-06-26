@@ -151,6 +151,18 @@ export default {
     var(--color-bg-purple-light);
   padding-left: 40px;
   margin-bottom: 20px;
+  box-shadow: none;
+  -webkit-appearance: none;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) inset;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) inset;
+  }
 }
 
 @media (min-width: 1160px) {
