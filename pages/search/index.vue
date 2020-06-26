@@ -98,7 +98,12 @@ export default {
   async created() {
     const query = this.$route.query;
     const { data } = query.q
-      ? await axios.get(`/blog/api/search?q=${query.q}`)
+      ? await axios.get(
+          `https://microcms.microcms.io/api/v1/blog/?q=${query.q}`,
+          {
+            headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+          }
+        )
       : {
           data: {
             contents: [],
@@ -114,7 +119,12 @@ export default {
         return;
       }
       this.$nuxt.$loading.start();
-      const { data } = await axios.get(`/blog/api/search?q=${q}`);
+      const { data } = await axios.get(
+        `https://microcms.microcms.io/api/v1/blog/?q=${q}`,
+        {
+          headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+        }
+      );
       this.$nuxt.$loading.finish();
       this.contents = data.contents;
       this.totalCount = data.totalCount;
