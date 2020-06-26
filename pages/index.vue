@@ -58,6 +58,7 @@
           <p>APIベースの日本製ヘッドレスCMS</p>
           <span class="detail">詳しく見る</span>
         </a>
+        <Search />
         <Categories :categories="categories" />
       </aside>
     </div>
