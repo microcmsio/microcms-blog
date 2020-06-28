@@ -1,2 +1,2 @@
 [build]
-  functions = "dist/api"
+  functions = "dist/blog/api"
