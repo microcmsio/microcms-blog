@@ -99,10 +99,7 @@ export default {
     const query = this.$route.query;
     const { data } = query.q
       ? await axios.get(
-          `https://microcms.microcms.io/api/v1/blog/?q=${query.q}`,
-          {
-            headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
-          }
+          `https://affectionate-hoover-9cba11.netlify.app/.netlify/functions/search?q=${query.q}`
         )
       : {
           data: {
@@ -120,10 +117,7 @@ export default {
       }
       this.$nuxt.$loading.start();
       const { data } = await axios.get(
-        `https://microcms.microcms.io/api/v1/blog/?q=${q}`,
-        {
-          headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
-        }
+        `https://affectionate-hoover-9cba11.netlify.app/.netlify/functions/search?q=${q}`
       );
       this.$nuxt.$loading.finish();
       this.contents = data.contents;

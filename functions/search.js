@@ -17,6 +17,9 @@ exports.handler = async (event) => {
     })
     .then(({ data }) => {
       return {
+        headers: {
+          'Access-Control-Allow-Origin': 'https://microcms.io',
+        },
         statusCode: 200,
         body: JSON.stringify(data),
       };
