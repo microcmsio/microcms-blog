@@ -137,10 +137,7 @@ export default {
       return;
     }
     const { data } = await axios.get(
-      `https://microcms.microcms.io/api/v1/blog/${query.id}?draftKey=${query.draftKey}&depth=3`,
-      {
-        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
-      }
+      `https://affectionate-hoover-9cba11.netlify.app/.netlify/functions/draft?id=${query.id}&draftKey=${query.draftKey}`
     );
     this.data = data;
 
