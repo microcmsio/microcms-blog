@@ -137,7 +137,7 @@ export default {
       return;
     }
     const { data } = await axios.get(
-      `https://affectionate-hoover-9cba11.netlify.app/.netlify/functions/search?id=${query.id}&draftKey=${query.draftKey}`
+      `https://affectionate-hoover-9cba11.netlify.app/.netlify/functions/draft?id=${query.id}&draftKey=${query.draftKey}`
     );
     this.data = data;
 
