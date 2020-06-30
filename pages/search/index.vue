@@ -99,9 +99,7 @@ export default {
     const query = this.$route.query;
     const { data } = query.q
       ? await axios.get(
-          `https://affectionate-hoover-9cba11.netlify.app/.netlify/functions/search?q=${encodeURIComponent(
-            query.q
-          )}`
+          `https://affectionate-hoover-9cba11.netlify.app/.netlify/functions/search?q=${query.q}`
         )
       : {
           data: {
@@ -119,9 +117,7 @@ export default {
       }
       this.$nuxt.$loading.start();
       const { data } = await axios.get(
-        `https://affectionate-hoover-9cba11.netlify.app/.netlify/functions/search?q=${encodeURIComponent(
-          q
-        )}`
+        `https://affectionate-hoover-9cba11.netlify.app/.netlify/functions/search?q=${q}`
       );
       this.$nuxt.$loading.finish();
       this.contents = data.contents;

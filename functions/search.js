@@ -12,9 +12,12 @@ exports.handler = async (event) => {
     };
   }
   return axios
-    .get(`https://microcms.microcms.io/api/v1/blog/?q=${q}`, {
-      headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
-    })
+    .get(
+      `https://microcms.microcms.io/api/v1/blog/?q=${encodeURIComponent(q)}`,
+      {
+        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+      }
+    )
     .then(({ data }) => {
       return {
         headers: {
