@@ -11,14 +11,6 @@ exports.handler = async (event) => {
       }),
     };
   }
-  if (!draftKey) {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({
-        error: 'Missing "draftKey" query parameter',
-      }),
-    };
-  }
   return axios
     .get(
       `https://microcms.microcms.io/api/v1/blog/${id}?draftKey=${draftKey}&depth=2`,
