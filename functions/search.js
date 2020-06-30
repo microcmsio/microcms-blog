@@ -24,5 +24,11 @@ exports.handler = async (event) => {
         body: JSON.stringify(data),
       };
     })
-    .catch((error) => ({ statusCode: 400, body: String(error) }));
+    .catch((error) => ({
+      headers: {
+        'Access-Control-Allow-Origin': 'https://microcms.io',
+      },
+      statusCode: 400,
+      body: String(error),
+    }));
 };
