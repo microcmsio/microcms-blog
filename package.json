@@ -26,6 +26,7 @@
     "@nuxtjs/feed": "^1.1.0",
     "@nuxtjs/google-analytics": "^2.2.0",
     "@nuxtjs/moment": "^1.6.1",
+    "@nuxtjs/pwa": "^3.0.0-beta.20",
     "@nuxtjs/sitemap": "^1.3.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.2.0",
