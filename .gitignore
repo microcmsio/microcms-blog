@@ -103,3 +103,6 @@ awsconfiguration.json
 
 #rss
 feed.xml
+
+#pwa
+sw.*

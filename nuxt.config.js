@@ -82,7 +82,7 @@ export default {
    */
   plugins: ['~/plugins/vue-scrollto'],
   components: true,
-  buildModules: ['@nuxtjs/eslint-module'],
+  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/pwa'],
   /*
    ** Nuxt.js modules
    */
