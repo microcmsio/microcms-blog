@@ -97,6 +97,11 @@ export default {
     ['@nuxtjs/sitemap'],
     '@nuxtjs/feed',
   ],
+  pwa: {
+    workbox: {
+      preCashing: ['/blog/_nuxt/*']
+    }
+  },
   /*
    ** Build configuration
    */
