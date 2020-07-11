@@ -99,7 +99,12 @@ export default {
   ],
   pwa: {
     workbox: {
-      preCashing: ['/blog/_nuxt/*']
+      runtimeCaching: [
+        {
+          urlPattern: 'https://images.microcms-assets.io/.*',
+          handler: 'cacheFirst',
+        }
+      ]
     }
   },
   /*
