@@ -103,6 +103,10 @@ export default {
         {
           urlPattern: 'https://images.microcms-assets.io/.*',
           handler: 'cacheFirst',
+        },
+        {
+          urlPattern: '/blog/.*/index.html',
+          handler: 'cacheFirst',
         }
       ]
     }
