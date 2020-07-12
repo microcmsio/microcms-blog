@@ -4,9 +4,7 @@
     <ul>
       <li v-for="content in contents" :key="content.id" class="list">
         <nuxt-link :to="`/${content.id}`" class="link">
-          <dl class="content">
-            <dt class="title">{{ content.title }}</dt>
-          </dl>
+          {{ content.title }}
         </nuxt-link>
       </li>
     </ul>
@@ -53,10 +51,6 @@ export default {
     display: block;
     padding: 10px;
   }
-
-  .title {
-    font-size: 16px;
-  }
 }
 @media (min-width: 820px) and (max-width: 1160px) {
   .wrapper {
@@ -84,10 +78,6 @@ export default {
     display: block;
     padding: 10px;
   }
-
-  .title {
-    font-size: 16px;
-  }
 }
 @media (max-width: 820px) {
   .wrapper {
@@ -114,10 +104,6 @@ export default {
   .link {
     display: block;
     padding: 10px;
-  }
-
-  .title {
-    font-size: 16px;
   }
 }
 </style>
