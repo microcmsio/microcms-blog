@@ -99,6 +99,14 @@ export default {
   ],
   pwa: {
     workbox: {
+      preCashing: [
+        {
+          url: '/blog/images/logo.svg',
+        },
+        {
+          url: '/blog/images/icon_author.svg',
+        },
+      ],
       runtimeCaching: [
         {
           urlPattern: 'https://images.microcms-assets.io/.*',
