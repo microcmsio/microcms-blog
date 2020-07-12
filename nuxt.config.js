@@ -99,13 +99,18 @@ export default {
   ],
   pwa: {
     workbox: {
-      preCashing: [
-        {
-          url: '/blog/images/logo.svg',
-        },
-        {
-          url: '/blog/images/icon_author.svg',
-        },
+      offlineAssets: [
+        '/blog/images/banner_logo.svg',
+        '/blog/images/icon_author.svg',
+        '/blog/images/icon_clock.svg',
+        '/blog/images/icon_facebook.svg',
+        '/blog/images/icon_feed.svg',
+        '/blog/images/icon_hatena.svg',
+        '/blog/images/icon_menu.svg',
+        '/blog/images/icon_quote.svg',
+        '/blog/images/icon_search.svg',
+        '/blog/images/icon_twitter.svg',
+        '/blog/images/logo.svg',
       ],
       runtimeCaching: [
         {
