@@ -122,6 +122,9 @@ export default {
       $(elm).html(res.value);
       $(elm).addClass('hljs');
     });
+    $('img').each((_, elm) => {
+      $(elm).attr('loading', 'lazy');
+    });
 
     return {
       ...data,
