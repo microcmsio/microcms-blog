@@ -97,6 +97,33 @@ export default {
     ['@nuxtjs/sitemap'],
     '@nuxtjs/feed',
   ],
+  pwa: {
+    workbox: {
+      offlineAssets: [
+        '/blog/images/banner_logo.svg',
+        '/blog/images/icon_author.svg',
+        '/blog/images/icon_clock.svg',
+        '/blog/images/icon_facebook.svg',
+        '/blog/images/icon_feed.svg',
+        '/blog/images/icon_hatena.svg',
+        '/blog/images/icon_menu.svg',
+        '/blog/images/icon_quote.svg',
+        '/blog/images/icon_search.svg',
+        '/blog/images/icon_twitter.svg',
+        '/blog/images/logo.svg',
+      ],
+      runtimeCaching: [
+        {
+          urlPattern: 'https://images.microcms-assets.io/.*',
+          handler: 'cacheFirst',
+        },
+        {
+          urlPattern: '/blog/.*/index.html',
+          handler: 'cacheFirst',
+        }
+      ]
+    }
+  },
   /*
    ** Build configuration
    */
