@@ -115,14 +115,10 @@ export default {
       runtimeCaching: [
         {
           urlPattern: 'https://images.microcms-assets.io/.*',
-          handler: 'cacheFirst',
+          handler: 'networkFirst',
         },
-        {
-          urlPattern: '/blog/.*/index.html',
-          handler: 'cacheFirst',
-        }
-      ]
-    }
+      ],
+    },
   },
   /*
    ** Build configuration
