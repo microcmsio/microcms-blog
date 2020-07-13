@@ -123,7 +123,7 @@ export default {
       $(elm).addClass('hljs');
     });
     $('img').each((_, elm) => {
-      $(elm).attr('loading', 'lazy');
+      $(elm).attr('decoding', 'async');
     });
 
     return {
