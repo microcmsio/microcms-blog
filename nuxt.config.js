@@ -115,7 +115,7 @@ export default {
       runtimeCaching: [
         {
           urlPattern: 'https://images.microcms-assets.io/.*',
-          handler: 'networkFirst',
+          handler: 'staleWhileRevalidate',
         },
       ],
     },
