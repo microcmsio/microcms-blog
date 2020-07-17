@@ -180,7 +180,7 @@ export default {
         [...Array(end - start + 1)].map((_, i) => start + i);
       const pages = await axios
         .get(`https://microcms.microcms.io/api/v1/blog?limit=100&depth=2`, {
-          headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+          headers: { 'X-API-KEY': API_KEY },
         })
         .then((res) => {
           const articles = res.data.contents.map((content) => ({
@@ -198,7 +198,7 @@ export default {
         .get(
           `https://microcms.microcms.io/api/v1/categories?limit=100&fields=id`,
           {
-            headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+            headers: { 'X-API-KEY': API_KEY },
           }
         )
         .then(({ data }) => {
@@ -211,7 +211,7 @@ export default {
               `https://microcms.microcms.io/api/v1/blog?limit=100&filters=category[equals]${category}`,
               {
                 headers: {
-                  'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8',
+                  'X-API-KEY': API_KEY,
                 },
               }
             )
@@ -236,7 +236,7 @@ export default {
     routes(callback) {
       axios
         .get(`https://microcms.microcms.io/api/v1/blog?limit=100`, {
-          headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+          headers: { 'X-API-KEY': API_KEY },
         })
         .then((res) =>
           callback(
@@ -259,7 +259,7 @@ export default {
 
         const posts = await axios
           .get(`https://microcms.microcms.io/api/v1/blog?limit=100`, {
-            headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+            headers: { 'X-API-KEY': API_KEY },
           })
           .then((res) => res.data.contents);
 
