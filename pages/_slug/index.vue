@@ -92,7 +92,7 @@ export default {
       const result = await axios.get(
         `https://microcms.microcms.io/api/v1/blog/${params.slug}?depth=2`,
         {
-          headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+          headers: { 'X-API-KEY': process.env.API_KEY },
         }
       );
       data = result.data;
@@ -100,12 +100,12 @@ export default {
     const {
       data: { contents },
     } = await axios.get('https://microcms.microcms.io/api/v1/blog', {
-      headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+      headers: { 'X-API-KEY': process.env.API_KEY },
     });
     const categories = await axios.get(
       `https://microcms.microcms.io/api/v1/categories?limit=100`,
       {
-        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+        headers: { 'X-API-KEY': process.env.API_KEY },
       }
     );
     const $ = cheerio.load(data.body);
