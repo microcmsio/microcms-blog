@@ -1,6 +1,11 @@
 import axios from 'axios';
+require('dotenv').config();
+const { API_KEY } = process.env;
 
 export default {
+  env: {
+    API_KEY,
+  },
   mode: 'universal',
   target: 'static',
   /*
@@ -115,6 +120,10 @@ export default {
       runtimeCaching: [
         {
           urlPattern: 'https://images.microcms-assets.io/.*',
+          handler: 'staleWhileRevalidate',
+        },
+        {
+          urlPattern: '/blog/.*/index.html',
           handler: 'staleWhileRevalidate',
         },
       ],
