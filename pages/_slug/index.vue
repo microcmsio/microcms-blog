@@ -84,7 +84,7 @@ import cheerio from 'cheerio';
 import hljs from 'highlight.js';
 
 export default {
-  async asyncData({ params, payload, env }) {
+  async asyncData({ params, payload, $config }) {
     let data;
     if (payload !== undefined) {
       data = payload;
@@ -92,7 +92,7 @@ export default {
       const result = await axios.get(
         `https://microcms.microcms.io/api/v1/blog/${params.slug}?depth=2`,
         {
-          headers: { 'X-API-KEY': env.API_KEY },
+          headers: { 'X-API-KEY': $config.apiKey },
         }
       );
       data = result.data;
@@ -100,12 +100,12 @@ export default {
     const {
       data: { contents },
     } = await axios.get('https://microcms.microcms.io/api/v1/blog', {
-      headers: { 'X-API-KEY': env.API_KEY },
+      headers: { 'X-API-KEY': $config.apiKey },
     });
     const categories = await axios.get(
       `https://microcms.microcms.io/api/v1/categories?limit=100`,
       {
-        headers: { 'X-API-KEY': env.API_KEY },
+        headers: { 'X-API-KEY': $config.apiKey },
       }
     );
     const $ = cheerio.load(data.body);
