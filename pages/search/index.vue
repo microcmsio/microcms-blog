@@ -74,11 +74,11 @@
 import axios from 'axios';
 
 export default {
-  async asyncData() {
+  async asyncData({ $config }) {
     const categories = await axios.get(
       `https://microcms.microcms.io/api/v1/categories?limit=100`,
       {
-        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+        headers: { 'X-API-KEY': $config.apiKey },
       }
     );
     return {

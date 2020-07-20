@@ -70,7 +70,7 @@
 import axios from 'axios';
 
 export default {
-  async asyncData({ params, error, payload }) {
+  async asyncData({ params, $config }) {
     const page = params.id || '1';
     const categoryId = params.categoryId;
     const limit = 10;
@@ -79,13 +79,13 @@ export default {
         categoryId === undefined ? '' : `&filters=category[equals]${categoryId}`
       }&offset=${(page - 1) * limit}`,
       {
-        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+        headers: { 'X-API-KEY': $config.apiKey },
       }
     );
     const categories = await axios.get(
       `https://microcms.microcms.io/api/v1/categories?limit=100`,
       {
-        headers: { 'X-API-KEY': '1c801446-5d12-4076-aba6-da78999af9a8' },
+        headers: { 'X-API-KEY': $config.apiKey },
       }
     );
     const selectedCategory =
