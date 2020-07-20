@@ -122,10 +122,6 @@ export default {
           urlPattern: 'https://images.microcms-assets.io/.*',
           handler: 'staleWhileRevalidate',
         },
-        {
-          urlPattern: '/blog/.*/index.html',
-          handler: 'staleWhileRevalidate',
-        },
       ],
     },
   },
