@@ -65,7 +65,11 @@
         </div>
       </article>
       <aside class="aside">
-        <a href="https://microcms.io" class="banner">
+        <a
+          :href="`https://microcms.io/?utm_source=CTA&utm_medium=content-text&utm_campaign=blog-${id}-03`"
+          class="banner"
+          target="site"
+        >
           <img class="logo" src="/blog/images/banner_logo.svg" alt="microCMS" />
           <p>APIベースの日本製ヘッドレスCMS</p>
           <span class="detail">詳しく見る</span>
