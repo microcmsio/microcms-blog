@@ -174,29 +174,43 @@ export default {
     async routes() {
       const range = (start, end) =>
         [...Array(end - start + 1)].map((_, i) => start + i);
+      const limit = 50;
+      const getArticles = (offset = 0) => {
+        return axios
+          .get(
+            `https://microcms.microcms.io/api/v1/blog?offset=${offset}&limit=${limit}&depth=2`,
+            {
+              headers: { 'X-API-KEY': API_KEY },
+            }
+          )
+          .then(async (res) => {
+            let articles = [];
+            if (res.data.totalCount > offset + limit) {
+              articles = await getArticles(offset + limit);
+            }
+            return [
+              ...res.data.contents.map((content) => ({
+                route: `/${content.id}`,
+                payload: content,
+              })),
+              ...articles,
+            ];
+          });
+      };
+      const articles = await getArticles();
       const pages = await axios
-        .get(`https://microcms.microcms.io/api/v1/blog?limit=100&depth=2`, {
+        .get(`https://microcms.microcms.io/api/v1/blog?limit=1&fields=id`, {
           headers: { 'X-API-KEY': API_KEY },
         })
-        .then((res) => {
-          const articles = res.data.contents.map((content) => ({
-            route: `/${content.id}`,
-            payload: content,
-          }));
-          return [
-            ...articles,
-            ...range(1, Math.ceil(res.data.contents.length / 10)).map((p) => ({
-              route: `/page/${p}`,
-            })),
-          ];
-        });
+        .then((res) =>
+          range(1, Math.ceil(res.data.totalCount / 10)).map((p) => ({
+            route: `/page/${p}`,
+          }))
+        );
       const categories = await axios
-        .get(
-          `https://microcms.microcms.io/api/v1/categories?limit=100&fields=id`,
-          {
-            headers: { 'X-API-KEY': API_KEY },
-          }
-        )
+        .get(`https://microcms.microcms.io/api/v1/categories?fields=id`, {
+          headers: { 'X-API-KEY': API_KEY },
+        })
         .then(({ data }) => {
           return data.contents.map((content) => content.id);
         });
@@ -204,7 +218,7 @@ export default {
         categories.map((category) =>
           axios
             .get(
-              `https://microcms.microcms.io/api/v1/blog?limit=100&filters=category[equals]${category}`,
+              `https://microcms.microcms.io/api/v1/blog?limit=1&fields=id&filters=category[equals]${category}`,
               {
                 headers: {
                   'X-API-KEY': API_KEY,
@@ -212,16 +226,14 @@ export default {
               }
             )
             .then((res) => {
-              return range(1, Math.ceil(res.data.contents.length / 10)).map(
-                (p) => ({
-                  route: `/category/${category}/page/${p}`,
-                })
-              );
+              return range(1, Math.ceil(res.data.totalCount / 10)).map((p) => ({
+                route: `/category/${category}/page/${p}`,
+              }));
             })
         )
       );
       const flattenCategoryPages = [].concat.apply([], categoryPages);
-      return [...pages, ...flattenCategoryPages];
+      return [...articles, ...pages, ...flattenCategoryPages];
     },
     dir: 'dist/blog',
   },
