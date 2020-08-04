@@ -115,6 +115,7 @@ export default {
         '/blog/images/icon_quote.svg',
         '/blog/images/icon_search.svg',
         '/blog/images/icon_twitter.svg',
+        '/blog/images/icon_link.svg',
         '/blog/images/logo.svg',
       ],
       runtimeCaching: [

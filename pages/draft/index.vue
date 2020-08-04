@@ -55,6 +55,7 @@
             <Toc :id="data.id" :toc="toc" :visible="data.toc_visible" />
             <Post :body="data.body" />
             <Writer :writer="data.writer" />
+            <Conversion :id="id" />
             <RelatedBlogs
               v-if="data.related_blogs.length > 0"
               :blogs="data.related_blogs"
