@@ -4,7 +4,7 @@ const { API_KEY } = process.env;
 
 export default {
   privateRuntimeConfig: {
-    apiKey: API_KEY
+    apiKey: API_KEY,
   },
   mode: 'universal',
   target: 'static',
