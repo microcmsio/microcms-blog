@@ -176,6 +176,13 @@ export default {
       const range = (start, end) =>
         [...Array(end - start + 1)].map((_, i) => start + i);
       const limit = 50;
+      const popularArticles = await axios
+        .get(`https://microcms.microcms.io/api/v1/popular-articles`, {
+          headers: { 'X-API-KEY': API_KEY },
+        })
+        .then(({ data }) => {
+          return data.articles;
+        });
       const getArticles = (offset = 0) => {
         return axios
           .get(
@@ -192,13 +199,21 @@ export default {
             return [
               ...res.data.contents.map((content) => ({
                 route: `/${content.id}`,
-                payload: content,
+                payload: { content, popularArticles },
               })),
               ...articles,
             ];
           });
       };
       const articles = await getArticles();
+
+      // 一覧ページ
+      const index = {
+        route: '/',
+        payload: { popularArticles },
+      };
+
+      // 一覧のページング
       const pages = await axios
         .get(`https://microcms.microcms.io/api/v1/blog?limit=1&fields=id`, {
           headers: { 'X-API-KEY': API_KEY },
@@ -206,8 +221,16 @@ export default {
         .then((res) =>
           range(1, Math.ceil(res.data.totalCount / 10)).map((p) => ({
             route: `/page/${p}`,
+            payload: { popularArticles },
           }))
         );
+
+      // 検索ページ
+      const search = {
+        route: '/search',
+        payload: { popularArticles },
+      };
+
       const categories = await axios
         .get(`https://microcms.microcms.io/api/v1/categories?fields=id`, {
           headers: { 'X-API-KEY': API_KEY },
@@ -215,6 +238,8 @@ export default {
         .then(({ data }) => {
           return data.contents.map((content) => content.id);
         });
+
+      // カテゴリーページ
       const categoryPages = await Promise.all(
         categories.map((category) =>
           axios
@@ -229,12 +254,13 @@ export default {
             .then((res) => {
               return range(1, Math.ceil(res.data.totalCount / 10)).map((p) => ({
                 route: `/category/${category}/page/${p}`,
+                payload: { popularArticles },
               }));
             })
         )
       );
       const flattenCategoryPages = [].concat.apply([], categoryPages);
-      return [...articles, ...pages, ...flattenCategoryPages];
+      return [index, search, ...articles, ...pages, ...flattenCategoryPages];
     },
     dir: 'dist/blog',
   },

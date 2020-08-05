@@ -68,6 +68,7 @@
           <span class="detail">詳しく見る</span>
         </a>
         <Categories :categories="categories" />
+        <PopularArticles :contents="popularArticles" />
       </aside>
     </div>
     <Footer />
@@ -78,7 +79,18 @@
 import axios from 'axios';
 
 export default {
-  async asyncData({ $config }) {
+  async asyncData({ payload, $config }) {
+    const popularArticles =
+      payload !== undefined && payload.popularArticles !== undefined
+        ? payload.popularArticles
+        : (
+            await axios.get(
+              `https://microcms.microcms.io/api/v1/popular-articles`,
+              {
+                headers: { 'X-API-KEY': $config.apiKey },
+              }
+            )
+          ).data.articles;
     const categories = await axios.get(
       `https://microcms.microcms.io/api/v1/categories?limit=100`,
       {
@@ -86,6 +98,7 @@ export default {
       }
     );
     return {
+      popularArticles,
       categories: categories.data.contents,
     };
   },

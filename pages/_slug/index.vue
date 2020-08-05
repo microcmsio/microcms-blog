@@ -76,6 +76,7 @@
         </a>
         <Search />
         <Categories :categories="categories" />
+        <PopularArticles :contents="popularArticles" />
         <Latest :contents="contents" />
       </aside>
     </div>
@@ -90,18 +91,28 @@ import hljs from 'highlight.js';
 
 export default {
   async asyncData({ params, payload, $config }) {
-    let data;
-    if (payload !== undefined) {
-      data = payload;
-    } else {
-      const result = await axios.get(
-        `https://microcms.microcms.io/api/v1/blog/${params.slug}?depth=2`,
-        {
-          headers: { 'X-API-KEY': $config.apiKey },
-        }
-      );
-      data = result.data;
-    }
+    const data =
+      payload !== undefined
+        ? payload.content
+        : (
+            await axios.get(
+              `https://microcms.microcms.io/api/v1/blog/${params.slug}?depth=2`,
+              {
+                headers: { 'X-API-KEY': $config.apiKey },
+              }
+            )
+          ).data;
+    const popularArticles =
+      payload !== undefined
+        ? payload.popularArticles
+        : (
+            await axios.get(
+              `https://microcms.microcms.io/api/v1/popular-articles`,
+              {
+                headers: { 'X-API-KEY': $config.apiKey },
+              }
+            )
+          ).data.articles;
     const {
       data: { contents },
     } = await axios.get('https://microcms.microcms.io/api/v1/blog', {
@@ -133,6 +144,7 @@ export default {
 
     return {
       ...data,
+      popularArticles,
       body: $.html(),
       toc,
       categories: categories.data.contents,
