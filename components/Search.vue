@@ -4,7 +4,7 @@
     <input
       class="input"
       type="text"
-      @keyup.enter="
+      @keydown.enter="
         (e) => $router.push({ path: '/search', query: { q: e.target.value } })
       "
     />

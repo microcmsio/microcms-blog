@@ -7,7 +7,7 @@
           v-model="q"
           class="search"
           type="text"
-          @keyup.enter="(e) => search(e.target.value)"
+          @keydown.enter="(e) => search(e.target.value)"
         />
         <div v-show="contents.length === 0" class="loader">
           記事がありません
