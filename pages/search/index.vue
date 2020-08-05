@@ -8,6 +8,7 @@
           class="search"
           type="text"
           @keyup.enter="(e) => search(e.target.value)"
+          @keypress="setSearchable"
         />
         <div v-show="contents.length === 0" class="loader">
           記事がありません
@@ -68,6 +69,7 @@
           <span class="detail">詳しく見る</span>
         </a>
         <Categories :categories="categories" />
+        <PopularArticles :contents="popularArticles" />
       </aside>
     </div>
     <Footer />
@@ -78,7 +80,18 @@
 import axios from 'axios';
 
 export default {
-  async asyncData({ $config }) {
+  async asyncData({ payload, $config }) {
+    const popularArticles =
+      payload !== undefined && payload.popularArticles !== undefined
+        ? payload.popularArticles
+        : (
+            await axios.get(
+              `https://microcms.microcms.io/api/v1/popular-articles`,
+              {
+                headers: { 'X-API-KEY': $config.apiKey },
+              }
+            )
+          ).data.articles;
     const categories = await axios.get(
       `https://microcms.microcms.io/api/v1/categories?limit=100`,
       {
@@ -86,11 +99,13 @@ export default {
       }
     );
     return {
+      popularArticles,
       categories: categories.data.contents,
     };
   },
   data() {
     return {
+      searchable: false,
       contents: this.contents || [],
       totalCount: this.totalCount || 0,
       categories: this.categories || [],
@@ -115,8 +130,11 @@ export default {
     this.totalCount = data.totalCount;
   },
   methods: {
+    setSearchable() {
+      this.searchable = true;
+    },
     async search(q) {
-      if (!q) {
+      if (!q || !this.searchable) {
         return;
       }
       this.$nuxt.$loading.start();
@@ -126,6 +144,7 @@ export default {
       this.$nuxt.$loading.finish();
       this.contents = data.contents;
       this.totalCount = data.totalCount;
+      this.searchable = false;
     },
   },
   head() {
@@ -335,8 +354,7 @@ export default {
   }
 
   .aside {
-    margin-top: 100px;
-    width: 300px;
+    margin-top: 60px;
   }
 
   .banner {

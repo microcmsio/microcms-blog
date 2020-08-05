@@ -64,6 +64,7 @@
         </a>
         <Search />
         <Categories :categories="categories" />
+        <PopularArticles :contents="popularArticles" />
       </aside>
     </div>
     <Footer />
@@ -74,10 +75,21 @@
 import axios from 'axios';
 
 export default {
-  async asyncData({ params, $config }) {
+  async asyncData({ params, payload, $config }) {
     const page = params.id || '1';
     const categoryId = params.categoryId;
     const limit = 10;
+    const popularArticles =
+      payload !== undefined && payload.popularArticles !== undefined
+        ? payload.popularArticles
+        : (
+            await axios.get(
+              `https://microcms.microcms.io/api/v1/popular-articles`,
+              {
+                headers: { 'X-API-KEY': $config.apiKey },
+              }
+            )
+          ).data.articles;
     const { data } = await axios.get(
       `https://microcms.microcms.io/api/v1/blog?limit=${limit}${
         categoryId === undefined ? '' : `&filters=category[equals]${categoryId}`
@@ -100,6 +112,7 @@ export default {
       ...data,
       categories: categories.data.contents,
       selectedCategory,
+      popularArticles,
       page,
       pager: [...Array(Math.ceil(data.totalCount / limit)).keys()],
     };
@@ -294,8 +307,7 @@ export default {
   }
 
   .aside {
-    margin-top: 100px;
-    width: 300px;
+    margin-top: 60px;
   }
 
   .banner {

@@ -4,12 +4,30 @@
     <input
       class="input"
       type="text"
-      @keyup.enter="
-        (e) => $router.push({ path: '/search', query: { q: e.target.value } })
+      @keypress="setSearchable"
+      @keypress.enter="
+        (e) =>
+          searchable &&
+          $router.push({ path: '/search', query: { q: e.target.value } })
       "
     />
   </label>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      searchable: false,
+    };
+  },
+  methods: {
+    setSearchable() {
+      this.searchable = true;
+    },
+  },
+};
+</script>
 
 <style scoped>
 .label {
