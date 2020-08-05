@@ -7,7 +7,8 @@
           v-model="q"
           class="search"
           type="text"
-          @keydown.enter="(e) => search(e.target.value)"
+          @keyup.enter="(e) => search(e.target.value)"
+          @keypress="setSearchable"
         />
         <div v-show="contents.length === 0" class="loader">
           記事がありません
@@ -104,6 +105,7 @@ export default {
   },
   data() {
     return {
+      searchable: false,
       contents: this.contents || [],
       totalCount: this.totalCount || 0,
       categories: this.categories || [],
@@ -128,8 +130,11 @@ export default {
     this.totalCount = data.totalCount;
   },
   methods: {
+    setSearchable() {
+      this.searchable = true;
+    },
     async search(q) {
-      if (!q) {
+      if (!q || !this.searchable) {
         return;
       }
       this.$nuxt.$loading.start();
@@ -139,6 +144,7 @@ export default {
       this.$nuxt.$loading.finish();
       this.contents = data.contents;
       this.totalCount = data.totalCount;
+      this.searchable = false;
     },
   },
   head() {
@@ -348,8 +354,7 @@ export default {
   }
 
   .aside {
-    margin-top: 100px;
-    width: 300px;
+    margin-top: 60px;
   }
 
   .banner {

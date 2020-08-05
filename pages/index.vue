@@ -307,8 +307,7 @@ export default {
   }
 
   .aside {
-    margin-top: 100px;
-    width: 300px;
+    margin-top: 60px;
   }
 
   .banner {
