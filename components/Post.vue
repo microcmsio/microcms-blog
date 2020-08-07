@@ -85,7 +85,7 @@ export default {
       word-break: break-all;
     }
 
-    & >>> code {
+    & > code {
       color: var(--color-pink);
       background-color: var(--color-gray-light);
       border: 1px solid var(--color-border);
@@ -193,7 +193,7 @@ export default {
       word-break: break-all;
     }
 
-    & >>> code {
+    & > code {
       color: var(--color-pink);
       background-color: var(--color-gray-light);
       border: 1px solid var(--color-border);
