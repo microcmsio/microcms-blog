@@ -54,6 +54,15 @@ export default {
     & >>> p {
       line-height: 1.8;
       letter-spacing: 0.2px;
+
+      & > code {
+        color: var(--color-pink);
+        background-color: var(--color-gray-light);
+        border: 1px solid var(--color-border);
+        border-radius: 3px;
+        margin: 0 2px;
+        padding: 2px 4px;
+      }
     }
 
     & >>> em {
@@ -79,7 +88,7 @@ export default {
     }
 
     & >>> a {
-      color: #331cbf;
+      color: var(--color-purple);
       text-decoration: underline;
       word-wrap: break-word;
       word-break: break-all;
@@ -153,6 +162,15 @@ export default {
     & >>> p {
       line-height: 1.8;
       letter-spacing: 0.2px;
+
+      & > code {
+        color: var(--color-pink);
+        background-color: var(--color-gray-light);
+        border: 1px solid var(--color-border);
+        border-radius: 3px;
+        margin: 0 2px;
+        padding: 2px 4px;
+      }
     }
 
     & >>> em {
