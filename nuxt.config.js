@@ -3,6 +3,9 @@ require('dotenv').config();
 const { API_KEY } = process.env;
 
 export default {
+  publicRuntimeConfig: {
+    apiKey: process.env.NODE_ENV !== 'production' ? API_KEY : undefined,
+  },
   privateRuntimeConfig: {
     apiKey: API_KEY,
   },
