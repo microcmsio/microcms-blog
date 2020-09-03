@@ -2,7 +2,8 @@
   <div class="wrapper">
     <Header />
     <div class="divider">
-      <article class="article">
+      <p v-if="!data.id" class="loading">Now Loading...</p>
+      <article v-if="data.id" class="article">
         <div class="ogimageWrap">
           <img
             ref="ogimage"
@@ -57,7 +58,7 @@
             <Toc :id="data.id" :toc="toc" :visible="data.toc_visible" />
             <Post :body="data.body" />
             <Writer :writer="data.writer" />
-            <Conversion :id="id" />
+            <Conversion :id="data.id" />
             <RelatedBlogs
               v-if="data.related_blogs.length > 0"
               :blogs="data.related_blogs"
@@ -163,9 +164,6 @@ export default {
     });
     this.data.body = $.html();
   },
-  mounted() {
-    this.$refs.ogimage && this.$refs.ogimage.classList.add('loaded');
-  },
   methods: {
     getTwitterLink() {
       return `https://twitter.com/intent/tweet?text=${this.data.title}&url=https://microcms.io/blog/${this.data.id}&hashtags=microcms`;
@@ -235,6 +233,10 @@ export default {
   margin-top: 10px;
   font-size: 14px;
   font-weight: bold;
+}
+
+.loading {
+  color: var(--color-text-off);
 }
 
 @media (min-width: 1160px) {
@@ -331,14 +333,7 @@ export default {
   .ogimage {
     display: block;
     width: 100%;
-    opacity: 0;
-    transform: scale(1.1);
     transition: transform 0.5s ease, opacity 0.5s ease;
-
-    &.loaded {
-      opacity: 1;
-      transform: scale(1);
-    }
   }
 
   .container {
@@ -454,14 +449,7 @@ export default {
   .ogimage {
     display: block;
     width: 100%;
-    opacity: 0;
-    transform: scale(1.1);
     transition: transform 0.5s ease;
-
-    &.loaded {
-      opacity: 1;
-      transform: scale(1);
-    }
   }
 
   .container {
@@ -601,14 +589,7 @@ export default {
   .ogimage {
     display: block;
     width: 100%;
-    opacity: 0;
-    transform: scale(1.1);
     transition: transform 0.5s ease;
-
-    &.loaded {
-      opacity: 1;
-      transform: scale(1);
-    }
   }
 
   .container {
@@ -744,14 +725,7 @@ export default {
   .ogimage {
     display: block;
     width: 100%;
-    opacity: 0;
-    transform: scale(1.1);
     transition: transform 0.5s ease;
-
-    &.loaded {
-      opacity: 1;
-      transform: scale(1);
-    }
   }
 
   .container {
