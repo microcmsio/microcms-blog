@@ -3,19 +3,21 @@
     <Header />
     <div class="divider">
       <article class="article">
-        <img
-          ref="ogimage"
-          :src="data.ogimage.url + '?w=820&q=100'"
-          :srcset="
-            data.ogimage.url +
-            '?w=375&q=100 375w,' +
-            data.ogimage.url +
-            '?w=750&q=100 750w,' +
-            data.ogimage.url +
-            '?w=820&q=100 820w'
-          "
-          class="ogimage"
-        />
+        <div class="ogimageWrap">
+          <img
+            ref="ogimage"
+            :src="data.ogimage.url + '?w=820&q=100'"
+            :srcset="
+              data.ogimage.url +
+              '?w=375&q=100 375w,' +
+              data.ogimage.url +
+              '?w=750&q=100 750w,' +
+              data.ogimage.url +
+              '?w=820&q=100 820w'
+            "
+            class="ogimage"
+          />
+        </div>
         <Breadcrumb :category="data.category" />
         <div class="main">
           <div class="share">
