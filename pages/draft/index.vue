@@ -139,6 +139,7 @@ export default {
     if (query.id === undefined || query.draftKey === undefined) {
       return;
     }
+    // /.netlify/functions/...にすべきだが、/blog配下しかこのNetlifyでは読めないので、仕方なくnetlifyドメインを参照している
     const { data } = await axios.get(
       `https://affectionate-hoover-9cba11.netlify.app/.netlify/functions/draft?id=${query.id}&draftKey=${query.draftKey}`
     );
