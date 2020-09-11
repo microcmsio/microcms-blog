@@ -41,14 +41,15 @@
             class="page"
             :class="{ active: page === `${p + 1}` }"
           >
-            <a
-              :href="`/blog/${
+            <nuxt-link
+              :to="`/${
                 selectedCategory !== undefined
                   ? `category/${selectedCategory.id}/`
                   : ''
               }page/${p + 1}`"
-              >{{ p + 1 }}</a
             >
+              {{ p + 1 }}
+            </nuxt-link>
           </li>
         </ul>
       </div>
