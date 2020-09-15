@@ -95,7 +95,7 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
-    ['@nuxtjs/moment', ['ja']],
+    ['@nuxtjs/dayjs'],
     [
       '@nuxtjs/google-analytics',
       {
@@ -105,6 +105,10 @@ export default {
     ['@nuxtjs/sitemap'],
     '@nuxtjs/feed',
   ],
+  dayjs: {
+    locales: ['ja'],
+    defaultLocale: 'ja'
+  },
   pwa: {
     workbox: {
       offlineAssets: [
