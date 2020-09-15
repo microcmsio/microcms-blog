@@ -24,17 +24,29 @@
           <div class="share">
             <ul class="shareLists">
               <li class="shareList">
-                <a :href="getTwitterLink()" target="_blank">
+                <a
+                  :href="getTwitterLink()"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img src="/blog/images/icon_twitter.svg" alt="Twitter" />
                 </a>
               </li>
               <li class="shareList">
-                <a :href="getFacebookLink()" target="_blank">
+                <a
+                  :href="getFacebookLink()"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img src="/blog/images/icon_facebook.svg" alt="Facebook" />
                 </a>
               </li>
               <li class="shareList">
-                <a :href="getHatenaLink()" target="_blank">
+                <a
+                  :href="getHatenaLink()"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     src="/blog/images/icon_hatena.svg"
                     alt="はてなブックマーク"
@@ -42,7 +54,11 @@
                 </a>
               </li>
               <li class="shareList">
-                <a href="https://microcms.io/blog/feed.xml" target="_blank">
+                <a
+                  href="https://microcms.io/blog/feed.xml"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img src="/blog/images/icon_feed.svg" alt="フィード" />
                 </a>
               </li>
