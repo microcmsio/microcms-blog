@@ -4,7 +4,7 @@
     <div class="meta">
       <span class="timestamp">
         <img src="/blog/images/icon_clock.svg" alt />
-        {{ $moment(createdAt).format('YYYY/MM/DD') }}
+        {{ $dayjs(createdAt).format('YYYY/MM/DD') }}
       </span>
       <span class="author">
         <img src="/blog/images/icon_author.svg" alt />
