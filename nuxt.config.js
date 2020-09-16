@@ -107,7 +107,7 @@ export default {
   ],
   dayjs: {
     locales: ['ja'],
-    defaultLocale: 'ja'
+    defaultLocale: 'ja',
   },
   pwa: {
     workbox: {

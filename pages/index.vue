@@ -18,6 +18,7 @@
                 <img
                   :src="content.ogimage.url + '?w=670'"
                   class="ogimage"
+                  decoding="async"
                   alt
                 />
               </picture>
@@ -59,7 +60,12 @@
           class="banner"
           target="site"
         >
-          <img class="logo" src="/blog/images/banner_logo.svg" alt="microCMS" />
+          <img
+            class="logo"
+            src="/blog/images/banner_logo.svg"
+            alt="microCMS"
+            decoding="async"
+          />
           <p>APIベースの日本製ヘッドレスCMS</p>
           <span class="detail">詳しく見る</span>
         </a>

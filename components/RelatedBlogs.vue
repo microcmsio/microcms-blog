@@ -9,7 +9,12 @@
               type="image/webp"
               :srcset="blog.ogimage.url + '?w=820&fm=webp'"
             />
-            <img :src="blog.ogimage.url + '?w=820'" class="img" alt />
+            <img
+              :src="blog.ogimage.url + '?w=820'"
+              class="img"
+              decoding="async"
+              alt
+            />
           </picture>
           <dl class="content">
             <dt class="title">{{ blog.title }}</dt>
