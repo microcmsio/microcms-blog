@@ -161,6 +161,7 @@ export default {
     $('img').each((_, elm) => {
       $(elm).attr('class', 'lazyload');
       $(elm).attr('data-src', elm.attribs.src);
+      $(elm).removeAttr('src');
     });
 
     return {
