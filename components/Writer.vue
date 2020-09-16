@@ -2,11 +2,17 @@
   <div class="wrapper">
     <h2 class="title">ABOUT ME</h2>
     <div class="container">
-      <img
-        :src="writer.image.url + '?fit=crop&w=100&h=100&q=100'"
-        class="image"
-        alt
-      />
+      <picture>
+        <source
+          type="image/webp"
+          :data-srcset="writer.image.url + '?fit=crop&w=100&h=100&fm=webp'"
+        />
+        <img
+          :data-src="writer.image.url + '?fit=crop&w=100&h=100&q=100'"
+          class="image lazyload"
+          alt
+        />
+      </picture>
       <dl class="content">
         <dt class="name">
           {{ writer.name }}
