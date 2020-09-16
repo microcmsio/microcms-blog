@@ -7,7 +7,7 @@
           <picture>
             <source
               type="image/webp"
-              :srcset="content.ogimage.url + '?w=560&fm=webp'"
+              :data-srcset="content.ogimage.url + '?w=560&fm=webp'"
             />
             <img
               ref="ogimage"

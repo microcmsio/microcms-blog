@@ -13,7 +13,7 @@
               <picture>
                 <source
                   type="image/webp"
-                  :srcset="content.ogimage.url + '?w=670&fm=webp'"
+                  :data-srcset="content.ogimage.url + '?w=670&fm=webp'"
                 />
                 <img
                   :data-src="content.ogimage.url + '?w=670'"
