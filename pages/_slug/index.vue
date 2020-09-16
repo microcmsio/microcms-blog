@@ -86,7 +86,11 @@
           class="banner"
           target="site"
         >
-          <img class="logo" src="/blog/images/banner_logo.svg" alt="microCMS" />
+          <img
+            class="logo lazyload"
+            data-src="/blog/images/banner_logo.svg"
+            alt="microCMS"
+          />
           <p>APIベースの日本製ヘッドレスCMS</p>
           <span class="detail">詳しく見る</span>
         </a>
@@ -155,7 +159,8 @@ export default {
       $(elm).addClass('hljs');
     });
     $('img').each((_, elm) => {
-      $(elm).attr('decoding', 'async');
+      $(elm).attr('class', 'lazyload');
+      $(elm).attr('data-src', elm.attribs.src);
     });
 
     return {
