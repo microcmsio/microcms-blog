@@ -7,12 +7,11 @@
           <picture>
             <source
               type="image/webp"
-              :srcset="blog.ogimage.url + '?w=820&fm=webp'"
+              :data-srcset="blog.ogimage.url + '?w=820&fm=webp'"
             />
             <img
-              :src="blog.ogimage.url + '?w=820'"
-              class="img"
-              decoding="async"
+              :data-src="blog.ogimage.url + '?w=820'"
+              class="img lazyload"
               alt
             />
           </picture>

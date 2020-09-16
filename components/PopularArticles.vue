@@ -10,7 +10,6 @@
               :data-srcset="content.ogimage.url + '?w=560&fm=webp'"
             />
             <img
-              ref="ogimage"
               :data-src="content.ogimage.url + '?w=560&q=100'"
               class="image lazyload"
               alt

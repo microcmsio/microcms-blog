@@ -71,9 +71,10 @@ export default {
     ],
     script: [
       {
-        src: 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js',
-        async: true
-      }
+        src:
+          'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js',
+        async: true,
+      },
     ],
   },
   /*

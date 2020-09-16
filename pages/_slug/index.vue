@@ -6,8 +6,24 @@
         <div class="ogimageWrap">
           <picture>
             <source
+              media="(min-width: 1160px)"
               type="image/webp"
               :srcset="`${ogimage.url}?w=820&fm=webp, ${ogimage.url}?w=1640&fm=webp 2x`"
+            />
+            <source
+              media="(min-width: 820px)"
+              type="image/webp"
+              :srcset="`${ogimage.url}?w=740&fm=webp, ${ogimage.url}?w=1480&fm=webp 2x`"
+            />
+            <source
+              media="(min-width: 768px)"
+              type="image/webp"
+              :srcset="`${ogimage.url}?w=728&fm=webp, ${ogimage.url}?w=1456&fm=webp 2x`"
+            />
+            <source
+              media="(max-width: 768px)"
+              type="image/webp"
+              :srcset="`${ogimage.url}?w=375&fm=webp, ${ogimage.url}?w=750&fm=webp 2x`"
             />
             <img
               ref="ogimage"
@@ -86,7 +102,11 @@
           class="banner"
           target="site"
         >
-          <img class="logo" src="/blog/images/banner_logo.svg" alt="microCMS" />
+          <img
+            class="logo lazyload"
+            data-src="/blog/images/banner_logo.svg"
+            alt="microCMS"
+          />
           <p>APIベースの日本製ヘッドレスCMS</p>
           <span class="detail">詳しく見る</span>
         </a>
@@ -155,7 +175,9 @@ export default {
       $(elm).addClass('hljs');
     });
     $('img').each((_, elm) => {
-      $(elm).attr('decoding', 'async');
+      $(elm).attr('class', 'lazyload');
+      $(elm).attr('data-src', elm.attribs.src);
+      $(elm).removeAttr('src');
     });
 
     return {
