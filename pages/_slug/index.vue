@@ -753,14 +753,6 @@ export default {
   .ogimage {
     display: block;
     width: 100%;
-    opacity: 0;
-    transform: scale(1.1);
-    transition: transform 0.5s ease;
-
-    &.loaded {
-      opacity: 1;
-      transform: scale(1);
-    }
   }
 
   .container {
