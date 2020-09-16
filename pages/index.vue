@@ -16,9 +16,8 @@
                   :srcset="content.ogimage.url + '?w=670&fm=webp'"
                 />
                 <img
-                  :src="content.ogimage.url + '?w=670'"
-                  class="ogimage"
-                  decoding="async"
+                  :data-src="content.ogimage.url + '?w=670'"
+                  class="ogimage lazyload"
                   alt
                 />
               </picture>
@@ -61,10 +60,9 @@
           target="site"
         >
           <img
-            class="logo"
-            src="/blog/images/banner_logo.svg"
+            class="logo lazyload"
+            data-src="/blog/images/banner_logo.svg"
             alt="microCMS"
-            decoding="async"
           />
           <p>APIベースの日本製ヘッドレスCMS</p>
           <span class="detail">詳しく見る</span>

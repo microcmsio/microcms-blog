@@ -11,9 +11,8 @@
             />
             <img
               ref="ogimage"
-              :src="content.ogimage.url + '?w=560&q=100'"
-              class="image"
-              decoding="async"
+              :data-src="content.ogimage.url + '?w=560&q=100'"
+              class="image lazyload"
               alt
             />
           </picture>
