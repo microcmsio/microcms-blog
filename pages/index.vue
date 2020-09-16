@@ -13,11 +13,11 @@
               <picture>
                 <source
                   type="image/webp"
-                  :srcset="content.ogimage.url + '?w=670&fm=webp'"
+                  :data-srcset="content.ogimage.url + '?w=670&fm=webp'"
                 />
                 <img
-                  :src="content.ogimage.url + '?w=670'"
-                  class="ogimage"
+                  :data-src="content.ogimage.url + '?w=670'"
+                  class="ogimage lazyload"
                   alt
                 />
               </picture>
@@ -59,7 +59,11 @@
           class="banner"
           target="site"
         >
-          <img class="logo" src="/blog/images/banner_logo.svg" alt="microCMS" />
+          <img
+            class="logo lazyload"
+            data-src="/blog/images/banner_logo.svg"
+            alt="microCMS"
+          />
           <p>APIベースの日本製ヘッドレスCMS</p>
           <span class="detail">詳しく見る</span>
         </a>

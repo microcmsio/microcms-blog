@@ -7,13 +7,12 @@
           <picture>
             <source
               type="image/webp"
-              :srcset="content.ogimage.url + '?w=560&fm=webp'"
-              class="image"
+              :data-srcset="content.ogimage.url + '?w=560&fm=webp'"
             />
             <img
               ref="ogimage"
-              :src="content.ogimage.url + '?w=560&q=100'"
-              class="image"
+              :data-src="content.ogimage.url + '?w=560&q=100'"
+              class="image lazyload"
               alt
             />
           </picture>
