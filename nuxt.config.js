@@ -285,6 +285,7 @@ export default {
     hostname: 'https://microcms.io',
     exclude: ['/draft', '/404'],
     gzip: true,
+    trailingSlash: true,
   },
   feed: [
     {
