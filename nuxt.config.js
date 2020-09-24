@@ -186,6 +186,7 @@ export default {
     },
   },
   generate: {
+    interval: 100,
     async routes() {
       const range = (start, end) =>
         [...Array(end - start + 1)].map((_, i) => start + i);
