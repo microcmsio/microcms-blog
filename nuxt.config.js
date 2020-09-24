@@ -186,6 +186,7 @@ export default {
     },
   },
   generate: {
+    interval: 100,
     async routes() {
       const range = (start, end) =>
         [...Array(end - start + 1)].map((_, i) => start + i);
@@ -280,20 +281,10 @@ export default {
   },
   sitemap: {
     path: '/sitemap.xml',
-    hostname: 'https://microcms.io/blog',
-    exclude: ['/draft'],
-    routes(callback) {
-      axios
-        .get(`https://microcms.microcms.io/api/v1/blog?limit=100`, {
-          headers: { 'X-API-KEY': API_KEY },
-        })
-        .then((res) =>
-          callback(
-            null,
-            res.data.contents.map((content) => `${content.id}/`)
-          )
-        );
-    },
+    hostname: 'https://microcms.io',
+    exclude: ['/draft', '/404'],
+    gzip: true,
+    trailingSlash: true,
   },
   feed: [
     {
