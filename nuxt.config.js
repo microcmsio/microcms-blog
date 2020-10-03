@@ -298,7 +298,7 @@ export default {
         };
 
         const posts = await axios
-          .get(`https://microcms.microcms.io/api/v1/blog?limit=100`, {
+          .get(`https://microcms.microcms.io/api/v1/blog`, {
             headers: { 'X-API-KEY': API_KEY },
           })
           .then((res) => res.data.contents);
@@ -309,9 +309,9 @@ export default {
             id: post.id,
             link: `https://microcms.io/blog/${post.id}`,
             description: post.description,
-            content: post.description,
+            content: post.body,
             date: new Date(post.publishedAt || post.createdAt),
-            image: post.ogimage.url,
+            image: post.ogimage && post.ogimage.url,
           });
         });
       },
