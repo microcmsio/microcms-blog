@@ -307,7 +307,7 @@ export default {
           feed.addItem({
             title: post.title,
             id: post.id,
-            link: `https://microcms.io/blog/${post.id}`,
+            link: `https://microcms.io/blog/${post.id}/`,
             description: post.description,
             content: post.body,
             date: new Date(post.publishedAt || post.createdAt),
