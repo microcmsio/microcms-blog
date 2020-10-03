@@ -309,7 +309,7 @@ export default {
             id: post.id,
             link: `https://microcms.io/blog/${post.id}/`,
             description: post.description,
-            content: post.body,
+            content: post.description,
             date: new Date(post.publishedAt || post.createdAt),
             image: post.ogimage && post.ogimage.url,
           });
