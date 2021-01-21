@@ -2,6 +2,6 @@
   functions = "dist/api"
 
 [[redirects]]
-  from = "/blog/*"
-  to = "/blog/404.html"
+  from = "/*"
+  to = "/404.html"
   status = 404

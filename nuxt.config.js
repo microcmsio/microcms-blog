@@ -38,7 +38,7 @@ export default {
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://microcms.io/blog/',
+        content: 'https://blog.microcms.io',
       },
       { hid: 'og:title', property: 'og:title', content: 'microCMSブログ' },
       {
@@ -50,7 +50,7 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://microcms.io/blog/images/ogp.png',
+        content: 'https://blog.microcms.io/images/ogp.png',
       },
 
       { name: 'twitter:card', content: 'summary_large_image' },
@@ -65,7 +65,7 @@ export default {
       {
         rel: 'alternate',
         type: 'application/atom+xml',
-        href: 'https://microcms.io/blog/feed.xml',
+        href: 'https://blog.microcms.io/feed.xml',
         title: 'Atom',
       },
     ],
@@ -119,18 +119,18 @@ export default {
   pwa: {
     workbox: {
       offlineAssets: [
-        '/blog/images/banner_logo.svg',
-        '/blog/images/icon_author.svg',
-        '/blog/images/icon_clock.svg',
-        '/blog/images/icon_facebook.svg',
-        '/blog/images/icon_feed.svg',
-        '/blog/images/icon_hatena.svg',
-        '/blog/images/icon_menu.svg',
-        '/blog/images/icon_quote.svg',
-        '/blog/images/icon_search.svg',
-        '/blog/images/icon_twitter.svg',
-        '/blog/images/icon_link.svg',
-        '/blog/images/logo.svg',
+        '/images/banner_logo.svg',
+        '/images/icon_author.svg',
+        '/images/icon_clock.svg',
+        '/images/icon_facebook.svg',
+        '/images/icon_feed.svg',
+        '/images/icon_hatena.svg',
+        '/images/icon_menu.svg',
+        '/images/icon_quote.svg',
+        '/images/icon_search.svg',
+        '/images/icon_twitter.svg',
+        '/images/icon_link.svg',
+        '/images/logo.svg',
       ],
       runtimeCaching: [
         {
@@ -166,7 +166,6 @@ export default {
     },
   },
   router: {
-    base: '/blog',
     extendRoutes(routes, resolve) {
       routes.push({
         path: '/page/:id',
@@ -277,11 +276,11 @@ export default {
       const flattenCategoryPages = [].concat.apply([], categoryPages);
       return [index, search, ...articles, ...pages, ...flattenCategoryPages];
     },
-    dir: 'dist/blog',
+    dir: 'dist',
   },
   sitemap: {
     path: '/sitemap.xml',
-    hostname: 'https://microcms.io',
+    hostname: 'https://blog.microcms.io',
     exclude: ['/draft', '/404'],
     gzip: true,
     trailingSlash: true,
@@ -292,7 +291,7 @@ export default {
       async create(feed) {
         feed.options = {
           title: 'microCMSブログ',
-          link: 'https://microcms.io/blog/feed.xml',
+          link: 'https://blog.microcms.io/feed.xml',
           description:
             'microCMSはAPIベースの日本製ヘッドレスCMSです。本ブログはmicroCMSの開発メンバーがmicroCMSの使い方や技術的な内容を発信するブログです。',
         };
@@ -307,7 +306,7 @@ export default {
           feed.addItem({
             title: post.title,
             id: post.id,
-            link: `https://microcms.io/blog/${post.id}/`,
+            link: `https://blog.microcms.io/${post.id}/`,
             description: post.description,
             content: post.description,
             date: new Date(post.publishedAt || post.createdAt),

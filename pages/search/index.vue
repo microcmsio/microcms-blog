@@ -47,14 +47,15 @@
             class="page"
             :class="{ active: page === `${p + 1}` }"
           >
-            <a
-              :href="`/blog/${
+            <nuxt-link
+              :to="`/${
                 selectedCategory !== undefined
                   ? `category/${selectedCategory.id}/`
                   : ''
               }page/${p + 1}`"
-              >{{ p + 1 }}</a
             >
+              {{ p + 1 }}
+            </nuxt-link>
           </li>
         </ul>
       </div>
@@ -64,7 +65,7 @@
           class="banner"
           target="site"
         >
-          <img class="logo" src="/blog/images/banner_logo.svg" alt="microCMS" />
+          <img class="logo" src="/images/banner_logo.svg" alt="microCMS" />
           <p>APIベースの日本製ヘッドレスCMS</p>
           <span class="detail">詳しく見る</span>
         </a>
@@ -164,7 +165,7 @@ export default {
   border-radius: 5px;
   height: 40px;
   font-size: 16px;
-  background: url('/blog/images/icon_search.svg') no-repeat 10px center,
+  background: url('/images/icon_search.svg') no-repeat 10px center,
     var(--color-bg-purple-light);
   padding-left: 40px;
   margin-bottom: 20px;

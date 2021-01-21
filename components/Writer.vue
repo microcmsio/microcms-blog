@@ -17,11 +17,7 @@
         <dt class="name">
           {{ writer.name }}
           <a class="twitterLink" :href="`https://twitter.com/${writer.id}`">
-            <img
-              class="twitter"
-              src="/blog/images/icon_twitter.svg"
-              alt="Twitter"
-            />
+            <img class="twitter" src="/images/icon_twitter.svg" alt="Twitter" />
           </a>
         </dt>
         <dd class="text">{{ writer.text }}</dd>

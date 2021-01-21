@@ -3,11 +3,11 @@
     <header class="header">
       <h1 class="logo">
         <a href="/">
-          <img class="logoImg" src="/blog/images/logo.svg" alt="microCMS" />
+          <img class="logoImg" src="/images/logo.svg" alt="microCMS" />
         </a>
       </h1>
       <button class="menuBtn" @click="toggleOpen()">
-        <img src="/blog/images/icon_menu.svg" alt="menu" />
+        <img src="/images/icon_menu.svg" alt="menu" />
       </button>
       <div v-if="open" class="mask" @click="setOpen(false)"></div>
 
@@ -20,7 +20,7 @@
             <a href="https://microcms.io/docs/">ドキュメント</a>
           </li>
           <li class="list">
-            <a href="https://microcms.io/blog/">ブログ</a>
+            <a href="https://blog.microcms.io">ブログ</a>
           </li>
           <li class="list">
             <a href="https://microcms.io/contact">お問い合わせ</a>

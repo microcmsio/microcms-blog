@@ -45,7 +45,7 @@ export default {
   border-radius: 5px;
   height: 40px;
   font-size: 16px;
-  background: url('/blog/images/icon_search.svg') no-repeat 10px center,
+  background: url('/images/icon_search.svg') no-repeat 10px center,
     var(--color-bg-purple-light);
   padding-left: 40px;
   box-shadow: none;

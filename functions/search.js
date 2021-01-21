@@ -21,7 +21,7 @@ exports.handler = async (event) => {
     .then(({ data }) => {
       return {
         headers: {
-          'Access-Control-Allow-Origin': 'https://microcms.io',
+          'Access-Control-Allow-Origin': 'https://blog.microcms.io',
         },
         statusCode: 200,
         body: JSON.stringify(data),
@@ -29,7 +29,7 @@ exports.handler = async (event) => {
     })
     .catch((error) => ({
       headers: {
-        'Access-Control-Allow-Origin': 'https://microcms.io',
+        'Access-Control-Allow-Origin': 'https://blog.microcms.io',
       },
       statusCode: 400,
       body: String(error),

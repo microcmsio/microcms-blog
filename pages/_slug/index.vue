@@ -43,7 +43,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src="/blog/images/icon_twitter.svg" alt="Twitter" />
+                  <img src="/images/icon_twitter.svg" alt="Twitter" />
                 </a>
               </li>
               <li class="shareList">
@@ -52,7 +52,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src="/blog/images/icon_facebook.svg" alt="Facebook" />
+                  <img src="/images/icon_facebook.svg" alt="Facebook" />
                 </a>
               </li>
               <li class="shareList">
@@ -61,19 +61,16 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img
-                    src="/blog/images/icon_hatena.svg"
-                    alt="はてなブックマーク"
-                  />
+                  <img src="/images/icon_hatena.svg" alt="はてなブックマーク" />
                 </a>
               </li>
               <li class="shareList">
                 <a
-                  href="https://microcms.io/blog/feed.xml"
+                  href="https://blog.microcms.io/feed.xml"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src="/blog/images/icon_feed.svg" alt="フィード" />
+                  <img src="/images/icon_feed.svg" alt="フィード" />
                 </a>
               </li>
             </ul>
@@ -104,7 +101,7 @@
         >
           <img
             class="logo lazyload"
-            data-src="/blog/images/banner_logo.svg"
+            data-src="/images/banner_logo.svg"
             alt="microCMS"
           />
           <p>APIベースの日本製ヘッドレスCMS</p>
@@ -196,13 +193,13 @@ export default {
   },
   methods: {
     getTwitterLink() {
-      return `https://twitter.com/intent/tweet?text=${this.title}&url=https://microcms.io/blog/${this.id}&hashtags=microcms`;
+      return `https://twitter.com/intent/tweet?text=${this.title}&url=https://blog.microcms.io/${this.id}/&hashtags=microcms`;
     },
     getFacebookLink() {
-      return `https://www.facebook.com/sharer.php?u=https://microcms.io/blog/${this.id}`;
+      return `https://www.facebook.com/sharer.php?u=https://blog.microcms.io/${this.id}/`;
     },
     getHatenaLink() {
-      return `https://b.hatena.ne.jp/entry/https://microcms.io/blog/${this.id}`;
+      return `https://b.hatena.ne.jp/entry/https://blog.microcms.io/${this.id}/`;
     },
   },
   head() {
@@ -219,7 +216,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://microcms.io/blog/${this.id}`,
+          content: `https://blog.microcms.io/${this.id}/`,
         },
         {
           hid: 'og:image',

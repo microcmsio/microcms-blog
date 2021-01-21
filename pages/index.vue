@@ -61,7 +61,7 @@
         >
           <img
             class="logo lazyload"
-            data-src="/blog/images/banner_logo.svg"
+            data-src="/images/banner_logo.svg"
             alt="microCMS"
           />
           <p>APIベースの日本製ヘッドレスCMS</p>

@@ -29,7 +29,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src="/blog/images/icon_twitter.svg" alt="Twitter" />
+                  <img src="/images/icon_twitter.svg" alt="Twitter" />
                 </a>
               </li>
               <li class="shareList">
@@ -38,7 +38,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src="/blog/images/icon_facebook.svg" alt="Facebook" />
+                  <img src="/images/icon_facebook.svg" alt="Facebook" />
                 </a>
               </li>
               <li class="shareList">
@@ -47,19 +47,16 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img
-                    src="/blog/images/icon_hatena.svg"
-                    alt="はてなブックマーク"
-                  />
+                  <img src="/images/icon_hatena.svg" alt="はてなブックマーク" />
                 </a>
               </li>
               <li class="shareList">
                 <a
-                  href="https://microcms.io/blog/feed.xml"
+                  href="https://blog.microcms.io/feed.xml"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src="/blog/images/icon_feed.svg" alt="フィード" />
+                  <img src="/images/icon_feed.svg" alt="フィード" />
                 </a>
               </li>
             </ul>
@@ -84,7 +81,7 @@
       </article>
       <aside class="aside">
         <a href="https://microcms.io" class="banner">
-          <img class="logo" src="/blog/images/banner_logo.svg" alt="microCMS" />
+          <img class="logo" src="/images/banner_logo.svg" alt="microCMS" />
           <p>APIベースの日本製ヘッドレスCMS</p>
           <span class="detail">詳しく見る</span>
         </a>
@@ -156,9 +153,8 @@ export default {
     if (query.id === undefined || query.draftKey === undefined) {
       return;
     }
-    // /.netlify/functions/...にすべきだが、/blog配下しかこのNetlifyでは読めないので、仕方なくnetlifyドメインを参照している
     const { data } = await axios.get(
-      `https://affectionate-hoover-9cba11.netlify.app/.netlify/functions/draft?id=${query.id}&draftKey=${query.draftKey}`
+      `/.netlify/functions/draft?id=${query.id}&draftKey=${query.draftKey}`
     );
     this.data = data;
 
@@ -182,13 +178,13 @@ export default {
   },
   methods: {
     getTwitterLink() {
-      return `https://twitter.com/intent/tweet?text=${this.data.title}&url=https://microcms.io/blog/${this.data.id}&hashtags=microcms`;
+      return `https://twitter.com/intent/tweet?text=${this.data.title}&url=https://blog.microcms.io/${this.data.id}/&hashtags=microcms`;
     },
     getFacebookLink() {
-      return `https://www.facebook.com/sharer.php?u=https://microcms.io/blog/${this.data.id}`;
+      return `https://www.facebook.com/sharer.php?u=https://blog.microcms.io/${this.data.id}/`;
     },
     getHatenaLink() {
-      return `https://b.hatena.ne.jp/entry/https://microcms.io/blog/${this.data.id}`;
+      return `https://b.hatena.ne.jp/entry/https://blog.microcms.io/${this.data.id}/`;
     },
   },
   head() {
@@ -213,7 +209,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://microcms.io/blog/${this.data && this.data.id}`,
+          content: `https://blog.microcms.io/${this.data && this.data.id}`,
         },
         {
           hid: 'og:image',

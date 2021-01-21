@@ -18,7 +18,7 @@
         target="site"
         :href="`https://microcms.io/?utm_source=CTA&utm_medium=content-text&utm_campaign=blog-${id}-01`"
         >⇒日本製のヘッドレスCMS【microCMS】の詳細を見る<img
-          src="/blog/images/icon_link.svg"
+          src="/images/icon_link.svg"
           alt=""
       /></a>
 

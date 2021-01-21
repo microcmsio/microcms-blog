@@ -3,11 +3,11 @@
     <span v-if="category" class="category">{{ category.name }}</span>
     <div class="meta">
       <span class="timestamp">
-        <img src="/blog/images/icon_clock.svg" alt />
+        <img src="/images/icon_clock.svg" alt />
         {{ $dayjs(createdAt).format('YYYY/MM/DD') }}
       </span>
       <span class="author">
-        <img src="/blog/images/icon_author.svg" alt />
+        <img src="/images/icon_author.svg" alt />
         {{ author }}
       </span>
     </div>
