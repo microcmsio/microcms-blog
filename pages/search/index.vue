@@ -118,9 +118,7 @@ export default {
   async created() {
     const query = this.$route.query;
     const { data } = query.q
-      ? await axios.get(
-          `https://affectionate-hoover-9cba11.netlify.app/.netlify/functions/search?q=${query.q}`
-        )
+      ? await axios.get(`/.netlify/functions/search?q=${query.q}`)
       : {
           data: {
             contents: [],
@@ -139,9 +137,7 @@ export default {
         return;
       }
       this.$nuxt.$loading.start();
-      const { data } = await axios.get(
-        `https://affectionate-hoover-9cba11.netlify.app/.netlify/functions/search?q=${q}`
-      );
+      const { data } = await axios.get(`/.netlify/functions/search?q=${q}`);
       this.$nuxt.$loading.finish();
       this.contents = data.contents;
       this.totalCount = data.totalCount;
