@@ -17,7 +17,7 @@
             <a href="https://microcms.io/pricing">料金</a>
           </li>
           <li class="list">
-            <a href="https://microcms.io/docs/">ドキュメント</a>
+            <a href="https://document.microcms.io">ドキュメント</a>
           </li>
           <li class="list">
             <a href="https://blog.microcms.io">ブログ</a>
