@@ -315,7 +315,7 @@ export default {
         });
       },
       cacheTime: 1000 * 60 * 15,
-      type: 'atom1',
+      type: 'rss2',
     },
     {
       path: '/feed_update.xml',
@@ -349,7 +349,7 @@ export default {
         });
       },
       cacheTime: 1000 * 60 * 15,
-      type: 'atom1',
+      type: 'rss2',
     },
     {
       path: '/feed_usecase.xml',
