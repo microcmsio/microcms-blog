@@ -383,7 +383,7 @@ export default {
         });
       },
       cacheTime: 1000 * 60 * 15,
-      type: 'atom1',
+      type: 'rss2',
     },
   ],
 };
