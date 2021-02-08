@@ -317,5 +317,73 @@ export default {
       cacheTime: 1000 * 60 * 15,
       type: 'atom1',
     },
+    {
+      path: '/feed_update.xml',
+      async create(feed) {
+        feed.options = {
+          title: '更新情報｜microCMSブログ',
+          link: 'https://blog.microcms.io/feed.xml',
+          description:
+            'microCMSはAPIベースの日本製ヘッドレスCMSです。本ブログはmicroCMSの開発メンバーがmicroCMSの使い方や技術的な内容を発信するブログです。',
+        };
+
+        const posts = await axios
+          .get(
+            `https://microcms.microcms.io/api/v1/blog?filters=category[equals]update`,
+            {
+              headers: { 'X-API-KEY': API_KEY },
+            }
+          )
+          .then((res) => res.data.contents);
+
+        posts.forEach((post) => {
+          feed.addItem({
+            title: post.title,
+            id: post.id,
+            link: `https://blog.microcms.io/${post.id}/`,
+            description: post.description,
+            content: post.description,
+            date: new Date(post.publishedAt || post.createdAt),
+            image: post.ogimage && post.ogimage.url,
+          });
+        });
+      },
+      cacheTime: 1000 * 60 * 15,
+      type: 'atom1',
+    },
+    {
+      path: '/feed_usecase.xml',
+      async create(feed) {
+        feed.options = {
+          title: '導入事例｜microCMSブログ',
+          link: 'https://blog.microcms.io/feed.xml',
+          description:
+            'microCMSはAPIベースの日本製ヘッドレスCMSです。本ブログはmicroCMSの開発メンバーがmicroCMSの使い方や技術的な内容を発信するブログです。',
+        };
+
+        const posts = await axios
+          .get(
+            `https://microcms.microcms.io/api/v1/blog?filters=category[equals]usecase`,
+            {
+              headers: { 'X-API-KEY': API_KEY },
+            }
+          )
+          .then((res) => res.data.contents);
+
+        posts.forEach((post) => {
+          feed.addItem({
+            title: post.title,
+            id: post.id,
+            link: `https://blog.microcms.io/${post.id}/`,
+            description: post.description,
+            content: post.description,
+            date: new Date(post.publishedAt || post.createdAt),
+            image: post.ogimage && post.ogimage.url,
+          });
+        });
+      },
+      cacheTime: 1000 * 60 * 15,
+      type: 'atom1',
+    },
   ],
 };
