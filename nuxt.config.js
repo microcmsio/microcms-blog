@@ -1,6 +1,6 @@
 import axios from 'axios';
 require('dotenv').config();
-const { API_KEY, SERVICE_ID } = process.env;
+const { API_KEY, SERVICE_ID, GA_ID } = process.env;
 
 export default {
   publicRuntimeConfig: {
@@ -108,7 +108,7 @@ export default {
     [
       '@nuxtjs/google-analytics',
       {
-        id: 'UA-109902480-8',
+        id: GA_ID,
       },
     ],
     ['@nuxtjs/sitemap'],
