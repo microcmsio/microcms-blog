@@ -103,16 +103,19 @@ import hljs from 'highlight.js';
 export default {
   async asyncData({ $config }) {
     const categories = await axios.get(
-      `https://microcms.microcms.io/api/v1/categories?limit=100`,
+      `https://${$config.serviceId}.microcms.io/api/v1/categories?limit=100`,
       {
         headers: { 'X-API-KEY': $config.apiKey },
       }
     );
     const {
       data: { contents },
-    } = await axios.get('https://microcms.microcms.io/api/v1/blog', {
-      headers: { 'X-API-KEY': $config.apiKey },
-    });
+    } = await axios.get(
+      `https://${$config.serviceId}.microcms.io/api/v1/blog`,
+      {
+        headers: { 'X-API-KEY': $config.apiKey },
+      }
+    );
     return {
       categories: categories.data.contents,
       contents,

@@ -130,7 +130,7 @@ export default {
         ? payload.content
         : (
             await axios.get(
-              `https://microcms.microcms.io/api/v1/blog/${params.slug}?depth=2`,
+              `https://${$config.serviceId}.microcms.io/api/v1/blog/${params.slug}?depth=2`,
               {
                 headers: { 'X-API-KEY': $config.apiKey },
               }
@@ -141,7 +141,7 @@ export default {
         ? payload.popularArticles
         : (
             await axios.get(
-              `https://microcms.microcms.io/api/v1/popular-articles`,
+              `https://${$config.serviceId}.microcms.io/api/v1/popular-articles`,
               {
                 headers: { 'X-API-KEY': $config.apiKey },
               }
@@ -149,11 +149,14 @@ export default {
           ).data.articles;
     const {
       data: { contents },
-    } = await axios.get('https://microcms.microcms.io/api/v1/blog', {
-      headers: { 'X-API-KEY': $config.apiKey },
-    });
+    } = await axios.get(
+      `https://${$config.serviceId}.microcms.io/api/v1/blog`,
+      {
+        headers: { 'X-API-KEY': $config.apiKey },
+      }
+    );
     const categories = await axios.get(
-      `https://microcms.microcms.io/api/v1/categories?limit=100`,
+      `https://${$config.serviceId}.microcms.io/api/v1/categories?limit=100`,
       {
         headers: { 'X-API-KEY': $config.apiKey },
       }
