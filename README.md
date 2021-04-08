@@ -1,20 +1,50 @@
 # microcms-blog
+サイト: https://blog.microcms.io
 
-## Build Setup
+## 機能
+- 記事一覧
+- カテゴリー別記事一覧
+- 人気の記事一覧
+- 最新の記事一覧
+- パンくずリスト
+- 記事詳細
+  - 目次
+  - 著者
+  - SNSシェアボタン
+  - 下書きプレビュー
+  - 関連記事
+- サイトマップ
+- Google Analytics
+- RSS
+- PWA
+
+## 技術構成
+- Nuxt（SSG）
+- microCMS（コンテンツ）
+- Netlify（Hosting, Functions）
+- ESLint
+- Prettier
+- PostCSS
+- PWA
+
+## 開発方法
 
 ```bash
-# install dependencies
+# パッケージをインストール
 $ npm install
 
-# serve with hot reload at localhost:3000
+# 開発サーバーを起動（localhost:3000）
 $ npm run dev
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+# Netlify Functionsをローカルで起動（localhost:9000）
+$ npm run functions:serve
 
-# generate static project
+# アプリケーションを静的生成
 $ npm run generate
+
+# 静的生成したアプリケーションを起動
+$ npm start
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+## ライセンス
+Apache License 2.0
