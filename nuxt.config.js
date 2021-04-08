@@ -113,11 +113,13 @@ export default {
     ],
     ['@nuxtjs/sitemap'],
     '@nuxtjs/feed',
+    '@nuxtjs/proxy',
   ],
   dayjs: {
     locales: ['ja'],
     defaultLocale: 'ja',
   },
+  proxy: ['http://localhost:9000/.netlify'],
   pwa: {
     workbox: {
       offlineAssets: [
