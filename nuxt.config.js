@@ -1,13 +1,15 @@
 import axios from 'axios';
 require('dotenv').config();
-const { API_KEY } = process.env;
+const { API_KEY, SERVICE_ID } = process.env;
 
 export default {
   publicRuntimeConfig: {
     apiKey: process.env.NODE_ENV !== 'production' ? API_KEY : undefined,
+    serviceId: process.env.NODE_ENV !== 'production' ? SERVICE_ID : undefined,
   },
   privateRuntimeConfig: {
     apiKey: API_KEY,
+    serviceId: SERVICE_ID,
   },
   mode: 'universal',
   target: 'static',
@@ -191,7 +193,7 @@ export default {
         [...Array(end - start + 1)].map((_, i) => start + i);
       const limit = 50;
       const popularArticles = await axios
-        .get(`https://microcms.microcms.io/api/v1/popular-articles`, {
+        .get(`https://${SERVICE_ID}.microcms.io/api/v1/popular-articles`, {
           headers: { 'X-API-KEY': API_KEY },
         })
         .then(({ data }) => {
@@ -200,7 +202,7 @@ export default {
       const getArticles = (offset = 0) => {
         return axios
           .get(
-            `https://microcms.microcms.io/api/v1/blog?offset=${offset}&limit=${limit}&depth=2`,
+            `https://${SERVICE_ID}.microcms.io/api/v1/blog?offset=${offset}&limit=${limit}&depth=2`,
             {
               headers: { 'X-API-KEY': API_KEY },
             }
@@ -229,9 +231,12 @@ export default {
 
       // 一覧のページング
       const pages = await axios
-        .get(`https://microcms.microcms.io/api/v1/blog?limit=1&fields=id`, {
-          headers: { 'X-API-KEY': API_KEY },
-        })
+        .get(
+          `https://${SERVICE_ID}.microcms.io/api/v1/blog?limit=1&fields=id`,
+          {
+            headers: { 'X-API-KEY': API_KEY },
+          }
+        )
         .then((res) =>
           range(1, Math.ceil(res.data.totalCount / 10)).map((p) => ({
             route: `/page/${p}`,
@@ -246,7 +251,7 @@ export default {
       };
 
       const categories = await axios
-        .get(`https://microcms.microcms.io/api/v1/categories?fields=id`, {
+        .get(`https://${SERVICE_ID}.microcms.io/api/v1/categories?fields=id`, {
           headers: { 'X-API-KEY': API_KEY },
         })
         .then(({ data }) => {
@@ -258,7 +263,7 @@ export default {
         categories.map((category) =>
           axios
             .get(
-              `https://microcms.microcms.io/api/v1/blog?limit=1&fields=id&filters=category[equals]${category}`,
+              `https://${SERVICE_ID}.microcms.io/api/v1/blog?limit=1&fields=id&filters=category[equals]${category}`,
               {
                 headers: {
                   'X-API-KEY': API_KEY,
@@ -297,7 +302,7 @@ export default {
         };
 
         const posts = await axios
-          .get(`https://microcms.microcms.io/api/v1/blog`, {
+          .get(`https://${SERVICE_ID}.microcms.io/api/v1/blog`, {
             headers: { 'X-API-KEY': API_KEY },
           })
           .then((res) => res.data.contents);
@@ -329,7 +334,7 @@ export default {
 
         const posts = await axios
           .get(
-            `https://microcms.microcms.io/api/v1/blog?filters=category[equals]update`,
+            `https://${SERVICE_ID}.microcms.io/api/v1/blog?filters=category[equals]update`,
             {
               headers: { 'X-API-KEY': API_KEY },
             }
@@ -363,7 +368,7 @@ export default {
 
         const posts = await axios
           .get(
-            `https://microcms.microcms.io/api/v1/blog?filters=category[equals]usecase`,
+            `https://${SERVICE_ID}.microcms.io/api/v1/blog?filters=category[equals]usecase`,
             {
               headers: { 'X-API-KEY': API_KEY },
             }

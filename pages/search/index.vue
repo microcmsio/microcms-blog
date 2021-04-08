@@ -87,14 +87,14 @@ export default {
         ? payload.popularArticles
         : (
             await axios.get(
-              `https://microcms.microcms.io/api/v1/popular-articles`,
+              `https://${$config.serviceId}.microcms.io/api/v1/popular-articles`,
               {
                 headers: { 'X-API-KEY': $config.apiKey },
               }
             )
           ).data.articles;
     const categories = await axios.get(
-      `https://microcms.microcms.io/api/v1/categories?limit=100`,
+      `https://${$config.serviceId}.microcms.io/api/v1/categories?limit=100`,
       {
         headers: { 'X-API-KEY': $config.apiKey },
       }

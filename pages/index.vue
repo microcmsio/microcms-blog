@@ -89,14 +89,14 @@ export default {
         ? payload.popularArticles
         : (
             await axios.get(
-              `https://microcms.microcms.io/api/v1/popular-articles`,
+              `https://${$config.serviceId}.microcms.io/api/v1/popular-articles`,
               {
                 headers: { 'X-API-KEY': $config.apiKey },
               }
             )
           ).data.articles;
     const { data } = await axios.get(
-      `https://microcms.microcms.io/api/v1/blog?limit=${limit}${
+      `https://${$config.serviceId}.microcms.io/api/v1/blog?limit=${limit}${
         categoryId === undefined ? '' : `&filters=category[equals]${categoryId}`
       }&offset=${(page - 1) * limit}`,
       {
@@ -104,7 +104,7 @@ export default {
       }
     );
     const categories = await axios.get(
-      `https://microcms.microcms.io/api/v1/categories?limit=100`,
+      `https://${$config.serviceId}.microcms.io/api/v1/categories?limit=100`,
       {
         headers: { 'X-API-KEY': $config.apiKey },
       }
