@@ -22,17 +22,11 @@ exports.handler = async (event) => {
     )
     .then(({ data }) => {
       return {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-        },
         statusCode: 200,
         body: JSON.stringify(data),
       };
     })
     .catch((error) => ({
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
       statusCode: 400,
       body: String(error),
     }));
