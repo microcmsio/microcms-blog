@@ -10,54 +10,66 @@
           @keyup.enter="(e) => search(e.target.value)"
           @keypress="setSearchable"
         />
-        <div v-show="contents.length === 0" class="loader">
-          記事がありません
+        <div v-if="loading === true" class="loader">
+          <img
+            class="loadingIcon"
+            src="/images/icon_loading.svg"
+            alt="検索中..."
+          />
         </div>
-        <ul>
-          <li v-for="content in contents" :key="content.id" class="list">
-            <nuxt-link :to="`/${content.id}`" class="link">
-              <picture>
-                <source
-                  type="image/webp"
-                  :srcset="content.ogimage.url + '?w=670&fm=webp'"
-                />
-                <img
-                  :src="content.ogimage.url + '?w=670'"
-                  class="ogimage"
-                  alt
-                />
-              </picture>
-              <dl class="content">
-                <dt class="title">{{ content.title }}</dt>
-                <dd>
-                  <Meta
-                    :created-at="content.publishedAt || content.createdAt"
-                    :author="content.writer.name"
-                    :category="content.category"
-                  />
-                </dd>
-              </dl>
-            </nuxt-link>
-          </li>
-        </ul>
-        <ul v-show="contents.length > 0" class="pager">
-          <li
-            v-for="p in pager"
-            :key="p"
-            class="page"
-            :class="{ active: page === `${p + 1}` }"
+        <div v-else>
+          <div
+            v-show="loading === false && contents.length === 0"
+            class="loader"
           >
-            <nuxt-link
-              :to="`/${
-                selectedCategory !== undefined
-                  ? `category/${selectedCategory.id}/`
-                  : ''
-              }page/${p + 1}`"
+            記事がありません
+          </div>
+          <ul>
+            <li v-for="content in contents" :key="content.id" class="list">
+              <nuxt-link :to="`/${content.id}`" class="link">
+                <picture>
+                  <source
+                    type="image/webp"
+                    :srcset="content.ogimage.url + '?w=670&fm=webp'"
+                  />
+                  <img
+                    :src="content.ogimage.url + '?w=670'"
+                    class="ogimage"
+                    alt
+                  />
+                </picture>
+                <dl class="content">
+                  <dt class="title">{{ content.title }}</dt>
+                  <dd>
+                    <Meta
+                      :created-at="content.publishedAt || content.createdAt"
+                      :author="content.writer.name"
+                      :category="content.category"
+                    />
+                  </dd>
+                </dl>
+              </nuxt-link>
+            </li>
+          </ul>
+          <ul v-show="contents.length > 0" class="pager">
+            <li
+              v-for="p in pager"
+              :key="p"
+              class="page"
+              :class="{ active: page === `${p + 1}` }"
             >
-              {{ p + 1 }}
-            </nuxt-link>
-          </li>
-        </ul>
+              <nuxt-link
+                :to="`/${
+                  selectedCategory !== undefined
+                    ? `category/${selectedCategory.id}/`
+                    : ''
+                }page/${p + 1}`"
+              >
+                {{ p + 1 }}
+              </nuxt-link>
+            </li>
+          </ul>
+        </div>
       </div>
       <aside class="aside">
         <a
@@ -106,7 +118,7 @@ export default {
   },
   data() {
     return {
-      searchable: false,
+      searchable: true,
       contents: this.contents || [],
       totalCount: this.totalCount || 0,
       categories: this.categories || [],
@@ -115,18 +127,9 @@ export default {
       q: this.$route.query.q,
     };
   },
-  async created() {
+  created() {
     const query = this.$route.query;
-    const { data } = query.q
-      ? await axios.get(`/.netlify/functions/search?q=${query.q}`)
-      : {
-          data: {
-            contents: [],
-            totalCount: 0,
-          },
-        };
-    this.contents = data.contents;
-    this.totalCount = data.totalCount;
+    this.search(query.q);
   },
   methods: {
     setSearchable() {
@@ -136,12 +139,18 @@ export default {
       if (!q || !this.searchable) {
         return;
       }
-      this.$nuxt.$loading.start();
+      this.loadingStart();
       const { data } = await axios.get(`/.netlify/functions/search?q=${q}`);
-      this.$nuxt.$loading.finish();
+      this.loadingFinish();
       this.contents = data.contents;
       this.totalCount = data.totalCount;
       this.searchable = false;
+    },
+    loadingStart() {
+      this.loading = true;
+    },
+    loadingFinish() {
+      this.loading = false;
     },
   },
   head() {
@@ -177,6 +186,11 @@ export default {
     outline: none;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) inset;
   }
+}
+
+.loadingIcon {
+  width: 38px;
+  height: 38px;
 }
 
 @media (min-width: 1160px) {
@@ -305,6 +319,7 @@ export default {
 @media (min-width: 820px) and (max-width: 1160px) {
   .loader {
     color: #ccc;
+    text-align: center;
     font-size: 16px;
     padding-top: 20px;
   }
@@ -425,6 +440,7 @@ export default {
 @media (max-width: 820px) {
   .loader {
     color: #ccc;
+    text-align: center;
     font-size: 16px;
     padding-top: 20px;
   }
