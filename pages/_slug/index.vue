@@ -35,46 +35,7 @@
         </div>
         <Breadcrumb :category="category" />
         <div class="main">
-          <div class="share">
-            <ul class="shareLists">
-              <li class="shareList">
-                <a
-                  :href="getTwitterLink()"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src="/images/icon_twitter.svg" alt="Twitter" />
-                </a>
-              </li>
-              <li class="shareList">
-                <a
-                  :href="getFacebookLink()"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src="/images/icon_facebook.svg" alt="Facebook" />
-                </a>
-              </li>
-              <li class="shareList">
-                <a
-                  :href="getHatenaLink()"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src="/images/icon_hatena.svg" alt="はてなブックマーク" />
-                </a>
-              </li>
-              <li class="shareList">
-                <a
-                  href="https://blog.microcms.io/feed.xml"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src="/images/icon_feed.svg" alt="フィード" />
-                </a>
-              </li>
-            </ul>
-          </div>
+          <Share :id="id" :title="title" />
           <div class="container">
             <h1 class="title">{{ title }}</h1>
             <Meta
@@ -196,17 +157,6 @@ export default {
       ogimage: null,
     };
   },
-  methods: {
-    getTwitterLink() {
-      return `https://twitter.com/intent/tweet?text=${this.title}&url=https://blog.microcms.io/${this.id}/&hashtags=microcms`;
-    },
-    getFacebookLink() {
-      return `https://www.facebook.com/sharer.php?u=https://blog.microcms.io/${this.id}/`;
-    },
-    getHatenaLink() {
-      return `https://b.hatena.ne.jp/entry/https://blog.microcms.io/${this.id}/`;
-    },
-  },
   head() {
     return {
       title: this.title,
@@ -269,27 +219,6 @@ export default {
     display: flex;
     justify-content: space-between;
     margin-top: 40px;
-  }
-
-  .share {
-    width: 24px;
-    padding-top: 16px;
-
-    img {
-      max-width: 24px;
-      max-height: 24px;
-    }
-  }
-
-  .shareLists {
-    display: block;
-    position: sticky;
-    top: 120px;
-  }
-
-  .shareList {
-    text-align: center;
-    margin-bottom: 20px;
   }
 
   .banner {
@@ -384,27 +313,6 @@ export default {
     justify-content: space-between;
     margin-top: 40px;
     align-items: strech;
-  }
-
-  .share {
-    width: 24px;
-    padding-top: 16px;
-
-    img {
-      max-width: 24px;
-      max-height: 24px;
-    }
-  }
-
-  .shareLists {
-    display: block;
-    position: sticky;
-    top: 120px;
-  }
-
-  .shareList {
-    text-align: center;
-    margin-bottom: 20px;
   }
 
   .banner {
@@ -525,27 +433,6 @@ export default {
     align-items: strech;
   }
 
-  .share {
-    width: 24px;
-    padding-top: 16px;
-
-    img {
-      max-width: 24px;
-      max-height: 24px;
-    }
-  }
-
-  .shareLists {
-    display: block;
-    position: sticky;
-    top: 100px;
-  }
-
-  .shareList {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
   .banner {
     display: flex;
     justify-content: center;
@@ -661,24 +548,6 @@ export default {
     display: flex;
     flex-direction: column-reverse;
     margin-top: 30px;
-  }
-
-  .share {
-    margin: 40px 0 0;
-
-    img {
-      max-height: 20px;
-    }
-  }
-
-  .shareLists {
-    display: flex;
-    justify-content: center;
-  }
-
-  .shareList {
-    text-align: center;
-    margin: 0 20px;
   }
 
   .banner {
