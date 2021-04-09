@@ -29,7 +29,7 @@
 
 ## microCMSのAPIスキーマ設定
 ### ブログ
-endpoint: blog
+endpoint: blog  
 type: リスト形式
 
 | フィールドID | 表示名 | 種類 |
@@ -45,7 +45,7 @@ type: リスト形式
 | related_blogs | 関連記事 | 複数コンテンツ参照 - ブログ |
 
 ### 著者
-endpoint: authors
+endpoint: authors  
 type: リスト形式
 
 | フィールドID | 表示名 | 種類 |
@@ -55,7 +55,7 @@ type: リスト形式
 | image | 画像 | 画像 |
 
 ### カテゴリー
-endpoint: categories
+endpoint: categories  
 type: リスト形式
 
 | フィールドID | 表示名 | 種類 |
@@ -63,7 +63,7 @@ type: リスト形式
 | name | 名前 | テキストフィールド |
 
 ### パートナー
-endpoint: partners
+endpoint: partners  
 type: リスト形式
 
 | フィールドID | 表示名 | 種類 |
@@ -74,7 +74,7 @@ type: リスト形式
 | logo | ロゴ | 画像 |
 
 ### 人気の記事
-endpoint: popular-articles
+endpoint: popular-articles  
 type: オブジェクト形式
 
 | フィールドID | 表示名 | 種類 |
