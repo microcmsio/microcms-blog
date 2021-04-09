@@ -2,7 +2,7 @@
   <div class="wrapper">
     <h2 class="title">ABOUT ME</h2>
     <div class="container">
-      <picture>
+      <picture v-if="writer.image">
         <source
           type="image/webp"
           :data-srcset="writer.image.url + '?fit=crop&w=100&h=100&fm=webp'"

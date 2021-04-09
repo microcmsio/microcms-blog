@@ -24,7 +24,7 @@ export default {
     author: {
       type: String,
       required: false,
-      default: undefined,
+      default: '',
     },
     category: {
       type: Object,

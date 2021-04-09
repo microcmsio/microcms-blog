@@ -4,7 +4,7 @@
     <div class="divider">
       <article class="article">
         <div class="ogimageWrap">
-          <picture>
+          <picture v-if="ogimage">
             <source
               media="(min-width: 1160px)"
               type="image/webp"
@@ -79,12 +79,12 @@
             <h1 class="title">{{ title }}</h1>
             <Meta
               :created-at="publishedAt || createdAt"
-              :author="writer.name"
+              :author="writer !== null ? writer.name : ''"
               :category="category"
             />
             <Toc :id="id" :toc="toc" :visible="toc_visible" />
             <Post :body="body" />
-            <Writer :writer="writer" />
+            <Writer v-if="writer" :writer="writer" />
             <Partner v-if="partner" :partner="partner" />
             <Conversion :id="id" />
             <RelatedBlogs
@@ -193,6 +193,7 @@ export default {
   data() {
     return {
       publishedAt: '',
+      ogimage: null,
     };
   },
   methods: {

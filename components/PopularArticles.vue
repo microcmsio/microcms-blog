@@ -4,7 +4,7 @@
     <ul>
       <li v-for="content in contents" :key="content.id" class="list">
         <nuxt-link :to="`/${content.id}`" class="link">
-          <picture>
+          <picture v-if="content.ogimage">
             <source
               type="image/webp"
               :data-srcset="content.ogimage.url + '?w=560&fm=webp'"

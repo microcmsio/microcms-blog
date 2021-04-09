@@ -3,7 +3,10 @@
     <li class="breadcrumbList">
       <nuxt-link to="/">記事一覧</nuxt-link>
     </li>
-    <li v-if="category !== undefined" class="breadcrumbList">
+    <li
+      v-if="category !== undefined && category !== null"
+      class="breadcrumbList"
+    >
       <nuxt-link :to="`/category/${category.id}/page/1`">{{
         category.name
       }}</nuxt-link>
