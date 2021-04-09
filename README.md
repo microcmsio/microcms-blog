@@ -81,6 +81,19 @@ type: オブジェクト形式
 | ------------- | ------------- | ----- |
 | articles | 人気の記事 | 複数コンテンツ参照 - ブログ |
 
+## 環境変数
+プロジェクトルートに`.env`ファイルを作成し、以下の項目を設定してください。
+- API_KEY（microCMSのAPIキー）
+- SERVICE_ID（microCMSのサービスID）
+- GA_ID（Google AnalyticsのID）
+
+例:
+```
+API_KEY=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+SERVICE_ID=your-service-id
+GA_ID=UA-xxxxxxxxx-x
+```
+
 ## 開発方法
 
 ```bash
