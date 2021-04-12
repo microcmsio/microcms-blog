@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style scoped>
-@media (min-width: 1160px) {
+@media (min-width: 820px) {
   .share {
     width: 24px;
     padding-top: 16px;
