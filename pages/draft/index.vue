@@ -42,11 +42,7 @@
         </div>
       </article>
       <aside class="aside">
-        <a href="https://microcms.io" class="banner">
-          <img class="logo" src="/images/banner_logo.svg" alt="microCMS" />
-          <p>APIベースの日本製ヘッドレスCMS</p>
-          <span class="detail">詳しく見る</span>
-        </a>
+        <Banner :id="`draft-${id}`" :banner="banner" />
         <Search />
         <Categories :categories="categories" />
         <Latest :contents="contents" />
@@ -69,6 +65,14 @@ export default {
         headers: { 'X-API-KEY': $config.apiKey },
       }
     );
+    const banner = (
+      await axios.get(
+        `https://${$config.serviceId}.microcms.io/api/v1/banner`,
+        {
+          headers: { 'X-API-KEY': $config.apiKey },
+        }
+      )
+    ).data;
     const {
       data: { contents },
     } = await axios.get(
@@ -79,6 +83,7 @@ export default {
     );
     return {
       categories: categories.data.contents,
+      banner,
       contents,
     };
   },
