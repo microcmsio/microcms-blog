@@ -72,9 +72,15 @@ export default {
     & >>> ol {
       list-style-type: decimal;
       list-style-position: inside;
+
+      & > li {
+        line-height: 2;
+      }
     }
 
     & >>> ul > li {
+      line-height: 2;
+
       &::before {
         content: '-';
         margin-right: 10px;
@@ -180,9 +186,15 @@ export default {
     & >>> ol {
       list-style-type: decimal;
       list-style-position: inside;
+
+      & > li {
+        line-height: 2;
+      }
     }
 
     & >>> ul > li {
+      line-height: 2;
+
       &::before {
         content: '-';
         margin-right: 10px;
