@@ -140,8 +140,13 @@ export default {
         return;
       }
       this.loadingStart();
-      const { data } = await axios.get(`/.netlify/functions/search?q=${q}`);
+      const { data, error } = await axios
+        .get(`/.netlify/functions/search?q=${q}`)
+        .catch((error) => ({ error }));
       this.loadingFinish();
+      if (error) {
+        return;
+      }
       this.contents = data.contents;
       this.totalCount = data.totalCount;
       this.searchable = false;

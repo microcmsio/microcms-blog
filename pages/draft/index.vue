@@ -4,7 +4,7 @@
     <div class="divider">
       <p v-if="!data.id" class="loading">Now Loading...</p>
       <article v-if="data.id" class="article">
-        <div class="ogimageWrap">
+        <div v-if="data.ogimage" class="ogimageWrap">
           <img
             ref="ogimage"
             :src="data.ogimage.url + '?w=820&q=100'"
@@ -31,7 +31,7 @@
             />
             <Toc :id="data.id" :toc="toc" :visible="data.toc_visible" />
             <Post :body="data.body" />
-            <Writer :writer="data.writer" />
+            <Writer v-if="data.writer" :writer="data.writer" />
             <Partner v-if="data.partner" :partner="data.partner" />
             <Conversion :id="data.id" />
             <RelatedBlogs
@@ -127,9 +127,14 @@ export default {
     if (query.id === undefined || query.draftKey === undefined) {
       return;
     }
-    const { data } = await axios.get(
-      `/.netlify/functions/draft?id=${query.id}&draftKey=${query.draftKey}`
-    );
+    const { data, error } = await axios
+      .get(
+        `/.netlify/functions/draft?id=${query.id}&draftKey=${query.draftKey}`
+      )
+      .catch((error) => ({ error }));
+    if (error) {
+      return;
+    }
     this.data = data;
 
     // 目次作成
