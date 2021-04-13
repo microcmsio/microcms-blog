@@ -72,15 +72,7 @@
         </div>
       </div>
       <aside class="aside">
-        <a
-          :href="`https://microcms.io/?utm_source=CTA&utm_medium=content-text&utm_campaign=search-03`"
-          class="banner"
-          target="site"
-        >
-          <img class="logo" src="/images/banner_logo.svg" alt="microCMS" />
-          <p>APIベースの日本製ヘッドレスCMS</p>
-          <span class="detail">詳しく見る</span>
-        </a>
+        <Banner id="search" :banner="banner" />
         <Categories :categories="categories" />
         <PopularArticles :contents="popularArticles" />
       </aside>
@@ -105,6 +97,17 @@ export default {
               }
             )
           ).data.articles;
+    const banner =
+      payload !== undefined
+        ? payload.banner
+        : (
+            await axios.get(
+              `https://${$config.serviceId}.microcms.io/api/v1/banner`,
+              {
+                headers: { 'X-API-KEY': $config.apiKey },
+              }
+            )
+          ).data;
     const categories = await axios.get(
       `https://${$config.serviceId}.microcms.io/api/v1/categories?limit=100`,
       {
@@ -113,6 +116,7 @@ export default {
     );
     return {
       popularArticles,
+      banner,
       categories: categories.data.contents,
     };
   },

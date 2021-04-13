@@ -32,7 +32,6 @@ export default {
 <style scoped>
 .label {
   display: block;
-  margin-top: 40px;
   font-size: 14px;
   font-weight: bold;
   color: var(--color-text-sub);
