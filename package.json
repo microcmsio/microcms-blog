@@ -12,10 +12,10 @@
     "functions:serve": "netlify-lambda serve functions"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.3",
     "highlight.js": "^10.0.0",
-    "nuxt": "^2.14.0"
+    "nuxt": "^2.15.4"
   },
   "devDependencies": {
     "@nuxtjs/dayjs": "^1.1.9",
