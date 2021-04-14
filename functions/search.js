@@ -1,8 +1,10 @@
-const api = require('../instance/axios');
-require('dotenv').config();
+import dotenv from 'dotenv';
+import api from '../instance/axios';
+
+dotenv.config();
 
 // eslint-disable-next-line require-await
-exports.handler = async (event) => {
+export default async (event) => {
   const { q } = event.queryStringParameters;
   if (!q) {
     return {
