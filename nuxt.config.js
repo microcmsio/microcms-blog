@@ -1,5 +1,6 @@
-import api from '~/instance/axios';
-require('dotenv').config();
+import dotenv from 'dotenv';
+import api from './instance/axios';
+dotenv.config();
 const { API_KEY, SERVICE_ID, GA_ID } = process.env;
 
 export default {
