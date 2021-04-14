@@ -83,37 +83,17 @@
 
 <script>
 import axios from 'axios';
+import api from '~/instance/axios';
 
 export default {
   async asyncData({ payload, $config }) {
     const popularArticles =
       payload !== undefined && payload.popularArticles !== undefined
         ? payload.popularArticles
-        : (
-            await axios.get(
-              `https://${$config.serviceId}.microcms.io/api/v1/popular-articles`,
-              {
-                headers: { 'X-API-KEY': $config.apiKey },
-              }
-            )
-          ).data.articles;
+        : (await api.get(`popular-articles`)).data.articles;
     const banner =
-      payload !== undefined
-        ? payload.banner
-        : (
-            await axios.get(
-              `https://${$config.serviceId}.microcms.io/api/v1/banner`,
-              {
-                headers: { 'X-API-KEY': $config.apiKey },
-              }
-            )
-          ).data;
-    const categories = await axios.get(
-      `https://${$config.serviceId}.microcms.io/api/v1/categories?limit=100`,
-      {
-        headers: { 'X-API-KEY': $config.apiKey },
-      }
-    );
+      payload !== undefined ? payload.banner : (await api.get(`banner`)).data;
+    const categories = await api.get(`categories?limit=100`);
     return {
       popularArticles,
       banner,

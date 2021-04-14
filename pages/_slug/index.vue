@@ -68,59 +68,26 @@
 </template>
 
 <script>
-import axios from 'axios';
 import cheerio from 'cheerio';
 import hljs from 'highlight.js';
+import api from '~/instance/axios';
 
 export default {
   async asyncData({ params, payload, $config }) {
     const data =
       payload !== undefined
         ? payload.content
-        : (
-            await axios.get(
-              `https://${$config.serviceId}.microcms.io/api/v1/blog/${params.slug}?depth=2`,
-              {
-                headers: { 'X-API-KEY': $config.apiKey },
-              }
-            )
-          ).data;
+        : (await api.get(`blog/${params.slug}?depth=2`)).data;
     const popularArticles =
       payload !== undefined
         ? payload.popularArticles
-        : (
-            await axios.get(
-              `https://${$config.serviceId}.microcms.io/api/v1/popular-articles`,
-              {
-                headers: { 'X-API-KEY': $config.apiKey },
-              }
-            )
-          ).data.articles;
+        : (await api.get(`popular-articles`)).data.articles;
     const banner =
-      payload !== undefined
-        ? payload.banner
-        : (
-            await axios.get(
-              `https://${$config.serviceId}.microcms.io/api/v1/banner`,
-              {
-                headers: { 'X-API-KEY': $config.apiKey },
-              }
-            )
-          ).data;
+      payload !== undefined ? payload.banner : (await api.get(`banner`)).data;
     const {
       data: { contents },
-    } = await axios.get(
-      `https://${$config.serviceId}.microcms.io/api/v1/blog`,
-      {
-        headers: { 'X-API-KEY': $config.apiKey },
-      }
-    );
-    const categories = await axios.get(
-      `https://${$config.serviceId}.microcms.io/api/v1/categories?limit=100`,
-      {
-        headers: { 'X-API-KEY': $config.apiKey },
-      }
-    );
+    } = await api.get(`blog`);
+    const categories = await api.get(`categories?limit=100`);
     const $ = cheerio.load(data.body);
     const headings = $('h1, h2, h3').toArray();
     const toc = headings.map((d) => {
