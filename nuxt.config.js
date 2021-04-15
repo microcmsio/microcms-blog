@@ -12,7 +12,6 @@ export default {
     apiKey: API_KEY,
     serviceId: SERVICE_ID,
   },
-  mode: 'universal',
   target: 'static',
   /*
    ** Headers of the page
