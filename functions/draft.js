@@ -4,7 +4,7 @@ import api from '../instance/axios';
 dotenv.config();
 
 // eslint-disable-next-line require-await
-export default async (event) => {
+export async function handler(event) {
   const { id, draftKey } = event.queryStringParameters;
   if (!id) {
     return {
@@ -26,4 +26,4 @@ export default async (event) => {
       statusCode: 400,
       body: String(error),
     }));
-};
+}
