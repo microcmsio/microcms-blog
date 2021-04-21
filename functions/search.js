@@ -1,10 +1,9 @@
-import dotenv from 'dotenv';
-import api from '../instance/axios';
-
-dotenv.config();
+const axios = require('axios');
+require('dotenv').config();
+const { API_KEY, SERVICE_ID } = process.env;
 
 // eslint-disable-next-line require-await
-export async function handler(event) {
+exports.handler = async (event) => {
   const { q } = event.queryStringParameters;
   if (!q) {
     return {
@@ -14,8 +13,15 @@ export async function handler(event) {
       }),
     };
   }
-  return api
-    .get(`blog/?q=${encodeURIComponent(q)}`)
+  return axios
+    .get(
+      `https://${SERVICE_ID}.microcms.io/api/v1/blog/?q=${encodeURIComponent(
+        q
+      )}`,
+      {
+        headers: { 'X-API-KEY': API_KEY },
+      }
+    )
     .then(({ data }) => {
       return {
         statusCode: 200,
@@ -26,4 +32,4 @@ export async function handler(event) {
       statusCode: 400,
       body: String(error),
     }));
-}
+};
