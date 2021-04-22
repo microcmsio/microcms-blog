@@ -6,7 +6,7 @@
         <img src="/images/icon_clock.svg" alt />
         {{ $dayjs(createdAt).format('YYYY/MM/DD') }}
       </span>
-      <span class="author">
+      <span v-if="author" class="author">
         <img src="/images/icon_author.svg" alt />
         {{ author }}
       </span>
@@ -24,7 +24,7 @@ export default {
     author: {
       type: String,
       required: false,
-      default: '',
+      default: undefined,
     },
     category: {
       type: Object,
