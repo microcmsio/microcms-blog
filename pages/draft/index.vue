@@ -26,7 +26,7 @@
             <h1 class="title">{{ data.title }}</h1>
             <Meta
               :created-at="data.publishedAt || data.createdAt"
-              :author="data.writer.name"
+              :author="data.writer && data.writer.name"
               :category="data.category"
             />
             <Toc :id="data.id" :toc="toc" :visible="data.toc_visible" />
@@ -42,7 +42,7 @@
         </div>
       </article>
       <aside class="aside">
-        <Banner :id="`draft-${id}`" :banner="banner" />
+        <Banner :id="`draft-${data.id}`" :banner="banner" />
         <Search />
         <Categories :categories="categories" />
         <Latest :contents="contents" />
