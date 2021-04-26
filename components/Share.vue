@@ -2,17 +2,17 @@
   <div class="share">
     <ul class="shareLists">
       <li class="shareList">
-        <a :href="getTwitterLink()" target="_blank" rel="noopener noreferrer">
+        <a :href="twitterLink" target="_blank" rel="noopener noreferrer">
           <img src="/images/icon_twitter.svg" alt="Twitter" />
         </a>
       </li>
       <li class="shareList">
-        <a :href="getFacebookLink()" target="_blank" rel="noopener noreferrer">
+        <a :href="facebookLink" target="_blank" rel="noopener noreferrer">
           <img src="/images/icon_facebook.svg" alt="Facebook" />
         </a>
       </li>
       <li class="shareList">
-        <a :href="getHatenaLink()" target="_blank" rel="noopener noreferrer">
+        <a :href="hatenaLink" target="_blank" rel="noopener noreferrer">
           <img src="/images/icon_hatena.svg" alt="はてなブックマーク" />
         </a>
       </li>
@@ -41,14 +41,14 @@ export default {
       required: true,
     },
   },
-  methods: {
-    getTwitterLink() {
+  computed: {
+    twitterLink() {
       return `https://twitter.com/intent/tweet?text=${this.title}&url=https://blog.microcms.io/${this.id}/&hashtags=microcms`;
     },
-    getFacebookLink() {
+    facebookLink() {
       return `https://www.facebook.com/sharer.php?u=https://blog.microcms.io/${this.id}/`;
     },
-    getHatenaLink() {
+    hatenaLink() {
       return `https://b.hatena.ne.jp/entry/https://blog.microcms.io/${this.id}/`;
     },
   },
