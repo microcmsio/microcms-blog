@@ -20,7 +20,7 @@
             <dd>
               <Meta
                 :created-at="blog.createdAt"
-                :author="blog.writer.name"
+                :author="blog.writer !== null ? blog.writer.name : ''"
                 :category="blog.category"
               />
             </dd>
