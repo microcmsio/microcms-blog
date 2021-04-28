@@ -3,10 +3,7 @@
     <li class="breadcrumbList">
       <nuxt-link to="/">記事一覧</nuxt-link>
     </li>
-    <li
-      v-if="category !== undefined && category !== null"
-      class="breadcrumbList"
-    >
+    <li v-if="hasCategory(category)" class="breadcrumbList">
       <nuxt-link :to="`/category/${category.id}/page/1`">{{
         category.name
       }}</nuxt-link>
@@ -21,6 +18,11 @@ export default {
       type: Object,
       required: false,
       default: () => ({}),
+    },
+  },
+  methods: {
+    hasCategory(category) {
+      return Object.keys(category).length > 0;
     },
   },
 };
