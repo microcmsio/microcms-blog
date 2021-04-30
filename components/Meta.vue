@@ -4,7 +4,9 @@
     <div class="meta">
       <span class="timestamp">
         <img src="/images/icon_clock.svg" alt />
-        {{ $dayjs(createdAt).format('YYYY/MM/DD') }}
+        <time :datetime="$dayjs(createdAt).format('YYYY-MM-DD')">
+          {{ $dayjs(createdAt).format('YYYY/MM/DD') }}
+        </time>
       </span>
       <span v-if="author" class="author">
         <img src="/images/icon_author.svg" alt />
