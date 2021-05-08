@@ -164,7 +164,7 @@ export default {
   },
   head() {
     return {
-      titleTemplete: null,
+      titleTemplate: null,
       title: 'microCMSブログ',
     };
   },

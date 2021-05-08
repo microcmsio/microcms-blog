@@ -15,7 +15,7 @@
 export default {
   head() {
     return {
-      titleTemplete: null,
+      titleTemplate: null,
       title: 'ページが見つかりません | microCMSブログ',
     };
   },
