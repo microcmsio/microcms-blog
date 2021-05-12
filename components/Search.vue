@@ -5,11 +5,7 @@
       class="input"
       type="text"
       @keypress="setSearchable"
-      @keypress.enter="
-        (e) =>
-          searchable &&
-          $router.push({ path: '/search', query: { q: e.target.value } })
-      "
+      @keypress.enter="search"
     />
   </label>
 </template>
@@ -24,6 +20,12 @@ export default {
   methods: {
     setSearchable() {
       this.searchable = true;
+    },
+    search(e) {
+      if (!e.target.value.trim() || !this.searchable) {
+        return;
+      }
+      this.$router.push({ path: '/search', query: { q: e.target.value } });
     },
   },
 };

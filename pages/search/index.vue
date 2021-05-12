@@ -140,7 +140,7 @@ export default {
       this.searchable = true;
     },
     async search(q) {
-      if (!q || !this.searchable) {
+      if (!q.trim() || !this.searchable) {
         return;
       }
       this.loadingStart();
