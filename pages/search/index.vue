@@ -139,7 +139,7 @@ export default {
     setSearchable() {
       this.searchable = true;
     },
-    async search(q) {
+    async search(q = '') {
       if (!q.trim() || !this.searchable) {
         return;
       }
