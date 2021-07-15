@@ -34,24 +34,12 @@
             </nuxt-link>
           </li>
         </ul>
-        <ul v-show="contents.length > 0" class="pager">
-          <li
-            v-for="p in pager"
-            :key="p"
-            class="page"
-            :class="{ active: page === `${p + 1}` }"
-          >
-            <nuxt-link
-              :to="`/${
-                selectedCategory !== undefined
-                  ? `category/${selectedCategory.id}/`
-                  : ''
-              }page/${p + 1}`"
-            >
-              {{ p + 1 }}
-            </nuxt-link>
-          </li>
-        </ul>
+        <Pagination
+          :contents="contents"
+          :pager="pager"
+          :current="Number(page)"
+          :category="selectedCategory"
+        />
       </div>
       <aside class="aside">
         <Banner id="list" :banner="banner" />
