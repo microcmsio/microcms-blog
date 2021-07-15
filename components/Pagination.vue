@@ -1,7 +1,7 @@
 <template>
-  <div class="wrapper">
-    <ul v-show="contents.length > 0" class="pager">
-      <li v-show="current > 1" class="page arrow">
+  <div v-if="contents.length > 0" class="wrapper">
+    <ul class="pager">
+      <li v-if="current > 1" class="page arrow">
         <nuxt-link
           :to="`/${
             category !== undefined ? `category/${category.id}/` : ''
@@ -10,7 +10,7 @@
           <img src="/images/icon_arrow_left.svg" alt="前のページへ" />
         </nuxt-link>
       </li>
-      <li v-show="3 < current" class="page">
+      <li v-if="3 < current" class="page">
         <nuxt-link
           :to="`/${
             category !== undefined ? `category/${category.id}/` : ''
@@ -19,7 +19,7 @@
           1
         </nuxt-link>
       </li>
-      <li v-show="4 < current" class="omission">
+      <li v-if="4 < current" class="omission">
         ...
       </li>
       <li
@@ -37,10 +37,10 @@
           {{ p + 1 }}
         </nuxt-link>
       </li>
-      <li v-show="current + 3 < pager.length" class="omission">
+      <li v-if="current + 3 < pager.length" class="omission">
         ...
       </li>
-      <li v-show="current + 2 < pager.length" class="page">
+      <li v-if="current + 2 < pager.length" class="page">
         <nuxt-link
           :to="`/${
             category !== undefined ? `category/${category.id}/` : ''
@@ -49,7 +49,7 @@
           {{ pager.length }}
         </nuxt-link>
       </li>
-      <li v-show="current < pager.length" class="page arrow">
+      <li v-if="current < pager.length" class="page arrow">
         <nuxt-link
           :to="`/${
             category !== undefined ? `category/${category.id}/` : ''
