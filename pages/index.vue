@@ -9,7 +9,7 @@
         </div>
         <ul>
           <li v-for="content in contents" :key="content.id" class="list">
-            <nuxt-link :to="`/${content.id}`" class="link">
+            <nuxt-link :to="`/${content.id}/`" class="link">
               <picture v-if="content.ogimage">
                 <source
                   type="image/webp"
