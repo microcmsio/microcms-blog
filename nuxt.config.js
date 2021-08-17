@@ -1,6 +1,6 @@
 import axios from 'axios';
 require('dotenv').config();
-const { API_KEY, SERVICE_ID, GA_ID } = process.env;
+const { API_KEY, SERVICE_ID, GA_ID, FB_PIXEL_ID } = process.env;
 
 export default {
   publicRuntimeConfig: {
@@ -104,16 +104,29 @@ export default {
    */
   modules: [
     ['@nuxtjs/dayjs'],
-    [
-      '@nuxtjs/google-analytics',
-      {
-        id: GA_ID,
-      },
-    ],
+    GA_ID
+      ? [
+          '@nuxtjs/google-analytics',
+          {
+            id: GA_ID,
+          },
+        ]
+      : undefined,
+    FB_PIXEL_ID
+      ? [
+          'nuxt-facebook-pixel-module',
+          {
+            track: 'PageView',
+            pixelId: FB_PIXEL_ID,
+            autoPageView: true,
+            disabled: false,
+          },
+        ]
+      : undefined,
     ['@nuxtjs/sitemap'],
     '@nuxtjs/feed',
     '@nuxtjs/proxy',
-  ],
+  ].filter((v) => v),
   dayjs: {
     locales: ['ja'],
     defaultLocale: 'ja',

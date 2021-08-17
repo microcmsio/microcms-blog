@@ -17,6 +17,7 @@
 - サイトマップ
 - バナー
 - Google Analytics
+- Facebook Pixel
 - RSS
 - PWA
 
@@ -97,13 +98,15 @@ type: オブジェクト形式
 プロジェクトルートに`.env`ファイルを作成し、以下の項目を設定してください。
 - API_KEY（microCMSのAPIキー）
 - SERVICE_ID（microCMSのサービスID）
-- GA_ID（Google AnalyticsのID）
+- GA_ID（Google AnalyticsのID）※任意
+- FB_PIXEL_ID（FacebookピクセルID）※任意
 
 例:
 ```
 API_KEY=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 SERVICE_ID=your-service-id
 GA_ID=UA-xxxxxxxxx-x
+FB_PIXEL_ID=xxxxxxxxxxxxxxxxxx
 ```
 
 ## 開発方法
