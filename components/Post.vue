@@ -101,7 +101,7 @@ export default {
     }
 
     & >>> strong {
-      background: linear-gradient(transparent 75%, #ffe0c1 75%);
+      background: linear-gradient(transparent 92%, var(--color-accent) 92%);
       font-weight: bold;
     }
 
@@ -215,7 +215,7 @@ export default {
     }
 
     & >>> strong {
-      background: linear-gradient(transparent 75%, #ffe0c1 75%);
+      background: linear-gradient(transparent 92%, var(--color-accent) 92%);
       font-weight: bold;
     }
 
