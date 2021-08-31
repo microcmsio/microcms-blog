@@ -1,21 +1,13 @@
 <template>
-  <div v-if="contents.length > 0" class="wrapper">
+  <div class="wrapper">
     <ul class="pager">
       <li v-if="current > 1" class="page arrow">
-        <nuxt-link
-          :to="`/${
-            category !== undefined ? `category/${category.id}/` : ''
-          }page/${current - 1}`"
-        >
+        <nuxt-link :to="getPath(current - 1)">
           <img src="/images/icon_arrow_left.svg" alt="前のページへ" />
         </nuxt-link>
       </li>
       <li v-if="3 < current" class="page">
-        <nuxt-link
-          :to="`/${
-            category !== undefined ? `category/${category.id}/` : ''
-          }page/1`"
-        >
+        <nuxt-link :to="getPath(1)">
           1
         </nuxt-link>
       </li>
@@ -29,11 +21,7 @@
         class="page"
         :class="{ active: current === p + 1 }"
       >
-        <nuxt-link
-          :to="`/${
-            category !== undefined ? `category/${category.id}/` : ''
-          }page/${p + 1}`"
-        >
+        <nuxt-link :to="getPath(p + 1)">
           {{ p + 1 }}
         </nuxt-link>
       </li>
@@ -41,20 +29,12 @@
         ...
       </li>
       <li v-if="current + 2 < pager.length" class="page">
-        <nuxt-link
-          :to="`/${
-            category !== undefined ? `category/${category.id}/` : ''
-          }page/${pager.length}`"
-        >
+        <nuxt-link :to="getPath(pager.length)">
           {{ pager.length }}
         </nuxt-link>
       </li>
       <li v-if="current < pager.length" class="page arrow">
-        <nuxt-link
-          :to="`/${
-            category !== undefined ? `category/${category.id}/` : ''
-          }page/${current + 1}`"
-        >
+        <nuxt-link :to="getPath(current + 1)">
           <img src="/images/icon_arrow_right.svg" alt="次のページへ" />
         </nuxt-link>
       </li>
@@ -65,11 +45,6 @@
 <script>
 export default {
   props: {
-    contents: {
-      type: Array,
-      required: false,
-      default: () => [],
-    },
     pager: {
       type: Array,
       required: false,
@@ -83,6 +58,13 @@ export default {
       type: Object,
       required: false,
       default: undefined,
+    },
+  },
+  methods: {
+    getPath(p) {
+      return `/${
+        this.category !== undefined ? `category/${this.category.id}/` : ''
+      }page/${p}`;
     },
   },
 };
