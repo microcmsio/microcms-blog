@@ -35,7 +35,7 @@
           </li>
         </ul>
         <Pagination
-          :contents="contents"
+          v-if="contents.length > 0"
           :pager="pager"
           :current="Number(page)"
           :category="selectedCategory"
