@@ -13,17 +13,35 @@
 
       <div class="menu" :class="{ isOpen: open }">
         <ul class="lists">
-          <li class="list">
-            <a href="https://microcms.io/pricing">料金</a>
-          </li>
-          <li class="list">
-            <a href="https://document.microcms.io">ドキュメント</a>
-          </li>
-          <li class="list">
-            <a href="https://blog.microcms.io">ブログ</a>
-          </li>
-          <li class="list">
-            <a href="https://microcms.io/contact">お問い合わせ</a>
+          <li
+            v-for="(menu, index) in headerMenu"
+            :key="index"
+            class="list"
+            @mouseover="handleOpenMenu(index)"
+            @mouseleave="handleCloseMenu(index)"
+          >
+            <component
+              :is="menu.isDropDown ? 'button' : 'a'"
+              :type="menu.isDropDown ? 'button' : ''"
+              :href="menu.isDropDown ? '' : menu.path"
+              :class="menu.isDropDown ? 'dropDown' : ''"
+              v-text="menu.name"
+            />
+
+            <!-- dropdown menu -->
+            <template v-if="menu.contents.length > 0">
+              <transition name="fade">
+                <ul v-show="openDropDownMenu[index]" class="dropDownMenu">
+                  <li
+                    v-for="(content, contentIndex) in menu.contents"
+                    :key="contentIndex"
+                    class="dropDownMenuList"
+                  >
+                    <a :href="content.path" v-text="content.name" />
+                  </li>
+                </ul>
+              </transition>
+            </template>
           </li>
         </ul>
         <ul class="lists">
@@ -48,7 +66,137 @@ export default {
     return {
       params: this.params || '',
       open: false,
+      openDropDownMenu: [],
+      headerMenu: [
+        {
+          name: '機能',
+          path: '',
+          isDropDown: true,
+          contents: [
+            {
+              name: 'スキーマ',
+              path: 'https://microcms.io/features/schema',
+            },
+            {
+              name: 'API連携',
+              path: 'https://microcms.io/features/link-api',
+            },
+            {
+              name: '画像編集',
+              path: 'https://microcms.io/features/image-api',
+            },
+            {
+              name: 'SDK',
+              path: 'https://microcms.io/features/sdk',
+            },
+            {
+              name: '権限管理',
+              path: 'https://microcms.io/features/authority',
+            },
+            {
+              name: 'ワークフロー',
+              path: 'https://microcms.io/features/workflow',
+            },
+            {
+              name: 'セキュリティ',
+              path: 'https://microcms.io/features/security',
+            },
+            {
+              name: 'サポート',
+              path: 'https://microcms.io/features/support',
+            },
+          ],
+        },
+        {
+          name: '料金',
+          path: 'https://microcms.io/pricing',
+          isDropDown: false,
+          contents: [],
+        },
+        {
+          name: '事例',
+          path: '',
+          isDropDown: true,
+          contents: [
+            {
+              name: 'インタビュー',
+              path: 'https://blog.microcms.io/category/usecase/page/1/',
+            },
+            {
+              name: '導入事例一覧',
+              path: 'https://microcms.io/projects',
+            },
+            {
+              name: '導入事例集',
+              path: 'https://microcms.io/download-usecase',
+            },
+          ],
+        },
+        {
+          name: 'サポート',
+          path: '',
+          isDropDown: true,
+          contents: [
+            {
+              name: 'よくある質問',
+              path: 'https://help.microcms.io/ja/knowledge',
+            },
+            {
+              name: '更新情報',
+              path: 'https://blog.microcms.io/category/update/page/1/',
+            },
+            {
+              name: 'ドキュメント',
+              path: 'https://document.microcms.io/',
+            },
+            {
+              name: 'ブログ',
+              path: 'https://blog.microcms.io/',
+            },
+            {
+              name: 'github',
+              path: 'https://github.com/microcmsio',
+            },
+            {
+              name: '制作プラン',
+              path: 'https://microcms.io/service/produce',
+            },
+            {
+              name: 'パートナー',
+              path: 'https://microcms.io/partners-list',
+            },
+          ],
+        },
+        {
+          name: 'セミナー',
+          path: 'https://microcms.io/seminar',
+          isDropDown: false,
+          contents: [],
+        },
+        {
+          name: '資料請求・デモ',
+          path: '',
+          isDropDown: true,
+          contents: [
+            {
+              name: 'オンライン説明会',
+              path: 'https://microcms.io/online-demo',
+            },
+            {
+              name: 'サービス紹介資料',
+              path: 'https://microcms.io/download',
+            },
+            {
+              name: 'お役立ち資料',
+              path: 'https://microcms.io/ebook',
+            },
+          ],
+        },
+      ],
     };
+  },
+  created() {
+    this.openDropDownMenu = Array(this.headerMenu.length).fill(false);
   },
   mounted() {
     this.params = location.search || '';
@@ -59,6 +207,12 @@ export default {
     },
     toggleOpen() {
       this.open = !this.open;
+    },
+    handleOpenMenu(index) {
+      this.openDropDownMenu.splice(index, 1, true);
+    },
+    handleCloseMenu(index) {
+      this.openDropDownMenu.splice(index, 1, false);
     },
   },
 };
@@ -123,8 +277,10 @@ export default {
   }
 
   .list {
-    margin-right: 30px;
+    margin: -8px 30px -8px 0;
+    padding: 8px 0;
     white-space: nowrap;
+    position: relative;
 
     &.noMargin {
       margin: 0;
@@ -149,6 +305,73 @@ export default {
         padding: 8px 24px;
       }
     }
+  }
+
+  .dropDown {
+    color: var(--color-text-sub);
+    display: inline-block;
+    padding-right: 20px;
+    position: relative;
+    appearance: none;
+    border: none;
+    background: inherit;
+    font-size: inherit;
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-left: 4px;
+      background: url('/images/icon_arrow_bottom.svg') center center no-repeat;
+      background-size: contain;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .dropDownMenu {
+    font-size: 14px;
+    display: inline-block;
+    position: absolute;
+    background-color: #fff;
+    top: 35px;
+    left: 0;
+    padding: 16px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+
+  .dropDownMenuList {
+    a {
+      color: var(--color-text-sub);
+      display: block;
+      transition: 0.3s all ease-in-out;
+
+      &:hover {
+        color: var(--color-text-main);
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .dropDownMenuList + .dropDownMenuList {
+    margin-top: 8px;
+  }
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: all 0.3s;
+  }
+
+  .fade-enter {
+    transform: translateY(-10px);
+  }
+
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
   }
 }
 
