@@ -76,6 +76,7 @@ export default {
       endpoint: 'blog',
       queries: {
         limit,
+        offset: (page - 1) * limit,
         filters:
           categoryId !== undefined
             ? `category[equals]${categoryId}`
