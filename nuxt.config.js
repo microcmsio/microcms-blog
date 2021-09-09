@@ -126,6 +126,7 @@ export default {
     ['@nuxtjs/sitemap'],
     '@nuxtjs/feed',
     '@nuxtjs/proxy',
+    'nuxt-microcms-module',
   ].filter((v) => v),
   dayjs: {
     locales: ['ja'],
@@ -155,6 +156,13 @@ export default {
         },
       ],
     },
+  },
+  microcms: {
+    options: {
+      serviceDomain: 'microcms',
+      apiKey: API_KEY,
+    },
+    mode: process.env.NODE_ENV === 'production' ? 'server' : 'all',
   },
   /*
    ** Build configuration
