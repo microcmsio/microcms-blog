@@ -12,9 +12,47 @@
       <div v-if="open" class="mask" @click="setOpen(false)"></div>
 
       <div class="menu" :class="{ isOpen: open }">
-        <ul class="lists">
+        <ul class="lists isMobile">
+          <li class="list">
+            <a href="https://microcms.io/pricing">料金</a>
+          </li>
+          <li class="list">
+            <a href="https://microcms.io/projects">導入事例</a>
+          </li>
+          <li class="list">
+            <a href="https://help.microcms.io/ja/knowledge" target="_blank"
+              >よくある質問</a
+            >
+          </li>
+          <li class="list">
+            <a
+              href="https://blog.microcms.io/category/update/page/1/"
+              target="_blank"
+              >更新情報</a
+            >
+          </li>
+          <li class="list">
+            <a href="https://blog.microcms.io/" target="_blank">ブログ</a>
+          </li>
+          <li class="list">
+            <a href="https://document.microcms.io/" target="_blank"
+              >ドキュメント</a
+            >
+          </li>
+          <li class="list">
+            <a href="https://microcms.io/seminar/">セミナー</a>
+          </li>
+          <li class="list">
+            <a href="https://microcms.io/download">資料請求</a>
+          </li>
+          <li class="list">
+            <a href="https://microcms.io/contact">お問い合わせ</a>
+          </li>
+        </ul>
+
+        <ul class="lists isDesktop">
           <li
-            v-for="(menu, index) in headerMenu"
+            v-for="(menu, index) in desktopHeaderMenu"
             :key="index"
             class="list"
             @mouseover="handleOpenMenu(index)"
@@ -44,6 +82,7 @@
             </template>
           </li>
         </ul>
+
         <ul class="lists">
           <li class="list">
             <a class="signin" href="https://app.microcms.io/signin">ログイン</a>
@@ -67,7 +106,7 @@ export default {
       params: this.params || '',
       open: false,
       openDropDownMenu: [],
-      headerMenu: [
+      desktopHeaderMenu: [
         {
           name: '機能',
           path: '',
@@ -196,7 +235,7 @@ export default {
     };
   },
   created() {
-    this.openDropDownMenu = Array(this.headerMenu.length).fill(false);
+    this.openDropDownMenu = Array(this.desktopHeaderMenu.length).fill(false);
   },
   mounted() {
     this.params = location.search || '';
@@ -230,7 +269,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     padding: 12px 40px;
-    z-index: 10;
+    z-index: 20;
     border-bottom: 1px solid var(--color-border);
     background-color: #fff;
   }
@@ -273,6 +312,14 @@ export default {
       height: 30px;
       background-color: var(--color-text-off);
       margin-right: 40px;
+    }
+
+    &.isMobile {
+      display: none;
+    }
+
+    &.isDesktop {
+      display: flex;
     }
   }
 
@@ -386,7 +433,7 @@ export default {
     justify-content: space-between;
     background-color: #fff;
     padding: 16px;
-    z-index: 10;
+    z-index: 20;
     border-bottom: 1px solid var(--color-border);
   }
 
@@ -433,6 +480,14 @@ export default {
 
     &:first-child {
       padding-top: 0;
+    }
+
+    &.isMobile {
+      display: block;
+    }
+
+    &.isDesktop {
+      display: none;
     }
   }
 
