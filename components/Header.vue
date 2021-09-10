@@ -391,8 +391,6 @@ export default {
   }
 
   .dropDownMenuList {
-    text-align: center;
-
     a {
       color: var(--color-text-sub);
       display: block;
