@@ -1,6 +1,4 @@
-const axios = require('axios');
-require('dotenv').config();
-const { API_KEY, SERVICE_ID } = process.env;
+import { client } from './microcms';
 
 // eslint-disable-next-line require-await
 exports.handler = async (event) => {
@@ -13,14 +11,16 @@ exports.handler = async (event) => {
       }),
     };
   }
-  return axios
-    .get(
-      `https://${SERVICE_ID}.microcms.io/api/v1/blog/${id}?draftKey=${draftKey}&depth=2`,
-      {
-        headers: { 'X-API-KEY': API_KEY },
-      }
-    )
-    .then(({ data }) => {
+  return client
+    .get({
+      endpoint: 'blog',
+      contentId: id,
+      queries: {
+        draftKey,
+        depth: 2,
+      },
+    })
+    .then((data) => {
       return {
         statusCode: 200,
         body: JSON.stringify(data),
