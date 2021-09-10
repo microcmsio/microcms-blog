@@ -385,26 +385,25 @@ export default {
     background-color: #fff;
     top: 35px;
     left: 0;
-    padding: 16px;
+    padding: 8px 16px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
   }
 
   .dropDownMenuList {
+    text-align: center;
+
     a {
       color: var(--color-text-sub);
       display: block;
       transition: 0.3s all ease-in-out;
+      padding: 10px 0;
 
       &:hover {
         color: var(--color-text-main);
         opacity: 0.8;
       }
     }
-  }
-
-  .dropDownMenuList + .dropDownMenuList {
-    margin-top: 8px;
   }
 
   .fade-enter-active,
