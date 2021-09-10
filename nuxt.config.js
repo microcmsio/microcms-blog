@@ -1,9 +1,5 @@
-import { createClient } from 'microcms-js-sdk';
-const { API_KEY, SERVICE_ID, GA_ID, FB_PIXEL_ID } = process.env;
-const client = createClient({
-  serviceDomain: SERVICE_ID,
-  apiKey: API_KEY,
-});
+import { client } from './utils/microcms';
+const { API_KEY, GA_ID, FB_PIXEL_ID } = process.env;
 
 export default {
   target: 'static',
