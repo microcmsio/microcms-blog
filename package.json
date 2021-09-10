@@ -14,6 +14,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.3",
+    "encoding": "^0.1.13",
     "highlight.js": "^10.0.0",
     "microcms-js-sdk": "^1.2.0",
     "nuxt": "^2.15.4",
