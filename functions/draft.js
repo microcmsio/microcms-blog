@@ -1,4 +1,4 @@
-import { createClient } from 'microcms-js-sdk';
+const { createClient } = require('microcms-js-sdk');
 require('dotenv').config();
 const { API_KEY, SERVICE_ID } = process.env;
 const client = createClient({
