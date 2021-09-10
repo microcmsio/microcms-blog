@@ -53,10 +53,8 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
-  async asyncData({ params, payload, $config }) {
+  async asyncData({ params, payload, $microcms }) {
     const page = params.id || '1';
     const categoryId = params.categoryId;
     const limit = 10;
@@ -64,45 +62,40 @@ export default {
       payload !== undefined && payload.popularArticles !== undefined
         ? payload.popularArticles
         : (
-            await axios.get(
-              `https://${$config.serviceId}.microcms.io/api/v1/popular-articles`,
-              {
-                headers: { 'X-API-KEY': $config.apiKey },
-              }
-            )
-          ).data.articles;
+            await $microcms.get({
+              endpoint: 'popular-articles',
+            })
+          ).articles;
     const banner =
       payload !== undefined
         ? payload.banner
-        : (
-            await axios.get(
-              `https://${$config.serviceId}.microcms.io/api/v1/banner`,
-              {
-                headers: { 'X-API-KEY': $config.apiKey },
-              }
-            )
-          ).data;
-    const { data } = await axios.get(
-      `https://${$config.serviceId}.microcms.io/api/v1/blog?limit=${limit}${
-        categoryId === undefined ? '' : `&filters=category[equals]${categoryId}`
-      }&offset=${(page - 1) * limit}`,
-      {
-        headers: { 'X-API-KEY': $config.apiKey },
-      }
-    );
-    const categories = await axios.get(
-      `https://${$config.serviceId}.microcms.io/api/v1/categories?limit=100`,
-      {
-        headers: { 'X-API-KEY': $config.apiKey },
-      }
-    );
+        : await $microcms.get({
+            endpoint: 'banner',
+          });
+    const data = await $microcms.get({
+      endpoint: 'blog',
+      queries: {
+        limit,
+        offset: (page - 1) * limit,
+        filters:
+          categoryId !== undefined
+            ? `category[equals]${categoryId}`
+            : undefined,
+      },
+    });
+    const categories = await $microcms.get({
+      endpoint: 'categories',
+      queries: {
+        limit: 100,
+      },
+    });
     const selectedCategory =
       categoryId !== undefined
-        ? categories.data.contents.find((content) => content.id === categoryId)
+        ? categories.contents.find((content) => content.id === categoryId)
         : undefined;
     return {
       ...data,
-      categories: categories.data.contents,
+      categories: categories.contents,
       selectedCategory,
       popularArticles,
       banner,
