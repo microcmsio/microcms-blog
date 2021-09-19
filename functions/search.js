@@ -14,9 +14,7 @@ exports.handler = async (event) => {
   return client
     .get({
       endpoint: 'blog',
-      queries: {
-        q: encodeURIComponent(q),
-      },
+      queries: { q },
     })
     .then((data) => {
       return {
