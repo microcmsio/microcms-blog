@@ -1,7 +1,7 @@
 <template>
   <div>
     <span v-if="category" class="category">{{ category.name }}</span>
-    <ul v-if="tags">
+    <ul v-if="tags" class="tag">
       <li v-for="tag in tags" :key="tag.id" v-text="tag.name" />
     </ul>
 
@@ -65,6 +65,35 @@ export default {
     margin: 10px 0 2px;
   }
 
+  .tag {
+    margin: 6px 0 0;
+
+    li {
+      color: #331cbf;
+      font-size: 16px;
+      display: inline-block;
+      padding-left: 22px;
+      position: relative;
+
+      &::before {
+        content: '';
+        display: inline-block;
+        background: url('/images/icon_tag.svg') center no-repeat;
+        background-size: contain;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+    }
+
+    li + li {
+      margin-left: 20px;
+    }
+  }
+
   .timestamp {
     display: inline-flex;
     align-items: center;
@@ -106,6 +135,35 @@ export default {
     border-radius: 3px;
     font-size: 14px;
     margin: 10px 0 4px;
+  }
+
+  .tag {
+    margin: 2px 0 4px;
+
+    li {
+      color: #331cbf;
+      font-size: 14px;
+      display: inline-block;
+      padding-left: 20px;
+      position: relative;
+
+      &::before {
+        content: '';
+        display: inline-block;
+        background: url('/images/icon_tag.svg') center no-repeat;
+        background-size: contain;
+        width: 14px;
+        height: 14px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+    }
+
+    li + li {
+      margin-left: 20px;
+    }
   }
 
   .timestamp {
