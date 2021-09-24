@@ -42,6 +42,7 @@
               :created-at="publishedAt || createdAt"
               :author="writer !== null ? writer.name : ''"
               :category="category"
+              :tags="tag"
             />
             <Toc :id="id" :toc="toc" :visible="toc_visible" />
             <Post :body="body" />

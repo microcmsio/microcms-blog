@@ -1,6 +1,10 @@
 <template>
   <div>
     <span v-if="category" class="category">{{ category.name }}</span>
+    <ul v-if="tags">
+      <li v-for="tag in tags" :key="tag.id" v-text="tag.name" />
+    </ul>
+
     <div class="meta">
       <span class="timestamp">
         <img src="/images/icon_clock.svg" alt />
@@ -30,6 +34,11 @@ export default {
     },
     category: {
       type: Object,
+      required: false,
+      default: undefined,
+    },
+    tags: {
+      type: Array,
       required: false,
       default: undefined,
     },
