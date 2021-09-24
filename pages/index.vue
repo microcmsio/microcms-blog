@@ -46,6 +46,7 @@
         <Banner id="list" :banner="banner" />
         <Search />
         <Categories :categories="categories" />
+        <Tags :tags="tags" />
         <PopularArticles :contents="popularArticles" />
       </aside>
     </div>
@@ -90,6 +91,12 @@ export default {
         limit: 100,
       },
     });
+    const tags = await $microcms.get({
+      endpoint: 'tags',
+      queries: {
+        limit: 100,
+      },
+    });
     const selectedCategory =
       categoryId !== undefined
         ? categories.contents.find((content) => content.id === categoryId)
@@ -97,6 +104,7 @@ export default {
     return {
       ...data,
       categories: categories.contents,
+      tags: tags.contents,
       selectedCategory,
       popularArticles,
       banner,
