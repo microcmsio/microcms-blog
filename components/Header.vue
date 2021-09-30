@@ -193,7 +193,7 @@ export default {
               path: 'https://blog.microcms.io/',
             },
             {
-              name: 'github',
+              name: 'GitHub',
               path: 'https://github.com/microcmsio',
             },
             {
