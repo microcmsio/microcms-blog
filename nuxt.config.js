@@ -1,5 +1,5 @@
 import { client } from './utils/microcms';
-const { API_KEY, GA_ID, FB_PIXEL_ID } = process.env;
+const { API_KEY, SERVICE_ID, GA_ID, FB_PIXEL_ID } = process.env;
 
 export default {
   target: 'static',
@@ -150,7 +150,7 @@ export default {
   },
   microcms: {
     options: {
-      serviceDomain: 'microcms',
+      serviceDomain: SERVICE_ID,
       apiKey: API_KEY,
     },
     mode: process.env.NODE_ENV === 'production' ? 'server' : 'all',
