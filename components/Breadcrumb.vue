@@ -30,7 +30,6 @@ export default {
   },
   methods: {
     hasCategory(arg) {
-      console.log(Object.keys(arg).length > 0);
       return Object.keys(arg).length > 0;
     },
   },
