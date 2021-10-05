@@ -80,7 +80,7 @@ export default {
       color: #331cbf;
       font-size: 16px;
       display: inline-block;
-      padding-left: 22px;
+      padding-left: 20px;
       position: relative;
 
       &::before {
@@ -88,8 +88,8 @@ export default {
         display: inline-block;
         background: url('/images/icon_tag_navy.svg') center no-repeat;
         background-size: contain;
-        width: 16px;
-        height: 16px;
+        width: 14px;
+        height: 14px;
         position: absolute;
         top: 50%;
         left: 0;
@@ -152,16 +152,16 @@ export default {
       color: #331cbf;
       font-size: 14px;
       display: inline-block;
-      padding-left: 20px;
+      padding-left: 18px;
       position: relative;
 
       &::before {
         content: '';
         display: inline-block;
-        background: url('/images/icon_tag.svg') center no-repeat;
+        background: url('/images/icon_tag_navy.svg') center no-repeat;
         background-size: contain;
-        width: 14px;
-        height: 14px;
+        width: 12px;
+        height: 12px;
         position: absolute;
         top: 50%;
         left: 0;
