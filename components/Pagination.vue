@@ -59,12 +59,21 @@ export default {
       required: false,
       default: undefined,
     },
+    tag: {
+      type: Object,
+      required: false,
+      default: undefined,
+    },
   },
   methods: {
     getPath(p) {
-      return `/${
-        this.category !== undefined ? `category/${this.category.id}/` : ''
-      }page/${p}`;
+      if (this.category !== undefined) {
+        return `/category/${this.category.id}/page/${p}`;
+      } else if (this.tag !== undefined) {
+        return `/tag/${this.tag.id}/page/${p}`;
+      } else {
+        return `/page/${p}`;
+      }
     },
   },
 };

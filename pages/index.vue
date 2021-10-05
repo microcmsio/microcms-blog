@@ -40,6 +40,7 @@
           :pager="pager"
           :current="Number(page)"
           :category="selectedCategory"
+          :tag="selectedTag"
         />
       </div>
       <aside class="aside">
@@ -107,11 +108,16 @@ export default {
       categoryId !== undefined
         ? categories.contents.find((content) => content.id === categoryId)
         : undefined;
+    const selectedTag =
+      tagId !== undefined
+        ? tags.contents.find((content) => content.id === tagId)
+        : undefined;
     return {
       ...data,
       categories: categories.contents,
       tags: tags.contents,
       selectedCategory,
+      selectedTag,
       popularArticles,
       banner,
       page,
