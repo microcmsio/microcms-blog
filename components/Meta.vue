@@ -1,9 +1,11 @@
 <template>
   <div>
-    <span v-if="category" class="category">{{ category.name }}</span>
-    <ul v-if="tags" class="tag">
-      <li v-for="tag in tags" :key="tag.id" v-text="tag.name" />
-    </ul>
+    <div class="upper">
+      <span v-if="category" class="category">{{ category.name }}</span>
+      <ul v-if="tags" class="tag">
+        <li v-for="tag in tags" :key="tag.id" v-text="tag.name" />
+      </ul>
+    </div>
 
     <div class="meta">
       <span class="timestamp">
@@ -48,6 +50,12 @@ export default {
 
 <style scoped>
 @media (min-width: 600px) {
+  .upper {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+
   .meta {
     padding: 10px 0 40px;
     display: flex;
@@ -62,11 +70,11 @@ export default {
     white-space: nowrap;
     border-radius: 3px;
     font-size: 14px;
-    margin: 10px 0 2px;
+    margin: 0 0 2px;
   }
 
   .tag {
-    margin: 6px 0 0;
+    margin: 0 0 0 16px;
 
     li {
       color: #331cbf;
