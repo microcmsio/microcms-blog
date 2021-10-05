@@ -86,7 +86,7 @@ export default {
       &::before {
         content: '';
         display: inline-block;
-        background: url('/images/icon_tag.svg') center no-repeat;
+        background: url('/images/icon_tag_navy.svg') center no-repeat;
         background-size: contain;
         width: 16px;
         height: 16px;
