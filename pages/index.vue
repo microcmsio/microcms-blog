@@ -59,6 +59,15 @@ export default {
   async asyncData({ params, payload, $microcms }) {
     const page = params.id || '1';
     const categoryId = params.categoryId;
+    const tagId = params.tagId;
+    let articleFilter = '';
+    if (categoryId !== undefined) {
+      articleFilter = `category[equals]${categoryId}`;
+    } else if (tagId !== undefined) {
+      articleFilter = `tag[contains]${tagId}`;
+    } else {
+      articleFilter = undefined;
+    }
     const limit = 10;
     const popularArticles =
       payload !== undefined && payload.popularArticles !== undefined
@@ -79,10 +88,7 @@ export default {
       queries: {
         limit,
         offset: (page - 1) * limit,
-        filters:
-          categoryId !== undefined
-            ? `category[equals]${categoryId}`
-            : undefined,
+        filters: articleFilter,
       },
     });
     const categories = await $microcms.get({
