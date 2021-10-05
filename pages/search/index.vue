@@ -75,6 +75,7 @@
       <aside class="aside">
         <Banner id="search" :banner="banner" />
         <Categories :categories="categories" />
+        <Tags :tags="tags" />
         <PopularArticles :contents="popularArticles" />
       </aside>
     </div>
@@ -107,10 +108,17 @@ export default {
         limit: 100,
       },
     });
+    const tags = await $microcms.get({
+      endpoint: 'tags',
+      queries: {
+        limit: 100,
+      },
+    });
     return {
       popularArticles,
       banner,
       categories: categories.contents,
+      tags: tags.contents,
     };
   },
   data() {

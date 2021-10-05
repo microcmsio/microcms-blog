@@ -46,6 +46,7 @@
         <Banner :id="`draft-${data.id}`" :banner="banner" />
         <Search />
         <Categories :categories="categories" />
+        <Tags :tags="tags" />
         <Latest :contents="contents" />
       </aside>
     </div>
@@ -66,6 +67,12 @@ export default {
         limit: 100,
       },
     });
+    const tags = await $microcms.get({
+      endpoint: 'tags',
+      queries: {
+        limit: 100,
+      },
+    });
     const banner = await $microcms.get({
       endpoint: 'banner',
     });
@@ -74,6 +81,7 @@ export default {
     });
     return {
       categories: categories.contents,
+      tags: tags.contents,
       banner,
       contents,
     };

@@ -60,6 +60,7 @@
         <Banner :id="`blog-${id}`" :banner="banner" />
         <Search />
         <Categories :categories="categories" />
+        <Tags :tags="tags" />
         <PopularArticles :contents="popularArticles" />
         <Latest :contents="contents" />
       </aside>
@@ -107,6 +108,12 @@ export default {
         limit: 100,
       },
     });
+    const tags = await $microcms.get({
+      endpoint: 'tags',
+      queries: {
+        limit: 100,
+      },
+    });
     const $ = cheerio.load(data.body);
     const headings = $('h1, h2, h3').toArray();
     const toc = headings.map((d) => {
@@ -134,6 +141,7 @@ export default {
       body: $.html(),
       toc,
       categories: categories.contents,
+      tags: tags.contents,
       contents,
     };
   },
