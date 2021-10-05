@@ -3,7 +3,7 @@
     <Header />
     <div class="divider">
       <div class="container">
-        <Breadcrumb :category="selectedCategory" />
+        <Breadcrumb :category="selectedCategory" :tag="selectedTag" />
         <div v-show="contents.length === 0" class="loader">
           記事がありません
         </div>
