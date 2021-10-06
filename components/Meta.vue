@@ -1,14 +1,22 @@
 <template>
   <div>
     <div class="upper">
-      <span v-if="category" class="category">{{ category.name }}</span>
+      <template v-if="category && isSinglePage">
+        <nuxt-link class="category" :to="`/category/${category.id}/page/1`">{{
+          category.name
+        }}</nuxt-link>
+      </template>
+      <template v-else-if="category">
+        <span class="category">{{ category.name }}</span>
+      </template>
+
       <ul v-if="tags" class="tag">
         <li v-for="tag in tags" :key="tag.id">
           <template v-if="isSinglePage">
-            <nuxt-link :to="`/tag/${tag.id}/page/1`" v-text="tag.name" />
+            <nuxt-link :to="`/tag/${tag.id}/page/1`">{{ tag.name }}</nuxt-link>
           </template>
           <template v-else>
-            <span v-text="tag.name" />
+            <span>{{ tag.name }}</span>
           </template>
         </li>
       </ul>
