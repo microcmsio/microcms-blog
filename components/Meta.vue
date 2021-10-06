@@ -1,6 +1,27 @@
 <template>
   <div>
-    <span v-if="category" class="category">{{ category.name }}</span>
+    <div class="upper">
+      <template v-if="category && isSinglePage">
+        <nuxt-link class="category" :to="`/category/${category.id}/page/1`">{{
+          category.name
+        }}</nuxt-link>
+      </template>
+      <template v-else-if="category">
+        <span class="category">{{ category.name }}</span>
+      </template>
+
+      <ul v-if="tags" class="tag">
+        <li v-for="tag in tags" :key="tag.id">
+          <template v-if="isSinglePage">
+            <nuxt-link :to="`/tag/${tag.id}/page/1`">{{ tag.name }}</nuxt-link>
+          </template>
+          <template v-else>
+            <span>{{ tag.name }}</span>
+          </template>
+        </li>
+      </ul>
+    </div>
+
     <div class="meta">
       <span class="timestamp">
         <img src="/images/icon_clock.svg" alt />
@@ -33,12 +54,28 @@ export default {
       required: false,
       default: undefined,
     },
+    tags: {
+      type: Array,
+      required: false,
+      default: undefined,
+    },
+    isSinglePage: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
 };
 </script>
 
 <style scoped>
 @media (min-width: 600px) {
+  .upper {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+
   .meta {
     padding: 10px 0 40px;
     display: flex;
@@ -53,7 +90,39 @@ export default {
     white-space: nowrap;
     border-radius: 3px;
     font-size: 14px;
-    margin: 10px 0 2px;
+    margin: 0 0 2px;
+  }
+
+  .tag {
+    margin: 0 0 0 16px;
+
+    li {
+      color: #331cbf;
+      font-size: 16px;
+      display: inline-block;
+      margin-right: 20px;
+
+      a,
+      span {
+        color: inherit;
+        display: inline-block;
+        padding-left: 22px;
+        position: relative;
+
+        &::before {
+          content: '';
+          display: inline-block;
+          background: url('/images/icon_tag_navy.svg') center no-repeat;
+          background-size: contain;
+          width: 16px;
+          height: 16px;
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+        }
+      }
+    }
   }
 
   .timestamp {
@@ -97,6 +166,38 @@ export default {
     border-radius: 3px;
     font-size: 14px;
     margin: 10px 0 4px;
+  }
+
+  .tag {
+    margin: 2px 0 4px;
+
+    li {
+      color: #331cbf;
+      font-size: 14px;
+      display: inline-block;
+      margin-right: 16px;
+
+      a,
+      span {
+        color: inherit;
+        display: inline-block;
+        padding-left: 18px;
+        position: relative;
+
+        &::before {
+          content: '';
+          display: inline-block;
+          background: url('/images/icon_tag_navy.svg') center no-repeat;
+          background-size: contain;
+          width: 12px;
+          height: 12px;
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+        }
+      }
+    }
   }
 
   .timestamp {

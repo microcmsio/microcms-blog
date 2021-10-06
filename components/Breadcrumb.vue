@@ -8,6 +8,9 @@
         category.name
       }}</nuxt-link>
     </li>
+    <li v-else-if="hasCategory(tag)" class="breadcrumbList">
+      <nuxt-link :to="`/tag/${tag.id}/page/1`">{{ tag.name }}</nuxt-link>
+    </li>
   </ul>
 </template>
 
@@ -19,10 +22,15 @@ export default {
       required: false,
       default: () => ({}),
     },
+    tag: {
+      type: Object,
+      required: false,
+      default: () => ({}),
+    },
   },
   methods: {
-    hasCategory(category) {
-      return Object.keys(category).length > 0;
+    hasCategory(arg) {
+      return Object.keys(arg).length > 0;
     },
   },
 };

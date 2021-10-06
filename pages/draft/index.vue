@@ -28,6 +28,8 @@
               :created-at="data.publishedAt || data.createdAt"
               :author="data.writer !== null ? data.writer.name : ''"
               :category="data.category"
+              :tags="data.tag"
+              :is-single-page="true"
             />
             <Toc :id="data.id" :toc="toc" :visible="data.toc_visible" />
             <Post :body="data.body" />
@@ -45,6 +47,7 @@
         <Banner :id="`draft-${data.id}`" :banner="banner" />
         <Search />
         <Categories :categories="categories" />
+        <Tags :tags="tags" />
         <Latest :contents="contents" />
       </aside>
     </div>
@@ -65,6 +68,12 @@ export default {
         limit: 100,
       },
     });
+    const tags = await $microcms.get({
+      endpoint: 'tags',
+      queries: {
+        limit: 1000,
+      },
+    });
     const banner = await $microcms.get({
       endpoint: 'banner',
     });
@@ -73,6 +82,7 @@ export default {
     });
     return {
       categories: categories.contents,
+      tags: tags.contents,
       banner,
       contents,
     };

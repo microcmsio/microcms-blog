@@ -3,7 +3,7 @@
     <Header />
     <div class="divider">
       <div class="container">
-        <Breadcrumb :category="selectedCategory" />
+        <Breadcrumb :category="selectedCategory" :tag="selectedTag" />
         <div v-show="contents.length === 0" class="loader">
           記事がありません
         </div>
@@ -28,6 +28,7 @@
                     :created-at="content.publishedAt || content.createdAt"
                     :author="content.writer !== null ? content.writer.name : ''"
                     :category="content.category"
+                    :tags="content.tag"
                   />
                 </dd>
               </dl>
@@ -39,12 +40,14 @@
           :pager="pager"
           :current="Number(page)"
           :category="selectedCategory"
+          :tag="selectedTag"
         />
       </div>
       <aside class="aside">
         <Banner id="list" :banner="banner" />
         <Search />
         <Categories :categories="categories" />
+        <Tags :tags="tags" />
         <PopularArticles :contents="popularArticles" />
       </aside>
     </div>
@@ -57,6 +60,13 @@ export default {
   async asyncData({ params, payload, $microcms }) {
     const page = params.id || '1';
     const categoryId = params.categoryId;
+    const tagId = params.tagId;
+    const articleFilter =
+      categoryId !== undefined
+        ? `category[equals]${categoryId}`
+        : tagId !== undefined
+        ? `tag[contains]${tagId}`
+        : undefined;
     const limit = 10;
     const popularArticles =
       payload !== undefined && payload.popularArticles !== undefined
@@ -77,10 +87,7 @@ export default {
       queries: {
         limit,
         offset: (page - 1) * limit,
-        filters:
-          categoryId !== undefined
-            ? `category[equals]${categoryId}`
-            : undefined,
+        filters: articleFilter,
       },
     });
     const categories = await $microcms.get({
@@ -89,14 +96,26 @@ export default {
         limit: 100,
       },
     });
+    const tags = await $microcms.get({
+      endpoint: 'tags',
+      queries: {
+        limit: 1000,
+      },
+    });
     const selectedCategory =
       categoryId !== undefined
         ? categories.contents.find((content) => content.id === categoryId)
         : undefined;
+    const selectedTag =
+      tagId !== undefined
+        ? tags.contents.find((content) => content.id === tagId)
+        : undefined;
     return {
       ...data,
       categories: categories.contents,
+      tags: tags.contents,
       selectedCategory,
+      selectedTag,
       popularArticles,
       banner,
       page,
