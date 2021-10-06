@@ -3,7 +3,14 @@
     <div class="upper">
       <span v-if="category" class="category">{{ category.name }}</span>
       <ul v-if="tags" class="tag">
-        <li v-for="tag in tags" :key="tag.id" v-text="tag.name" />
+        <li v-for="tag in tags" :key="tag.id">
+          <template v-if="isSinglePage">
+            <nuxt-link :to="`/tag/${tag.id}/page/1`" v-text="tag.name" />
+          </template>
+          <template v-else>
+            <span v-text="tag.name" />
+          </template>
+        </li>
       </ul>
     </div>
 
@@ -44,6 +51,11 @@ export default {
       required: false,
       default: undefined,
     },
+    isSinglePage: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
 };
 </script>
@@ -80,25 +92,28 @@ export default {
       color: #331cbf;
       font-size: 16px;
       display: inline-block;
-      padding-left: 22px;
-      position: relative;
+      margin-right: 20px;
 
-      &::before {
-        content: '';
+      a,
+      span {
+        color: inherit;
         display: inline-block;
-        background: url('/images/icon_tag_navy.svg') center no-repeat;
-        background-size: contain;
-        width: 16px;
-        height: 16px;
-        position: absolute;
-        top: 50%;
-        left: 0;
-        transform: translateY(-50%);
-      }
-    }
+        padding-left: 22px;
+        position: relative;
 
-    li + li {
-      margin-left: 20px;
+        &::before {
+          content: '';
+          display: inline-block;
+          background: url('/images/icon_tag_navy.svg') center no-repeat;
+          background-size: contain;
+          width: 16px;
+          height: 16px;
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+        }
+      }
     }
   }
 
@@ -152,25 +167,28 @@ export default {
       color: #331cbf;
       font-size: 14px;
       display: inline-block;
-      padding-left: 18px;
-      position: relative;
+      margin-right: 16px;
 
-      &::before {
-        content: '';
+      a,
+      span {
+        color: inherit;
         display: inline-block;
-        background: url('/images/icon_tag_navy.svg') center no-repeat;
-        background-size: contain;
-        width: 12px;
-        height: 12px;
-        position: absolute;
-        top: 50%;
-        left: 0;
-        transform: translateY(-50%);
-      }
-    }
+        padding-left: 18px;
+        position: relative;
 
-    li + li {
-      margin-left: 20px;
+        &::before {
+          content: '';
+          display: inline-block;
+          background: url('/images/icon_tag_navy.svg') center no-repeat;
+          background-size: contain;
+          width: 12px;
+          height: 12px;
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+        }
+      }
     }
   }
 

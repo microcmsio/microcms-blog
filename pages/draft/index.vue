@@ -29,6 +29,7 @@
               :author="data.writer !== null ? data.writer.name : ''"
               :category="data.category"
               :tags="data.tag"
+              :is-single-page="true"
             />
             <Toc :id="data.id" :toc="toc" :visible="data.toc_visible" />
             <Post :body="data.body" />
