@@ -310,7 +310,7 @@ export default {
           endpoint: 'tags',
           queries: {
             fields: 'id',
-            limit: 100,
+            limit: 1000,
           },
         })
         .then(({ contents }) => {

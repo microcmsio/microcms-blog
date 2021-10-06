@@ -61,14 +61,12 @@ export default {
     const page = params.id || '1';
     const categoryId = params.categoryId;
     const tagId = params.tagId;
-    let articleFilter = '';
-    if (categoryId !== undefined) {
-      articleFilter = `category[equals]${categoryId}`;
-    } else if (tagId !== undefined) {
-      articleFilter = `tag[contains]${tagId}`;
-    } else {
-      articleFilter = undefined;
-    }
+    const articleFilter =
+      categoryId !== undefined
+        ? `category[equals]${categoryId}`
+        : tagId !== undefined
+        ? `tag[contains]${tagId}`
+        : undefined;
     const limit = 10;
     const popularArticles =
       payload !== undefined && payload.popularArticles !== undefined
@@ -101,7 +99,7 @@ export default {
     const tags = await $microcms.get({
       endpoint: 'tags',
       queries: {
-        limit: 100,
+        limit: 1000,
       },
     });
     const selectedCategory =
