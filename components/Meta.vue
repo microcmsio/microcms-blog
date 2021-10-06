@@ -80,7 +80,7 @@ export default {
       color: #331cbf;
       font-size: 16px;
       display: inline-block;
-      padding-left: 20px;
+      padding-left: 22px;
       position: relative;
 
       &::before {
@@ -88,8 +88,8 @@ export default {
         display: inline-block;
         background: url('/images/icon_tag_navy.svg') center no-repeat;
         background-size: contain;
-        width: 14px;
-        height: 14px;
+        width: 16px;
+        height: 16px;
         position: absolute;
         top: 50%;
         left: 0;

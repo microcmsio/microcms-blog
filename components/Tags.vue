@@ -58,8 +58,8 @@ export default {
       display: inline-block;
       background: url('/images/icon_tag.svg') center no-repeat;
       background-size: contain;
-      width: 12px;
-      height: 12px;
+      width: 14px;
+      height: 14px;
       position: absolute;
       top: 50%;
       left: 0;
