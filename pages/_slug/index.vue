@@ -49,7 +49,11 @@
             <Post :body="body" />
             <ConversionPoint
               :id="id"
-              :contents="cv_point ? cv_point[0] : getCvContents"
+              :contents="
+                cv_point === null || cv_point.length <= 0
+                  ? getCvContents
+                  : cv_point[0]
+              "
             />
             <Writer v-if="writer" :writer="writer" />
             <Partner v-if="partner" :partner="partner" />

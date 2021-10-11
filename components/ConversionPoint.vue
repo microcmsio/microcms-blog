@@ -65,6 +65,7 @@ export default {
     contents: {
       type: Object,
       required: false,
+      default: () => {},
     },
   },
 };
