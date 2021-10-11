@@ -7,9 +7,11 @@
       <div class="cvContainer">
         <h2 class="mainTitle">{{ contents.title }}</h2>
         <div class="mainContents" v-html="contents.text" />
-        <a class="button" target="site" :href="contents.buttonLink">{{
-          contents.buttonText
-        }}</a>
+        <p class="buttonWrapper">
+          <a class="button" target="site" :href="contents.buttonLink">{{
+            contents.buttonText
+          }}</a>
+        </p>
       </div>
     </div>
 
@@ -69,137 +71,281 @@ export default {
 </script>
 
 <style scoped>
-.cvPoint {
-  margin: 60px 0;
-}
+@media (min-width: 820px) {
+  .cvPoint {
+    margin: 60px 0;
+  }
 
-.cvBackground {
-  padding: 60px 0;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: #fff;
-  border-radius: 5px;
-  margin-bottom: 40px;
-}
+  .cvBackground {
+    padding: 60px 1em;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    border-radius: 5px;
+    margin-bottom: 40px;
+  }
 
-.mainTitle {
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 1.7;
-  margin-bottom: 20px;
-  text-align: center;
-}
+  .mainTitle {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    text-align: center;
+  }
 
-.cvContainer {
-  max-width: 457px;
-  margin: auto;
-}
+  .cvContainer {
+    max-width: 457px;
+    margin: auto;
+  }
 
-.mainContents {
-  line-height: 1.7;
-  margin-bottom: 40px;
-}
+  .mainContents {
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
 
-.button {
-  display: inline-block;
-  border: none;
-  border-radius: 5px;
-  background: linear-gradient(to right bottom, #5630af, #3067af);
-  color: #fff;
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  padding: 16px 72px;
-  cursor: pointer;
+  .buttonWrapper {
+    text-align: center;
+  }
 
-  &:hover {
-    background: linear-gradient(to right bottom, #46209f, #20579f);
+  .button {
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(to right bottom, #5630af, #3067af);
+    color: #fff;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 16px 72px;
+    cursor: pointer;
+
+    &:hover {
+      background: linear-gradient(to right bottom, #46209f, #20579f);
+    }
+  }
+
+  .backgroound {
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 20px 35px 30px;
+  }
+
+  .subTitle {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 5%;
+  }
+
+  .buttonSmall {
+    display: block;
+    line-height: 1;
+    border-radius: 5px;
+    background: linear-gradient(to right bottom, #5630af, #3067af);
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    padding: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+
+    &:hover {
+      background: linear-gradient(to right bottom, #46209f, #20579f);
+    }
+  }
+
+  .iconList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto 0;
+  }
+
+  .listItem {
+    img {
+      max-width: 32px;
+      max-height: 32px;
+    }
+  }
+
+  .listItem + .listItem {
+    margin-left: 45px;
+  }
+
+  /deep/ .mainContents {
+    p {
+      margin-bottom: 15px;
+    }
+
+    ul,
+    ol {
+      counter-reset: number;
+      margin-bottom: -5px;
+
+      li {
+        margin-bottom: 5px;
+
+        &::before {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          counter-increment: number;
+          content: counter(number);
+          width: 32px;
+          height: 32px;
+          border-radius: 16px;
+          background-color: #e5eff9;
+          color: #3067af;
+          font-weight: bold;
+          margin-right: 10px;
+        }
+      }
+    }
   }
 }
 
-.backgroound {
-  background-color: #eee;
-  border-radius: 5px;
-  padding: 20px 35px 30px;
-}
-
-.subTitle {
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.row {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: auto;
-  grid-gap: 5%;
-}
-
-.buttonSmall {
-  display: block;
-  line-height: 1;
-  border-radius: 5px;
-  background: linear-gradient(to right bottom, #5630af, #3067af);
-  color: #fff;
-  text-align: center;
-  font-size: 18px;
-  padding: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 20px;
-
-  &:hover {
-    background: linear-gradient(to right bottom, #46209f, #20579f);
-  }
-}
-
-.iconList {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 30px auto 0;
-}
-
-.listItem {
-  img {
-    max-width: 32px;
-    max-height: 32px;
-  }
-}
-
-.listItem + .listItem {
-  margin-left: 45px;
-}
-
-/deep/ .mainContents {
-  p {
-    margin-bottom: 15px;
+@media (max-width: 820px) {
+  .cvPoint {
+    margin: 80px 0;
   }
 
-  ul,
-  ol {
-    counter-reset: number;
-    margin-bottom: -5px;
+  .cvBackground {
+    padding: 40px 2em;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
 
-    li {
-      margin-bottom: 5px;
+  .mainTitle {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
 
-      &::before {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        counter-increment: number;
-        content: counter(number);
-        width: 32px;
-        height: 32px;
-        border-radius: 16px;
-        background-color: #e5eff9;
-        color: #3067af;
-        font-weight: bold;
-        margin-right: 10px;
+  .cvContainer {
+    max-width: 457px;
+    margin: auto;
+  }
+
+  .mainContents {
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .buttonWrapper {
+    text-align: center;
+  }
+
+  .button {
+    display: block;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(to right bottom, #5630af, #3067af);
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 16px 1em;
+    cursor: pointer;
+
+    &:hover {
+      background: linear-gradient(to right bottom, #46209f, #20579f);
+    }
+  }
+
+  .backgroound {
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 20px 35px 30px;
+    margin-bottom: 20px;
+  }
+
+  .subTitle {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .buttonSmall {
+    display: block;
+    line-height: 1;
+    border-radius: 5px;
+    background: linear-gradient(to right bottom, #5630af, #3067af);
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    padding: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+
+    &:hover {
+      background: linear-gradient(to right bottom, #46209f, #20579f);
+    }
+  }
+
+  .iconList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto 0;
+  }
+
+  .listItem {
+    img {
+      max-width: 32px;
+      max-height: 32px;
+    }
+  }
+
+  .listItem + .listItem {
+    margin-left: 45px;
+  }
+
+  /deep/ .mainContents {
+    p {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    ul,
+    ol {
+      font-size: 14px;
+      counter-reset: number;
+      margin-bottom: -5px;
+
+      li {
+        margin-bottom: 5px;
+
+        &::before {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          counter-increment: number;
+          content: counter(number);
+          width: 28px;
+          height: 28px;
+          border-radius: 16px;
+          background-color: #e5eff9;
+          color: #3067af;
+          font-weight: bold;
+          margin-right: 10px;
+        }
       }
     }
   }
