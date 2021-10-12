@@ -21,7 +21,9 @@
         <p>
           初期費用無料・14日間の無料トライアル付き。ご不明な点はお気軽にお問い合わせください。
         </p>
-        <a href="https://microcms.io/contact" class="buttonSmall"
+        <a
+          href="https://microcms.io/contact?utm_source=CTA&utm_medium=referral&utm_campaign=blog-footer"
+          class="buttonSmall"
           >お問い合わせ</a
         >
       </div>
@@ -322,32 +324,6 @@ export default {
     p {
       font-size: 14px;
       margin-bottom: 10px;
-    }
-
-    ul,
-    ol {
-      font-size: 14px;
-      counter-reset: number;
-      margin-bottom: -5px;
-
-      li {
-        margin-bottom: 5px;
-
-        &::before {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          counter-increment: number;
-          content: counter(number);
-          width: 28px;
-          height: 28px;
-          border-radius: 16px;
-          background-color: #e5eff9;
-          color: #3067af;
-          font-weight: bold;
-          margin-right: 10px;
-        }
-      }
     }
   }
 }
