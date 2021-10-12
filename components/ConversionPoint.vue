@@ -4,7 +4,7 @@
       <div class="upperContents">
         <div>
           <h2 class="mainTitle">{{ getContents.title }}</h2>
-          <div class="mainText" v-text="getContents.text" />
+          <p class="mainText">{{ getContents.text }}</p>
         </div>
         <figure class="thumbnail">
           <img :src="getContents.thumbnail.url" alt="" />
@@ -19,11 +19,11 @@
 
     <div v-else class="cvBackground">
       <div class="cvContainer">
-        <h2 class="mainTitle">{{ contents.title }}</h2>
-        <div class="mainContents" v-html="contents.text" />
+        <h2 class="mainTitle">{{ getContents.title }}</h2>
+        <p class="mainContents">{{ getContents.text }}</p>
         <p class="buttonWrapper">
-          <a class="button" target="site" :href="contents.buttonLink">{{
-            contents.buttonText
+          <a class="button" target="site" :href="getContents.buttonLink">{{
+            getContents.buttonText
           }}</a>
         </p>
       </div>
