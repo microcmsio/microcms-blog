@@ -79,8 +79,9 @@ export default {
     },
 
     contents: {
-      required: true,
-      validator: (prop) => Array || prop === null,
+      type: Array,
+      required: false,
+      default: () => [],
     },
 
     theme: {
