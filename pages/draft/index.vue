@@ -33,6 +33,15 @@
             />
             <Toc :id="data.id" :toc="toc" :visible="data.toc_visible" />
             <Post :body="data.body" />
+            <ConversionPoint
+              :id="data.id"
+              :contents="data.cv_point"
+              :theme="
+                data.cv_point === null || data.cv_point.length <= 0
+                  ? ''
+                  : 'thumbnail'
+              "
+            />
             <Writer v-if="data.writer" :writer="data.writer" />
             <Partner v-if="data.partner" :partner="data.partner" />
             <Conversion :id="data.id" />
