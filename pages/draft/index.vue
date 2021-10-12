@@ -44,7 +44,6 @@
             />
             <Writer v-if="data.writer" :writer="data.writer" />
             <Partner v-if="data.partner" :partner="data.partner" />
-            <Conversion :id="data.id" />
             <RelatedBlogs
               v-if="data.related_blogs.length > 0"
               :blogs="data.related_blogs"

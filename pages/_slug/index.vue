@@ -56,7 +56,6 @@
             />
             <Writer v-if="writer" :writer="writer" />
             <Partner v-if="partner" :partner="partner" />
-            <Conversion :id="id" />
             <RelatedBlogs
               v-if="related_blogs.length > 0"
               :blogs="related_blogs"
@@ -158,19 +157,6 @@ export default {
       publishedAt: '',
       ogimage: null,
     };
-  },
-  computed: {
-    getCvContents() {
-      return {
-        title: 'まずは、無料で試してみましょう。',
-        text: '<p>APIベースの日本製ヘッドレスCMS「microCMS」を使えば、<br />ものの数分でAPIの作成ができます。</p>',
-        buttonText: 'microCMSを無料で始める',
-        buttonLink: `https://microcms.io/?utm_source=CTA&utm_medium=content-text&utm_campaign=blog-${this.id}-02`,
-        background: {
-          url: '/images/bg_microcms_screen_black.jpg',
-        },
-      };
-    },
   },
   head() {
     return {
