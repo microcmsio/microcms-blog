@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <div class="row bottom">
+    <div class="bottom">
       <div class="background">
         <h3 class="subTitle">microCMSについてお問い合わせ</h3>
         <p>
@@ -79,8 +79,8 @@ export default {
     },
 
     contents: {
-      type: [Array, null],
       required: true,
+      validator: (prop) => Array || prop === null,
     },
 
     theme: {
@@ -177,7 +177,7 @@ export default {
     margin-bottom: 10px;
   }
 
-  .row {
+  .bottom {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
