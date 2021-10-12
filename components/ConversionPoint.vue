@@ -1,9 +1,23 @@
 <template>
-  <div class="wrapper cvPoint">
-    <div
-      class="cvBackground"
-      :style="{ backgroundImage: 'url(' + contents.background.url + ')' }"
-    >
+  <div :class="{ [`cvPoint--${theme}`]: theme !== '' }" class="wrapper cvPoint">
+    <div v-if="theme === 'thumbnail'" class="upper">
+      <div class="upperContents">
+        <div>
+          <h2 class="mainTitle">{{ getContents.title }}</h2>
+          <div class="mainText" v-text="getContents.text" />
+        </div>
+        <figure class="thumbnail">
+          <img :src="getContents.thumbnail.url" alt="" />
+        </figure>
+      </div>
+      <p class="buttonWrapper">
+        <a class="button" target="site" :href="getContents.buttonLink">{{
+          getContents.buttonText
+        }}</a>
+      </p>
+    </div>
+
+    <div v-else class="cvBackground">
       <div class="cvContainer">
         <h2 class="mainTitle">{{ contents.title }}</h2>
         <div class="mainContents" v-html="contents.text" />
@@ -15,8 +29,8 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="backgroound">
+    <div class="row bottom">
+      <div class="background">
         <h3 class="subTitle">microCMSについてお問い合わせ</h3>
         <p>
           初期費用無料・14日間の無料トライアル付き。ご不明な点はお気軽にお問い合わせください。
@@ -28,7 +42,7 @@
         >
       </div>
 
-      <div class="backgroound">
+      <div class="background">
         <h3 class="subTitle">microCMS公式アカウント</h3>
         <p>
           microCMSは各公式アカウントで最新情報をお届けしています。<br />フォローよろしくお願いします。
@@ -65,9 +79,30 @@ export default {
     },
 
     contents: {
-      type: Object,
+      type: [Array, null],
+      required: true,
+    },
+
+    theme: {
+      type: String,
       required: false,
-      default: () => {},
+      default: '',
+      validator: (value) => ['', 'thumbnail'].includes(value) !== -1,
+    },
+  },
+
+  computed: {
+    getContents() {
+      if (this.contents === null || this.contents.length <= 0) {
+        return {
+          title: 'まずは、無料で試してみましょう。',
+          text: 'APIベースの日本製ヘッドレスCMS「microCMS」を使えば、\nものの数分でAPIの作成ができます。',
+          buttonText: 'microCMSを無料で始める',
+          buttonLink: `https://microcms.io/?utm_source=CTA&utm_medium=content-text&utm_campaign=blog-${this.id}-02`,
+        };
+      } else {
+        return this.contents[0];
+      }
     },
   },
 };
@@ -81,6 +116,7 @@ export default {
 
   .cvBackground {
     padding: 60px 1em;
+    background-image: url('/images/bg_microcms_screen_black.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -128,7 +164,7 @@ export default {
     }
   }
 
-  .backgroound {
+  .background {
     background-color: #eee;
     border-radius: 5px;
     padding: 20px 35px 30px;
@@ -184,34 +220,48 @@ export default {
     margin-left: 45px;
   }
 
-  /deep/ .mainContents {
-    p {
+  /* thumbnail theme */
+  .cvPoint--thumbnail {
+    background-color: #eee;
+    padding: 60px 40px;
+
+    img {
+      max-width: 100%;
+      vertical-align: top;
+    }
+
+    .upper {
+      margin-bottom: 40px;
+    }
+
+    .upperContents {
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 60% auto;
+      align-items: center;
+      grid-gap: 5%;
+    }
+
+    .cvBackground {
+      background: inherit;
+    }
+
+    .background {
+      background-color: #fff;
+      padding: 25px 20px 30px;
+    }
+
+    .mainTitle {
+      text-align: left;
       margin-bottom: 15px;
     }
 
-    ul,
-    ol {
-      counter-reset: number;
-      margin-bottom: -5px;
+    .mainText {
+      margin-bottom: 0;
+    }
 
-      li {
-        margin-bottom: 5px;
-
-        &::before {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          counter-increment: number;
-          content: counter(number);
-          width: 32px;
-          height: 32px;
-          border-radius: 16px;
-          background-color: #e5eff9;
-          color: #3067af;
-          font-weight: bold;
-          margin-right: 10px;
-        }
-      }
+    .buttonWrapper {
+      margin-top: 30px;
     }
   }
 }
@@ -223,6 +273,7 @@ export default {
 
   .cvBackground {
     padding: 40px 2em;
+    background-image: url('/images/bg_microcms_screen_black.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -270,7 +321,7 @@ export default {
     }
   }
 
-  .backgroound {
+  .background {
     background-color: #eee;
     border-radius: 5px;
     padding: 20px 35px 30px;
@@ -320,10 +371,48 @@ export default {
     margin-left: 45px;
   }
 
-  /deep/ .mainContents {
-    p {
-      font-size: 14px;
-      margin-bottom: 10px;
+  /* thumbnail theme */
+  .cvPoint--thumbnail {
+    background-color: #eee;
+    padding: 40px 20px;
+
+    img {
+      max-width: 100%;
+      vertical-align: top;
+    }
+
+    .upper {
+      margin-bottom: 40px;
+    }
+
+    .cvBackground {
+      background: inherit;
+    }
+
+    .thumbnail {
+      margin-top: 20px;
+    }
+
+    .buttonWrapper {
+      margin-top: 20px;
+    }
+
+    .button {
+      padding: 20px 1em;
+    }
+
+    .background {
+      background-color: #fff;
+      padding: 25px 20px 30px;
+    }
+
+    .mainTitle {
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    .mainText {
+      margin-bottom: 0;
     }
   }
 }

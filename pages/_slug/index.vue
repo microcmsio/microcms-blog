@@ -49,10 +49,9 @@
             <Post :body="body" />
             <ConversionPoint
               :id="id"
-              :contents="
-                cv_point === null || cv_point.length <= 0
-                  ? getCvContents
-                  : cv_point[0]
+              :contents="cv_point"
+              :theme="
+                cv_point === null || cv_point.length <= 0 ? '' : 'thumbnail'
               "
             />
             <Writer v-if="writer" :writer="writer" />
