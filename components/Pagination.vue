@@ -7,13 +7,9 @@
         </nuxt-link>
       </li>
       <li v-if="3 < current" class="page">
-        <nuxt-link :to="getPath(1)">
-          1
-        </nuxt-link>
+        <nuxt-link :to="getPath(1)"> 1 </nuxt-link>
       </li>
-      <li v-if="4 < current" class="omission">
-        ...
-      </li>
+      <li v-if="4 < current" class="omission">...</li>
       <li
         v-for="p in pager"
         v-show="current - 3 <= p && p <= current + 1"
@@ -25,9 +21,7 @@
           {{ p + 1 }}
         </nuxt-link>
       </li>
-      <li v-if="current + 3 < pager.length" class="omission">
-        ...
-      </li>
+      <li v-if="current + 3 < pager.length" class="omission">...</li>
       <li v-if="current + 2 < pager.length" class="page">
         <nuxt-link :to="getPath(pager.length)">
           {{ pager.length }}
