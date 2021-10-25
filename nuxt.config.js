@@ -1,7 +1,8 @@
+import { defineNuxtConfig } from '@nuxt/bridge';
 import { client } from './utils/microcms';
 const { API_KEY, SERVICE_ID, GA_ID, FB_PIXEL_ID } = process.env;
 
-export default {
+export default defineNuxtConfig({
   target: 'static',
   /*
    ** Headers of the page
@@ -456,4 +457,4 @@ export default {
       type: 'rss2',
     },
   ],
-};
+});

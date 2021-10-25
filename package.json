@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
+    "build": "nuxt generate",
     "generate": "nuxt generate --fail-on-error",
     "start": "nuxt start",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
@@ -12,17 +13,18 @@
     "functions:serve": "netlify-lambda serve functions"
   },
   "dependencies": {
+    "@nuxtjs/dayjs": "^1.4.1",
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.3",
     "encoding": "^0.1.13",
     "highlight.js": "^10.0.0",
     "microcms-js-sdk": "^1.2.0",
-    "nuxt": "^2.15.4",
+    "nuxt-edge": "latest",
     "nuxt-facebook-pixel-module": "^1.5.0",
     "nuxt-microcms-module": "^1.0.1"
   },
   "devDependencies": {
-    "@nuxtjs/dayjs": "^1.1.9",
+    "@nuxt/bridge": "npm:@nuxt/bridge-edge@^3.0.0-27243104.5e903ae",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/eslint-config": "^3.0.0",
     "@nuxtjs/eslint-module": "^2.0.0",
