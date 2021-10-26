@@ -1,4 +1,5 @@
 const { client } = require('../utils/microcms');
+// import { client } from '../utils/microcms';
 
 // eslint-disable-next-line require-await
 exports.handler = async (event) => {

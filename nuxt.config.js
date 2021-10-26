@@ -1,7 +1,8 @@
+import { defineNuxtConfig } from '@nuxt/bridge';
 import { client } from './utils/microcms';
 const { API_KEY, SERVICE_ID, GA_ID, FB_PIXEL_ID } = process.env;
 
-export default {
+export default defineNuxtConfig({
   target: 'static',
   /*
    ** Headers of the page
@@ -63,8 +64,7 @@ export default {
     ],
     script: [
       {
-        src:
-          'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js',
+        src: 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js',
         async: true,
       },
     ],
@@ -457,4 +457,4 @@ export default {
       type: 'rss2',
     },
   ],
-};
+});
