@@ -43,7 +43,7 @@
                   <dd>
                     <Meta
                       :created-at="content.publishedAt || content.createdAt"
-                      :author="content.writer.name"
+                      :author="data.writer !== null ? data.writer.name : ''"
                       :category="content.category"
                       :tags="content.tag"
                     />
