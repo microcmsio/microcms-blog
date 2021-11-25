@@ -87,7 +87,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/vue-scrollto', '~/plugins/gtm'],
+  plugins: ['~/plugins/vue-scrollto'],
   components: true,
   buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/pwa'],
   /*
