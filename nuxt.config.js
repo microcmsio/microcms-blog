@@ -1,5 +1,5 @@
 import { client } from './utils/microcms';
-const { API_KEY, SERVICE_ID, GA_ID, FB_PIXEL_ID } = process.env;
+const { API_KEY, SERVICE_ID, GTM_ID, FB_PIXEL_ID } = process.env;
 
 export default {
   target: 'static',
@@ -95,14 +95,7 @@ export default {
    */
   modules: [
     ['@nuxtjs/dayjs'],
-    GA_ID
-      ? [
-          '@nuxtjs/google-analytics',
-          {
-            id: GA_ID,
-          },
-        ]
-      : undefined,
+    GTM_ID ? ['@nuxtjs/gtm'] : undefined,
     FB_PIXEL_ID
       ? [
           'nuxt-facebook-pixel-module',
@@ -122,6 +115,9 @@ export default {
   dayjs: {
     locales: ['ja'],
     defaultLocale: 'ja',
+  },
+  gtm: {
+    id: GTM_ID || undefined,
   },
   proxy: ['http://localhost:9000/.netlify'],
   pwa: {

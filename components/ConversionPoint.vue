@@ -97,7 +97,8 @@ export default {
       if (this.contents === null || this.contents.length <= 0) {
         return {
           title: 'まずは、無料で試してみましょう。',
-          text: 'APIベースの日本製ヘッドレスCMS「microCMS」を使えば、\nものの数分でAPIの作成ができます。',
+          text:
+            'APIベースの日本製ヘッドレスCMS「microCMS」を使えば、\nものの数分でAPIの作成ができます。',
           buttonText: 'microCMSを無料で始める',
           buttonLink: `https://microcms.io/?utm_source=CTA&utm_medium=content-text&utm_campaign=blog-${this.id}-02`,
         };
