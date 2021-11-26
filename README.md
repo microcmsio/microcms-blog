@@ -17,7 +17,7 @@
   - 関連記事
 - サイトマップ
 - バナー
-- Google Analytics
+- Google Tag Manager
 - Facebook Pixel
 - RSS
 - PWA
@@ -121,14 +121,14 @@ type: オブジェクト形式
 プロジェクトルートに`.env`ファイルを作成し、以下の項目を設定してください。
 - API_KEY（microCMSのAPIキー）
 - SERVICE_ID（microCMSのサービスID）
-- GA_ID（Google AnalyticsのID）※任意
+- GTM_ID（Google Tag ManagerのID）※任意
 - FB_PIXEL_ID（FacebookピクセルID）※任意
 
 例:
 ```
 API_KEY=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 SERVICE_ID=your-service-id
-GA_ID=UA-xxxxxxxxx-x
+GTM_ID=GTM-xxxxxxx
 FB_PIXEL_ID=xxxxxxxxxxxxxxxxxx
 ```
 
