@@ -11,9 +11,12 @@
         </figure>
       </div>
       <p class="buttonWrapper">
-        <a class="button" target="site" :href="getContents.buttonLink">{{
-          getContents.buttonText
-        }}</a>
+        <a
+          class="button ga-cta-link"
+          target="site"
+          :href="getContents.buttonLink"
+          >{{ getContents.buttonText }}</a
+        >
       </p>
     </div>
 
@@ -22,9 +25,12 @@
         <h2 class="mainTitle">{{ getContents.title }}</h2>
         <p class="mainContents">{{ getContents.text }}</p>
         <p class="buttonWrapper">
-          <a class="button" target="site" :href="getContents.buttonLink">{{
-            getContents.buttonText
-          }}</a>
+          <a
+            class="button ga-cta-link"
+            target="site"
+            :href="getContents.buttonLink"
+            >{{ getContents.buttonText }}</a
+          >
         </p>
       </div>
     </div>
@@ -35,9 +41,7 @@
         <p>
           初期費用無料・14日間の無料トライアル付き。ご不明な点はお気軽にお問い合わせください。
         </p>
-        <a
-          href="https://microcms.io/contact?utm_source=CTA&utm_medium=referral&utm_campaign=blog-footer"
-          class="buttonSmall"
+        <a href="https://microcms.io/contact" class="buttonSmall ga-cta-link"
           >お問い合わせ</a
         >
       </div>
@@ -100,7 +104,7 @@ export default {
           text:
             'APIベースの日本製ヘッドレスCMS「microCMS」を使えば、\nものの数分でAPIの作成ができます。',
           buttonText: 'microCMSを無料で始める',
-          buttonLink: `https://microcms.io/?utm_source=CTA&utm_medium=content-text&utm_campaign=blog-${this.id}-02`,
+          buttonLink: 'https://microcms.io/',
         };
       } else {
         return this.contents[0];

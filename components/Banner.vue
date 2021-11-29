@@ -2,8 +2,8 @@
   <div class="wrapper">
     <a
       v-if="banner && banner.image"
-      :href="`${banner.url}?utm_source=CTA&utm_medium=content-text&utm_campaign=${id}-03`"
-      class="link"
+      :href="banner.url"
+      class="link ga-cta-link"
       target="banner"
     >
       <picture v-if="banner.image">
