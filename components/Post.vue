@@ -239,6 +239,12 @@ export default {
         border-radius: 3px;
       }
     }
+
+    & >>> iframe {
+      height: auto;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+    }
   }
 }
 </style>
