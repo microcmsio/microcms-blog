@@ -3,11 +3,17 @@
     <header class="header">
       <h1 class="logo">
         <a href="https://microcms.io">
-          <img class="logoImg" src="/images/logo.svg" alt="microCMS" />
+          <img
+            class="logoImg"
+            src="/images/logo.svg"
+            width="422"
+            height="80"
+            alt="microCMS"
+          />
         </a>
       </h1>
       <button class="menuBtn" @click="toggleOpen()">
-        <img src="/images/icon_menu.svg" alt="menu" />
+        <img src="/images/icon_menu.svg" width="24" height="24" alt="menu" />
       </button>
       <div v-if="open" class="mask" @click="setOpen(false)"></div>
 
@@ -290,6 +296,7 @@ export default {
   }
 
   .logoImg {
+    width: auto;
     height: 28px;
   }
 
@@ -444,6 +451,7 @@ export default {
   }
 
   .logoImg {
+    width: auto;
     height: 28px;
   }
 

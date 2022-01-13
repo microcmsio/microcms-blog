@@ -17,6 +17,8 @@
                 />
                 <img
                   :data-src="content.ogimage.url + '?w=670'"
+                  :width="content.ogimage.width"
+                  :height="content.ogimage.height"
                   class="ogimage lazyload"
                   alt
                 />
@@ -369,7 +371,7 @@ export default {
 
   .ogimage {
     width: 335px;
-    height: 176px;
+    height: auto;
     border-radius: 5px;
   }
 
@@ -489,6 +491,7 @@ export default {
 
   .ogimage {
     width: 100%;
+    height: auto;
     border-radius: 5px;
   }
 
