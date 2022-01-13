@@ -9,9 +9,15 @@
       <picture v-if="banner.image">
         <source
           type="image/webp"
-          :srcset="`${banner.image.url}?w=300&fm=webp, ${banner.image.url}?w=600&fm=webp 2x`"
+          :data-srcset="`${banner.image.url}?w=300&fm=webp, ${banner.image.url}?w=600&fm=webp 2x`"
         />
-        <img :src="banner.image.url" class="image lazyload" :alt="banner.alt" />
+        <img
+          :data-src="banner.image.url"
+          :width="banner.image.width"
+          :height="banner.image.height"
+          class="image lazyload"
+          :alt="banner.alt"
+        />
       </picture>
     </a>
   </div>
@@ -36,6 +42,7 @@ export default {
 <style scoped>
 .image {
   width: 300px;
+  height: auto;
   border-radius: 5px;
 }
 

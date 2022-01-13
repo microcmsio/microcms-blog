@@ -24,13 +24,13 @@
 
     <div class="meta">
       <span class="timestamp">
-        <img src="/images/icon_clock.svg" alt />
+        <img src="/images/icon_clock.svg" width="20" height="20" alt />
         <time :datetime="$dayjs(createdAt).format('YYYY-MM-DD')">
           {{ $dayjs(createdAt).format('YYYY/MM/DD') }}
         </time>
       </span>
       <span v-if="author" class="author">
-        <img src="/images/icon_author.svg" alt />
+        <img src="/images/icon_author.svg" width="20" height="21" alt />
         {{ author }}
       </span>
     </div>
@@ -136,6 +136,7 @@ export default {
     img {
       margin-right: 6px;
       height: 16px;
+      width: auto;
     }
   }
 
@@ -148,6 +149,7 @@ export default {
     img {
       margin-right: 6px;
       height: 16px;
+      width: auto;
     }
   }
 }
@@ -210,6 +212,7 @@ export default {
     img {
       margin-right: 6px;
       height: 14px;
+      width: auto;
     }
   }
 
@@ -222,6 +225,7 @@ export default {
     img {
       margin-right: 6px;
       height: 14px;
+      width: auto;
     }
   }
 }
