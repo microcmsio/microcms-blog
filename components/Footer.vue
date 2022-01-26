@@ -127,11 +127,6 @@
                 >
               </li>
               <li class="menuListItem">
-                <a class="menuLink" href="https://microcms.io/workflow"
-                  >導入までの流れ</a
-                >
-              </li>
-              <li class="menuListItem">
                 <a
                   class="menuLink"
                   href="https://blog.microcms.io/category/update/page/1/"
