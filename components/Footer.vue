@@ -282,7 +282,7 @@
         <a href="https://microcms.co.jp" target="_blank">運営会社</a>
       </li>
       <li class="list">
-        <a href="https://wanta.co.jp/news" target="_blank">ニュース</a>
+        <a href="https://microcms.co.jp/news" target="_blank">ニュース</a>
       </li>
       <li class="list">
         <a href="https://microcms.io/law">特定商取引法に基づく表記</a>
