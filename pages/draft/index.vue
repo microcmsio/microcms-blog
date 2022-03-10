@@ -337,6 +337,7 @@ export default {
 @media (min-width: 820px) and (max-width: 1160px) {
   .wrapper {
     position: relative;
+    margin-top: 40px;
   }
 
   .divider {
@@ -456,6 +457,7 @@ export default {
 @media (min-width: 600px) and (max-width: 820px) {
   .wrapper {
     position: relative;
+    margin-top: 40px;
   }
 
   .divider {
