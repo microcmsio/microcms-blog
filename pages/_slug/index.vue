@@ -64,12 +64,14 @@
         </div>
       </article>
       <aside class="aside">
-        <Banner :id="`blog-${id}`" :banner="banner" />
         <Search />
         <Categories :categories="categories" />
         <Tags :tags="tags" />
         <PopularArticles :contents="popularArticles" />
-        <Latest :contents="contents" />
+        <div class="followArea">
+          <Banner :id="`blog-${id}`" :banner="banner" />
+          <Latest :contents="contents" />
+        </div>
       </aside>
     </div>
     <Footer />
@@ -220,6 +222,11 @@ export default {
     display: flex;
     justify-content: space-between;
     margin-top: 40px;
+  }
+
+  .followArea {
+    position: sticky !important;
+    top: 115px;
   }
 
   .banner {
