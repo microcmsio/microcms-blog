@@ -52,11 +52,13 @@
         </div>
       </article>
       <aside class="aside">
-        <Banner :id="`draft-${data.id}`" :banner="banner" />
         <Search />
         <Categories :categories="categories" />
         <Tags :tags="tags" />
-        <Latest :contents="contents" />
+        <div class="followArea">
+          <Banner :id="`draft-${data.id}`" :banner="banner" />
+          <Latest :contents="contents" />
+        </div>
       </aside>
     </div>
     <Footer />
@@ -258,6 +260,11 @@ export default {
     margin-top: 40px;
   }
 
+  .followArea {
+    position: sticky !important;
+    top: 115px;
+  }
+
   .banner {
     display: flex;
     justify-content: center;
@@ -330,6 +337,7 @@ export default {
 @media (min-width: 820px) and (max-width: 1160px) {
   .wrapper {
     position: relative;
+    margin-top: 40px;
   }
 
   .divider {
@@ -449,6 +457,7 @@ export default {
 @media (min-width: 600px) and (max-width: 820px) {
   .wrapper {
     position: relative;
+    margin-top: 40px;
   }
 
   .divider {
