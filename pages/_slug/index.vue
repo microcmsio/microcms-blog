@@ -47,6 +47,7 @@
             />
             <Toc :id="id" :toc="toc" :visible="toc_visible" />
             <Post :body="body" />
+            <ShareButtons :id="id" :title="title" />
             <ConversionPoint
               :id="id"
               :contents="cv_point"

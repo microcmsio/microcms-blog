@@ -117,7 +117,7 @@ export default {
 <style scoped>
 @media (min-width: 820px) {
   .cvPoint {
-    margin: 60px 0;
+    margin: 40px 0;
   }
 
   .cvBackground {
@@ -274,7 +274,7 @@ export default {
 
 @media (max-width: 820px) {
   .cvPoint {
-    margin: 80px 0;
+    margin: 20px 0;
   }
 
   .cvBackground {
