@@ -45,11 +45,11 @@
               :tags="tag"
               :is-single-page="true"
             />
-            <PriorExplanation />
+            <PriorExplanation :value="prior_explanation" />
             <Toc :id="id" :toc="toc" :visible="toc_visible" />
             <Post :body="body" />
             <ShareButtons :id="id" :title="title" />
-            <NextBlogNavigation />
+            <NextBlogNavigation :previous="previous_blog" :next="next_blog" />
             <ConversionPoint
               :id="id"
               :contents="cv_point"
@@ -146,6 +146,7 @@ export default {
       $(elm).removeAttr('src');
     });
     return {
+      prior_explanation: '',
       ...data,
       popularArticles,
       banner,

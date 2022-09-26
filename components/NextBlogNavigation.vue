@@ -1,15 +1,36 @@
 <template>
-  <div class="navigation">
+  <div v-if="previous || next" class="navigation">
     <ul>
       <li class="previous">
-        <a href="#">Next.jsとAuth0で会員制メディアを作る【1. 認証編】</a>
+        <nuxt-link v-if="previous && previous.id" :to="`/${previous.id}`">{{
+          previous.title
+        }}</nuxt-link>
       </li>
       <li class="next">
-        <a href="#">Next.jsとAuth0で会員制メディアを作る【3. 完成編】</a>
+        <nuxt-link v-if="next && next.id" :to="`/${next.id}`">{{
+          next.title
+        }}</nuxt-link>
       </li>
     </ul>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    previous: {
+      type: Object,
+      required: false,
+      default: undefined,
+    },
+    next: {
+      type: Object,
+      required: false,
+      default: undefined,
+    },
+  },
+};
+</script>
 
 <style scoped>
 .navigation {
