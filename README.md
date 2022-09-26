@@ -42,11 +42,14 @@ type: リスト形式
 | category      | カテゴリー | コンテンツ参照 - カテゴリー |
 | tag           | タグ       | 複数コンテンツ参照 - タグ   |
 | toc_visible   | 目次       | 真偽値                      |
+| prior_explanation | 事前説明       | リッチエディタ              |
 | body          | 本文       | リッチエディタ              |
 | description   | 概要       | テキストフィールド          |
 | ogimage       | OGP 画像   | 画像                        |
 | writer        | 著者       | コンテンツ参照 - 著者       |
 | partner       | パートナー | コンテンツ参照 - パートナー |
+| previous_blog | 前の記事   | コンテンツ参照 - ブログ |
+| next_blog     | 次の記事   | コンテンツ参照 - ブログ |
 | related_blogs | 関連記事   | 複数コンテンツ参照 - ブログ |
 | cv_point | CVポイント   | 繰り返し（※上限1に設定） - カスタムフィールド |
 
