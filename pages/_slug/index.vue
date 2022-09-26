@@ -45,65 +45,11 @@
               :tags="tag"
               :is-single-page="true"
             />
-            <div class="preDescription">
-              <h2>記事を読みはじめる前に</h2>
-              <div class="preContents">
-                <p>
-                  事前準備として、本記事で使用するサービスのアカウント登録を済ませておきましょう。
-                </p>
-                <ul>
-                  <li>
-                    <a
-                      href="https://microcms.io/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >microCMS</a
-                    >：APIベースの日本製のヘッドレスCMS
-                  </li>
-                  <li>
-                    <a href="#">Auth0</a
-                    >：クラウドサービスやアプリで利用されている認証プラットフォームサービス
-                  </li>
-                  <li>
-                    <a href="#">Vercel</a>：CI/CDとWebサーバが合わさったサービス
-                  </li>
-                </ul>
-                <p>
-                  <br />本記事で使用する、microCMSのスキーマ設定ファイルをダウンロードできます。
-                </p>
-                <ul>
-                  <li><a href="#">articles-schema.json (0.3KB)</a></li>
-                </ul>
-                <p><br />本記事のソースコードは下記GitHubで閲覧できます。</p>
-                <ul>
-                  <li>
-                    <a
-                      href="https://github.com/microcmsio/microcms-sample"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >https://github.com/microcmsio/microcms-sample</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <PriorExplanation />
             <Toc :id="id" :toc="toc" :visible="toc_visible" />
             <Post :body="body" />
             <ShareButtons :id="id" :title="title" />
-            <div class="navigation">
-              <ul>
-                <li class="previous">
-                  <a href="#"
-                    >Next.jsとAuth0で会員制メディアを作る【1. 認証編】</a
-                  >
-                </li>
-                <li class="next">
-                  <a href="#"
-                    >Next.jsとAuth0で会員制メディアを作る【3. 完成編】</a
-                  >
-                </li>
-              </ul>
-            </div>
+            <NextBlogNavigation />
             <ConversionPoint
               :id="id"
               :contents="cv_point"
@@ -199,7 +145,6 @@ export default {
       $(elm).attr('data-src', elm.attribs.src);
       $(elm).removeAttr('src');
     });
-
     return {
       ...data,
       popularArticles,
@@ -253,92 +198,6 @@ export default {
   margin-top: 10px;
   font-size: 14px;
   font-weight: bold;
-}
-
-.preDescription {
-  margin-bottom: 40px;
-  line-height: 1.8;
-  letter-spacing: 0.2px;
-
-  h2 {
-    padding: 10px 24px;
-    border-radius: 5px 5px 0 0;
-    background-color: #331cbf;
-    color: #fff;
-    font-weight: bold;
-  }
-
-  .preContents {
-    padding: 24px;
-    border: 1px solid #331cbf;
-    border-top: 0;
-    border-radius: 0 0 5px 5px;
-
-    a {
-      color: #331cbf;
-      text-decoration: underline;
-    }
-
-    ul {
-      list-style: disc;
-      padding-left: 1em;
-      margin-top: 10px;
-    }
-  }
-}
-
-.navigation {
-  margin: 60px 0;
-
-  ul {
-    display: flex;
-    justify-content: space-between;
-
-    li {
-      width: 40%;
-      position: relative;
-
-      a {
-        color: #331cbf;
-        text-decoration: underline;
-      }
-    }
-
-    .previous {
-      padding-left: 32px;
-
-      ::before {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 8px;
-        left: 0;
-        width: 8px;
-        height: 8px;
-        border-bottom: 2px solid #331cbf;
-        border-left: 2px solid #331cbf;
-        transform: translateX(50%) rotate(45deg);
-      }
-    }
-
-    .next {
-      padding-right: 32px;
-      text-align: right;
-
-      ::before {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 8px;
-        right: 0;
-        width: 8px;
-        height: 8px;
-        border-top: 2px solid #331cbf;
-        border-right: 2px solid #331cbf;
-        transform: translateX(-50%) rotate(45deg);
-      }
-    }
-  }
 }
 
 @media (min-width: 1160px) {
@@ -767,10 +626,6 @@ export default {
     font-weight: bold;
     font-size: 24px;
     color: #2b2c30;
-  }
-  .preDescription,
-  .navigation {
-    font-size: 14px;
   }
 }
 </style>
