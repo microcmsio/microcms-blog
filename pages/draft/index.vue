@@ -31,8 +31,14 @@
               :tags="data.tag"
               :is-single-page="true"
             />
+            <PriorExplanation :value="data.prior_explanation" />
             <Toc :id="data.id" :toc="toc" :visible="data.toc_visible" />
             <Post :body="data.body" />
+            <ShareButtons :id="data.id" :title="data.title" />
+            <NextBlogNavigation
+              :previous="data.previous_blog"
+              :next="data.next_blog"
+            />
             <ConversionPoint
               :id="data.id"
               :contents="data.cv_point"
