@@ -10,8 +10,8 @@ export default {
   props: {
     value: {
       type: String,
-      required: true,
-      default: '',
+      required: false,
+      default: null,
     },
   },
 };

@@ -146,7 +146,6 @@ export default {
       $(elm).removeAttr('src');
     });
     return {
-      prior_explanation: '',
       ...data,
       popularArticles,
       banner,
