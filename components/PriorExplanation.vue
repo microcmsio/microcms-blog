@@ -26,19 +26,19 @@ export default {
   & >>> h2 {
     padding: 10px 24px;
     border-radius: 5px 5px 0 0;
-    background-color: #331cbf;
+    background-color: var(--color-purple);
     color: #fff;
     font-weight: bold;
   }
 
   .preContents {
     padding: 24px;
-    border: 1px solid #331cbf;
+    border: 1px solid var(--color-purple);
     border-top: 0;
     border-radius: 0 0 5px 5px;
 
     & >>> a {
-      color: #331cbf;
+      color: var(--color-purple);
       text-decoration: underline;
     }
 

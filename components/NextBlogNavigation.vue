@@ -45,7 +45,7 @@ export default {
       position: relative;
 
       a {
-        color: #331cbf;
+        color: var(--color-purple);
         text-decoration: underline;
       }
     }
@@ -61,8 +61,8 @@ export default {
         left: 0;
         width: 8px;
         height: 8px;
-        border-bottom: 2px solid #331cbf;
-        border-left: 2px solid #331cbf;
+        border-bottom: 2px solid var(--color-purple);
+        border-left: 2px solid var(--color-purple);
         transform: translateX(50%) rotate(45deg);
       }
     }
@@ -79,8 +79,8 @@ export default {
         right: 0;
         width: 8px;
         height: 8px;
-        border-top: 2px solid #331cbf;
-        border-right: 2px solid #331cbf;
+        border-top: 2px solid var(--color-purple);
+        border-right: 2px solid var(--color-purple);
         transform: translateX(-50%) rotate(45deg);
       }
     }
