@@ -45,9 +45,11 @@
               :tags="tag"
               :is-single-page="true"
             />
+            <PriorExplanation :value="prior_explanation" />
             <Toc :id="id" :toc="toc" :visible="toc_visible" />
             <Post :body="body" />
             <ShareButtons :id="id" :title="title" />
+            <NextBlogNavigation :previous="previous_blog" :next="next_blog" />
             <ConversionPoint
               :id="id"
               :contents="cv_point"
@@ -143,7 +145,6 @@ export default {
       $(elm).attr('data-src', elm.attribs.src);
       $(elm).removeAttr('src');
     });
-
     return {
       ...data,
       popularArticles,
