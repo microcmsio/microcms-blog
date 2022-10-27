@@ -45,7 +45,6 @@
               :tags="tag"
               :is-single-page="true"
             />
-            <PriorExplanation :value="prior_explanation" />
             <Toc :id="id" :toc="toc" :visible="toc_visible" />
             <Post :body="body" />
             <ShareButtons :id="id" :title="title" />

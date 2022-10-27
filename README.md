@@ -42,7 +42,6 @@ type: リスト形式
 | category      | カテゴリー | コンテンツ参照 - カテゴリー |
 | tag           | タグ       | 複数コンテンツ参照 - タグ   |
 | toc_visible   | 目次       | 真偽値                      |
-| prior_explanation | 事前説明       | リッチエディタ              |
 | body          | 本文       | リッチエディタ              |
 | description   | 概要       | テキストフィールド          |
 | ogimage       | OGP 画像   | 画像                        |
