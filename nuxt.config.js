@@ -194,6 +194,11 @@ export default {
         name: 'tags',
       });
       routes.push({
+        path: '/author/:authorId/page/:id',
+        component: resolve(__dirname, 'pages/author/_authorId.vue'),
+        name: 'authors',
+      });
+      routes.push({
         path: '*',
         component: resolve(__dirname, 'pages/404.vue'),
         name: 'custom',

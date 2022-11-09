@@ -4,22 +4,29 @@
 
     <div class="profile">
       <div class="inner">
-        <img
-          src="https://pbs.twimg.com/profile_images/1401823780809285642/eu7emWfl_400x400.jpg"
-          width="180"
-          height="180"
-          alt=""
-        />
+        <picture v-if="author.image">
+          <source
+            type="image/webp"
+            :data-srcset="author.image.url + '?w=180&h=180&fm=webp'"
+          />
+          <img
+            :data-src="author.image.url + '?w=180&h=180'"
+            :width="180"
+            :height="180"
+            class="ogimage lazyload"
+            alt
+          />
+        </picture>
         <dl>
           <dt class="name">
-            <span>ひまらつ</span
-            ><a href="#"
+            <span>{{ author.name }}</span
+            ><a v-if="author.twitter" :href="author.twitter" target="twitter"
               ><img
                 src="/images/icon_twitter.svg"
                 alt="Twitter"
                 width="32"
                 height="32" /></a
-            ><a href="#"
+            ><a v-if="author.facebook" :href="author.facebook" target="facebook"
               ><img
                 src="/images/icon_facebook.svg"
                 alt="Facebook"
@@ -28,148 +35,78 @@
             /></a>
           </dt>
           <dd>
-            SwiftやPythonやスプラトゥーンを楽しんでます<br />
-            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+            {{ author.text }}
           </dd>
         </dl>
         <div class="post">
-          <span class="number">120</span><span>Posts</span>
+          <span class="number">{{ totalCount }}</span
+          ><span>Posts</span>
         </div>
       </div>
     </div>
 
     <div class="divider">
       <div class="container">
-        <h2>ひまらつが執筆した記事</h2>
+        <h2>{{ author.name }}が執筆した記事</h2>
         <ul class="lists">
-          <li class="list">
-            <a href="#" class="link">
-              <picture
-                ><img
-                  src="https://images.blog.microcms.io/assets/f5d83e38f9374219900ef1b0cc4d85cd/f05f7242158e42f098ec1826088bd5fc/media-tags-and-fiter.png?w=670"
-              /></picture>
+          <li v-for="content in contents" :key="content.id" class="list">
+            <nuxt-link :to="`/${content.id}`" class="link">
+              <picture v-if="content.ogimage">
+                <source
+                  type="image/webp"
+                  :data-srcset="content.ogimage.url + '?w=340&fm=webp'"
+                />
+                <img
+                  :data-src="content.ogimage.url + '?w=340'"
+                  :width="340"
+                  class="ogimage lazyload"
+                  alt
+                />
+              </picture>
               <dl class="content">
                 <dt class="title">
-                  メディアのタグ管理・フィルタ機能をリリースしました
+                  {{ content.title }}
                 </dt>
                 <dd>
                   <div class="upper">
-                    <span class="category">更新情報</span
-                    ><span class="category">運用</span>
+                    <span class="category">{{ content.category.name }}</span>
                   </div>
                   <div class="meta">
                     <div class="author">
                       <img
-                        src="https://pbs.twimg.com/profile_images/1401823780809285642/eu7emWfl_400x400.jpg"
-                        width="40"
-                        height="40"
-                        alt=""
-                      /><span>ひまらつ</span>
+                        :data-src="author.image.url + '?w=40&h=40'"
+                        :width="40"
+                        :height="40"
+                        class="ogimage lazyload"
+                        alt
+                      />
+                      <span>{{ author.name }}</span>
                     </div>
-                    <div class="timestamp">2022.10.18</div>
+                    <div class="timestamp">
+                      <time
+                        :datetime="
+                          $dayjs(
+                            content.publishedAt || content.createdAt
+                          ).format('YYYY-MM-DD')
+                        "
+                      >
+                        {{
+                          $dayjs(
+                            content.publishedAt || content.createdAt
+                          ).format('YYYY/MM/DD')
+                        }}
+                      </time>
+                    </div>
                   </div>
                 </dd>
               </dl>
-            </a>
-          </li>
-          <li class="list">
-            <a href="#" class="link">
-              <picture
-                ><img
-                  src="https://images.blog.microcms.io/assets/f5d83e38f9374219900ef1b0cc4d85cd/f05f7242158e42f098ec1826088bd5fc/media-tags-and-fiter.png?w=670"
-              /></picture>
-              <dl class="content">
-                <dt class="title">
-                  メディアのタグ管理・フィルタ機能をリリースしました
-                </dt>
-                <dd>
-                  <div class="upper">
-                    <span class="category">更新情報</span
-                    ><span class="category">運用</span>
-                  </div>
-                  <div class="meta">
-                    <div class="author">
-                      <img
-                        src="https://pbs.twimg.com/profile_images/1401823780809285642/eu7emWfl_400x400.jpg"
-                        width="40"
-                        height="40"
-                        alt=""
-                      /><span>ひまらつ</span>
-                    </div>
-                    <div class="timestamp">2022.10.18</div>
-                  </div>
-                </dd>
-              </dl>
-            </a>
-          </li>
-          <li class="list">
-            <a href="#" class="link">
-              <picture
-                ><img
-                  src="https://images.blog.microcms.io/assets/f5d83e38f9374219900ef1b0cc4d85cd/f05f7242158e42f098ec1826088bd5fc/media-tags-and-fiter.png?w=670"
-              /></picture>
-              <dl class="content">
-                <dt class="title">
-                  メディアのタグ管理・フィルタ機能をリリースしました
-                </dt>
-                <dd>
-                  <div class="upper">
-                    <span class="category">更新情報</span
-                    ><span class="category">運用</span>
-                  </div>
-                  <div class="meta">
-                    <div class="author">
-                      <img
-                        src="https://pbs.twimg.com/profile_images/1401823780809285642/eu7emWfl_400x400.jpg"
-                        width="40"
-                        height="40"
-                        alt=""
-                      /><span>ひまらつ</span>
-                    </div>
-                    <div class="timestamp">2022.10.18</div>
-                  </div>
-                </dd>
-              </dl>
-            </a>
-          </li>
-          <li class="list">
-            <a href="#" class="link">
-              <picture
-                ><img
-                  src="https://images.blog.microcms.io/assets/f5d83e38f9374219900ef1b0cc4d85cd/f05f7242158e42f098ec1826088bd5fc/media-tags-and-fiter.png?w=670"
-              /></picture>
-              <dl class="content">
-                <dt class="title">
-                  メディアのタグ管理・フィルタ機能をリリースしました
-                </dt>
-                <dd>
-                  <div class="upper">
-                    <span class="category">更新情報</span
-                    ><span class="category">運用</span>
-                  </div>
-                  <div class="meta">
-                    <div class="author">
-                      <img
-                        src="https://pbs.twimg.com/profile_images/1401823780809285642/eu7emWfl_400x400.jpg"
-                        width="40"
-                        height="40"
-                        alt=""
-                      /><span>ひまらつ</span>
-                    </div>
-                    <div class="timestamp">2022.10.18</div>
-                  </div>
-                </dd>
-              </dl>
-            </a>
+            </nuxt-link>
           </li>
         </ul>
-
         <Pagination
           v-if="contents.length > 0"
           :pager="pager"
           :current="Number(page)"
-          :category="selectedCategory"
-          :tag="selectedTag"
         />
       </div>
       <aside class="aside">
@@ -188,14 +125,7 @@
 export default {
   async asyncData({ params, payload, $microcms }) {
     const page = params.id || '1';
-    const categoryId = params.categoryId;
-    const tagId = params.tagId;
-    const articleFilter =
-      categoryId !== undefined
-        ? `category[equals]${categoryId}`
-        : tagId !== undefined
-        ? `tag[contains]${tagId}`
-        : undefined;
+    const authorId = params.authorId;
     const limit = 10;
     const popularArticles =
       payload !== undefined && payload.popularArticles !== undefined
@@ -211,12 +141,15 @@ export default {
         : await $microcms.get({
             endpoint: 'banner',
           });
+    const author = await $microcms.get({
+      endpoint: `authors/${authorId}`,
+    });
     const data = await $microcms.get({
       endpoint: 'blog',
       queries: {
         limit,
         offset: (page - 1) * limit,
-        filters: articleFilter,
+        filters: `writer[equals]${authorId}`,
       },
     });
     const categories = await $microcms.get({
@@ -231,20 +164,12 @@ export default {
         limit: 1000,
       },
     });
-    const selectedCategory =
-      categoryId !== undefined
-        ? categories.contents.find((content) => content.id === categoryId)
-        : undefined;
-    const selectedTag =
-      tagId !== undefined
-        ? tags.contents.find((content) => content.id === tagId)
-        : undefined;
     return {
       ...data,
+      author,
       categories: categories.contents,
       tags: tags.contents,
-      selectedCategory,
-      selectedTag,
+      authorId,
       popularArticles,
       banner,
       page,
