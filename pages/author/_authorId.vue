@@ -107,6 +107,7 @@
           v-if="contents.length > 0"
           :pager="pager"
           :current="Number(page)"
+          :author="author"
         />
       </div>
       <aside class="aside">
