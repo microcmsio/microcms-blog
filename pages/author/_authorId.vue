@@ -13,28 +13,30 @@
             :data-src="author.image.url + '?w=180&h=180'"
             :width="180"
             :height="180"
-            class="ogimage lazyload"
+            class="authorImg lazyload"
             alt
           />
         </picture>
-        <dl>
-          <dt class="name">
-            <span>{{ author.name }}</span
+        <dl class="content">
+          <dt>
+            <span class="name">{{ author.name }}</span
             ><a v-if="author.twitter" :href="author.twitter" target="twitter"
               ><img
                 src="/images/icon_twitter.svg"
                 alt="Twitter"
+                class="icon lazyload"
                 width="32"
                 height="32" /></a
             ><a v-if="author.facebook" :href="author.facebook" target="facebook"
               ><img
                 src="/images/icon_facebook.svg"
                 alt="Facebook"
+                class="icon lazyload"
                 width="32"
                 height="32"
             /></a>
           </dt>
-          <dd>
+          <dd class="text">
             {{ author.text }}
           </dd>
         </dl>
@@ -47,60 +49,10 @@
 
     <div class="divider">
       <div class="container">
-        <h2>{{ author.name }}が執筆した記事</h2>
+        <h2 class="title">{{ author.name }}が執筆した記事</h2>
         <ul class="lists">
           <li v-for="content in contents" :key="content.id" class="list">
-            <nuxt-link :to="`/${content.id}`" class="link">
-              <picture v-if="content.ogimage">
-                <source
-                  type="image/webp"
-                  :data-srcset="content.ogimage.url + '?w=340&fm=webp'"
-                />
-                <img
-                  :data-src="content.ogimage.url + '?w=340'"
-                  :width="340"
-                  class="ogimage lazyload"
-                  alt
-                />
-              </picture>
-              <dl class="content">
-                <dt class="title">
-                  {{ content.title }}
-                </dt>
-                <dd>
-                  <div class="upper">
-                    <span class="category">{{ content.category.name }}</span>
-                  </div>
-                  <div class="meta">
-                    <div class="author">
-                      <img
-                        :data-src="author.image.url + '?w=40&h=40'"
-                        :width="40"
-                        :height="40"
-                        class="ogimage lazyload"
-                        alt
-                      />
-                      <span>{{ author.name }}</span>
-                    </div>
-                    <div class="timestamp">
-                      <time
-                        :datetime="
-                          $dayjs(
-                            content.publishedAt || content.createdAt
-                          ).format('YYYY-MM-DD')
-                        "
-                      >
-                        {{
-                          $dayjs(
-                            content.publishedAt || content.createdAt
-                          ).format('YYYY/MM/DD')
-                        }}
-                      </time>
-                    </div>
-                  </div>
-                </dd>
-              </dl>
-            </nuxt-link>
+            <Card :content="content" :author="author" />
           </li>
         </ul>
         <Pagination
@@ -199,108 +151,52 @@ export default {
   background-color: #f8f9fd;
   padding: 64px 0;
   margin: -45px auto 64px;
-  .inner {
-    max-width: 1160px;
-    margin: 0 auto;
-    display: flex;
-    img {
-      border-radius: 100px;
-    }
-    dl {
-      margin-left: 60px;
-      .name {
-        span {
-          font-size: 32px;
-          font-weight: 900;
-          margin-right: 24px;
-        }
-        img {
-          margin-right: 16px;
-          border-radius: 0;
-        }
-      }
-      dd {
-        margin-top: 8px;
-      }
-    }
-    .post {
-      text-align: center;
-      font-weight: 800;
-      font-size: 24px;
-      margin-left: 60px;
-      span {
-        display: block;
-      }
-      .number {
-        font-size: 72px;
-        margin-bottom: -10px;
-      }
-    }
-  }
 }
-.divider {
-  h2 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 24px;
-  }
-  .lists {
-    display: flex;
-    flex-wrap: wrap;
-    .list {
-      width: 340px;
-      padding: 0 0 64px;
-      .link {
-        display: block;
-        picture img {
-          width: 340px;
-        }
-        .content {
-          margin: 16px 0 0;
-          .title {
-            font-size: 20px;
-            font-weight: bold;
-          }
-          .upper {
-            margin-top: 16px;
-            .category {
-              display: inline-block;
-              padding: 8px 16px;
-              white-space: nowrap;
-              color: #21213b;
-              font-weight: bold;
-              border-radius: 4px;
-              font-size: 14px;
-              margin-right: 16px;
-              background: #ececec;
-            }
-          }
-          .meta {
-            display: flex;
-            align-items: center;
-            margin-top: 16px;
-            .author,
-            .timestamp {
-              display: inline-flex;
-              align-items: center;
-              margin-right: 16px;
-              color: #666;
-              img {
-                border-radius: 100px;
-                margin-right: 8px;
-              }
-            }
-            .author {
-              font-weight: bold;
-            }
-          }
-        }
-      }
-    }
-    li:nth-child(odd) {
-      margin-right: 60px;
-    }
-  }
+.inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: flex;
+}
+.content {
+  margin-left: 60px;
+}
+.name {
+  font-size: 32px;
+  font-weight: 900;
+  margin-right: 24px;
+}
+.text {
+  margin-top: 8px;
+}
+.icon {
+  margin-right: 16px;
+}
+.authorImg {
+  border-radius: 50%;
+}
+.post {
+  text-align: center;
+  font-weight: 800;
+  font-size: 24px;
+  margin-left: 60px;
+}
+.number {
+  display: block;
+  font-size: 72px;
+  margin-bottom: -10px;
+}
+.lists {
+  display: flex;
+  flex-wrap: wrap;
+}
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+.list {
+  width: 340px;
+  padding: 0 0 64px;
 }
 
 @media (min-width: 1160px) {
@@ -323,78 +219,56 @@ export default {
     display: flex;
     justify-content: space-between;
   }
-
-  .content {
-    flex: 1;
+  .list:nth-child(odd) {
+    margin-right: 60px;
   }
 }
 @media (min-width: 820px) and (max-width: 1160px) {
   .profile {
     margin: 0 auto 64px;
-    .inner {
-      max-width: 740px;
-      display: block;
-      text-align: center;
-      dl,
-      .post {
-        margin: 16px 0;
-        .name {
-          margin-bottom: 16px;
-        }
-      }
-    }
+  }
+  .inner {
+    max-width: 740px;
+    display: block;
+    text-align: center;
+  }
+  .post,
+  .content {
+    margin: 16px 0;
+  }
+  .name {
+    margin-bottom: 16px;
   }
   .divider {
     margin: 20px auto 0;
     width: 740px;
   }
-
   .aside {
     margin-top: 60px;
   }
-
-  .link {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .content {
-    flex: 1;
+  .list:nth-child(odd) {
+    margin-right: 60px;
   }
 }
 @media (max-width: 820px) {
-  .divider {
-    .lists {
-      width: 100%;
-
-      li:nth-child(odd) {
-        margin-right: 0;
-      }
-      .list {
-        width: 100%;
-        .link {
-          picture img {
-            width: 100%;
-          }
-        }
-      }
-    }
+  .lists {
+    width: 100%;
   }
   .profile {
     margin: 0 auto 64px;
     padding: 64px 20px;
-    .inner {
-      max-width: 740px;
-      display: block;
-      text-align: center;
-      dl,
-      .post {
-        margin: 16px 0;
-        .name {
-          margin-bottom: 16px;
-        }
-      }
-    }
+  }
+  .inner {
+    max-width: 740px;
+    display: block;
+    text-align: center;
+  }
+  .content,
+  .post {
+    margin: 16px 0;
+  }
+  .name {
+    margin-bottom: 16px;
   }
   .divider {
     margin: 20px 0 0;
@@ -407,16 +281,13 @@ export default {
   }
 
   .list {
-    padding: 32px 0 0;
+    width: 100%;
+    padding: 32px 0;
     border-bottom: 1px solid #eee;
 
     &:first-child {
       padding-top: 16px;
     }
-  }
-
-  .title {
-    margin-top: 10px;
   }
 }
 </style>
