@@ -26,7 +26,7 @@
             <h1 class="title">{{ data.title }}</h1>
             <Meta
               :created-at="data.publishedAt || data.createdAt"
-              :author="data.writer !== null ? data.writer.name : ''"
+              :author="data.writer"
               :category="data.category"
               :tags="data.tag"
               :is-single-page="true"
