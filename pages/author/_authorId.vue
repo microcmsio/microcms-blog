@@ -140,7 +140,7 @@ export default {
   head() {
     return {
       titleTemplate: null,
-      title: 'microCMSブログ',
+      title: `${this.author.name}が執筆した記事 | microCMSブログ`,
     };
   },
 };
