@@ -90,12 +90,12 @@ export default {
   display: inline-block;
   padding: 8px 16px;
   white-space: nowrap;
-  color: #21213b;
+  color: var(--color-text-main);
   font-weight: bold;
   border-radius: 4px;
   font-size: 14px;
   margin-right: 16px;
-  background: #ececec;
+  background: var(--color-gray-light);
 }
 .meta {
   display: flex;
@@ -107,7 +107,7 @@ export default {
   display: inline-flex;
   align-items: center;
   margin-right: 16px;
-  color: #666;
+  color: var(--color-text-sub);
 }
 .authorimage {
   border-radius: 100px;

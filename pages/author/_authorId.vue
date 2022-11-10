@@ -148,7 +148,7 @@ export default {
 
 <style scoped>
 .profile {
-  background-color: #f8f9fd;
+  background-color: var(--color-bg-purple-lightest);
   padding: 64px 0;
   margin: -45px auto 64px;
 }
@@ -283,7 +283,7 @@ export default {
   .list {
     width: 100%;
     padding: 32px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--color-border-light);
 
     &:first-child {
       padding-top: 16px;
