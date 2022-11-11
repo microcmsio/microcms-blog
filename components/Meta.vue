@@ -29,10 +29,10 @@
           {{ $dayjs(createdAt).format('YYYY/MM/DD') }}
         </time>
       </span>
-      <nuxt-link v-if="author" class="author" :to="`/author/${author.id}/`">
+      <span v-if="author" class="author">
         <img src="/images/icon_author.svg" width="20" height="21" alt />
         {{ author.name }}
-      </nuxt-link>
+      </span>
     </div>
   </div>
 </template>
@@ -150,11 +150,6 @@ export default {
       margin-right: 6px;
       height: 16px;
       width: auto;
-    }
-
-    &:hover {
-      color: var(--color-purple);
-      text-decoration: underline;
     }
   }
 }
