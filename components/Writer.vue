@@ -15,10 +15,13 @@
       </picture>
       <dl class="content">
         <dt class="name">
-          <nuxt-link :to="`/author/${writer.id}`" class="authorLink">
+          <nuxt-link :to="`/author/${writer.id}/`" class="authorLink">
             {{ writer.name }}
           </nuxt-link>
-          <a class="twitterLink" :href="`https://twitter.com/${writer.id}`">
+          <a
+            class="twitterLink"
+            :href="`https://twitter.com/${writer.twitter || writer.id}`"
+          >
             <img class="twitter" src="/images/icon_twitter.svg" alt="Twitter" />
           </a>
         </dt>
