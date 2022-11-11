@@ -219,6 +219,12 @@ export default {
   width: 340px;
   padding: 0 0 64px;
 }
+.loader {
+  color: var(--color-text-disabled);
+  font-size: 20px;
+  text-align: center;
+  padding: 150px;
+}
 
 @media (min-width: 1160px) {
   .divider {
@@ -309,6 +315,11 @@ export default {
     &:first-child {
       padding-top: 16px;
     }
+  }
+  .loader {
+    color: var(--color-text-disabled);
+    font-size: 16px;
+    padding-top: 20px;
   }
 }
 </style>
