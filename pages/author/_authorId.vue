@@ -47,6 +47,15 @@
                 height="32"
               />
             </a>
+            <a :href="`/author/${author.id}/feed.xml`" target="rss">
+              <img
+                src="/images/icon_feed.svg"
+                alt="RSS"
+                class="icon lazyload"
+                width="32"
+                height="32"
+              />
+            </a>
           </dt>
           <dd class="text">
             {{ author.text }}
@@ -304,9 +313,13 @@ export default {
     width: 100%;
   }
   .nameWrapper {
-    justify-content: center;
+    display: block;
   }
-
+  .name {
+    display: block;
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
   .list {
     width: 100%;
     padding: 32px 0;
