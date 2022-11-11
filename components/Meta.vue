@@ -31,7 +31,7 @@
       </span>
       <span v-if="author" class="author">
         <img src="/images/icon_author.svg" width="20" height="21" alt />
-        {{ author }}
+        {{ author.name }}
       </span>
     </div>
   </div>
@@ -45,7 +45,7 @@ export default {
       required: true,
     },
     author: {
-      type: String,
+      type: Object,
       required: false,
       default: undefined,
     },

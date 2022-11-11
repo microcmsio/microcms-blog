@@ -34,10 +34,9 @@ export default {
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-bottom: -120px;
+  margin: 40px 0;
 }
 .status {
-  font-family: 'Times New Roman', Times, serif;
   font-size: 120px;
   font-weight: bold;
   color: #999;

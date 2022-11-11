@@ -194,6 +194,11 @@ export default {
         name: 'tags',
       });
       routes.push({
+        path: '/author/:authorId/page/:id',
+        component: resolve(__dirname, 'pages/author/_authorId.vue'),
+        name: 'authors',
+      });
+      routes.push({
         path: '*',
         component: resolve(__dirname, 'pages/404.vue'),
         name: 'custom',
@@ -352,105 +357,150 @@ export default {
     gzip: true,
     trailingSlash: true,
   },
-  feed: [
-    {
-      path: '/feed.xml',
-      async create(feed) {
-        feed.options = {
-          title: 'microCMSブログ',
-          link: 'https://blog.microcms.io/feed.xml',
-          description:
-            'microCMSはAPIベースの日本製ヘッドレスCMSです。本ブログはmicroCMSの開発メンバーがmicroCMSの使い方や技術的な内容を発信するブログです。',
-        };
-
-        const posts = await client
-          .get({
-            endpoint: 'blog',
-          })
-          .then((res) => res.contents);
-
-        posts.forEach((post) => {
-          feed.addItem({
-            title: post.title,
-            id: post.id,
-            link: `https://blog.microcms.io/${post.id}/`,
-            description: post.description,
-            content: post.description,
-            date: new Date(post.publishedAt || post.createdAt),
-            image: post.ogimage && post.ogimage.url,
+  feed: async () => {
+    const authors = await client
+      .get({
+        endpoint: 'authors',
+        queries: {
+          limit: 1000,
+        },
+      })
+      .then((res) => res.contents);
+    const authorsSettings = authors.map((author) => {
+      return {
+        path: `/author/${author.id}/feed.xml`,
+        async create(feed) {
+          feed.options = {
+            title: `${author.name}が執筆した記事 | microCMSブログ`,
+            link: 'https://blog.microcms.io/feed.xml',
+            description:
+              'microCMSはAPIベースの日本製ヘッドレスCMSです。本ブログはmicroCMSの開発メンバーがmicroCMSの使い方や技術的な内容を発信するブログです。',
+          };
+          const posts = await client
+            .get({
+              endpoint: 'blog',
+              queries: {
+                filters: `writer[equals]${author.id}`,
+              },
+            })
+            .then((res) => res.contents);
+          posts.forEach((post) => {
+            feed.addItem({
+              title: post.title,
+              id: post.id,
+              link: `https://blog.microcms.io/${post.id}/`,
+              description: post.description,
+              content: post.description,
+              date: new Date(post.publishedAt || post.createdAt),
+              image: post.ogimage && post.ogimage.url,
+            });
           });
-        });
-      },
-      cacheTime: 1000 * 60 * 15,
-      type: 'rss2',
-    },
-    {
-      path: '/feed_update.xml',
-      async create(feed) {
-        feed.options = {
-          title: '更新情報｜microCMSブログ',
-          link: 'https://blog.microcms.io/feed.xml',
-          description:
-            'microCMSはAPIベースの日本製ヘッドレスCMSです。本ブログはmicroCMSの開発メンバーがmicroCMSの使い方や技術的な内容を発信するブログです。',
-        };
+        },
+        cacheTime: 1000 * 60 * 15,
+        type: 'rss2',
+      };
+    });
+    return [
+      {
+        path: '/feed.xml',
+        async create(feed) {
+          feed.options = {
+            title: 'microCMSブログ',
+            link: 'https://blog.microcms.io/feed.xml',
+            description:
+              'microCMSはAPIベースの日本製ヘッドレスCMSです。本ブログはmicroCMSの開発メンバーがmicroCMSの使い方や技術的な内容を発信するブログです。',
+          };
 
-        const posts = await client
-          .get({
-            endpoint: 'blog',
-            queries: {
-              filters: 'category[equals]update',
-            },
-          })
-          .then((res) => res.contents);
+          const posts = await client
+            .get({
+              endpoint: 'blog',
+            })
+            .then((res) => res.contents);
 
-        posts.forEach((post) => {
-          feed.addItem({
-            title: post.title,
-            id: post.id,
-            link: `https://blog.microcms.io/${post.id}/`,
-            description: post.description,
-            content: post.description,
-            date: new Date(post.publishedAt || post.createdAt),
-            image: post.ogimage && post.ogimage.url,
+          posts.forEach((post) => {
+            feed.addItem({
+              title: post.title,
+              id: post.id,
+              link: `https://blog.microcms.io/${post.id}/`,
+              description: post.description,
+              content: post.description,
+              date: new Date(post.publishedAt || post.createdAt),
+              image: post.ogimage && post.ogimage.url,
+            });
           });
-        });
+        },
+        cacheTime: 1000 * 60 * 15,
+        type: 'rss2',
       },
-      cacheTime: 1000 * 60 * 15,
-      type: 'rss2',
-    },
-    {
-      path: '/feed_usecase.xml',
-      async create(feed) {
-        feed.options = {
-          title: '導入事例｜microCMSブログ',
-          link: 'https://blog.microcms.io/feed.xml',
-          description:
-            'microCMSはAPIベースの日本製ヘッドレスCMSです。本ブログはmicroCMSの開発メンバーがmicroCMSの使い方や技術的な内容を発信するブログです。',
-        };
+      {
+        path: '/feed_update.xml',
+        async create(feed) {
+          feed.options = {
+            title: '更新情報｜microCMSブログ',
+            link: 'https://blog.microcms.io/feed.xml',
+            description:
+              'microCMSはAPIベースの日本製ヘッドレスCMSです。本ブログはmicroCMSの開発メンバーがmicroCMSの使い方や技術的な内容を発信するブログです。',
+          };
 
-        const posts = await client
-          .get({
-            endpoint: 'blog',
-            queries: {
-              filters: 'category[equals]usecase',
-            },
-          })
-          .then((res) => res.contents);
+          const posts = await client
+            .get({
+              endpoint: 'blog',
+              queries: {
+                filters: 'category[equals]update',
+              },
+            })
+            .then((res) => res.contents);
 
-        posts.forEach((post) => {
-          feed.addItem({
-            title: post.title,
-            id: post.id,
-            link: `https://blog.microcms.io/${post.id}/`,
-            description: post.description,
-            content: post.description,
-            date: new Date(post.publishedAt || post.createdAt),
-            image: post.ogimage && post.ogimage.url,
+          posts.forEach((post) => {
+            feed.addItem({
+              title: post.title,
+              id: post.id,
+              link: `https://blog.microcms.io/${post.id}/`,
+              description: post.description,
+              content: post.description,
+              date: new Date(post.publishedAt || post.createdAt),
+              image: post.ogimage && post.ogimage.url,
+            });
           });
-        });
+        },
+        cacheTime: 1000 * 60 * 15,
+        type: 'rss2',
       },
-      cacheTime: 1000 * 60 * 15,
-      type: 'rss2',
-    },
-  ],
+      {
+        path: '/feed_usecase.xml',
+        async create(feed) {
+          feed.options = {
+            title: '導入事例｜microCMSブログ',
+            link: 'https://blog.microcms.io/feed.xml',
+            description:
+              'microCMSはAPIベースの日本製ヘッドレスCMSです。本ブログはmicroCMSの開発メンバーがmicroCMSの使い方や技術的な内容を発信するブログです。',
+          };
+
+          const posts = await client
+            .get({
+              endpoint: 'blog',
+              queries: {
+                filters: 'category[equals]usecase',
+              },
+            })
+            .then((res) => res.contents);
+
+          posts.forEach((post) => {
+            feed.addItem({
+              title: post.title,
+              id: post.id,
+              link: `https://blog.microcms.io/${post.id}/`,
+              description: post.description,
+              content: post.description,
+              date: new Date(post.publishedAt || post.createdAt),
+              image: post.ogimage && post.ogimage.url,
+            });
+          });
+        },
+        cacheTime: 1000 * 60 * 15,
+        type: 'rss2',
+      },
+      ...authorsSettings,
+    ];
+  },
 };

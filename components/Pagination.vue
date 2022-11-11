@@ -74,6 +74,11 @@ export default {
       required: false,
       default: undefined,
     },
+    author: {
+      type: Object,
+      required: false,
+      default: undefined,
+    },
   },
   methods: {
     getPath(p) {
@@ -81,6 +86,8 @@ export default {
         return `/category/${this.category.id}/page/${p}`;
       } else if (this.tag !== undefined) {
         return `/tag/${this.tag.id}/page/${p}`;
+      } else if (this.author !== undefined) {
+        return `/author/${this.author.id}/page/${p}`;
       } else {
         return `/page/${p}`;
       }

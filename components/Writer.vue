@@ -15,8 +15,13 @@
       </picture>
       <dl class="content">
         <dt class="name">
-          {{ writer.name }}
-          <a class="twitterLink" :href="`https://twitter.com/${writer.id}`">
+          <nuxt-link :to="`/author/${writer.id}/`" class="authorLink">
+            {{ writer.name }}
+          </nuxt-link>
+          <a
+            class="twitterLink"
+            :href="`https://twitter.com/${writer.twitter || writer.id}`"
+          >
             <img class="twitter" src="/images/icon_twitter.svg" alt="Twitter" />
           </a>
         </dt>
@@ -67,6 +72,11 @@ export default {
 
 .text {
   font-size: 14px;
+}
+
+.authorLink:hover {
+  color: var(--color-purple);
+  text-decoration: underline;
 }
 
 @media (min-width: 600px) {

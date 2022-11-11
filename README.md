@@ -7,6 +7,7 @@
 - タグ別記事一覧
 - 人気の記事一覧
 - 最新の記事一覧
+- 著者別の記事一覧
 - 検索
 - パンくずリスト
 - 記事詳細
@@ -73,6 +74,9 @@ type: リスト形式
 | name | 名前 | テキストフィールド |
 | text | 自己紹介 | テキストエリア |
 | image | 画像 | 画像 |
+| twitter | Twitter URL | テキストフィールド |
+| facebook | Facebook URL | テキストフィールド |
+| github | GitHub URL | テキストフィールド |
 
 ### カテゴリー
 endpoint: categories  
