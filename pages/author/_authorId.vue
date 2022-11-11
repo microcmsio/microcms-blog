@@ -18,23 +18,35 @@
           />
         </picture>
         <dl class="content">
-          <dt>
-            <span class="name">{{ author.name }}</span
-            ><a v-if="author.twitter" :href="author.twitter" target="twitter"
-              ><img
+          <dt class="nameWrapper">
+            <span class="name">{{ author.name }}</span>
+            <a v-if="author.twitter" :href="author.twitter" target="twitter">
+              <img
                 src="/images/icon_twitter.svg"
                 alt="Twitter"
                 class="icon lazyload"
                 width="32"
-                height="32" /></a
-            ><a v-if="author.facebook" :href="author.facebook" target="facebook"
-              ><img
+                height="32"
+              />
+            </a>
+            <a v-if="author.facebook" :href="author.facebook" target="facebook">
+              <img
                 src="/images/icon_facebook.svg"
                 alt="Facebook"
                 class="icon lazyload"
                 width="32"
                 height="32"
-            /></a>
+              />
+            </a>
+            <a v-if="author.github" :href="author.github" target="github">
+              <img
+                src="/images/icon_github.svg"
+                alt="GitHub"
+                class="icon lazyload"
+                width="32"
+                height="32"
+              />
+            </a>
           </dt>
           <dd class="text">
             {{ author.text }}
@@ -160,6 +172,11 @@ export default {
 .content {
   margin-left: 60px;
 }
+.nameWrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
 .name {
   font-size: 32px;
   font-weight: 900;
@@ -214,7 +231,6 @@ export default {
   .aside {
     width: 300px;
   }
-
   .link {
     display: flex;
     justify-content: space-between;
@@ -236,9 +252,6 @@ export default {
   .content {
     margin: 16px 0;
   }
-  .name {
-    margin-bottom: 16px;
-  }
   .divider {
     margin: 20px auto 0;
     width: 740px;
@@ -246,6 +259,10 @@ export default {
   .aside {
     margin-top: 60px;
   }
+  .nameWrapper {
+    justify-content: center;
+  }
+
   .list:nth-child(odd) {
     margin-right: 60px;
   }
@@ -267,9 +284,6 @@ export default {
   .post {
     margin: 16px 0;
   }
-  .name {
-    margin-bottom: 16px;
-  }
   .divider {
     margin: 20px 0 0;
     padding: 0 20px;
@@ -278,6 +292,9 @@ export default {
   .aside {
     margin-top: 60px;
     width: 100%;
+  }
+  .nameWrapper {
+    justify-content: center;
   }
 
   .list {
