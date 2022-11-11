@@ -61,7 +61,11 @@
 
     <div class="divider">
       <div class="container">
+        <Breadcrumb />
         <h2 class="title">{{ author.name }}が執筆した記事</h2>
+        <div v-show="contents.length === 0" class="loader">
+          記事がありません
+        </div>
         <ul class="lists">
           <li v-for="content in contents" :key="content.id" class="list">
             <Card :content="content" :author="author" />
@@ -209,7 +213,7 @@ export default {
 .title {
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 24px;
+  margin: 16px 0 24px;
 }
 .list {
   width: 340px;
