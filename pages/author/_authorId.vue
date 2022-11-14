@@ -7,10 +7,10 @@
         <picture v-if="author.image">
           <source
             type="image/webp"
-            :data-srcset="author.image.url + '?w=180&h=180&fm=webp'"
+            :data-srcset="author.image.url + '?w=360&h=360&fm=webp'"
           />
           <img
-            :data-src="author.image.url + '?w=180&h=180'"
+            :data-src="author.image.url + '?w=360&h=360'"
             :width="180"
             :height="180"
             class="authorImg lazyload"
