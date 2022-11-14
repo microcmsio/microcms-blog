@@ -3,10 +3,10 @@
     <picture v-if="content.ogimage">
       <source
         type="image/webp"
-        :data-srcset="content.ogimage.url + '?w=340&fm=webp'"
+        :data-srcset="content.ogimage.url + '?w=680&fm=webp'"
       />
       <img
-        :data-src="content.ogimage.url + '?w=340'"
+        :data-src="content.ogimage.url + '?w=680'"
         :width="340"
         class="ogimage lazyload"
         alt
@@ -23,7 +23,7 @@
         <div class="meta">
           <div class="author">
             <img
-              :data-src="author.image.url + '?w=40&h=40'"
+              :data-src="author.image.url + '?w=80&h=80'"
               :width="40"
               :height="40"
               class="authorimage lazyload"
