@@ -19,6 +19,9 @@
             class="ogimage"
           />
         </div>
+        <dev v-else>
+          <img ref="ogimage" :src="data.defaultOgimage" class="ogimage" />
+        </dev>
         <Breadcrumb :category="data.category" />
         <div class="main">
           <Share :id="data.id" :title="data.title" />
@@ -69,6 +72,7 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
 import hljs from 'highlight.js';
+import getDefaultOgimage from '../../utils/getDefaultOgimage';
 
 export default {
   async asyncData({ $microcms }) {
@@ -169,6 +173,10 @@ export default {
       $(elm).addClass('hljs');
     });
     this.data.body = $.html();
+    this.data.defaultOgimage = getDefaultOgimage(this.data);
+    this.data.related_blogs.forEach((blog) => {
+      blog.defaultOgimage = getDefaultOgimage(blog);
+    });
   },
   head() {
     return {

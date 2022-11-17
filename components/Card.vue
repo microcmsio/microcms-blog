@@ -12,6 +12,15 @@
         alt
       />
     </picture>
+    <picture v-else>
+      <source type="image/webp" :data-srcset="content.defaultOgimage" />
+      <img
+        :data-src="content.defaultOgimage"
+        :width="340"
+        class="ogimage lazyload"
+        alt
+      />
+    </picture>
     <dl class="content">
       <dt class="title">
         {{ content.title }}
