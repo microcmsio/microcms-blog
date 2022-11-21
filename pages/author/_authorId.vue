@@ -100,6 +100,8 @@
 </template>
 
 <script>
+import getDefaultOgimage from '../../utils/getDefaultOgimage';
+
 export default {
   async asyncData({ params, payload, $microcms }) {
     const page = params.id || '1';
@@ -142,6 +144,11 @@ export default {
         limit: 1000,
       },
     });
+
+    data.contents.forEach((content) => {
+      content.defaultOgimage = getDefaultOgimage(content);
+    });
+
     return {
       ...data,
       author,

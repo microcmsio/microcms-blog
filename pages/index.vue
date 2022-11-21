@@ -23,6 +23,17 @@
                   alt
                 />
               </picture>
+              <picture v-else>
+                <source
+                  type="image/webp"
+                  :data-srcset="content.defaultOgimage"
+                />
+                <img
+                  :data-src="content.defaultOgimage"
+                  class="ogimage lazyload"
+                  alt
+                />
+              </picture>
               <dl class="content">
                 <dt class="title">{{ content.title }}</dt>
                 <dd>
@@ -58,6 +69,8 @@
 </template>
 
 <script>
+import getDefaultOgimage from '../utils/getDefaultOgimage';
+
 export default {
   async asyncData({ params, payload, $microcms }) {
     const page = params.id || '1';
@@ -112,6 +125,12 @@ export default {
       tagId !== undefined
         ? tags.contents.find((content) => content.id === tagId)
         : undefined;
+
+    // デフォルト画像を設定
+    data.contents.forEach((content) => {
+      content.defaultOgimage = getDefaultOgimage(content);
+    });
+
     return {
       ...data,
       categories: categories.contents,

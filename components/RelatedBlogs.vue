@@ -4,7 +4,7 @@
     <ul class="lists">
       <li v-for="blog in blogs" :key="blog.id" class="list">
         <nuxt-link :to="`/${blog.id}/`" class="link">
-          <picture>
+          <picture v-if="blog.ogimage">
             <source
               type="image/webp"
               :data-srcset="blog.ogimage.url + '?w=820&fm=webp'"
@@ -14,6 +14,10 @@
               class="img lazyload"
               alt
             />
+          </picture>
+          <picture v-else>
+            <source type="image/webp" :data-srcset="blog.defaultOgimage" />
+            <img :data-src="blog.defaultOgimage" class="img lazyload" alt />
           </picture>
           <dl class="content">
             <dt class="title">{{ blog.title }}</dt>

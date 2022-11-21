@@ -32,6 +32,10 @@
               alt
             />
           </picture>
+          <picture v-else>
+            <source type="image/webp" :srcset="defaultOgimage" />
+            <img ref="ogimage" :src="defaultOgimage" class="ogimage" alt />
+          </picture>
         </div>
         <Breadcrumb :category="category" />
         <div class="main">
@@ -83,6 +87,7 @@
 <script>
 import cheerio from 'cheerio';
 import hljs from 'highlight.js';
+import getDefaultOgimage from '../../utils/getDefaultOgimage';
 
 export default {
   async asyncData({ params, payload, $microcms }) {
@@ -144,8 +149,14 @@ export default {
       $(elm).attr('data-src', elm.attribs.src);
       $(elm).removeAttr('src');
     });
+
+    data.related_blogs.forEach((blog) => {
+      blog.defaultOgimage = getDefaultOgimage(blog);
+    });
+
     return {
       ...data,
+      defaultOgimage: getDefaultOgimage(data),
       popularArticles,
       banner,
       body: $.html(),

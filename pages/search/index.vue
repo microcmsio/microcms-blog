@@ -27,7 +27,7 @@
           <ul>
             <li v-for="content in contents" :key="content.id" class="list">
               <nuxt-link :to="`/${content.id}`" class="link">
-                <picture>
+                <picture v-if="content.ogimage.hoge">
                   <source
                     type="image/webp"
                     :srcset="content.ogimage.url + '?w=670&fm=webp'"
@@ -37,6 +37,10 @@
                     class="ogimage"
                     alt
                   />
+                </picture>
+                <picture v-else>
+                  <source type="image/webp" :srcset="content.defaultOgimage" />
+                  <img :src="content.defaultOgimage" class="ogimage" alt />
                 </picture>
                 <dl class="content">
                   <dt class="title">{{ content.title }}</dt>
@@ -85,6 +89,7 @@
 
 <script>
 import axios from 'axios';
+import getDefaultOgimage from '../../utils/getDefaultOgimage';
 
 export default {
   async asyncData({ payload, $microcms }) {
@@ -153,6 +158,9 @@ export default {
         return;
       }
       this.contents = data.contents;
+      this.contents.forEach((content) => {
+        content.defaultOgimage = getDefaultOgimage(content);
+      });
       this.totalCount = data.totalCount;
       this.searchable = false;
     },
