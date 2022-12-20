@@ -57,7 +57,7 @@ export default {
 
       & > code {
         color: var(--color-text-main);
-        background-color: var(--color-bg-purple-lightest);
+        background-color: var(--color-bg-purple-light);
         border: 1px solid var(--color-border);
         border-radius: 3px;
         margin: 0 2px;
@@ -171,7 +171,7 @@ export default {
 
       & > code {
         color: var(--color-text-main);
-        background-color: var(--color-bg-purple-lightest);
+        background-color: var(--color-bg-purple-light);
         border: 1px solid var(--color-border);
         border-radius: 3px;
         margin: 0 2px;
