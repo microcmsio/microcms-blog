@@ -38,6 +38,10 @@ body, input {
   color: #2b2c30;
 }
 
+code {
+  font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+}
+
 ol, ul {
 list-style: none;
 }
