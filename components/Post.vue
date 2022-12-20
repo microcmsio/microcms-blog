@@ -56,8 +56,8 @@ export default {
       letter-spacing: 0.2px;
 
       & > code {
-        color: var(--color-pink);
-        background-color: var(--color-gray-light);
+        color: var(--color-text-main);
+        background-color: var(--color-bg-purple-light);
         border: 1px solid var(--color-border);
         border-radius: 3px;
         margin: 0 2px;
@@ -170,8 +170,8 @@ export default {
       letter-spacing: 0.2px;
 
       & > code {
-        color: var(--color-pink);
-        background-color: var(--color-gray-light);
+        color: var(--color-text-main);
+        background-color: var(--color-bg-purple-light);
         border: 1px solid var(--color-border);
         border-radius: 3px;
         margin: 0 2px;
