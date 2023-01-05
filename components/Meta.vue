@@ -31,7 +31,9 @@
       </span>
       <span v-if="author" class="author">
         <img src="/images/icon_author.svg" width="20" height="21" alt />
-        {{ author.name }}
+        <nuxt-link :to="`/author/${author.id}/`" class="authorLink">
+          {{ author.name }}
+        </nuxt-link>
       </span>
     </div>
   </div>
