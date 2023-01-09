@@ -26,7 +26,7 @@
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/eslint-config": "^3.0.0",
     "@nuxtjs/eslint-module": "^2.0.0",
-    "@nuxtjs/feed": "^1.1.0",
+    "@nuxtjs/feed": "^2.0.0",
     "@nuxtjs/google-analytics": "^2.2.0",
     "@nuxtjs/gtm": "^2.4.0",
     "@nuxtjs/proxy": "^2.1.0",
