@@ -4,24 +4,40 @@
     <div class="divider">
       <p v-if="!data.id" class="loading">Now Loading...</p>
       <article v-if="data.id" class="article">
-        <div v-if="data.ogimage" class="ogimageWrap">
-          <img
-            ref="ogimage"
-            :src="data.ogimage.url + '?w=820&q=100'"
-            :srcset="
-              data.ogimage.url +
-              '?w=375&q=100 375w,' +
-              data.ogimage.url +
-              '?w=750&q=100 750w,' +
-              data.ogimage.url +
-              '?w=820&q=100 820w'
-            "
-            class="ogimage"
-          />
+        <div class="ogimageWrap">
+          <picture v-if="data.ogimage">
+            <source
+              media="(min-width: 1160px)"
+              type="image/webp"
+              :srcset="`${data.ogimage.url}?w=820&fm=webp, ${data.ogimage.url}?w=1640&fm=webp 2x`"
+            />
+            <source
+              media="(min-width: 820px)"
+              type="image/webp"
+              :srcset="`${data.ogimage.url}?w=740&fm=webp, ${data.ogimage.url}?w=1480&fm=webp 2x`"
+            />
+            <source
+              media="(min-width: 768px)"
+              type="image/webp"
+              :srcset="`${data.ogimage.url}?w=728&fm=webp, ${data.ogimage.url}?w=1456&fm=webp 2x`"
+            />
+            <source
+              media="(max-width: 768px)"
+              type="image/webp"
+              :srcset="`${data.ogimage.url}?w=375&fm=webp, ${data.ogimage.url}?w=750&fm=webp 2x`"
+            />
+            <img
+              ref="ogimage"
+              :src="data.ogimage.url + '?w=820&q=100'"
+              class="ogimage"
+              alt
+            />
+          </picture>
+          <picture v-else>
+            <source type="image/webp" :srcset="data.defaultOgimage" />
+            <img ref="ogimage" :src="data.defaultOgimage" class="ogimage" alt />
+          </picture>
         </div>
-        <dev v-else>
-          <img ref="ogimage" :src="data.defaultOgimage" class="ogimage" />
-        </dev>
         <Breadcrumb :category="data.category" />
         <div class="main">
           <Share :id="data.id" :title="data.title" />
