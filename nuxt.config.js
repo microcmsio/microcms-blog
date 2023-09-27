@@ -311,7 +311,7 @@ export default {
           endpoint: 'tags',
           queries: {
             fields: 'id',
-            limit: 1000,
+            limit: 100,
           },
         })
         .then(({ contents }) => {
@@ -362,7 +362,7 @@ export default {
       .get({
         endpoint: 'authors',
         queries: {
-          limit: 1000,
+          limit: 100,
         },
       })
       .then((res) => res.contents);
