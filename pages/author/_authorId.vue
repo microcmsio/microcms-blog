@@ -141,7 +141,7 @@ export default {
     const tags = await $microcms.get({
       endpoint: 'tags',
       queries: {
-        limit: 1000,
+        limit: 100,
       },
     });
 
