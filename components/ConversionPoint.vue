@@ -58,8 +58,8 @@
             </a>
           </li>
           <li class="listItem">
-            <a target="_blank" href="https://www.facebook.com/microcms.io/">
-              <img src="/images/icon_facebook.svg" alt="facebook" />
+            <a target="_blank" href="https://discord.gg/K3DPqw4EJ2">
+              <img src="/images/icon_discord.svg" alt="Discord" />
             </a>
           </li>
           <li class="listItem">
