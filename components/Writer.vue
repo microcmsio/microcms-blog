@@ -19,7 +19,7 @@
             {{ writer.name }}
           </nuxt-link>
           <a v-if="writer.twitter" class="twitterLink" :href="writer.twitter">
-            <img class="twitter" src="/images/icon_twitter.svg" alt="Twitter" />
+            <img class="twitter" src="/images/icon_x.svg" alt="x" />
           </a>
         </dt>
         <dd class="text">{{ writer.text }}</dd>

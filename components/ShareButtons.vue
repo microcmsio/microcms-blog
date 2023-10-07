@@ -9,8 +9,8 @@
           rel="noopener noreferrer"
           class="button twitter"
         >
-          <img src="/images/icon_twitter.svg" alt="Twitter" class="icon" />
-          Twitter
+          <img src="/images/icon_x.svg" alt="X" class="icon" />
+          X
         </a>
       </li>
       <li class="shareList">
