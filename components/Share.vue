@@ -3,7 +3,7 @@
     <ul class="shareLists">
       <li class="shareList">
         <a :href="twitterLink" target="_blank" rel="noopener noreferrer">
-          <img src="/images/icon_twitter.svg" alt="Twitter" />
+          <img src="/images/icon_x.svg" alt="X" />
         </a>
       </li>
       <li class="shareList">

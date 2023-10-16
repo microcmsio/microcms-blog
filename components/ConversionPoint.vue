@@ -53,13 +53,13 @@
         </p>
         <ul class="iconList">
           <li class="listItem">
-            <a target="_blank" href="https://twitter.com/micro_cms">
-              <img src="/images/icon_twitter.svg" alt="twitter" />
+            <a target="_blank" href="https://x.com/micro_cms">
+              <img src="/images/icon_x.svg" alt="X" data-logo="x" />
             </a>
           </li>
           <li class="listItem">
-            <a target="_blank" href="https://www.facebook.com/microcms.io/">
-              <img src="/images/icon_facebook.svg" alt="facebook" />
+            <a target="_blank" href="https://discord.gg/K3DPqw4EJ2">
+              <img src="/images/icon_discord.svg" alt="Discord" />
             </a>
           </li>
           <li class="listItem">
@@ -219,6 +219,11 @@ export default {
     img {
       max-width: 32px;
       max-height: 32px;
+
+      &[data-logo='x'] {
+        max-width: 30px;
+        max-height: 30px;
+      }
     }
   }
 
@@ -370,6 +375,11 @@ export default {
     img {
       max-width: 32px;
       max-height: 32px;
+
+      &[data-logo='x'] {
+        max-width: 30px;
+        max-height: 30px;
+      }
     }
   }
 

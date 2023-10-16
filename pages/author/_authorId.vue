@@ -22,8 +22,8 @@
             <span class="name">{{ author.name }}</span>
             <a v-if="author.twitter" :href="author.twitter" target="twitter">
               <img
-                src="/images/icon_twitter.svg"
-                alt="Twitter"
+                src="/images/icon_x.svg"
+                alt="X"
                 class="icon lazyload"
                 width="32"
                 height="32"
