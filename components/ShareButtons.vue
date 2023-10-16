@@ -10,7 +10,7 @@
           class="button twitter"
         >
           <img src="/images/icon_x.svg" alt="X" class="icon" />
-          X
+          ポストする
         </a>
       </li>
       <li class="shareList">
@@ -21,7 +21,7 @@
           class="button facebook"
         >
           <img src="/images/icon_facebook.svg" alt="Facebook" class="icon" />
-          Facebook
+          シェアする
         </a>
       </li>
       <li class="shareList">
@@ -36,7 +36,7 @@
             alt="はてなブックマーク"
             class="icon"
           />
-          はてなブックマーク
+          ブックマークする
         </a>
       </li>
     </ul>
@@ -111,8 +111,8 @@ export default {
 }
 
 .twitter {
-  border: 1px solid var(--color-social-twitter);
-  color: var(--color-social-twitter);
+  border: 1px solid var(--color-social-x);
+  color: var(--color-social-x);
 }
 
 .facebook {
