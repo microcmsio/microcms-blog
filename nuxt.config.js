@@ -156,12 +156,10 @@ export default {
    */
   build: {
     postcss: {
-      plugins: {
-        'postcss-custom-properties': {
-          preserve: false,
-          importFrom: ['assets/styles/colors.css'],
+      postcssOptions: {
+        plugins: {
+          'postcss-nested': {},
         },
-        'postcss-nested': {},
       },
     },
     extend(config, ctx) {
