@@ -17,7 +17,7 @@
     "encoding": "^0.1.13",
     "highlight.js": "^10.0.0",
     "microcms-js-sdk": "^2.0.0",
-    "nuxt": "^2.15.4",
+    "nuxt": "^2.17.2",
     "nuxt-facebook-pixel-module": "^1.5.0",
     "nuxt-microcms-module": "^1.0.1"
   },
