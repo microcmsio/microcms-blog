@@ -49,6 +49,10 @@
               :tags="tag"
               :is-single-page="true"
             />
+            <Alert
+              :is-old-post="isOldPost"
+              :is-technical-post="isTechnicalPost"
+            />
             <Toc :id="id" :toc="toc" :visible="toc_visible" />
             <Post :body="body" />
             <ShareButtons :id="id" :title="title" />
@@ -171,6 +175,27 @@ export default {
       publishedAt: '',
       ogimage: null,
     };
+  },
+  computed: {
+    isOldPost() {
+      const currentDate = new Date();
+
+      const oneYearAgoDate = new Date();
+      oneYearAgoDate.setFullYear(currentDate.getFullYear() - 1);
+
+      const createdAtDate = new Date(this.publishedAt || this.createdAt);
+
+      // createdAtが1年前の日付かどうか判定
+      return createdAtDate < oneYearAgoDate;
+    },
+    isTechnicalPost() {
+      // エンジニアリング、チュートリアル、更新情報カテゴリが古い記事チェックの対象
+      return (
+        this.category.id === 'engineering' ||
+        this.category.id === 'tutorial' ||
+        this.category.id === 'update'
+      );
+    },
   },
   head() {
     return {
