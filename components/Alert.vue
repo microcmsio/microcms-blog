@@ -29,6 +29,7 @@ export default {
   margin-bottom: 40px;
   padding: 16px 16px 18px 44px;
   font-size: 14px;
+  border-radius: 4px;
 
   &::before {
     content: '';
