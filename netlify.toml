@@ -2,6 +2,16 @@
   functions = "dist/api"
 
 [[redirects]]
+  from = "/usecase-rebuild"
+  to = "https://microcms.io/interviews/usecase-rebuild"
+  status = 302
+
+[[redirects]]
+  from = "/usecase-rebuild/"
+  to = "https://microcms.io/interviews/usecase-rebuild"
+  status = 302
+
+[[redirects]]
   from = "/*"
   to = "/404.html"
   status = 404
