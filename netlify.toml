@@ -5,16 +5,19 @@
   from = "/usecase-interspace"
   to = "https://microcms.io/interviews/usecase-interspace"
   status = 302
+  force = true
 
 [[redirects]]
   from = "/usecase-interspace/"
   to = "https://microcms.io/interviews/usecase-interspace"
   status = 302
+  force = true
 
 [[redirects]]
   from = "/usecase-konicaminolta"
   to = "https://microcms.io/interviews/usecase-konicaminolta"
   status = 302
+  force = true
 
 [[redirects]]
   from = "/usecase-konicaminolta/"
@@ -30,6 +33,7 @@
   from = "/usecase-rebuild/"
   to = "https://microcms.io/interviews/usecase-rebuild"
   status = 302
+  force = true
 
 [[redirects]]
   from = "/*"
