@@ -348,12 +348,9 @@ export default {
     },
     dir: 'dist',
     exclude: [
-      '/usecase-interspace',
-      '/usecase-interspace/',
-      '/usecase-konicaminolta',
-      '/usecase-konicaminolta/',
-      '/usecase-rebuild',
-      '/usecase-rebuild/',
+      /^\/usecase-interspace\/?$/,
+      /^\/usecase-konicaminolta\/?$/,
+      /^\/usecase-rebuild\/?$/,
     ],
   },
   sitemap: {
