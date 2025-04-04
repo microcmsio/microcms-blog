@@ -2,36 +2,284 @@
   functions = "dist/api"
 
 [[redirects]]
-  from = "/usecase-interspace"
-  to = "https://microcms.io/interviews/usecase-interspace"
+  from = "/usecase-cainz/"
+  to = "https://microcms.io/interviews/usecase-cainz/"
   status = 302
   force = true
 
 [[redirects]]
-  from = "/usecase-interspace/"
-  to = "https://microcms.io/interviews/usecase-interspace"
+  from = "/usecase-web-creator-box/"
+  to = "https://microcms.io/interviews/usecase-web-creator-box/"
   status = 302
   force = true
 
 [[redirects]]
-  from = "/usecase-konicaminolta"
-  to = "https://microcms.io/interviews/usecase-konicaminolta"
+  from = "/usecase-fuller/"
+  to = "https://microcms.io/interviews/usecase-fuller/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-dip/"
+  to = "https://microcms.io/interviews/usecase-dip/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-gree-x/"
+  to = "https://microcms.io/interviews/usecase-gree-x/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-chunichi/"
+  to = "https://microcms.io/interviews/usecase-chunichi/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-ymj/"
+  to = "https://microcms.io/interviews/usecase-ymj/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-kinto/"
+  to = "https://microcms.io/interviews/usecase-kinto/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-nifty/"
+  to = "https://microcms.io/interviews/usecase-nifty/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-cerezo/"
+  to = "https://microcms.io/interviews/usecase-cerezo/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-scrap/"
+  to = "https://microcms.io/interviews/usecase-scrap/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-freee/"
+  to = "https://microcms.io/interviews/usecase-freee/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-tokyo-gas/"
+  to = "https://microcms.io/interviews/usecase-tokyo-gas/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-odx/"
+  to = "https://microcms.io/interviews/usecase-odx/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-alba/"
+  to = "https://microcms.io/interviews/usecase-alba/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-otamanabi-no-mori/"
+  to = "https://microcms.io/interviews/usecase-otamanabi-no-mori/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-elnet/"
+  to = "https://microcms.io/interviews/usecase-elnet/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-smarthr/"
+  to = "https://microcms.io/interviews/usecase-smarthr/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-leact/"
+  to = "https://microcms.io/interviews/usecase-leact/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-dmm/"
+  to = "https://microcms.io/interviews/usecase-dmm/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-housmart/"
+  to = "https://microcms.io/interviews/usecase-housmart/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-gvatech/"
+  to = "https://microcms.io/interviews/usecase-gvatech/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-toridoll/"
+  to = "https://microcms.io/interviews/usecase-toridoll/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-polimill/"
+  to = "https://microcms.io/interviews/usecase-polimill/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-reiwatravel/"
+  to = "https://microcms.io/interviews/usecase-reiwatravel/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-ndc/"
+  to = "https://microcms.io/interviews/usecase-ndc/"
+  status = 302
+  force = true
+
+[[redirects]]
+from = "/usecase-yamap-store/"
+to = "https://microcms.io/interviews/usecase-yamap-store/"
+status = 302
+force = true
+
+[[redirects]]
+  from = "/usecase-nrinetcom/"
+  to = "https://microcms.io/interviews/usecase-nrinetcom/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-discoveryjapan/"
+  to = "https://microcms.io/interviews/usecase-discoveryjapan/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-paconsul/"
+  to = "https://microcms.io/interviews/usecase-paconsul/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-chikaku/"
+  to = "https://microcms.io/interviews/usecase-chikaku/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-zozotech/"
+  to = "https://microcms.io/interviews/usecase-zozotech/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-sgis/"
+  to = "https://microcms.io/interviews/usecase-sgis/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-monex-am/"
+  to = "https://microcms.io/interviews/usecase-monex-am/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-dwango/"
+  to = "https://microcms.io/interviews/usecase-dwango/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-beatfit/"
+  to = "https://microcms.io/interviews/usecase-beatfit/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-odakyu/"
+  to = "https://microcms.io/interviews/usecase-odakyu/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-medley/"
+  to = "https://microcms.io/interviews/usecase-medley/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-port/"
+  to = "https://microcms.io/interviews/usecase-port/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-acall/"
+  to = "https://microcms.io/interviews/usecase-acall/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-knockonthedoor/"
+  to = "https://microcms.io/interviews/usecase-knockonthedoor/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-mediba/"
+  to = "https://microcms.io/interviews/usecase-mediba/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/crowdworks-with-microcms/"
+  to = "https://microcms.io/interviews/crowdworks-with-microcms/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-mediano/"
+  to = "https://microcms.io/interviews/usecase-mediano/"
   status = 302
   force = true
 
 [[redirects]]
   from = "/usecase-konicaminolta/"
-  to = "https://microcms.io/interviews/usecase-konicaminolta"
+  to = "https://microcms.io/interviews/usecase-konicaminolta/"
   status = 302
-
-[[redirects]]
-  from = "/usecase-rebuild"
-  to = "https://microcms.io/interviews/usecase-rebuild"
-  status = 302
+  force = true
 
 [[redirects]]
   from = "/usecase-rebuild/"
-  to = "https://microcms.io/interviews/usecase-rebuild"
+  to = "https://microcms.io/interviews/usecase-rebuild/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/usecase-interspace/"
+  to = "https://microcms.io/interviews/usecase-interspace/"
   status = 302
   force = true
 
