@@ -347,11 +347,6 @@ export default {
       ];
     },
     dir: 'dist',
-    exclude: [
-      /^\/usecase-interspace\/?$/,
-      /^\/usecase-konicaminolta\/?$/,
-      /^\/usecase-rebuild\/?$/,
-    ],
   },
   sitemap: {
     path: '/sitemap.xml',
