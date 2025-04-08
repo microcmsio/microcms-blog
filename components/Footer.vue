@@ -36,7 +36,7 @@
               <li class="menuListItem">
                 <a
                   class="menuLink"
-                  href="https://blog.microcms.io/category/usecase/page/1/"
+                  href="https://microcms.io/interviews"
                   >導入事例インタビュー</a
                 >
               </li>
