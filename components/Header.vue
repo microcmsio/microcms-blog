@@ -178,7 +178,7 @@ export default {
             },
             {
               name: '導入事例インタビュー',
-              path: 'https://blog.microcms.io/category/usecase/page/1/',
+              path: 'https://microcms.io/interviews',
             },
             {
               name: 'セミナー情報',
