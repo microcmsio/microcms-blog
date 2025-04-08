@@ -98,14 +98,14 @@ export default {
     GTM_ID ? ['@nuxtjs/gtm'] : undefined,
     FB_PIXEL_ID
       ? [
-          'nuxt-facebook-pixel-module',
-          {
-            track: 'PageView',
-            pixelId: FB_PIXEL_ID,
-            autoPageView: true,
-            disabled: false,
-          },
-        ]
+        'nuxt-facebook-pixel-module',
+        {
+          track: 'PageView',
+          pixelId: FB_PIXEL_ID,
+          autoPageView: true,
+          disabled: false,
+        },
+      ]
       : undefined,
     ['@nuxtjs/sitemap'],
     '@nuxtjs/feed',
