@@ -20,7 +20,12 @@
       <div class="menu" :class="{ isOpen: open }">
         <ul class="lists isMobile">
           <li class="list">
-            <a href="https://microcms.io/contact">お問い合わせ</a>
+            <a href="https://microcms.io/contact">新規導入に関するご相談</a>
+          </li>
+          <li class="list">
+            <a href="https://microcms.io/contact-support"
+              >ご利用中のサービスに関するご相談</a
+            >
           </li>
           <li class="list">
             <a href="https://microcms.io/pricing">料金プラン</a>
