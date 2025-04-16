@@ -34,9 +34,7 @@
                 <hr />
               </li>
               <li class="menuListItem">
-                <a
-                  class="menuLink"
-                  href="https://microcms.io/interviews"
+                <a class="menuLink" href="https://microcms.io/interviews"
                   >導入事例インタビュー</a
                 >
               </li>
@@ -271,6 +269,11 @@
                   class="menuLink"
                   href="https://microcms.io/partners#consultation"
                   >パートナー紹介のご相談</a
+                >
+              </li>
+              <li class="menuListItem">
+                <a class="menuLink" href="https://microcms.io/contact-support"
+                  >ご利用中のサービスに関するご相談</a
                 >
               </li>
             </ul>
