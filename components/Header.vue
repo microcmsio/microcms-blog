@@ -20,7 +20,12 @@
       <div class="menu" :class="{ isOpen: open }">
         <ul class="lists isMobile">
           <li class="list">
-            <a href="https://microcms.io/contact">お問い合わせ</a>
+            <a href="https://microcms.io/contact">新規導入に関するご相談</a>
+          </li>
+          <li class="list">
+            <a href="https://microcms.io/contact-support"
+              >ご利用中のサービスに関するご相談</a
+            >
           </li>
           <li class="list">
             <a href="https://microcms.io/pricing">料金プラン</a>
@@ -246,6 +251,10 @@ export default {
               name: 'パートナー紹介のご相談',
               path: 'https://microcms.io/partners#consultation',
             },
+            {
+              name: 'ご利用中のサービスに関するご相談',
+              path: 'https://microcms.io/contact-support',
+            },
           ],
         },
       ],
@@ -386,7 +395,6 @@ export default {
   }
 
   .dropDown {
-    color: var(--color-text-sub);
     display: inline-block;
     padding-right: 20px;
     position: relative;
@@ -424,13 +432,11 @@ export default {
 
   .dropDownMenuList {
     a {
-      color: var(--color-text-sub);
       display: block;
       transition: 0.3s all ease-in-out;
       padding: 10px 0;
 
       &:hover {
-        color: var(--color-text-main);
         opacity: 0.8;
       }
     }
