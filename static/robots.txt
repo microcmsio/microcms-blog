@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /draft/
+Sitemap: https://blog.microcms.io/sitemap.xml
+Crawl-delay: 1
