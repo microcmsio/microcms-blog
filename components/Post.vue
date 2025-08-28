@@ -93,6 +93,12 @@ export default {
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
+    & >>> video {
+      max-width: 100%;
+      margin: 40px 0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
     & >>> a {
       color: var(--color-purple);
       text-decoration: underline;

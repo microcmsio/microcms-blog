@@ -154,6 +154,16 @@ export default {
       $(elm).attr('data-src', elm.attribs.src);
       $(elm).removeAttr('src');
     });
+    $('a').each((_, elm) => {
+      // hrefが動画リンクのものはvideoタグを作成し、srcにhrefの値を設定
+      if ($(elm).attr('href').endsWith('.mp4')) {
+        const video = $('<video></video>');
+        video.attr('src', $(elm).attr('href'));
+        video.attr('controls', 'controls');
+        video.attr('preload', 'metadata');
+        $(elm).replaceWith(video);
+      }
+    });
 
     data.related_blogs.forEach((blog) => {
       blog.defaultOgimage = getDefaultOgimage(blog);
