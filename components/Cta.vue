@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div v-if="contents.length > 0" class="wrapper">
     <div v-for="(item, index) in getContents" :key="index" class="ctaItem">
       <div v-html="item.body"></div>
     </div>
