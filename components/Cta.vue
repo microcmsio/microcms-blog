@@ -12,7 +12,6 @@ export default {
     id: {
       type: String,
       required: true,
-      default: '',
     },
 
     contents: {
@@ -149,6 +148,12 @@ export default {
         padding: 10px 20px;
         border-radius: 5px;
       }
+    }
+
+    & >>> iframe {
+      height: auto;
+      width: 100%;
+      aspect-ratio: 16 / 9;
     }
   }
 }
