@@ -56,6 +56,7 @@
             />
             <Toc :id="id" :toc="toc" :visible="toc_visible" />
             <Post :body="body" />
+            <Cta :id="id" :contents="ctaContents" />
             <ConversionPoint
               :id="id"
               :contents="cv_point"
@@ -120,6 +121,14 @@ export default {
         : await $microcms.get({
             endpoint: 'banner',
           });
+    const ctaContents =
+      payload !== undefined && payload.ctaContents !== undefined
+        ? payload.ctaContents
+        : (
+            await $microcms.get({
+              endpoint: 'cta',
+            })
+          ).contents;
     const { contents } = await $microcms.get({
       endpoint: 'blog',
     });
@@ -174,6 +183,7 @@ export default {
       defaultOgimage: getDefaultOgimage(data),
       popularArticles,
       banner,
+      ctaContents,
       body: $.html(),
       toc,
       categories: categories.contents,

@@ -98,14 +98,14 @@ export default {
     GTM_ID ? ['@nuxtjs/gtm'] : undefined,
     FB_PIXEL_ID
       ? [
-        'nuxt-facebook-pixel-module',
-        {
-          track: 'PageView',
-          pixelId: FB_PIXEL_ID,
-          autoPageView: true,
-          disabled: false,
-        },
-      ]
+          'nuxt-facebook-pixel-module',
+          {
+            track: 'PageView',
+            pixelId: FB_PIXEL_ID,
+            autoPageView: true,
+            disabled: false,
+          },
+        ]
       : undefined,
     ['@nuxtjs/sitemap'],
     '@nuxtjs/feed',
@@ -217,6 +217,11 @@ export default {
       const banner = await client.get({
         endpoint: 'banner',
       });
+      const ctaContents = (
+        await client.get({
+          endpoint: 'cta',
+        })
+      ).contents;
 
       // 詳細ページ
       const getArticles = (offset = 0) => {
@@ -237,7 +242,7 @@ export default {
             return [
               ...res.contents.map((content) => ({
                 route: `/${content.id}`,
-                payload: { content, popularArticles, banner },
+                payload: { content, popularArticles, banner, ctaContents },
               })),
               ...articles,
             ];
