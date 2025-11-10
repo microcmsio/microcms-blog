@@ -43,7 +43,6 @@ export default {
 .image {
   width: 300px;
   height: auto;
-  border-radius: 5px;
 }
 
 .link {
