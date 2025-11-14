@@ -208,7 +208,7 @@ export default {
     async routes() {
       const range = (start, end) =>
         [...Array(end - start + 1)].map((_, i) => start + i);
-      const limit = 50;
+      const limit = 25;
       const popularArticles = (
         await client.get({
           endpoint: 'popular-articles',
