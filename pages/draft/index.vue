@@ -75,7 +75,7 @@
         <Categories :categories="categories" />
         <Tags :tags="tags" />
         <div class="followArea">
-          <Banner :id="`draft-${data.id}`" :banner="banner" />
+          <Banners :id="`draft-${data.id}`" :banners="banners" />
           <Latest :contents="contents" />
         </div>
       </aside>
@@ -104,8 +104,8 @@ export default {
         limit: 100,
       },
     });
-    const banner = await $microcms.get({
-      endpoint: 'banner',
+    const banners = await $microcms.get({
+      endpoint: 'banners',
     });
     const { contents } = await $microcms.get({
       endpoint: 'blog',
@@ -113,7 +113,7 @@ export default {
     return {
       categories: categories.contents,
       tags: tags.contents,
-      banner,
+      banners,
       contents,
     };
   },

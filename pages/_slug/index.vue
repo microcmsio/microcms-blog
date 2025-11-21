@@ -81,7 +81,7 @@
         <Tags :tags="tags" />
         <PopularArticles :contents="popularArticles" />
         <div class="followArea">
-          <Banner :id="`blog-${id}`" :banner="banner" />
+          <Banners :id="`blog-${id}`" :banners="banners" />
           <Latest :contents="contents" />
         </div>
       </aside>
@@ -115,11 +115,11 @@ export default {
               endpoint: 'popular-articles',
             })
           ).articles;
-    const banner =
+    const banners =
       payload !== undefined
-        ? payload.banner
+        ? payload.banners
         : await $microcms.get({
-            endpoint: 'banner',
+            endpoint: 'banners',
           });
     const ctaContents =
       payload !== undefined && payload.ctaContents !== undefined
@@ -182,7 +182,7 @@ export default {
       ...data,
       defaultOgimage: getDefaultOgimage(data),
       popularArticles,
-      banner,
+      banners,
       ctaContents,
       body: $.html(),
       toc,
