@@ -88,7 +88,7 @@
         />
       </div>
       <aside class="aside">
-        <Banner id="list" :banner="banner" />
+        <Banners id="list" :banners="banners" />
         <Search />
         <Categories :categories="categories" />
         <Tags :tags="tags" />
@@ -115,11 +115,11 @@ export default {
               endpoint: 'popular-articles',
             })
           ).articles;
-    const banner =
+    const banners =
       payload !== undefined
-        ? payload.banner
+        ? payload.banners
         : await $microcms.get({
-            endpoint: 'banner',
+            endpoint: 'banners',
           });
     const author = await $microcms.get({
       endpoint: `authors/${authorId}`,
@@ -156,7 +156,7 @@ export default {
       tags: tags.contents,
       authorId,
       popularArticles,
-      banner,
+      banners,
       page,
       pager: [...Array(Math.ceil(data.totalCount / limit)).keys()],
     };

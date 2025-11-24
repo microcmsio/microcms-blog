@@ -77,7 +77,7 @@
         </div>
       </div>
       <aside class="aside">
-        <Banner id="search" :banner="banner" />
+        <Banners id="search" :banners="banners" />
         <Categories :categories="categories" />
         <Tags :tags="tags" />
         <PopularArticles :contents="popularArticles" />
@@ -101,11 +101,11 @@ export default {
               endpoint: 'popular-articles',
             })
           ).articles;
-    const banner =
+    const banners =
       payload !== undefined
-        ? payload.banner
+        ? payload.banners
         : await $microcms.get({
-            endpoint: 'banner',
+            endpoint: 'banners',
           });
     const categories = await $microcms.get({
       endpoint: 'categories',
@@ -121,7 +121,7 @@ export default {
     });
     return {
       popularArticles,
-      banner,
+      banners,
       categories: categories.contents,
       tags: tags.contents,
     };

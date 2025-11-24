@@ -214,8 +214,8 @@ export default {
           endpoint: 'popular-articles',
         })
       ).articles;
-      const banner = await client.get({
-        endpoint: 'banner',
+      const banners = await client.get({
+        endpoint: 'banners',
       });
       const ctaContents = (
         await client.get({
@@ -242,7 +242,7 @@ export default {
             return [
               ...res.contents.map((content) => ({
                 route: `/${content.id}`,
-                payload: { content, popularArticles, banner, ctaContents },
+                payload: { content, popularArticles, banners, ctaContents },
               })),
               ...articles,
             ];
@@ -253,7 +253,7 @@ export default {
       // 一覧ページ
       const index = {
         route: '/',
-        payload: { popularArticles, banner },
+        payload: { popularArticles, banners },
       };
 
       // 一覧のページング
@@ -267,14 +267,14 @@ export default {
         .then((res) =>
           range(1, Math.ceil(res.totalCount / 10)).map((p) => ({
             route: `/page/${p}`,
-            payload: { popularArticles, banner },
+            payload: { popularArticles, banners },
           }))
         );
 
       // 検索ページ
       const search = {
         route: '/search',
-        payload: { popularArticles, banner },
+        payload: { popularArticles, banners },
       };
 
       const categories = await client
@@ -302,7 +302,7 @@ export default {
             .then((res) => {
               return range(1, Math.ceil(res.totalCount / 10)).map((p) => ({
                 route: `/category/${category}/page/${p}`,
-                payload: { popularArticles, banner },
+                payload: { popularArticles, banners },
               }));
             })
         )
@@ -335,7 +335,7 @@ export default {
             .then((res) => {
               return range(1, Math.ceil(res.totalCount / 10)).map((p) => ({
                 route: `/tag/${tag}/page/${p}`,
-                payload: { popularArticles, banner },
+                payload: { popularArticles, banners },
               }));
             })
         )
