@@ -2,6 +2,9 @@
   "name": "microcms-blog",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "nuxt",
     "generate": "nuxt generate --fail-on-error",
