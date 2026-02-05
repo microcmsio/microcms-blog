@@ -41,7 +41,7 @@
         <p
           v-if="item.description"
           class="description"
-          v-html="formatDescription(item.description)"
+          v-text="item.description"
         ></p>
       </a>
 
@@ -64,6 +64,11 @@
             :alt="item.image.alt || ''"
           />
         </picture>
+        <p
+          v-if="item.description"
+          class="description"
+          v-text="item.description"
+        ></p>
       </div>
     </template>
   </div>
@@ -91,11 +96,6 @@ export default {
       return [];
     },
   },
-  methods: {
-    formatDescription(text) {
-      return String(text).trim().replace(/\n/g, '<br />');
-    },
-  },
 };
 </script>
 
@@ -118,6 +118,7 @@ export default {
 
 .description {
   padding-top: 7px;
+  white-space: pre-line;
 }
 
 .link {
