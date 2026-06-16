@@ -1,5 +1,8 @@
 # microcms-blog
-サイト: https://blog.microcms.io
+> [!IMPORTANT]
+> このリポジトリは、旧仕様のmicroCMSブログのソースコードです。  
+> 現在公開されている [microCMSブログ](https://blog.microcms.io) とは技術構成・実装内容・APIスキーマなどが異なる場合があります。  
+> 参考実装としてご利用ください。
 
 ## 機能
 - 記事一覧
